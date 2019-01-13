@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Linux下Realtek网卡驱动 | YuanXu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="无线网卡Ubuntu有时会不支持电脑的无线网卡，这时就需要自己安装了。  解决方法可以在官网找安装文件或者github上找源码编译安装。 Realtek无线网卡的安装包可以在github下载 https://github.com/rtlwifi-linux/rtlwifi_new. 然后进入目录 123$make$sudo make install$sudo modprobe 你的网卡型号（eg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux下Realtek网卡驱动">
+<meta property="og:url" content="http://yoursite.com/2019/01/09/Linux下Realtek网卡驱动/index.html">
+<meta property="og:site_name" content="YuanXu&#39;s Blog">
+<meta property="og:description" content="无线网卡Ubuntu有时会不支持电脑的无线网卡，这时就需要自己安装了。  解决方法可以在官网找安装文件或者github上找源码编译安装。 Realtek无线网卡的安装包可以在github下载 https://github.com/rtlwifi-linux/rtlwifi_new. 然后进入目录 123$make$sudo make install$sudo modprobe 你的网卡型号（eg">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-11T11:18:21.683Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux下Realtek网卡驱动">
+<meta name="twitter:description" content="无线网卡Ubuntu有时会不支持电脑的无线网卡，这时就需要自己安装了。  解决方法可以在官网找安装文件或者github上找源码编译安装。 Realtek无线网卡的安装包可以在github下载 https://github.com/rtlwifi-linux/rtlwifi_new. 然后进入目录 123$make$sudo make install$sudo modprobe 你的网卡型号（eg">
+  
+    <link rel="alternate" href="/atom.xml" title="YuanXu&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">YuanXu&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">天下熙熙, 皆为利来; 天下攘攘, 皆为利往</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/">分类</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/">标签</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux下Realtek网卡驱动" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/09/Linux下Realtek网卡驱动/" class="article-date">
+  <time datetime="2019-01-09T15:26:57.000Z" itemprop="datePublished">2019-01-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux下Realtek网卡驱动
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h3 id="无线网卡"><a href="#无线网卡" class="headerlink" title="无线网卡"></a>无线网卡</h3><p>Ubuntu有时会不支持电脑的无线网卡，这时就需要自己安装了。</p>
+<hr>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>可以在官网找安装文件或者github上找源码编译安装。</p>
+<p>Realtek无线网卡的安装包可以在github下载 <a href="https://github.com/rtlwifi-linux/rtlwifi_new" target="_blank" rel="noopener">https://github.com/rtlwifi-linux/rtlwifi_new</a>. 然后进入目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$make</span><br><span class="line">$sudo make install</span><br><span class="line">$sudo modprobe 你的网卡型号（eg：rtl8821be）</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="rtl8821ce"><a href="#rtl8821ce" class="headerlink" title="rtl8821ce"></a>rtl8821ce</h3><p>如果你的网卡是rtl8821ce，github上暂时好像没有，可以下载这一份。<br><a href="https://download.csdn.net/download/yx1302317313/10595262" target="_blank" rel="noopener">https://download.csdn.net/download/yx1302317313/10595262</a>. （CSDN的下载链接）</p>
+<ol>
+<li>解压进入文件夹，改一下Makefile中一个文件的路径。</li>
+<li>找到这一句 export TopDIR ?= $(srctree)/drivers/net/wireless/rtl8821ce</li>
+<li>修改成当前目录 export TopDIR ?= $(shell pwd)</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$make</span><br><span class="line">$sudo make install</span><br><span class="line">$sudo modprobe -a 8821ce</span><br></pre></td></tr></table></figure>
+<p>之后就可以看见无线图标了，如果连不上网reboot试试。</p>
+<h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/09/Linux下Realtek网卡驱动/" data-id="cjque4c3z0000stk4pxpjnh8f" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/01/11/hexo创建分类和标签/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          hexo创建分类和标签
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/01/09/N皇后问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">N皇后问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/01/11/hexo创建分类和标签/">hexo创建分类和标签</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/09/Linux下Realtek网卡驱动/">Linux下Realtek网卡驱动</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/09/N皇后问题/">N皇后问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Yuan Xu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/" class="mobile-nav-link">分类</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/" class="mobile-nav-link">标签</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>N皇后问题 | YuanXu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="八皇后问题八皇后问题，是一个古老而著名的问题，是回溯算法的典型案例。该问题是国际西洋棋棋手马克斯·贝瑟尔于1848年提出：在8×8格的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法。 N皇后问题在这里我们解决的是N皇后问题，即在一个n*n的棋盘上，摆放n个皇后，使之不相互攻击。问有几种摆放方法（不考虑棋盘的对称性）  对于8皇后问题，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="N皇后问题">
+<meta property="og:url" content="http://yoursite.com/2019/01/09/N皇后问题/index.html">
+<meta property="og:site_name" content="YuanXu&#39;s Blog">
+<meta property="og:description" content="八皇后问题八皇后问题，是一个古老而著名的问题，是回溯算法的典型案例。该问题是国际西洋棋棋手马克斯·贝瑟尔于1848年提出：在8×8格的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法。 N皇后问题在这里我们解决的是N皇后问题，即在一个n*n的棋盘上，摆放n个皇后，使之不相互攻击。问有几种摆放方法（不考虑棋盘的对称性）  对于8皇后问题，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-11T11:18:12.874Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="N皇后问题">
+<meta name="twitter:description" content="八皇后问题八皇后问题，是一个古老而著名的问题，是回溯算法的典型案例。该问题是国际西洋棋棋手马克斯·贝瑟尔于1848年提出：在8×8格的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法。 N皇后问题在这里我们解决的是N皇后问题，即在一个n*n的棋盘上，摆放n个皇后，使之不相互攻击。问有几种摆放方法（不考虑棋盘的对称性）  对于8皇后问题，">
+  
+    <link rel="alternate" href="/atom.xml" title="YuanXu&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">YuanXu&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">天下熙熙, 皆为利来; 天下攘攘, 皆为利往</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/">分类</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/">标签</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-N皇后问题" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/09/N皇后问题/" class="article-date">
+  <time datetime="2019-01-09T13:49:31.000Z" itemprop="datePublished">2019-01-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/算法/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      N皇后问题
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h3 id="八皇后问题"><a href="#八皇后问题" class="headerlink" title="八皇后问题"></a>八皇后问题</h3><p>八皇后问题，是一个古老而著名的问题，是回溯算法的典型案例。该问题是国际西洋棋棋手马克斯·贝瑟尔于1848年提出：在8×8格的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法。</p>
+<h3 id="N皇后问题"><a href="#N皇后问题" class="headerlink" title="N皇后问题"></a>N皇后问题</h3><p>在这里我们解决的是N皇后问题，即在一个n*n的棋盘上，摆放n个皇后，使之不相互攻击。问有几种摆放方法（不考虑棋盘的对称性）</p>
+<hr>
+<p>对于8皇后问题，我们可以通过8重循环的回溯算法解决，但是对于N皇后，我们无法预知N的值，所以不能使用这种方法。但是可以使用递归实现循环：每一次递归解决一行的皇后摆放位置，使之不与前几行冲突，之后再递归调用自身确定下一行的位置。</p>
+<h4 id="代码如下（C-）："><a href="#代码如下（C-）：" class="headerlink" title="代码如下（C++）："></a>代码如下（C++）：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int N;                    //N个皇后</span><br><span class="line">int queen_pos[100];       //每个皇后的位置，目前最大范围是100</span><br><span class="line">int num = 0;              //统计最终摆放位置方案的个数</span><br><span class="line">void queen(int k);        //递归函数</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	cin &gt;&gt; N;  //输入N</span><br><span class="line">      	queen(0); //从第0行开始摆放</span><br><span class="line">	cout &lt;&lt; num &lt;&lt; endl;    </span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">@brief：递归实现每一行皇后的摆放位置</span><br><span class="line">@parameter：K：从第K行开始摆放</span><br><span class="line">*/</span><br><span class="line">void queen(int k)		</span><br><span class="line">&#123;</span><br><span class="line">	if (k==N)        //摆满N行输出                                  </span><br><span class="line">	&#123;</span><br><span class="line">		for (int i = 0; i &lt; N; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			cout &lt;&lt; queen_pos[i] + 1&lt;&lt;&quot; &quot;;  //列数+1，因为棋盘从第一列开始</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">		num++;         //统计量+1</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i = 0; i &lt; N; i++）     //枚举皇后所在的列数	</span><br><span class="line">	&#123;</span><br><span class="line">		int j = 0;</span><br><span class="line">		for (; j &lt; k; j++ ）      //是否与前几行冲突</span><br><span class="line">		&#123;</span><br><span class="line">                        //与前几行同列 || 与前几行在同一对角线上，则冲突</span><br><span class="line">			if (queen_pos[j] == i || (abs(queen_pos[j] - i) == k - j))</span><br><span class="line">				break;              //如果冲突，跳出，否定这个位置</span><br><span class="line">		&#125;</span><br><span class="line">		if (j==k)           //如果不冲突</span><br><span class="line">		&#123;</span><br><span class="line">			queen_pos[k] = i;      //确定这一行皇后的位置</span><br><span class="line">			queen(k+1);            //递归进入下一行</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="以下为用程序求出的所有8皇后的解（92种）："><a href="#以下为用程序求出的所有8皇后的解（92种）：" class="headerlink" title="以下为用程序求出的所有8皇后的解（92种）："></a>以下为用程序求出的所有8皇后的解（92种）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">1 5 8 6 3 7 2 4</span><br><span class="line">1 6 8 3 7 4 2 5</span><br><span class="line">1 7 4 6 8 2 5 3</span><br><span class="line">1 7 5 8 2 4 6 3</span><br><span class="line">2 4 6 8 3 1 7 5</span><br><span class="line">2 5 7 1 3 8 6 4</span><br><span class="line">2 5 7 4 1 8 6 3</span><br><span class="line">2 6 1 7 4 8 3 5</span><br><span class="line">2 6 8 3 1 4 7 5</span><br><span class="line">2 7 3 6 8 5 1 4</span><br><span class="line">2 7 5 8 1 4 6 3</span><br><span class="line">2 8 6 1 3 5 7 4</span><br><span class="line">3 1 7 5 8 2 4 6</span><br><span class="line">3 5 2 8 1 7 4 6</span><br><span class="line">3 5 2 8 6 4 7 1</span><br><span class="line">3 5 7 1 4 2 8 6</span><br><span class="line">3 5 8 4 1 7 2 6</span><br><span class="line">3 6 2 5 8 1 7 4</span><br><span class="line">3 6 2 7 1 4 8 5</span><br><span class="line">3 6 2 7 5 1 8 4</span><br><span class="line">3 6 4 1 8 5 7 2</span><br><span class="line">3 6 4 2 8 5 7 1</span><br><span class="line">3 6 8 1 4 7 5 2</span><br><span class="line">3 6 8 1 5 7 2 4</span><br><span class="line">3 6 8 2 4 1 7 5</span><br><span class="line">3 7 2 8 5 1 4 6</span><br><span class="line">3 7 2 8 6 4 1 5</span><br><span class="line">3 8 4 7 1 6 2 5</span><br><span class="line">4 1 5 8 2 7 3 6</span><br><span class="line">4 1 5 8 6 3 7 2</span><br><span class="line">4 2 5 8 6 1 3 7</span><br><span class="line">4 2 7 3 6 8 1 5</span><br><span class="line">4 2 7 3 6 8 5 1</span><br><span class="line">4 2 7 5 1 8 6 3</span><br><span class="line">4 2 8 5 7 1 3 6</span><br><span class="line">4 2 8 6 1 3 5 7</span><br><span class="line">4 6 1 5 2 8 3 7</span><br><span class="line">4 6 8 2 7 1 3 5</span><br><span class="line">4 6 8 3 1 7 5 2</span><br><span class="line">4 7 1 8 5 2 6 3</span><br><span class="line">4 7 3 8 2 5 1 6</span><br><span class="line">4 7 5 2 6 1 3 8</span><br><span class="line">4 7 5 3 1 6 8 2</span><br><span class="line">4 8 1 3 6 2 7 5</span><br><span class="line">4 8 1 5 7 2 6 3</span><br><span class="line">4 8 5 3 1 7 2 6</span><br><span class="line">5 1 4 6 8 2 7 3</span><br><span class="line">5 1 8 4 2 7 3 6</span><br><span class="line">5 1 8 6 3 7 2 4</span><br><span class="line">5 2 4 6 8 3 1 7</span><br><span class="line">5 2 4 7 3 8 6 1</span><br><span class="line">5 2 6 1 7 4 8 3</span><br><span class="line">5 2 8 1 4 7 3 6</span><br><span class="line">5 3 1 6 8 2 4 7</span><br><span class="line">5 3 1 7 2 8 6 4</span><br><span class="line">5 3 8 4 7 1 6 2</span><br><span class="line">5 7 1 3 8 6 4 2</span><br><span class="line">5 7 1 4 2 8 6 3</span><br><span class="line">5 7 2 4 8 1 3 6</span><br><span class="line">5 7 2 6 3 1 4 8</span><br><span class="line">5 7 2 6 3 1 8 4</span><br><span class="line">5 7 4 1 3 8 6 2</span><br><span class="line">5 8 4 1 3 6 2 7</span><br><span class="line">5 8 4 1 7 2 6 3</span><br><span class="line">6 1 5 2 8 3 7 4</span><br><span class="line">6 2 7 1 3 5 8 4</span><br><span class="line">6 2 7 1 4 8 5 3</span><br><span class="line">6 3 1 7 5 8 2 4</span><br><span class="line">6 3 1 8 4 2 7 5</span><br><span class="line">6 3 1 8 5 2 4 7</span><br><span class="line">6 3 5 7 1 4 2 8</span><br><span class="line">6 3 5 8 1 4 2 7</span><br><span class="line">6 3 7 2 4 8 1 5</span><br><span class="line">6 3 7 2 8 5 1 4</span><br><span class="line">6 3 7 4 1 8 2 5</span><br><span class="line">6 4 1 5 8 2 7 3</span><br><span class="line">6 4 2 8 5 7 1 3</span><br><span class="line">6 4 7 1 3 5 2 8</span><br><span class="line">6 4 7 1 8 2 5 3</span><br><span class="line">6 8 2 4 1 7 5 3</span><br><span class="line">7 1 3 8 6 4 2 5</span><br><span class="line">7 2 4 1 8 5 3 6</span><br><span class="line">7 2 6 3 1 4 8 5</span><br><span class="line">7 3 1 6 8 5 2 4</span><br><span class="line">7 3 8 2 5 1 6 4</span><br><span class="line">7 4 2 5 8 1 3 6</span><br><span class="line">7 4 2 8 6 1 3 5</span><br><span class="line">7 5 3 1 6 8 2 4</span><br><span class="line">8 2 4 1 7 5 3 6</span><br><span class="line">8 2 5 3 1 7 4 6</span><br><span class="line">8 3 1 6 2 5 7 4</span><br><span class="line">8 4 1 3 6 2 7 5</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/09/N皇后问题/" data-id="cjque4c460002stk4qftyjb4r" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/01/09/Linux下Realtek网卡驱动/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Linux下Realtek网卡驱动
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/01/11/hexo创建分类和标签/">hexo创建分类和标签</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/09/Linux下Realtek网卡驱动/">Linux下Realtek网卡驱动</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/09/N皇后问题/">N皇后问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Yuan Xu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/" class="mobile-nav-link">分类</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/" class="mobile-nav-link">标签</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
