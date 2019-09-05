@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.6 -->
+    <script>
+        window.materialVersion = "1.5.6"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            卡尔曼滤波 [翻译] | 
+        
+        YuanXu&#39;s Blog
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.jpg">
+    <link rel="icon" href="/img/favicon.jpg">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" itemprop="description" content="
+最近学习卡尔曼滤波, 发现了一篇很好的博客. 也就是从这篇博客开始, 才逐渐开始理解卡尔曼滤波.这篇博客没有像其他很多教程那样用一大堆公式让初学者望而却步. 但是看完之后, 你会发现你不仅理解了卡尔曼滤波的过程, 也对那些看着头痛欲裂的数学公式有所了解.
+个人感觉这是一篇很棒的文章.由于原文章是英文的, 这里将其翻译为中文.(由于水平有限, 翻译的质量本人也不敢恭维, 请见谅!)
+">
+    <meta name="keywords" content="YuanXu,卡尔曼">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="YuanXu&#39;s Blog">
+    <meta name="msapplication-starturl" content="https://yx1302317313.github.io/2019/02/18/卡尔曼滤波-翻译/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="YuanXu&#39;s Blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.jpg">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://yx1302317313.github.io/2019/02/18/卡尔曼滤波-翻译/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="卡尔曼滤波 [翻译] | YuanXu&#39;s Blog">
+    <meta property="og:image" content="/img/favicon.jpg">
+    <meta property="og:description" content="
+最近学习卡尔曼滤波, 发现了一篇很好的博客. 也就是从这篇博客开始, 才逐渐开始理解卡尔曼滤波.这篇博客没有像其他很多教程那样用一大堆公式让初学者望而却步. 但是看完之后, 你会发现你不仅理解了卡尔曼滤波的过程, 也对那些看着头痛欲裂的数学公式有所了解.
+个人感觉这是一篇很棒的文章.由于原文章是英文的, 这里将其翻译为中文.(由于水平有限, 翻译的质量本人也不敢恭维, 请见谅!)
+">
+    <meta property="og:article:tag" content="卡尔曼"> 
+
+    
+        <meta property="article:published_time" content="Mon Feb 18 2019 13:18:48 GMT+0800">
+        <meta property="article:modified_time" content="Mon Aug 05 2019 21:22:30 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="https://yx1302317313.github.io/2019/02/18/卡尔曼滤波-翻译/index.html">
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://yx1302317313.github.io/2019/02/18/卡尔曼滤波-翻译/index.html",
+    "headline": "卡尔曼滤波 [翻译]",
+    "datePublished": "Mon Feb 18 2019 13:18:48 GMT+0800",
+    "dateModified": "Mon Aug 05 2019 21:22:30 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Yuan Xu",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicon.jpg"
+        },
+        "description": "天之道, 利而不害,人之道, 为而不争"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "YuanXu&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.jpg"
+        }
+    },
+    "keywords": ",卡尔曼YuanXu",
+    "description": "
+最近学习卡尔曼滤波, 发现了一篇很好的博客. 也就是从这篇博客开始, 才逐渐开始理解卡尔曼滤波.这篇博客没有像其他很多教程那样用一大堆公式让初学者望而却步. 但是看完之后, 你会发现你不仅理解了卡尔曼滤波的过程, 也对那些看着头痛欲裂的数学公式有所了解.
+个人感觉这是一篇很棒的文章.由于原文章是英文的, 这里将其翻译为中文.(由于水平有限, 翻译的质量本人也不敢恭维, 请见谅!)
+",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#卡尔曼滤波可以做什么"><span class="post-toc-text">卡尔曼滤波可以做什么</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#卡尔曼滤波怎么看待你的问题"><span class="post-toc-text">卡尔曼滤波怎么看待你的问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#用矩阵描述问题"><span class="post-toc-text">用矩阵描述问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#外部影响"><span class="post-toc-text">外部影响</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#外部不确定性"><span class="post-toc-text">外部不确定性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#通过测量细化估计"><span class="post-toc-text">通过测量细化估计</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#合并高斯分布"><span class="post-toc-text">合并高斯分布</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#整合在一起"><span class="post-toc-text">整合在一起</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                卡尔曼滤波 [翻译]
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar">
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Yuan Xu</strong>
+        <span>2月 18, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/卡尔曼/">卡尔曼</a>
+    </li></ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=卡尔曼滤波 [翻译]&url=https://yx1302317313.github.io/2019/02/18/卡尔曼滤波-翻译/index.html&pic=https://yx1302317313.github.io/img/favicon.jpg&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=卡尔曼滤波 [翻译]&url=https://yx1302317313.github.io/2019/02/18/卡尔曼滤波-翻译/index.html&via=Yuan Xu" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://yx1302317313.github.io/2019/02/18/卡尔曼滤波-翻译/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://yx1302317313.github.io/2019/02/18/卡尔曼滤波-翻译/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <blockquote>
+<p>最近学习卡尔曼滤波, 发现了一篇很好的博客. 也就是从这篇博客开始, 才逐渐开始理解卡尔曼滤波.<br>这篇博客没有像其他很多教程那样用一大堆公式让初学者望而却步. 但是看完之后, 你会发现你不仅理解了卡尔曼滤波的过程, 也对那些看着头痛欲裂的数学公式有所了解.</p>
+<p>个人感觉这是一篇很棒的文章.<br>由于原文章是英文的, 这里将其翻译为中文.(由于水平有限, 翻译的质量本人也不敢恭维, 请见谅!)</p>
+</blockquote>
+<a id="more"></a>
+<blockquote>
+<p>如果英文水平还可以, 建议直接阅读原英文文章. 这里给出原文链接. <a href="http://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/#mathybits" target="_blank" rel="noopener">How a Kalman filter works, in pictures</a></p>
+</blockquote>
+<p><strong>如有侵权, 请联系我删除 !</strong>(博客末尾有本人邮箱联系方式)</p>
+<p><br></p>
+<div align="center">
+<audio controls>
+    <source src="/music/一千年以后-林俊杰.mp3">
+</audio>
+<p>一千年以后-林俊杰</p>
+</div>
+
+
+<p>翻译如下:<br><strong>注意: 如果文中数学公式加载错误, 请刷新后重试</strong></p>
+<h3 id="卡尔曼滤波可以做什么"><a href="#卡尔曼滤波可以做什么" class="headerlink" title="卡尔曼滤波可以做什么"></a>卡尔曼滤波可以做什么</h3><p>让我们看一个玩具的例子: 假设你有一个可以在树林中运动的小机器人， 这个机器人需要确切的位置用于导航。</p>
+<p><img src="https://www.bzarg.com/wp-content/uploads/2015/08/robot_forest-300x160.png"></p>
+<p>这个机器人有一个状态$\vec {x_k}$, 它包含位置和速度信息。</p>
+<script type="math/tex; mode=display">
+\vec{x_k} = (\vec{p}, \vec{v})</script><p>注意状态仅仅是关于你的系统底层配置的一系列数字,它可以是任何数字.在我们的例子中它是位置和速度, 但它可以是有关水池中的液体量的数据, 可以是汽车引擎的温度, 可以是用户手指在触摸板上的位置, 或者是任何你需要跟踪的数据.</p>
+<p>我们的机器人同时有一个精度是10米的GPS传感器, 这很好, 但是我们需要知道机器人的位置精度要高于10米. 在树林中有大量的水沟和悬崖, 如果机器人运动出错超过几英尺, 他可能会掉下悬崖. 所以它携带的GPS传感器不是足够的好.</p>
+<p><img src="https://www.bzarg.com/wp-content/uploads/2015/08/robot_ohnoes-300x283.png"></p>
+<p>我们可能也知道一些关于机器人运动的信息. 例如, 它知道发送给机器人动机的指令, 它知道如果它一直不受干扰的向着一个方向前进, 在下一个瞬间它可能会在相同的方向走的更远. 当然它不知道关于电机的所有信息: 它可能受到风的冲击, 轮子可能有一点打滑, 或者是滚过崎岖不平的地形; 所以车轮转动的数量可能并不完全代表机器人实际行驶的距离，这样的预测是不完美的.</p>
+<p>GPS <strong>传感器</strong> 告诉了我们一些关于机器人状态的信息, 但仅仅是间接的, 并且伴随着一些不确定性和不准确性. 我们的 <strong>预测</strong> 告诉我们一些机器人如何移动的信息,但只是间接的, 同样伴随着一些不确定性和不准确性.</p>
+<p>但是如果我们使用所有可用信息, 我们是否能够得到一个比估计更好的答案? 当然答案是肯定的, 这就是卡尔曼滤波的作用.</p>
+<h3 id="卡尔曼滤波怎么看待你的问题"><a href="#卡尔曼滤波怎么看待你的问题" class="headerlink" title="卡尔曼滤波怎么看待你的问题"></a>卡尔曼滤波怎么看待你的问题</h3><p>我们看一下我们尝试解决的问题的背景. 我们继续用一个只有位置和速度信息的状态进行讨论.</p>
+<script type="math/tex; mode=display">
+\vec{x} = \begin{bmatrix} 
+p\\ 
+v 
+\end{bmatrix}</script><p>我们不知道实际的位置和速度是什么; 有大量位置和速度的组合可能是正确的.但是有一些组合会比其他组合更有可能.</p>
+<p><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_0.png" width="400"></p>
+<p>卡尔曼滤波假设所有变量(在我们的例子中是位置和速度)都是随机的并且符合高斯分布. 每一个变量都有一个均值$\mu$, 它是随机分布的平均值(它也是最可能的状态), 和一个方差$\sigma^2$, 它表示了不确定度.</p>
+<p><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_1.png" width="400"></p>
+<p>在上面的图片中, 位置和速度是不相关的, 意味着一个变量的状态不会告诉你其他变量可能的任何信息.</p>
+<p>下面的例子展示了一些更有趣的事情: 位置和速度是相关的.观察到一个特定位置的可能性取决于你拥有的速度.</p>
+<p><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_3.png" width="400"></p>
+<p>这种情况是可能出现的, 例如, 你正在基于一个旧的位置估计一个新的位置.如果我们的速度很高, 我们可能移动的更远, 因此我们的位置将会更远. 如果我们移动的比较慢, 我们就不能达到那么远.</p>
+<p>这种关系对于跟踪数据非常重要，因为它为我们提供了更多信息: 一个测量数据告诉了我们一些关于其他数据可能的信息. 这就是卡尔曼滤波的目的, 我们希望尽可能地从我们不确定的测量中得到更多的信息.</p>
+<p>这种相关性可以用<a href="https://zh.wikipedia.org/wiki/%E5%8D%8F%E6%96%B9%E5%B7%AE" target="_blank" rel="noopener">协方差矩阵</a>描述. 总之, 矩阵$\Sigma<em>{ij}$的每一个元素是第i个状态变量和第j个状态变量的相关度.(您可能会猜到协方差矩阵是对称的，这意味着如果交换i和j是无关紧要的). 协方差矩阵通常标记为“$\Sigma$”，因此我们将其元素称为“$\Sigma</em>{ij}$”。</p>
+<p><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_2.png" width="400"></p>
+<h3 id="用矩阵描述问题"><a href="#用矩阵描述问题" class="headerlink" title="用矩阵描述问题"></a>用矩阵描述问题</h3><p>我们将关于机器人状态的信息建模为斑点, 因此我们需要时间k时的两条信息: 我们将把我们的最佳估计称为$\mathbf{\hat{x}_k}$ (均值, 也称为$\mu$), 和它的协方差矩阵$P_k$</p>
+<script type="math/tex; mode=display">
+\mathbf{\hat{x}_k} = 
+\left[
+ \begin{matrix}
+  \text{position}\\
+  \text{velocity} 
+ \end{matrix}
+\right]
+\\
+P_k = 
+\left[
+ \begin{matrix}
+  \Sigma_{pp} & \Sigma_{pv} \\
+  \Sigma_{vp} & \Sigma_{vv}
+ \end{matrix}
+\right]</script><p>当然我们在这里只使用位置和速度，但是请记住, 状态可以包含任意数量的变量, 用来代表你想要的任何东西.</p>
+<p>接下来，我们需要一些方法来查看当前状态（在时间k-1时）并预测在时间k时的下一个状态.</p>
+<p>请记住，我们不知道哪个状态是“真正的”状态，但我们的预测功能并不关心这个。它适用于这些情况，并为我们提供一个新的分布.</p>
+<div align="center">
+<img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_7.jpg" width="500">
+</div>
+
+<p>我们可以使用矩阵 $F_k$重新表示这个预测步骤.</p>
+<div align="center">
+<img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_8.jpg" width="500">
+</div>
+
+<p>如果原估计是正确的, 它将原始估计的每一个点移动到一个新的预测位置.</p>
+<p>让我们应用这个矩阵, 我们怎样使用这个矩阵预测接下来的一个瞬间的位置和速度呢?<br>我们将会使用一个非常基础的运动公式.</p>
+<script type="math/tex; mode=display">
+{\color{deeppink}{p_k}} = {\color{royalblue}{p_{k-1}}} + \Delta t \color{royalblue}{v_{k-1}} 
+\\
+{\color{deeppink}{v_k}} = \color{royalblue}{v_{k-1}}</script><p>换成矩阵的形式:</p>
+<script type="math/tex; mode=display">
+{\color{deeppink} {\hat{x}}_k} =
+\begin{bmatrix} 
+  1 & \Delta t \\ 
+  0 & 1 
+\end{bmatrix} {\color{royalblue} {\hat{x}}_{k-1}} 
+= {F}_k {\color{royalblue} {\hat{x}}_{k-1}}</script><p>现在我们有一个可以给出下一个状态的预测矩阵, 但是我们仍然不知道怎么更新它的协方差矩阵.</p>
+<p>这里我们需要另外一个公式. 如果我们用一个矩阵A乘以一个分布的每一个点, 然后它的协方差矩阵将会怎么变化?</p>
+<p>好, 它很简单. 这里给出定义:</p>
+<script type="math/tex; mode=display">
+Cov(x) = \Sigma
+\\
+Cov({\color{firebrick}{\mathbf{A}}}x) = {\color{firebrick}{\mathbf{A}}} \Sigma {\color{firebrick}{\mathbf{A}}^T}</script><p>所以</p>
+<script type="math/tex; mode=display">
+{\color{deeppink}{\mathbf{\hat{x}}_k}} = \mathbf{F}_k {\color{royalblue}{\mathbf{\hat{x}}_{k-1}}}
+\\
+{\color{deeppink}{\mathbf{P}_k}} = \mathbf{F_k} {\color{royalblue}{\mathbf{P}_{k-1}}} \mathbf{F}_k^T</script><h3 id="外部影响"><a href="#外部影响" class="headerlink" title="外部影响"></a>外部影响</h3><p>但是, 我们还没有抓住一切影响状态的因素. 可能有一些变化和状态本身没有直接关系—外部世界可能会影响系统.</p>
+<p>例如, 如果状态表示火车的运动, 火车司机可能会推动油门, 造成火车加速. 相似的, 在我们的机器人系统中, 导航软件可能会发出使轮子转动或者停止的命令. 如果我们知道这个关于外部世界将要如何变化的额外信息, 我们可以把它放进一个叫做$\color{darkorange}{\vec{\mathbf{u}_k}}$的向量, 用它做一些事情, 把它加入到我们的预测中作为矫正.</p>
+<p>我们说由于我们知道了油门设置或者控制命令, 我们得到了期望的加速度$\color{darkorange}{a}$</p>
+<p>由基础的运动学只是我们得到:</p>
+<script type="math/tex; mode=display">
+{\color{deeppink}{p_k}} = {\color{royalblue}{p_{k-1}}} + {\Delta t} {\color{royalblue}{v_{k-1}}} + \frac{1}{2} {\color{darkorange}{a}} {\Delta t}^2
+\\
+{\color{deeppink}{v_k}} = {\color{royalblue}{v_{k-1}}} +  {\color{darkorange}{a}} {\Delta t}</script><p>矩阵形式:</p>
+<script type="math/tex; mode=display">
+{\color{deeppink}{\mathbf{\hat{x}}_k}} = \mathbf{F}_k {\color{royalblue}{\mathbf{\hat{x}}_{k-1}}} + \begin{bmatrix} 
+\frac{\Delta t^2}{2} \\
+\Delta t 
+\end{bmatrix}
+\\
+{\color{darkorange}{a}}
+= \mathbf{F}_k {\color{royalblue}{\mathbf{\hat{x}}_{k-1}}} + \mathbf{B}_k {\color{darkorange}{\vec{\mathbf{u}_k}}}</script><p>$B_k$被称为控制矩阵, $\vec{u_k}$被称为控制向量.(对于没有外部影响的简单的系统, 你可以忽略它们).</p>
+<p>让我们在多添加一个细节. 如果我们对于将要发生的预测不是一个100%精确的模型将会发生什么?</p>
+<h3 id="外部不确定性"><a href="#外部不确定性" class="headerlink" title="外部不确定性"></a>外部不确定性</h3><p>如果事物的状态都基于自己的属性演变, 一切都很好. 同样, 如果其状态基于外部的影响变化, 一切仍然很好, 只要我们知道这些外部的影响都是什么.</p>
+<p>但是对于我们不知道的影响怎么办? 例如, 我们正在跟踪一个四轴飞行器, 它可能会受到风的冲击. 如果我们正在跟踪一个轮式机器人, 它的轮胎可能会打滑, 可能会因为颠簸路面减速. 我们不可能考虑到一切外部影响, 如果这些外部影响中的任何一个发生了, 我们的预测就可能因为没有考虑到这些外部影响<br>而发生偏离.</p>
+<p>我们可以通过在每一步预测之后添加一些新的不确定性来模拟与这个”世界”(即我们没有考虑的因素)相关的不确定性.</p>
+<center>
+<img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_9.jpg" width="500">
+</center>
+
+<p>我们原始估计中的每一个状态都可以变为一系列的状态. 因为我们非常的喜欢高斯亮斑, 我们让$x_{k-1}$中的每一个点都移动到协方差为$Q_k$的高斯亮斑内部的某一个位置, 换句话说就是我们将没有考虑到的影响看做协方差为$Q_k$的噪声.</p>
+<center>
+<img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_10a.jpg" width="500">
+</center>
+
+<p>这样就产生了一个新的协方差不同的高斯亮斑(但是具有相同的均值).</p>
+<center>
+<img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_10b.jpg" width="500">
+</center>
+
+<p>通过简单的增加一个$Q_k$, 我们得到了一个扩大的协方差, 这样就给出了预测部分完整的表达式.</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\color{deeppink}{\mathbf{\hat{x}}_k} &= \mathbf{F}_k {\color{royalblue}{\mathbf{\hat{x}}_{k-1}}} + \mathbf{B}_k \color{darkorange}{\vec{\mathbf{u}_k}} \\ 
+\color{deeppink}{\mathbf{P}_k} &= \mathbf{F_k} {\color{royalblue}{\mathbf{P}_{k-1}}} \mathbf{F}_k^T + \color{mediumaquamarine}{\mathbf{Q}_k} 
+\end{aligned}</script><p>换句话说, 当前最优估计值是从上一次最优估计值得到的一个预测值, 同时加上一个对已知外影响的矫正.</p>
+<p>同样, 当前不确定度是从上一次不确定度得到的一个预测值, 加上一些来自外部环境的不确定度.</p>
+<p>好吧, 这很简单. 我们已经对我们系统的状态有了一个模糊的估计, 这个模糊估计由$\color{deeppink}{\mathbf{\hat{x}}_k}$和$\color{deeppink}P_k$ 给出.</p>
+<h3 id="通过测量细化估计"><a href="#通过测量细化估计" class="headerlink" title="通过测量细化估计"></a>通过测量细化估计</h3><p>我们已经有了若干个可以给出系统状态信息的传感器。目前它们测量的数据并不重要；也许一个传感器读到的是位置，另一个得到的是速度。每一个传感器都可以告诉我们一些间接的状态信息—换句话说，传感器在某个状态下运行并且读取到一系列的信息。</p>
+<center>
+<img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_12-624x287.jpg" width="500">
+</center>
+
+<p>我们注意到读取信息的单位和范围可能与我们想要追踪的状态的单位和范围并不一致。你可能猜到了将要做什么了：我们将用一个矩阵$H_K$对传感器建模。</p>
+<center>
+<img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_13.jpg" width="500">
+</center>
+
+<p>我们可以计算出传感器读取数据的分布像我们通常希望的那样。</p>
+<script type="math/tex; mode=display">
+\begin{equation} 
+\begin{aligned} 
+\vec{\mu}_{\text{expected}} &= \mathbf{H}_k \color{deeppink}{\mathbf{\hat{x}}_k} \\ 
+\mathbf{\Sigma}_{\text{expected}} &= \mathbf{H}_k \color{deeppink}{\mathbf{P}_k} \mathbf{H}_k^T 
+\end{aligned} 
+\end{equation}</script><p>卡尔曼滤波擅长的一件事就是处理传感器噪声。换句话说，我们的传感器至少在一定程度上是不可信的，我们原始估计的每一个状态可能会产生一系列的传感器数据。</p>
+<center>
+<img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_14.jpg" width="500">
+</center>
+
+<p>从观察到的每一个读取数据，我们可以猜测出出系统在一个特殊的状态。但是因为有不确定性存在，一些状态比其他状态更有可能产生我们所看到的数据：</p>
+<center>
+<img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_11.jpg" width="500">
+</center>
+
+<p>我们称不确定性（例如：传感器噪声）的协方差$\color{mediumaquamarine}{\mathbf{R}_k}$，分布的均值等于我们观察到的读取数据，我们称之为$\color{yellowgreen}{\vec{\mathbf{z}_k}}$.</p>
+<p>现在我们有了两个高斯亮斑：一个在经过转化后的预测值周围，一个在我们得到的实际传感器数据周围。</p>
+<center>
+<img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_4.jpg" width="500">
+</center>
+
+<h3 id="合并高斯分布"><a href="#合并高斯分布" class="headerlink" title="合并高斯分布"></a>合并高斯分布</h3><h3 id="整合在一起"><a href="#整合在一起" class="headerlink" title="整合在一起"></a>整合在一起</h3><p><strong>未完待续……</strong></p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2019/02/18/博客中使用外链音乐/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/02/16/OSTU算法/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/favicon.jpg" alt="Yuan Xu's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        yx1302317313@163.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">六月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">5</span></a>
+            </li></ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/TensorFlow/">TensorFlow<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">1</span></a>
+            </li></ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签">
+                
+                    <i class="material-icons sidebar-material-icons">bookmark_border</i>
+                
+                标签
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/about" title="关于我">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于我
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友链">
+                
+                    <i class="material-icons sidebar-material-icons">link</i>
+                
+                友链
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/yx1302317313" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+        <a href="https://www.linkedin.com/in/%E6%97%AD-%E5%8E%9F-1b7618159/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-linkedin">
+                <span class="visuallyhidden">LinkedIn</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;YuanXu's Blog
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+    <script src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 2019;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+    
+</html>

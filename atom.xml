@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>YuanXu&#39;s Blog</title>
+  
+  <subtitle>天之道, 利而不害; 人之道, 为而不争.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://yx1302317313.github.io/"/>
+  <updated>2019-09-05T15:02:44.706Z</updated>
+  <id>https://yx1302317313.github.io/</id>
+  
+  <author>
+    <name>Yuan Xu</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>天津之行</title>
+    <link href="https://yx1302317313.github.io/2019/08/31/%E5%A4%A9%E6%B4%A5%E4%B9%8B%E8%A1%8C/"/>
+    <id>https://yx1302317313.github.io/2019/08/31/天津之行/</id>
+    <published>2019-08-31T02:54:25.000Z</published>
+    <updated>2019-09-05T15:02:44.706Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>其实很多人都希望一场旅行,去追寻自己心中的诗与远方.可能由于时间问题,经济问题等,只能一次次的打消念头.如果你真的下定决心去尝试一次,你会发现之前的那些问题并不会阻碍你.很幸运,我迈出了这一步.</p></blockquote><center><img src="/img/blog/blog-19-1.jpg" width="500"></center><a id="more"></a><h3 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h3><h4 id="为什么想要一次旅行"><a href="#为什么想要一次旅行" class="headerlink" title="为什么想要一次旅行"></a>为什么想要一次旅行</h4><blockquote><p>当然,很久之前就想要来一次旅行,只不过由于开篇提到的问题很多次打消了念头.</p><p>让我下定决心的是想要放空自己.最近几场比赛都已结束了,感觉自己的大学也快要结束了 <del>(其实真的快结束啦)</del>, 而自己对于之后的”何去何从”还没有想清楚,说到底是没有想清楚自己想要的究竟是什么,是浪潮之巅,是诗与远方,亦或是其他的什么. </p><p>而当时又不愿去想,于是决定来一次旅行,放空自己,然后想一想这个哲学问题 — <strong>我要到哪里去?</strong></p></blockquote><div align="center"><audio controls>    <source src="/music/贝加尔湖畔.mp3"></audio><p>贝加尔湖畔</p></div><h4 id="为什么是天津"><a href="#为什么是天津" class="headerlink" title="为什么是天津"></a>为什么是天津</h4><blockquote><p>这个问题好像很好回答,因为贫穷,哈哈!</p><p>某一天,忽然发现了一个问题. 从家到学校(或者学校到家),如果换不同的换乘方案,我可以经过很多城市,北京,天津,济南,青岛… 途中在这些城市玩几天可以节省旅行的路费 <del>(真的是因为贫穷)</del>.</p><p>北京消费有点高 <del>(再一次的贫穷)</del>,而且个人感觉北京的人太多了,所以就放弃了北京.至于天津,自己一直对这个城市有一种希冀,可能之前想过以后在天津定居吧.不过这次旅行真的让我喜欢上了这个城市.</p></blockquote><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><blockquote><p>原本准备从学校回家的途中在天津停留几天,并且制定了一份比较详细的计划.但是由于某些原因,改到了从家到学校的途中.</p><p>第一次自己如此详细的准备一份出行计划,以前如果有其他人一起,自己就懒得计划了.其实最主要的问题就是规划各个景点的游览顺序和交通方式,想要在一定的时间内游览更多的地方. (不知不觉抽象成了一道优化问题 ^-^). 早知道在数据结构实验的时候就做景点之间的路径规划了.</p></blockquote><h4 id="我的计划"><a href="#我的计划" class="headerlink" title="我的计划"></a>我的计划</h4><div class="table-container"><table><thead><tr><th>日期</th><th>起点</th><th>终点</th><th>方式</th><th>时长</th></tr></thead><tbody><tr><td>8.29</td><td>天津西</td><td>古文化街</td><td>公交</td><td>0：7</td></tr><tr><td>8.29</td><td>古文化街</td><td>意风区</td><td>步行， 骑行</td><td>0：21， 0：10</td></tr><tr><td>8.29</td><td>意风区</td><td>天津之眼</td><td>公交， 骑行</td><td>0：34， 0：14</td></tr><tr><td>8.30</td><td>天津之眼</td><td>天大</td><td>公交</td><td>0：38</td></tr><tr><td>8.30</td><td>天大， 南开</td><td>河北工业大学</td><td></td><td></td></tr><tr><td>8.30</td><td>天大</td><td>滨海图书馆</td><td>公交</td><td>1：45</td></tr></tbody></table></div><blockquote><p>不过最终没有完全按照计划进行,毕竟计划是赶不上变化的.但计划中的地方都去了,所以计划也没有白做.</p></blockquote><!--more### 青年旅社>  第一次尝试青年旅社，之前也想过住青年旅社，不过总觉得这样的地方不正规，不安全。经过这次的体验，改变了我的看法。--><h3 id="天津之眼"><a href="#天津之眼" class="headerlink" title="天津之眼"></a>天津之眼</h3><blockquote><p>第一天到天津已经是傍晚了,所以直接去了天津之眼（晚上是去天津之眼的绝佳时间）。</p><p>建在桥上的摩天轮还是很壮观的，也难怪会成为天津的名片，我个人比较喜欢建筑，每次见到这些建筑都有一种敬畏之感。（高考报志愿也曾考虑过建筑学，至于为什么没报…）</p><p>本来想上摩天轮上的，直径110米的摩天轮在最高点，确实能将两岸的景色尽收眼底。不过时间问题，过去已经停止售票了，有一点遗憾，但是之后听到曾经发生过一次没关舱门的事件(&gt;_&lt;)，这一点遗憾就荡然无存了。</p><p> 如果只有一个摩天轮，这个地方也没有那么大的吸引力。我感觉相比天津之眼，它所在的海河两岸的风景才是天津一张特殊的名片，天津之眼只是海河的锦上添花。</p><p> 到了天津之后才知道天津居然从海河这条“母亲河”发源的，乘船在海河游览一遍才能真正感觉到天津之美。</p><p>现在很多城市随着城市的现代化都已经失去了自己的特点。车水马龙中，见到的只是灯红酒绿，高楼大厦。漫步于城市中，某一瞬间可能真的不知自己身在何处。</p><p>不过天津让我看到了她的独特之处，乘船穿过一座座桥梁，每一座桥都有自己独特的风韵，有着自己的“故事”。而两岸是各种近代和现代建筑，你可以见到袁世凯的总统府，周总理与邓颖超的纪念馆，纪念弘一法师（李叔同）的大悲禅院……</p><p>天津有很多名人故居，少帅张学良的府邸，张伯苓先生的故居等等，所以天津确实是一个适合定居的地方。</p><p> 同样，你也可以经过天津的很多租界，意租界，英租界，法租界，奥租界等等，天津是中国保留租界最多的城市，其中的意租界最有名，是意大利在国外保留最大的租界。</p><p>所以天津是一个古今，中外文化融合的城市，有着自己风格。</p><p>感受天津独特之美的最好方式一定是沿着海河游览，或步行，或骑车，亦或乘船。</p></blockquote><center><img src="/img/blog/blog-19-2.jpg" width="500"></center><p><br></p><center><img src="/img/blog/blog-19-3.jpg" width="500"></center><p><br></p><center><img src="/img/blog/blog-19-4.jpg" width="500"></center><p><br></p><center><img src="/img/blog/blog-19-5.jpg" width="500"></center><p><br></p><h3 id="古文化街"><a href="#古文化街" class="headerlink" title="古文化街"></a>古文化街</h3><blockquote><p>按照计划，来到了古文化街。古文化街这个名字对于我来说就够有吸引力了，从小印象中的天津就是一个极具中国传统文化的地方，有着很多奇人异事，泥人张，刷子李等等。</p></blockquote><center><img src="/img/blog/blog-19-6.jpg" width="500"><p>传说中的泥人张</p></center><p><br></p><center><img src="/img/blog/blog-19-7.jpg" width="500"><p>达摩祖师</p></center><p>当然还有天津有名的狗不理，据说太贵，卑微的我只能在门外逗留一会儿。</p><center><img src="/img/blog/blog-19-8.jpg" width="500"></center><blockquote><p>之后就遇到了相声大会正好开始，本来没打算进去，但是转念一想，来天津总要体验一下天津相声。不过听相声最好多带个人一起去，或者一个人不要点茶，否则你喝不完那壶茶 <del>(一个半小时一直喝，也就喝了不到半壶)</del></p></blockquote><center><img src="/img/blog/blog-19-9.jpg" width="500"></center><p><br></p><center><img src="/img/blog/blog-19-10.jpg" width="500"><p>那壶万恶的茶...</p></center><h3 id="意风区"><a href="#意风区" class="headerlink" title="意风区"></a>意风区</h3><blockquote><p>下午和某个人来到了意风区，不是自己想象中的那样，这里主要是当时的意大利租界，保留了租界的建筑，然后最多的就是酒吧和咖啡馆了。</p></blockquote><center><img src="/img/blog/blog-19-11.jpg" width="500"></center><blockquote><p>之后喝了人生中的第一杯鸡尾酒，感觉还算不错，除了贵…不过积累了一个经验——鸡尾酒不要点看起来比较绿的，哈哈！</p></blockquote><center><img src="/img/blog/blog-19-12.jpg" width="500"></center><h3 id="南天门"><a href="#南天门" class="headerlink" title="南天门"></a>南天门</h3><blockquote><p>依然是按计划，第二天上午去了天大和南开，见到了传说中的“南天门”，真的天大和南开之间只是一门之隔，出了天大还没感觉就进了南开。</p></blockquote><h4 id="天大"><a href="#天大" class="headerlink" title="天大"></a>天大</h4><p>羡慕一下天大的食堂</p><center><img src="/img/blog/blog-19-13.jpg" width="500"></center><p>天大应该是中国最早的大学了。</p><center><img src="/img/blog/blog-19-14.jpg" width="500"></center><h4 id="南开"><a href="#南开" class="headerlink" title="南开"></a>南开</h4><blockquote><p>对于南开的印象应该主要是两个人，张伯苓先生——中国近代一位伟大的教育家，也是南开的创始人（好像还是西南联大的校长）；还有一位是被张伯苓先生称为南开最优秀的学生——周恩来总理。</p></blockquote><center><img src="/img/blog/blog-19-15.jpg" width="500"><p>南开主楼（感觉还是哈工大主楼好看）</p></center><p>今年是南开的百年校庆，下图是校庆的吉祥物，有点可爱(^_^)。</p><center><img src="/img/blog/blog-19-16.jpg" width="500"></center><h3 id="传说中的网红图书馆"><a href="#传说中的网红图书馆" class="headerlink" title="传说中的网红图书馆"></a>传说中的网红图书馆</h3><blockquote><p> 在南开的时候已经有点玩不动了，于是决定休息一下，坐地铁去滨海新区。。。</p><p>之前是打算去滨海传说中的网红图书馆的，但是由于离市区太远了，一直犹豫去还是不去，不过现在有理由了。</p><p>出门一直用百度地图，不过百度地图你能不能好好搞一下立体空间导航，找了半天滨海图书馆在哪，结果是它在我上面。。。</p><p>想去滨海图书馆，主要是因为它的建筑风格很独特，真的很像梯田（怀疑这位欧洲的设计师去过云南）。</p></blockquote><center><img src="/img/blog/blog-19-17.jpg" width="500"></center><p><br></p><center><img src="/img/blog/blog-19-18.jpg" width="500"></center><blockquote><p> 确实像网上说的那样，高处的书是假的，只是画在了书架上。可能是因为书不够，这个好处理。不过我想知道天花板上的书要怎么取？</p></blockquote><center><img src="/img/blog/blog-19-19.jpg" width="500"></center><blockquote><p>成功通过图书馆的管理系统找到了最近正在看的书——《白说》，在图书馆里面看了一章，体验很好。</p></blockquote><center><img src="/img/blog/blog-19-20.jpg" width="500"></center><h3 id="体会"><a href="#体会" class="headerlink" title="体会"></a>体会</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;其实很多人都希望一场旅行,去追寻自己心中的诗与远方.可能由于时间问题,经济问题等,只能一次次的打消念头.如果你真的下定决心去尝试一次,你会发现之前的那些问题并不会阻碍你.很幸运,我迈出了这一步.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;center&gt;
+&lt;img src=&quot;/img/blog/blog-19-1.jpg&quot; width=&quot;500&quot;&gt;
+&lt;/center&gt;
+    
+    </summary>
+    
+      <category term="远方" scheme="https://yx1302317313.github.io/categories/%E8%BF%9C%E6%96%B9/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>何去何从</title>
+    <link href="https://yx1302317313.github.io/2019/07/29/%E4%BD%95%E5%8E%BB%E4%BD%95%E4%BB%8E/"/>
+    <id>https://yx1302317313.github.io/2019/07/29/何去何从/</id>
+    <published>2019-07-29T15:48:42.000Z</published>
+    <updated>2019-07-29T16:04:32.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>迷宫生成算法</title>
+    <link href="https://yx1302317313.github.io/2019/06/24/%E8%BF%B7%E5%AE%AB%E7%94%9F%E6%88%90%E7%AE%97%E6%B3%95/"/>
+    <id>https://yx1302317313.github.io/2019/06/24/迷宫生成算法/</id>
+    <published>2019-06-24T11:28:38.000Z</published>
+    <updated>2019-06-24T15:09:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>最近做课设时,有一个部分需要用到迷宫的生成算法. 在这里介绍一种使用深度优先搜索生成迷宫的算法.</p></blockquote><a id="more"></a><center><audio controls>    <source src="/music/年少有为-李荣浩.mp3"></audio><p>年少有为-李荣浩</p></center><h3 id="最终的效果"><a href="#最终的效果" class="headerlink" title="最终的效果"></a>最终的效果</h3><p>先上几张效果图，图中绿色的表示障碍，灰色表示道路(<del>我的世界既视感</del>).</p><p><br></p><center><img src="/img/blog/blog-18-1.png" width="500"></center><p><br></p><center><img src="/img/blog/blog-18-2.png" width="500"></center><p><br></p><center><img src="/img/blog/blog-18-3.png" width="500"></center><h3 id="如何描述迷宫"><a href="#如何描述迷宫" class="headerlink" title="如何描述迷宫"></a>如何描述迷宫</h3><p>迷宫其实就是一个复杂的地形图,在这个地形中有基本的障碍和通道,当然也可以有其他元素。</p><p>我们这里用最简单的方式描述迷宫——矩阵。迷宫中的地形也只有障碍和通道两种元素。可以用0和1表示这两种元素。</p><p>因此我们用一个存储着0和1,M*N大小的矩阵就可以描述迷宫啦!</p><h3 id="迷宫的特点"><a href="#迷宫的特点" class="headerlink" title="迷宫的特点"></a>迷宫的特点</h3><ol><li>从设定的起点到终点必须是连通的(<del>否则,还能不能好好玩耍了</del>)</li><li>从起点到终点只有一条通路.(其实也可以有多条,根据实际需要设定)</li></ol><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>从迷宫特点的描述有没有想到什么?</p><p>迷宫就是一个图,要求任意设定的起点和终点之间是连通的,就是一个 <strong>全连通图</strong>.但是如果这个图的连通度太高,迷宫就没有难度了,所以我们要求图中任意顶点之间只有一条路.</p><p>什么样的图只有一条路, <strong>无环图</strong>.</p><p>所以我们需要的是无环的连通图,这是什么? <strong>树</strong></p><p>我们的迷宫就是一个树,因此迷宫的生成算法就是树的生成算法,树的生成算法有深度优先遍历和广度优先遍历, 在这里使用深度优先.</p><h3 id="迷宫的生成过程"><a href="#迷宫的生成过程" class="headerlink" title="迷宫的生成过程"></a>迷宫的生成过程</h3><h4 id="1-初始状态"><a href="#1-初始状态" class="headerlink" title="1 初始状态"></a>1 初始状态</h4><blockquote><p>图中绿色的表示障碍，灰色表示道路(空白)</p></blockquote><center><img src="/img/blog/blog-18-4.png" width="500"></center><p>由于迷宫四周都是障碍, 图的宽和高都必须是奇数.</p><h4 id="2-迷宫的生成"><a href="#2-迷宫的生成" class="headerlink" title="2 迷宫的生成"></a>2 迷宫的生成</h4><p>1 任意选择一个空白块, 将该空白块作为树的根结点.</p><p>2 从根节点出发隔一个元素块查找四周(上,下,左,右,四个方向,不包括对角线方向)其他的空白块.</p><center><img src="/img/blog/blog-18-5.png" width="500"><p>从该结点出发,四周只有两个空白块</p></center><center><img src="/img/blog/blog-18-6.png" width="500"><p>从该结点出发,四周有四个空白块</p></center><p>3 随机选取其中一个空白块, 将道路沿该方向拓展, 即把夹在这两个空白块之间的障碍块去掉, 改成空白块.</p><center><img src="/img/blog/blog-18-7.png" width="500"><p>把夹在这两个空白块之间的障碍块去掉</p></center><p>4 更新当前结点, 然后从当前结点出发,重复步骤2,3.</p><p>5 当遇到一个结点周围没有空白块时, 即没有可拓展道路的方向时, 回退并更新当前结点, 直至当前结点四周有空白块, 重复步骤2,3.</p><center><img src="/img/blog/blog-18-8.png" width="500"><p>该结点周围没有空白块</p></center><p>6 当回退到根节点没有任何可以拓展的道路时, 算法结束, 迷宫也就生成了.</p><center><img src="/img/blog/blog-18-1.png" width="500"></center><h4 id="3-设定起点和终点"><a href="#3-设定起点和终点" class="headerlink" title="3 设定起点和终点"></a>3 设定起点和终点</h4><p>选取迷宫中的两个空白块作为迷宫的起点和终点,一个完整的迷宫就诞生了.</p><h3 id="核心算法—深度优先"><a href="#核心算法—深度优先" class="headerlink" title="核心算法—深度优先"></a>核心算法—深度优先</h3><blockquote><p>由于这部分算法是程序的一部分,不能完整运行,仅供参考.</p><p>在程序中用到了Qt中的容器QVector,可以用STL中的std::vector代替; 用到的qsrand()和qrand()生成随机数,可以使用C标准库中的srand()和rand()函数代替.</p></blockquote><pre><code class="lang-cpp">/*@ 生成迷宫*/void GenerateMaze::Maze(int width, int height){    //初始化矩阵, 申请内存    maze_matrix_ = new int*[height];    for(int i=0; i&lt;height; i++)    {        maze_matrix_[i] = new int[width];    }    for(int i=0; i&lt;height; i++)    {        for(int j=0; j&lt;width;j++)        {            if(i % 2 == 0 || j % 2==0)            {                maze_matrix_[i][j] = 1;  //障碍            }            else            {                maze_matrix_[i][j] = 0;  //道路(空白)            }        }    }    qsrand(QTime(0,0,0).secsTo(QTime::currentTime())); //设置随机数种子    maze_matrix_[1][1] = 2; //选取(1,1)作为根节点, 并将根节点的状态设置成2    this-&gt;generateMaze(1, 1);   //深度优先遍历    for(int i=0; i&lt;height; i++)    {        for(int j=0; j&lt;width;j++)        {            if(maze_matrix_[i][j] == 2)            {                maze_matrix_[i][j] = 0; //将状态为2的结点重新设置为0, 表示可通行道路            }        }    }}/*@ brief:深度优先生成迷宫(递归实现)*/void Maze::generateMaze(int pos_i, int pos_j){    //到达边界, 返回    if(pos_j &lt; 0 || pos_j &gt;= width || pos_i &lt; 0 || pos_i &gt;= height)    {        return;    }    QVector&lt;int&gt; vec = existedRoad((const int**)maze_matrix_, pos_i, pos_j); //查找当前结点四周空白块    //四周没有空白块, 返回    if(vec.size() == 0)    {        return;    }    for(int i=0; i &lt; vec.size();)    {        int index = qrand()%vec.size(); //随机选择其中一个空白块        switch(vec[index])        {        case D_LEFT:    //左            if(maze_matrix_[pos_i][pos_j-2] != 2)            {                maze_matrix_[pos_i][pos_j-1] = 2;    //将走过的路径设为2, 防止重复经过                maze_matrix_[pos_i][pos_j-2] = 2;                this-&gt;generateMaze(pos_i, pos_j-2); //更新结点, 递归            }            break;        case D_RIGHT:   //右            if(maze_matrix_[pos_i][pos_j+2] != 2)            {                maze_matrix_[pos_i][pos_j+1] = 2;                maze_matrix_[pos_i][pos_j+2] = 2;                this-&gt;generateMaze(pos_i, pos_j+2); //更新结点, 递归            }            break;          case D_UP:  //上            if(maze_matrix_[pos_i-2][pos_j] != 2)            {                maze_matrix_[pos_i-1][pos_j] = 2;                maze_matrix_[pos_i-2][pos_j] = 2;                this-&gt;generateMaze(pos_i-2, pos_j); //更新结点, 递归            }            break;        case D_DOWN:    //下            if(maze_matrix_[pos_i+2][pos_j] != 2)            {                maze_matrix_[pos_i+1][pos_j] = 2;                maze_matrix_[pos_i+2][pos_j] = 2;                this-&gt;generateMaze(pos_i+2, pos_j); //更新结点, 递归            }            break;        }        vec.remove(index);  //清空vec    }}/*@brief: 查找结点周围的空白块*/const QVector&lt;int&gt; Maze::existedRoad(const int **mat, int i, int j){    QVector&lt;int&gt; vec;    if(j-2 &gt;= 0 &amp;&amp; mat[i][j-2] == 0)    {        vec.push_back(D_LEFT);  //左边有空白块    }    if(j+2 &lt; width &amp;&amp; mat[i][j+2] == 0)    {        vec.push_back(D_RIGHT); //右边有空白块    }    if(i-2 &gt;= 0 &amp;&amp; mat[i-2][j] == 0)    {        vec.push_back(D_UP);    //上边有空白块    }    if(i+2 &lt; height &amp;&amp; mat[i+2][j] == 0)    {        vec.push_back(D_DOWN);  //下边有空白块    }    return vec;}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;最近做课设时,有一个部分需要用到迷宫的生成算法. 在这里介绍一种使用深度优先搜索生成迷宫的算法.&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="https://yx1302317313.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="游戏" scheme="https://yx1302317313.github.io/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+      <category term="Qt" scheme="https://yx1302317313.github.io/tags/Qt/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>回溯法的多米诺性质</title>
+    <link href="https://yx1302317313.github.io/2019/05/05/%E5%9B%9E%E6%BA%AF%E6%B3%95%E4%B8%AD%E7%9A%84%E5%A4%9A%E7%B1%B3%E8%AF%BA%E6%80%A7%E8%B4%A8/"/>
+    <id>https://yx1302317313.github.io/2019/05/05/回溯法中的多米诺性质/</id>
+    <published>2019-05-05T03:32:37.000Z</published>
+    <updated>2019-06-22T03:26:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>最近在复习算法, <del>没办法,要考试啦</del>. 在复习回溯法的时候终于理解了之前不是很清楚的多米诺性质.</p></blockquote><a id="more"></a><div align="center"><audio controls>    <source src="/music/情深深雨蒙蒙-张杰.mp3"></audio><p>情深深雨蒙蒙-张杰</p></div><h3 id="1-回溯法"><a href="#1-回溯法" class="headerlink" title="1 回溯法"></a>1 回溯法</h3><p>由于这篇博客主要讲解多米诺性质, 默认大家已经了解回溯法啦,这里对回溯法的具体内容就不进行讲解了,<del>其实是太懒不想写</del>.</p><p>回溯法是一个很实用的算法,适合求解搜索问题和优化问题.你也可以将它看做是蛮力法(枚举法)的改进.</p><p>但不是什么情况下都可以使用回溯法, 那么就要问了,回溯法的适用条件是什么? 这就是今天的主角: <strong>多米诺性质</strong></p><h3 id="2-多米诺性质"><a href="#2-多米诺性质" class="headerlink" title="2 多米诺性质"></a>2 多米诺性质</h3><p>先不看多米诺性质是什么,在了解了回溯法的基本思想后,我们可以总结一下什么情况下可以使用回溯法.</p><h4 id="2-1-回溯法的基本思想"><a href="#2-1-回溯法的基本思想" class="headerlink" title="2.1 回溯法的基本思想"></a>2.1 回溯法的基本思想</h4><blockquote><p>将待求解问题看做一个解空间树, 问题的解可以表示为$X= (x_1, x_2, …, x_n )$.<br>然后利用深度优先搜索逐步确定每一个解$x_i$, 当搜索到树的叶子结点时, 就得到问题的一个解$X_i$.<br>当然这个解不一定是最优解,在将整个解空间树搜索完之后,通比较得到的每个$X_i$,便可以得到最优解.</p></blockquote><p>其实上面的思想是枚举搜索的思想,并不是回溯法.但是加上下面这一部分就成了回溯法了. <strong>下面这一部分是回溯法的核心</strong></p><blockquote><p> 在搜索的过程中, 问题的解$X$需要满足约束条件$P(X)$.<br>在搜索到一个结点的时候发现当前结点不满足约束条件,则放弃向下搜索,即不再搜索该结点的子结点, 而是回溯到上一个结点继续搜索.</p></blockquote><p>由于在搜索过程中,放弃了一些没有必要搜索的结点,整个算法的效率就提高了.</p><p><strong>为什么能够放弃? that is the question.</strong></p><p>如果当前结点不满足约束条件,能够推导出它的子结点也不满足约束条件,那么就可以放弃搜索它的子结点.其实这就是多米诺性质.</p><h4 id="2-2-多米诺性质的定义"><a href="#2-2-多米诺性质的定义" class="headerlink" title="2.2 多米诺性质的定义"></a>2.2 多米诺性质的定义</h4><blockquote><p>设$X = (x<em>1, x_2, …, x_n )$是问题的解,<br>$X_i= (x_1, x_2, …, x_i), X</em>{i+1} = (x<em>1, x_2, …, x_i, x</em>{i+1}), X<em>i, X</em>{i+1} \subseteq X$.<br>$X<em>{i}和X</em>{i+1}$ 分别是搜索到第i层和第i+1层的解.<br>如果 $P(X<em>{i+1}) \rightarrow P(X_i)$ , 即 $P(X</em>{i+1})$ 蕴含 $P(X_i)$, 则称该问题满足多米诺性质.</p></blockquote><p>是不是很难理解?<del>数学是个好东西,表达简洁优雅,没有二义性,但是太难理解.</del></p><p>其实上面定义的意思是: 如果子结点满足约束条件能够推导出其父结点满足约束条件,那么就满足多米诺性质.</p><p>为什么感觉和之前说的不太一样? 对比一下</p><ul><li>如果当前结点不满足约束条件,能够推导出它的子结点也不满足约束条件.</li><li>如果子结点满足约束条件能够推导出其父结点满足约束条件.</li></ul><p>你会发现其实这两个命题互为逆否命题,也就是这两个命题说的是同一件事.下面给出证明.(涉及一点数理逻辑的知识,但是逻辑很简单)</p><p><strong>[证明]</strong>:</p><script type="math/tex; mode=display">\begin{aligned}& 如果问题满足多米诺性质, 则有P(X_{i+1}) \rightarrow P(X_i)\\& 有逆否命题 \neg P(X_{i}) \rightarrow \neg P(X_{i+1}) 成立\\& 在当前结点不满足约束条件时, 即\neg P(X_{i}).\\& 可得到\neg P(X_{i+1})成立\\& 即当前结点不满足约束条件时, 它的子结点也不满足约束条件.\end{aligned}</script><p><strong>因此只要求解的问题满足多米诺性质,我们在使用回溯法时, 当发现当前结点不满足约束条件,就可以放弃对其子节点的搜索.</strong></p><p><strong>[理解]</strong>:</p><blockquote><p>考察多米诺性质的目的是为了确认, 在对解空间搜索的过程中, 在当前结点不满足约束条件时, 能不能放弃对当前结点的子结点的搜索.如果问题满足多米诺性质,则可以;否则, 不可以, 在这种情况下回溯法可能会丢解.</p></blockquote><h3 id="3-Example"><a href="#3-Example" class="headerlink" title="3 Example"></a>3 Example</h3><h4 id="3-1-背包问题"><a href="#3-1-背包问题" class="headerlink" title="3.1 背包问题"></a>3.1 背包问题</h4><blockquote><p>背包问题的描述在这里不进行赘诉.</p></blockquote><p>背包问题的约束条件</p><ol><li>$n$: 物品的数量</li><li>$x_i$: 表示是否选择该物品</li><li>$w_i$: 物品的重量 </li><li>$C$:背包容量</li></ol><script type="math/tex; mode=display">\left\{\begin{aligned}    &\Sigma_{i=1}^{n} x_i*w_i \le C, 0 < i \le n\\    &x_i \in \{0,1\}, 0 < i \le n\\    &w_i > 0,0 < i \le n\\\end{aligned}\right.</script><h5 id="背包问题的多米诺性质"><a href="#背包问题的多米诺性质" class="headerlink" title="背包问题的多米诺性质"></a>背包问题的多米诺性质</h5><p><strong>[证明]</strong>:</p><script type="math/tex; mode=display">\begin{aligned}& 设X_{i}= \Sigma_{k=1}^{i} x_k*w_k, X_{i+1}= \Sigma_{k=1}^{i+1} x_k*w_k\\ & \because X_{i+1} \le C, w_k > 0, x_k \in \{0,1\}\\& \therefore X_{i} < X_{i+1} \le C\end{aligned}</script><p>因此背包问题满足多米诺条件,可以使用回溯法解决.</p><h4 id="3-2-不等式的整数解"><a href="#3-2-不等式的整数解" class="headerlink" title="3.2 不等式的整数解"></a>3.2 不等式的整数解</h4><blockquote><p>求解不等式$5x_1 + 4x_2 - x_3 \le 10, 1 \le x_i \le 3, i=1,2,3$ 的整数解.</p></blockquote><p>这个问题不满足多米诺性质<del>否则为什么要举这个例子</del></p><p><strong>[证明]</strong>:</p><script type="math/tex; mode=display">\begin{aligned}& 当 5x_1 + 4x_2 - x_3 \le 10 成立时 \\& 显然 5x_1 + 4x_2 \le 10 不一定成立\\\end{aligned}</script><p>因此如果只是这样的话,没办法用回溯法解决.</p><p>但也是可以用回溯法解决的. </p><p>将不等式 $5x_1 + 4x_2 - x_3 \le 10, 1 \le x_i \le 3, i=1,2,3$ 修改为 $- x_1 + 5x_2 + 4x_3 \le 10, 1 \le x_i \le 3, i=1,2,3$ , 就可以使用回溯法了.</p><p><strong>[证明]</strong>:</p><script type="math/tex; mode=display">\begin{aligned}& 当 - x_1 + 5x_2 + 4x_3 \le 10 成立时 \\& 显然 - x_1 + 5x_2 \le - x_1 + 5x_2 + 4x_3 \le 10 成立\\& 当 - x_1 + 5x_2 \le 10 成立时\\& 显然 - x_1 \le - x_1 + 5x_2 \le 10成立\\\end{aligned}</script><p>因此不等式$-x_1 + 5x_2 + 4x_3 \le 10, 1 \le x_i \le 3, i=1,2,3$满足多米诺性质.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;最近在复习算法, &lt;del&gt;没办法,要考试啦&lt;/del&gt;. 在复习回溯法的时候终于理解了之前不是很清楚的多米诺性质.&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="https://yx1302317313.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>优先队列</title>
+    <link href="https://yx1302317313.github.io/2019/04/13/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/"/>
+    <id>https://yx1302317313.github.io/2019/04/13/优先队列/</id>
+    <published>2019-04-13T13:53:40.000Z</published>
+    <updated>2019-06-10T15:48:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h2><p>优先队列是一个特殊的队列.</p><ul><li>相同点: 元素从队尾插入, 从队首删除.</li><li>不同点:<ul><li>队列: 队列是先进先出(FIFO)</li><li>优先队列: 优先队列是根据元素的大小决定元素的出队顺序. 所以称之为优先队列.</li></ul></li></ul><a id="more"></a><h2 id="C-STL的优先队列"><a href="#C-STL的优先队列" class="headerlink" title="C++ STL的优先队列"></a>C++ STL的优先队列</h2><pre><code class="lang-cpp">#include &lt;queue&gt;#include &lt;iostream&gt;int main(){    std::priority_queue&lt;int&gt; pq;    pq.push(1);    pq.push(10);    pq.push(20);    pq.push(18);    pq.push(3);    pq.push(12);    int size = pq.size();    for (int i=0; i &lt; size; i++)    {        std::cout&lt;&lt;pq.top()&lt;&lt;&#39; &#39;;        pq.pop();    }    std::cout&lt;&lt;std::endl;    return 0;}</code></pre><pre><code># 运行结果:20 18 12 10 3 1</code></pre><h3 id="自定义优先队列比较函数"><a href="#自定义优先队列比较函数" class="headerlink" title="自定义优先队列比较函数"></a>自定义优先队列比较函数</h3><p>优先队列实际上是的一个堆, 在STL中,优先队列默认是一个大顶堆, 从排序角度看, 就是降序排序(从大到小).</p><p>让我们看一下优先队列在STL中的说明</p><pre><code class="lang-cpp">/**   *  @brief  A standard container automatically sorting its contents.   *   *  @ingroup sequences   *   *  @tparam _Tp  Type of element.   *  @tparam _Sequence  Type of underlying sequence, defaults to vector&lt;_Tp&gt;.   *  @tparam _Compare  Comparison function object type, defaults to   *                    less&lt;_Sequence::value_type&gt;.   */    template&lt;typename _Tp, typename _Sequence = vector&lt;_Tp&gt;,       typename _Compare  = less&lt;typename _Sequence::value_type&gt; &gt;    class priority_queue    {}</code></pre><p>可以看到priority_queue类模板实际有三个参数.</p><ol><li>_Tp: 元素类型,就是我们存放在优先队列中的元素类型.</li><li>_Sequence: 元素序列, 默认是vector<_tp>.</_tp></li><li>_Compare: 比较函数, 默认是less<_sequence::value_type>. 从这里可以知道默认是大顶堆.</_sequence::value_type></li></ol><p>如果我们需要一个从小到大的优先队列, 则要多增加一个比较函数的参数，但是这时第二个参数也需要传入，否则默认参数匹配会出错。</p><pre><code class="lang-cpp">std::priority_queue&lt;int, std::vector&lt;int&gt;, greater&lt;int&gt; pq;    //从小到大的优先队列</code></pre><h3 id="重载比较运算符"><a href="#重载比较运算符" class="headerlink" title="重载比较运算符"></a>重载比较运算符</h3><pre><code class="lang-cpp">struct Test{    int num;    char c;    //注意：必须要用const修饰重载函数    bool operator &gt; (const Test&amp; obj) const    {        return this-&gt;num &gt; obj.num;    }    bool operator &lt; (const Test&amp; obj) const    {        return this-&gt;num &lt; obj.num;    }}Test;int main(){    priority_queue&lt;Test, vector&lt;Test&gt;, less&lt;Test&gt;&gt; pq1;    priority_queue&lt;Test, vector&lt;Test&gt;, greater&lt;Test&gt;&gt; pq2;    return 0;}</code></pre><h3 id="自定义比较类"><a href="#自定义比较类" class="headerlink" title="自定义比较类"></a>自定义比较类</h3><h2 id="优先队列代码实现"><a href="#优先队列代码实现" class="headerlink" title="优先队列代码实现"></a>优先队列代码实现</h2><p>上面已经提到优先队列实际是一个堆,<br>因此可以通过堆的相关算法实现优先队列.</p><pre><code class="lang-cpp">#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;cmath&gt;template&lt;class T&gt;class PriorityQueue{private:    std::vector&lt;T&gt; data;public:    PriorityQueue()    {    }    bool empty() const     {        return data.size()? false:true;    }    int size() const     {        return data.size();    }    T top() const     {        if (!this-&gt;empty())        {            return this-&gt;data[0];        }        return 0;    }    void push(T data)    {        this-&gt;pushHeap(data);    }    void pop()    {        this-&gt;popHeap();    }private:     void popHeap()    {        this-&gt;data.erase(this-&gt;data.begin());    //delete the top         this-&gt;adjustHeap(0, this-&gt;data.size());    //adjust heap     }    void adjustHeap(int i, int length)    {        for(int child = 2*i+1; child &lt; length; child = 2*i+1)        {            if(child + 1 &lt; length &amp;&amp; this-&gt;data[child+1] &gt; this-&gt;data[child])            {                child += 1;            }            if(this-&gt;data[child] &gt; this-&gt;data[i])            {                this-&gt;swap(this-&gt;data[child], this-&gt;data[i]);                i = child;            }            else             {                break; // adjust over             }        }    }    void pushHeap(T data)    {        this-&gt;data.push_back(data);        int end = this-&gt;data.size()-1;          for(int i=floor(end*0.5 - 0.5); i&gt;=0; i=floor(i*0.5 - 0.5))        {            this-&gt;adjustHeap(i, end+1);        }    }    void swap(T &amp;a, T &amp;b)    {        T temp = a;        a = b;        b = temp;    }};int main(){    PriorityQueue&lt;int&gt; pq;    pq.push(1);    pq.push(10);    pq.push(20);    pq.push(18);    pq.push(3);    pq.push(12);    int size = pq.size();    for (int i=0; i &lt; size; i++)    {        std::cout&lt;&lt;pq.top()&lt;&lt;&#39; &#39;;        pq.pop();    }    std::cout&lt;&lt;std::endl;            return 0;}</code></pre><h3 id="END"><a href="#END" class="headerlink" title="END"></a>END</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;优先队列&quot;&gt;&lt;a href=&quot;#优先队列&quot; class=&quot;headerlink&quot; title=&quot;优先队列&quot;&gt;&lt;/a&gt;优先队列&lt;/h2&gt;&lt;p&gt;优先队列是一个特殊的队列.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;相同点: 元素从队尾插入, 从队首删除.&lt;/li&gt;
+&lt;li&gt;不同点:&lt;ul&gt;
+&lt;li&gt;队列: 队列是先进先出(FIFO)&lt;/li&gt;
+&lt;li&gt;优先队列: 优先队列是根据元素的大小决定元素的出队顺序. 所以称之为优先队列.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="https://yx1302317313.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>IEEE浮点数</title>
+    <link href="https://yx1302317313.github.io/2019/04/11/IEEE%E6%B5%AE%E7%82%B9%E6%95%B0/"/>
+    <id>https://yx1302317313.github.io/2019/04/11/IEEE浮点数/</id>
+    <published>2019-04-11T11:33:46.000Z</published>
+    <updated>2019-06-22T02:18:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>之前在看卡马克快速开方的程序时, 看到了一些神奇的操作.其中有两条语句与浮点数在计算机中的表示方式有关.最近计算机组成原理刚讲完浮点数的表示, 于是写篇博客记录一下.</p></blockquote><a id="more"></a><center><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=402073807&auto=1&height=66"></iframe></center><h3 id="计算机中定点数的表示"><a href="#计算机中定点数的表示" class="headerlink" title="计算机中定点数的表示"></a>计算机中定点数的表示</h3><p><strong>定点数</strong>: 顾名思义, 定点数就是小数点的位置固定. 但是我们一般不会在计算机中用专门的一个位表示小数点,那样太浪费了. 因为小数点的位置的固定,只要我们知道它的位置就可以确定这个定点数, 没有必要把它表示出来.</p><p>下图是纯小数和纯整数的表示, 这个比较简单, 不进行赘诉.</p><center><img src="http://ww1.sinaimg.cn/mw690/78f9859egw1eysn2zlj5sg20cg03h3yc.gif"></center><h3 id="计算机中浮点数的表示"><a href="#计算机中浮点数的表示" class="headerlink" title="计算机中浮点数的表示"></a>计算机中浮点数的表示</h3><p><strong>浮点数</strong>: 与定点数相对, 浮点数就是这个数的小数点是不固定的(浮动的). </p><h3 id="IEEE浮点数"><a href="#IEEE浮点数" class="headerlink" title="IEEE浮点数"></a>IEEE浮点数</h3><h3 id="转换demo"><a href="#转换demo" class="headerlink" title="转换demo"></a>转换demo</h3><h3 id="卡马克快速开方"><a href="#卡马克快速开方" class="headerlink" title="卡马克快速开方"></a>卡马克快速开方</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;之前在看卡马克快速开方的程序时, 看到了一些神奇的操作.其中有两条语句与浮点数在计算机中的表示方式有关.最近计算机组成原理刚讲完浮点数的表示, 于是写篇博客记录一下.&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="MCU" scheme="https://yx1302317313.github.io/categories/MCU/"/>
+    
+    
+      <category term="计算机组成原理" scheme="https://yx1302317313.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>阅读:流星之绊</title>
+    <link href="https://yx1302317313.github.io/2019/03/17/%E9%98%85%E8%AF%BB-%E6%B5%81%E6%98%9F%E4%B9%8B%E7%BB%8A/"/>
+    <id>https://yx1302317313.github.io/2019/03/17/阅读-流星之绊/</id>
+    <published>2019-03-17T14:43:38.000Z</published>
+    <updated>2019-06-22T03:28:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>我们三人就像流星, 毫无目标的飞逝, 不知将在何处燃烧殆尽. 但不论何时, 都会有一根纽带将我们紧密相联: 一定要手刃凶手.</p></blockquote><a id="more"></a><center><img src="/img/blog/star.jpg"></center><blockquote><p>开学三个星期了, 虽然感觉课不多, 但是一直没有时间写博客. 今天终于在肝完一个动态规划之后还有点时间(&gt;<em>&lt;).<br>于是写写开学前两周看完的一本书. <em>_流星之绊—东野圭吾</em></em></p><p>之前也看过几本东野圭吾的书, 这本书还是东野圭吾一贯的风格, 不过感觉结局相对其他书较好一点.</p></blockquote><div align="center"><audio controls>    <source src="/music/重生-容祖儿.mp3"></audio><p>重生-容祖儿</p></div><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>故事开篇, 兄妹三人(老大:功一; 老二: 泰辅; 妹妹: 静奈)背着父母跑出去看流星, 然而由于天气原因, 无功而返. 但他们回到家之后, 发现父母已经被人杀死了. 这对于几个还在上小学的孩子来说绝对如世界末日一般. 随后警察到来, 当然肯定是找不到凶手的啦(否则作者怎么往下写呀). 几个月的调查, 都是一些不痛不痒的线索, 无奈之下只能不了了之, 兄妹三人被送到了孤儿所.</p><h3 id="中篇"><a href="#中篇" class="headerlink" title="中篇"></a>中篇</h3><p>兄妹三人一直在孤儿所生活直到高中毕业. 期间他们又去看了几次流星, 并且下定决心一定要找到凶手.</p><blockquote><p>我们三人就像流星, 毫无目标的飞逝, 不知将在何处燃烧殆尽. 但不论何时, 都会有一根纽带将我们紧密相联: 一定要手刃凶手.</p></blockquote><p>离开孤儿院后, 三人走上了一条行骗之路. 利用三人各自的特点骗钱.<br>决定走上诈骗这条路是因为功一和静奈都被人骗过, 三人感到社会不公, 决定以其人之道还制其人之身, 用诈骗的方式为自己找公道(好像很有道理, 嘻嘻!).</p><p>大哥功一思维缜密, 制定行动方案. 泰辅擅长表演, 非常适合扮演各类角色. 而妹妹则是另外一个重要环节, 由于妹妹是一个翩若惊鸿,婉若游龙(<del>在这里不得不佩服一下曹植</del>)的美女, 在接触诈骗对象时可以降低他们的防御心理.(<del>不要想歪了</del>)</p><p>所以诈骗对象都是一些有钱的但是没有女朋友的青年男子(<del>好惨…</del>).</p><p>基本套路就是妹妹先接触诈骗对象, 而后伙同泰辅扮演的角色按照大哥功一制定的计划进行诈骗.<br>就这样兄妹三人非常顺利的完成了几次诈骗. 同时父母的案件也快要到期了, 凶手仍然无从找起.</p><h3 id="高潮"><a href="#高潮" class="headerlink" title="高潮"></a>高潮</h3><p>就在兄妹三人准备完成最后一次诈骗就金盆洗手时, 他们发现了凶手. 这次的诈骗对象是一家洋食店老板的儿子(行成). 本来打算想让他喜欢上静奈, 然后给静奈买一枚戒指. 然而老二却发现这家洋食店的老板就是当时案发从他家后门跑出的人. 于是三人开始寻找证据手刃凶手, 然而没有找到, 于是三人打算制造证据让警察调查凶手.<br>在这种关键时刻, 他们的嫁祸行为被行成发现了, 同时静奈也真正喜欢上了行成(<del>故事当然要一波三折啦</del>). 本以为一切都泡汤了, 谁知行成也发现了父亲的可疑, 想知道真相,帮助他们完成了嫁祸行动(未免也太正直了吧).<br>就在所有证据都指向行成的父亲时, 他父亲仍然否认他是凶手. 随后抛出了一个 <strong>惊人的秘密</strong>.(<del>半夜写这种东西, 有点惊悚</del>)</p><h3 id="结局"><a href="#结局" class="headerlink" title="结局"></a>结局</h3><p>行成的父亲拿出了一把雨伞, 原来行成的父亲真的在案发当天去了兄妹三人家中, 但是他去的的时候他们的父母已经被人迫害. 惊慌之下他拿错了雨伞, 因为案发当天正在下雨(<del>正常操作</del>), 凶手和他用着同一款雨伞, 而他那错的那把伞是真正的凶手的, 留有凶手的指纹. 最终发现, 凶手居然是一开始帮助兄妹三人积极调查案件的警察. 这位警察为了给自己的儿子治病, 向兄妹三人的父亲借钱, 但是没有谈妥, 情急之下杀了他们的父母. 但是这个警察的儿子还是不治而终.(或许是报应吧)</p><p>虽然找到了凶手, 但是功一决定原谅这位警察. 而这位警察却选择自杀了, 或许是因为儿子的死已经绝望, 或许是为自己的罪行救赎.<br>经过这件事之后, 老大和老二决定为他们的行骗行为赎罪, 决定自首. 但是他们不想自己的妹妹去自首, 于是把妹妹托付给了行成.</p><p>故事到这里就结束了.</p><h3 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h3><ol><li>其实还是很难接受这个结果, 警察居然为了钱杀了兄妹三人的父母, 一直以为他是好人的, 虽然东野圭吾在写的时候已经留下了伏笔.</li><li><p>还有一个问题, 行成的父亲发现了案发现场为什么不去报警.</p></li><li><p>这篇小说中能感受到一些令人感到温暖的情节, 尤其是兄妹三人在父母去世后互帮互助, 能感受到一种令人欣慰的亲情.  还有兄弟二人在找到凶手后, 为自己之前的行骗行为赎罪.</p></li><li>书中另外一个重要的角色行成, 一个认真, 正直的人, 让我们感觉到这个世界还是有好人的.</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;我们三人就像流星, 毫无目标的飞逝, 不知将在何处燃烧殆尽. 但不论何时, 都会有一根纽带将我们紧密相联: 一定要手刃凶手.&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="阅读" scheme="https://yx1302317313.github.io/categories/%E9%98%85%E8%AF%BB/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>IIC为什么需要用开漏输出和上拉电阻</title>
+    <link href="https://yx1302317313.github.io/2019/03/09/IIC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E7%94%A8%E5%BC%80%E6%BC%8F%E8%BE%93%E5%87%BA%E5%92%8C%E4%B8%8A%E6%8B%89%E7%94%B5%E9%98%BB/"/>
+    <id>https://yx1302317313.github.io/2019/03/09/IIC为什么需要用开漏输出和上拉电阻/</id>
+    <published>2019-03-09T07:28:44.000Z</published>
+    <updated>2019-06-22T03:19:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>最近在调ICM20602模块(一个六轴陀螺仪和加速度计), 使用IIC通信协议, 这个过程中遇到一个困扰我很长时间的问题.<br>IIC协议正确, 但是一直读取失败.最后发现因为没配置GPIO为开漏输出.</p></blockquote><a id="more"></a><center><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/I2C.svg/1920px-I2C.svg.png" width="500"></center><h3 id="推挽输出和开漏输出"><a href="#推挽输出和开漏输出" class="headerlink" title="推挽输出和开漏输出"></a>推挽输出和开漏输出</h3><ul><li>推挽输出: 输出逻辑0，则N-MOS激活；输出逻辑1，P-MOS激活。</li><li>开漏输出: <ul><li>在不接上拉电阻时, 输出逻辑0，则N-MOS激活；输出逻辑1，P-MOS不会激活, 不会输出高电平。</li><li>在接上拉电阻时, 输出逻辑0，则N-MOS激活；输出逻辑1，P-MOS激活, 可以输出高电平。</li></ul></li></ul><blockquote><p>也就是说开漏输出如果不接上拉电阻, 没有输出高电平的能力.<br>如果需要开漏输出有输出高电平的能力需要接一个上拉电阻. 目前很多单片机GPIO可以通过软件配置上拉电阻.</p></blockquote><center><img src="https://user-images.githubusercontent.com/39959472/59958504-50bf3380-94da-11e9-90aa-b133d878cdb4.png" width="500"><p>左图为开漏输出(接上拉电阻), 右图为推挽输出</p></center><h3 id="开漏输出的作用"><a href="#开漏输出的作用" class="headerlink" title="开漏输出的作用"></a>开漏输出的作用</h3><ul><li>防止短路: 在一些情况下(比如总线), 多个GPIO口可能会连接在同一根线上, 存在某个GPIO输出高电平, 另一个GPIO输出低电平的情况. 如果使用推挽输出, 你会发现这个GPIO的VCC和另一个GPIO的GND接在了一起, 也就是短路了(<del>凉凉了</del>). 如果换成开漏输出呢? VCC和GND多了个电阻, 这样电路就是安全的.<strong>所以总线一般会使用开漏输出.</strong></li></ul><center><img src="https://www.allaboutcircuits.com/uploads/articles/I2C2_circuit3.jpg" width="300"><p>VCC与GND连到了一起</p></center><center><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=480579211&auto=1&height=66"></iframe></center><ul><li>线与: 开漏输出还能实现 <strong>线与</strong> (自行百度), 减少一个与门, 简化电路.</li></ul><p><br></p><h3 id="IIC为什么用开漏输出和上拉电阻"><a href="#IIC为什么用开漏输出和上拉电阻" class="headerlink" title="IIC为什么用开漏输出和上拉电阻"></a>IIC为什么用开漏输出和上拉电阻</h3><blockquote><p>其实知道了开漏输出的作用, 这个问题不难回答</p></blockquote><ol><li><p>IIC协议支持多个主设备与多个从设备在一条总线上, 如果不用开漏输出, 而用推挽输出, 会出现主设备之间短路的情况. 至于为什么需要上拉电阻, 那是因为IIC通信需要输出高电平的能力.</p></li><li><p>为了实现多个主设备抢占总线时的仲裁. </p><p>IIC只有两根线(SCL和SDA), 怎么判断哪个主设备占用总线(当然是先来后到了). 假设主设备A需要启动IIC, 他需要在SCL高电平时, 将SDA由高电平转换为低电平作为启动信号. 主设备A在把SDA拉高后, 它需要再检查一下SDA的电平.</p><ul><li>SDA是高电平, 说明主设备A可以占用总线, 然后主设备A将SDA拉低, 开始通信.</li><li>SDA是低电平, 说明有人已经捷足先登了, 主设备A不能占用总线, 结束通信.</li></ul><p>为什么? 因为线与. 如果主设备A拉高SDA时, 已经有其他主设备将SDA拉低了. 由于 <strong>1 &amp; 0 = 0</strong> 那么主设备A在检查SDA电平时, 会发现不是高电平, 而是低电平. <strong>说明其他主设备抢占总线的时间比它早</strong>, 主设备A只能放弃占用总线. 如果是高电平, 则可以占用.</p><p>这就是开漏输出在IIC通信中的另一个作用.</p></li></ol><p><strong>因此, 模拟IIC一定要将GPIO端口设置为开漏输出并加上上拉电阻.(硬件IIC会自动配置为开漏输出)</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;最近在调ICM20602模块(一个六轴陀螺仪和加速度计), 使用IIC通信协议, 这个过程中遇到一个困扰我很长时间的问题.&lt;br&gt;IIC协议正确, 但是一直读取失败.最后发现因为没配置GPIO为开漏输出.&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="MCU" scheme="https://yx1302317313.github.io/categories/MCU/"/>
+    
+    
+      <category term="通信协议" scheme="https://yx1302317313.github.io/tags/%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
+    
+      <category term="电路" scheme="https://yx1302317313.github.io/tags/%E7%94%B5%E8%B7%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>梯度与梯度下降法</title>
+    <link href="https://yx1302317313.github.io/2019/02/25/%E6%A2%AF%E5%BA%A6%E4%B8%8E%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/"/>
+    <id>https://yx1302317313.github.io/2019/02/25/梯度与梯度下降法/</id>
+    <published>2019-02-25T11:53:53.000Z</published>
+    <updated>2019-06-24T15:15:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>声明: 本文有一部分本人自己的观点和理解, 不一定完全正确, 仅供参考. 如果发现错误或者有疑问的地方, 请指出, 谢谢!</strong></p><a id="more"></a><h3 id="方向导数"><a href="#方向导数" class="headerlink" title="方向导数"></a>方向导数</h3><blockquote><p>导数和偏导数的概念比较简单而且很多人接触过，这里不进行赘诉。</p></blockquote><p>我们直接看方向导数。<br>对于多变量函数$F(x, y, z)$, 我们想知道它在点$P<em>0$沿方向$\vec l$ 的变化率，用$\left. \frac {\partial F} {\partial {\vec l}} \right| </em>{P_0} $ 表示。这就是函数F在P点沿方向$\vec l$ 的方向导数。</p><blockquote><p>如果你熟悉偏导数的话， 你可以看出来方向导数和偏导数很像。偏导数是函数在特定方向上（如x轴， y轴）的变化率。 方向导数是函数在任意方向上的变化率。<strong>方向导数可以理解为在任意方向上的偏导数</strong>。毕竟我们对于函数的研究不能仅仅局限在某几个方向。</p></blockquote><p>方向导数公式</p><script type="math/tex; mode=display">\begin{align}\left. \frac {\partial F} {\partial {\vec l}} \right| _{P_0} &= lim \frac {F(P) - F(P_0)} {|PP_0|} \\&= \left. \frac {\partial F} {\partial x} \right| _{P_0} cos \alpha + \left. \frac {\partial F} {\partial y} \right| _{P_0} cos \beta +  \left. \frac {\partial F} {\partial z} \right| _{P_0} cos \gamma\end{align}</script><p>其中$cos \alpha$, $cos \beta$, $cos \gamma$ 分别为$\vec l$ 与x, y, z 的方向余弦。</p><h3 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h3><blockquote><p>知道了方向导数，我们考虑一个问题：一个点有无数个方向，也就有无数个方向导数（前提是方向导数存在），那么我们最关心的是哪个？（总不能都关心吧，那也太花心了）答案是我们关心最大的方向导数。</p></blockquote><p><strong>最大的方向导数意为着沿着这个方向函数变化最快（函数的变化率最大）。</strong></p><h4 id="哪个方向的方向导数最大？"><a href="#哪个方向的方向导数最大？" class="headerlink" title="哪个方向的方向导数最大？"></a>哪个方向的方向导数最大？</h4><p>把方向导数的公式变换一下</p><script type="math/tex; mode=display">\begin{align}\left. \frac {\partial F} {\partial {\vec l}} \right| _{P_0}&= \left. \frac {\partial F} {\partial x} \right| _{P_0} cos \alpha + \left. \frac {\partial F} {\partial y} \right| _{P_0} cos \beta +  \left. \frac {\partial F} {\partial z} \right| _{P_0} cos \gamma \\&= G *（cos \alpha, cos \beta, cos \gamma）\\&= |G| cos<G, \vec l>\end{align}</script><p>其中$G=(\left. \frac {\partial F} {\partial x} \right| <em>{P_0}, \left. \frac {\partial F} {\partial y} \right| </em>{P<em>0},  \left. \frac {\partial F} {\partial z} \right| </em>{P_0})$<br>由向量的知识，我们知道当$\vec l$与G同向时，即$cos(G, \vec{l})=1$时值最大。</p><p><strong>梯度至此诞生</strong></p><blockquote><p>梯度的意义就是用来表示最大的方向导数。</p></blockquote><script type="math/tex; mode=display">grad F = ( \frac {\partial F} {\partial x}, \frac {\partial F} {\partial y},   \frac {\partial F} {\partial z})</script><p><strong>说明</strong></p><ul><li>梯度是一个向量</li><li>梯度的方向是最大方向导数的方向。</li><li>梯度的大小是这个最大方向导数的值。</li></ul><h3 id="梯度下降法"><a href="#梯度下降法" class="headerlink" title="梯度下降法"></a>梯度下降法</h3><blockquote><p>梯度下降法就是利用梯度的性质求解函数最小值的方法.</p></blockquote><p><strong>[思考]:</strong>  对于一元函数我们求解函数最小值的方法有很多, 很多人比较喜欢的就是求导. 如果是多元函数求解最小值或者最大值, 我们还能如此简单的解决吗?该怎么求导? 求偏导吗?求哪个偏导?</p><p>显然这个问题不是简单的求导就可以解决的, 我们可以通过梯度下降法解决.</p><p>想一想, 梯度代表着什么? 表示最大方向导数的向量. 最大方向导数的代表着函数沿着这个方向增长最快, 如果我们反其道而行之, 是不是方向就是函数减小最快的方向. 如果我们每次都能沿着减小最快的方向逼近最小值, 我们是不是就可以最快的找到最小值(或者近似的最小值).</p><p>像这样:</p><center><img src="https://user-images.githubusercontent.com/39959472/59958596-c8da2900-94db-11e9-91f5-b644e5130018.png" width="500"></center><blockquote><p>可以这样理解梯度下降法, 我们在当前点找到该点的梯度, 然后沿着梯度的负方向前进一段距离到达一个新的点, 然后再计算梯度, 前进一段距离. 一直这样重复下去, 直到找到最小值或者接近最小值.</p></blockquote><h4 id="公式"><a href="#公式" class="headerlink" title="公式:"></a>公式:</h4><script type="math/tex; mode=display">\theta_{i+1} = \theta_{i} - \alpha * grad F(\theta_{i})</script><p>其中$\theta<em>{i}$ 为当前点, 可以是一个向量, 表示函数的多个自变量.$\theta</em>{i+1}$为下一个点,   $grad F(\theta_{i}) $是当前点的梯度.$\alpha$表示步长或者学习率(在深度学习中被称为学习率).</p><h4 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h4><ol><li>式中的$\alpha$不能太大也不能太小.</li></ol><ul><li>太小, 计算速度慢, 需要迭代很多次.</li><li>太大, 可能会跳过最小值.</li></ul><p>2.由于我们每次更新点都会有一定的步长, 在这段距离中梯度是变化的, 我们在一个点找到的梯度不一定就是这一段的梯度, 所以我们不是一直沿着梯度的负方向前进的. 这一点有点像贪心算法, 基于这一点, 我们也不能让$\alpha$太大.</p><h4 id="梯度下降法的缺点"><a href="#梯度下降法的缺点" class="headerlink" title="梯度下降法的缺点"></a>梯度下降法的缺点</h4><p>如果函数比较复杂, 存在很多局部最小值, 可能最后梯度下降找到的是局部最小值, 而不是全局最小值.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;声明: 本文有一部分本人自己的观点和理解, 不一定完全正确, 仅供参考. 如果发现错误或者有疑问的地方, 请指出, 谢谢!&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="https://yx1302317313.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="机器学习" scheme="https://yx1302317313.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="数学" scheme="https://yx1302317313.github.io/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>博客中使用外链音乐</title>
+    <link href="https://yx1302317313.github.io/2019/02/18/%E5%8D%9A%E5%AE%A2%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%A4%96%E9%93%BE%E9%9F%B3%E4%B9%90/"/>
+    <id>https://yx1302317313.github.io/2019/02/18/博客中使用外链音乐/</id>
+    <published>2019-02-18T07:05:04.000Z</published>
+    <updated>2019-06-22T02:32:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>在博客中加入音乐, 可以使读者在阅读时纵享丝滑(德芙是不是应该给我广告费&lt;^_^&gt;)。</p></blockquote><a id="more"></a><p>一般在博客中嵌入的音乐有两种方式:</p><ul><li>使用本地音乐 :就是将自己本地的音乐上传到服务器上, 加载到不可中.</li><li>使用其他音乐平台的音乐: 通过链接访问其他服务器的音乐资源, 将资源加载到你的博客.</li></ul><h3 id="网易云音乐"><a href="#网易云音乐" class="headerlink" title="网易云音乐"></a>网易云音乐</h3><blockquote><p>自从入坑网易云之后, 一直再用网易云. 网易云网页版自身提供了生成外链的接口.</p></blockquote><div align="center"><img src="/img/blog/blog-music1.png" width="500"></div><p>网易云外链:</p><blockquote><p>只需要修改src=””网址中的id为对应音乐的id即可.</p></blockquote><pre><code class="lang-html">&lt;div align=center&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=330 height=86 src=&quot;//music.163.com/outchain/player?type=2&amp;id=1312971394&amp;auto=1&amp;height=66&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;</code></pre><p>效果如下:</p><div align="center"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=414118616&auto=1&height=66"></iframe></div><p>再来一个:</p><div align="center"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=526464293&auto=1&height=66"></iframe></div><p>咦,你会发现上面的音乐不能播放.原因如下:</p><p><strong>由于我国版权意识越来越强(&gt;_&lt;), 有些音乐需要付费才能下载, 同样需要付费下载的音乐不能通过外链播放.所以使用网易云外链只能链接免费歌曲(<del>也就是大多数音乐是不能外链的</del>).</strong></p><blockquote><p>其他音乐平台的音乐也可以外链,比如QQ音乐.具体方法类似,只是链接的html格式不同,这里就不多说了.</p></blockquote><p>对于付费歌曲还是有解决办法的, 就是上面提到的第一种方法—本地音乐.</p><h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>提供一个链接: <a href="https://music.liuzhijin.cn/" target="_blank" rel="noopener">https://music.liuzhijin.cn/</a></p><div align="center"><img src="/img/blog/blog-music2.png" width="700"></div><p>在该网站中, 搜索你需要的音乐, 复制右边的链接.将下面代码中src的内容改为你复制的链接, 就搞定了.</p><pre><code class="lang-html">&lt;div align=center&gt;&lt;audio controls&gt;    &lt;source src=&quot;http://m10.music.126.net/20190218180725/937019887458e8d14806f9b1623ec119/ymusic/6428/0c3d/4a14/cef6263c9a09bfc03fafbb15f6a99533.mp3&quot; &gt;&lt;/audio&gt;&lt;/div&gt;</code></pre><p>效果如下:</p><blockquote><p>和之前的网易云外链比起来, 界面确实”空空如也”…<br>但也知足吧.如果你想美化界面, 也是可以的.</p></blockquote><div align="center"><audio controls>    <source src="/music/空空如也.mp3"></audio><p>空空如也-任然</p></div>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;在博客中加入音乐, 可以使读者在阅读时纵享丝滑(德芙是不是应该给我广告费&amp;lt;^_^&amp;gt;)。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Hexo" scheme="https://yx1302317313.github.io/categories/Hexo/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>卡尔曼滤波 [翻译]</title>
+    <link href="https://yx1302317313.github.io/2019/02/18/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2-%E7%BF%BB%E8%AF%91/"/>
+    <id>https://yx1302317313.github.io/2019/02/18/卡尔曼滤波-翻译/</id>
+    <published>2019-02-18T05:18:48.000Z</published>
+    <updated>2019-08-05T13:22:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>最近学习卡尔曼滤波, 发现了一篇很好的博客. 也就是从这篇博客开始, 才逐渐开始理解卡尔曼滤波.<br>这篇博客没有像其他很多教程那样用一大堆公式让初学者望而却步. 但是看完之后, 你会发现你不仅理解了卡尔曼滤波的过程, 也对那些看着头痛欲裂的数学公式有所了解.</p><p>个人感觉这是一篇很棒的文章.<br>由于原文章是英文的, 这里将其翻译为中文.(由于水平有限, 翻译的质量本人也不敢恭维, 请见谅!)</p></blockquote><a id="more"></a><blockquote><p>如果英文水平还可以, 建议直接阅读原英文文章. 这里给出原文链接. <a href="http://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/#mathybits" target="_blank" rel="noopener">How a Kalman filter works, in pictures</a></p></blockquote><p><strong>如有侵权, 请联系我删除 !</strong>(博客末尾有本人邮箱联系方式)</p><p><br></p><div align="center"><audio controls>    <source src="/music/一千年以后-林俊杰.mp3"></audio><p>一千年以后-林俊杰</p></div><p>翻译如下:<br><strong>注意: 如果文中数学公式加载错误, 请刷新后重试</strong></p><h3 id="卡尔曼滤波可以做什么"><a href="#卡尔曼滤波可以做什么" class="headerlink" title="卡尔曼滤波可以做什么"></a>卡尔曼滤波可以做什么</h3><p>让我们看一个玩具的例子: 假设你有一个可以在树林中运动的小机器人， 这个机器人需要确切的位置用于导航。</p><p><img src="https://www.bzarg.com/wp-content/uploads/2015/08/robot_forest-300x160.png"></p><p>这个机器人有一个状态$\vec {x_k}$, 它包含位置和速度信息。</p><script type="math/tex; mode=display">\vec{x_k} = (\vec{p}, \vec{v})</script><p>注意状态仅仅是关于你的系统底层配置的一系列数字,它可以是任何数字.在我们的例子中它是位置和速度, 但它可以是有关水池中的液体量的数据, 可以是汽车引擎的温度, 可以是用户手指在触摸板上的位置, 或者是任何你需要跟踪的数据.</p><p>我们的机器人同时有一个精度是10米的GPS传感器, 这很好, 但是我们需要知道机器人的位置精度要高于10米. 在树林中有大量的水沟和悬崖, 如果机器人运动出错超过几英尺, 他可能会掉下悬崖. 所以它携带的GPS传感器不是足够的好.</p><p><img src="https://www.bzarg.com/wp-content/uploads/2015/08/robot_ohnoes-300x283.png"></p><p>我们可能也知道一些关于机器人运动的信息. 例如, 它知道发送给机器人动机的指令, 它知道如果它一直不受干扰的向着一个方向前进, 在下一个瞬间它可能会在相同的方向走的更远. 当然它不知道关于电机的所有信息: 它可能受到风的冲击, 轮子可能有一点打滑, 或者是滚过崎岖不平的地形; 所以车轮转动的数量可能并不完全代表机器人实际行驶的距离，这样的预测是不完美的.</p><p>GPS <strong>传感器</strong> 告诉了我们一些关于机器人状态的信息, 但仅仅是间接的, 并且伴随着一些不确定性和不准确性. 我们的 <strong>预测</strong> 告诉我们一些机器人如何移动的信息,但只是间接的, 同样伴随着一些不确定性和不准确性.</p><p>但是如果我们使用所有可用信息, 我们是否能够得到一个比估计更好的答案? 当然答案是肯定的, 这就是卡尔曼滤波的作用.</p><h3 id="卡尔曼滤波怎么看待你的问题"><a href="#卡尔曼滤波怎么看待你的问题" class="headerlink" title="卡尔曼滤波怎么看待你的问题"></a>卡尔曼滤波怎么看待你的问题</h3><p>我们看一下我们尝试解决的问题的背景. 我们继续用一个只有位置和速度信息的状态进行讨论.</p><script type="math/tex; mode=display">\vec{x} = \begin{bmatrix} p\\ v \end{bmatrix}</script><p>我们不知道实际的位置和速度是什么; 有大量位置和速度的组合可能是正确的.但是有一些组合会比其他组合更有可能.</p><p><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_0.png" width="400"></p><p>卡尔曼滤波假设所有变量(在我们的例子中是位置和速度)都是随机的并且符合高斯分布. 每一个变量都有一个均值$\mu$, 它是随机分布的平均值(它也是最可能的状态), 和一个方差$\sigma^2$, 它表示了不确定度.</p><p><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_1.png" width="400"></p><p>在上面的图片中, 位置和速度是不相关的, 意味着一个变量的状态不会告诉你其他变量可能的任何信息.</p><p>下面的例子展示了一些更有趣的事情: 位置和速度是相关的.观察到一个特定位置的可能性取决于你拥有的速度.</p><p><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_3.png" width="400"></p><p>这种情况是可能出现的, 例如, 你正在基于一个旧的位置估计一个新的位置.如果我们的速度很高, 我们可能移动的更远, 因此我们的位置将会更远. 如果我们移动的比较慢, 我们就不能达到那么远.</p><p>这种关系对于跟踪数据非常重要，因为它为我们提供了更多信息: 一个测量数据告诉了我们一些关于其他数据可能的信息. 这就是卡尔曼滤波的目的, 我们希望尽可能地从我们不确定的测量中得到更多的信息.</p><p>这种相关性可以用<a href="https://zh.wikipedia.org/wiki/%E5%8D%8F%E6%96%B9%E5%B7%AE" target="_blank" rel="noopener">协方差矩阵</a>描述. 总之, 矩阵$\Sigma<em>{ij}$的每一个元素是第i个状态变量和第j个状态变量的相关度.(您可能会猜到协方差矩阵是对称的，这意味着如果交换i和j是无关紧要的). 协方差矩阵通常标记为“$\Sigma$”，因此我们将其元素称为“$\Sigma</em>{ij}$”。</p><p><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_2.png" width="400"></p><h3 id="用矩阵描述问题"><a href="#用矩阵描述问题" class="headerlink" title="用矩阵描述问题"></a>用矩阵描述问题</h3><p>我们将关于机器人状态的信息建模为斑点, 因此我们需要时间k时的两条信息: 我们将把我们的最佳估计称为$\mathbf{\hat{x}_k}$ (均值, 也称为$\mu$), 和它的协方差矩阵$P_k$</p><script type="math/tex; mode=display">\mathbf{\hat{x}_k} = \left[ \begin{matrix}  \text{position}\\  \text{velocity}  \end{matrix}\right]\\P_k = \left[ \begin{matrix}  \Sigma_{pp} & \Sigma_{pv} \\  \Sigma_{vp} & \Sigma_{vv} \end{matrix}\right]</script><p>当然我们在这里只使用位置和速度，但是请记住, 状态可以包含任意数量的变量, 用来代表你想要的任何东西.</p><p>接下来，我们需要一些方法来查看当前状态（在时间k-1时）并预测在时间k时的下一个状态.</p><p>请记住，我们不知道哪个状态是“真正的”状态，但我们的预测功能并不关心这个。它适用于这些情况，并为我们提供一个新的分布.</p><div align="center"><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_7.jpg" width="500"></div><p>我们可以使用矩阵 $F_k$重新表示这个预测步骤.</p><div align="center"><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_8.jpg" width="500"></div><p>如果原估计是正确的, 它将原始估计的每一个点移动到一个新的预测位置.</p><p>让我们应用这个矩阵, 我们怎样使用这个矩阵预测接下来的一个瞬间的位置和速度呢?<br>我们将会使用一个非常基础的运动公式.</p><script type="math/tex; mode=display">{\color{deeppink}{p_k}} = {\color{royalblue}{p_{k-1}}} + \Delta t \color{royalblue}{v_{k-1}} \\{\color{deeppink}{v_k}} = \color{royalblue}{v_{k-1}}</script><p>换成矩阵的形式:</p><script type="math/tex; mode=display">{\color{deeppink} {\hat{x}}_k} =\begin{bmatrix}   1 & \Delta t \\   0 & 1 \end{bmatrix} {\color{royalblue} {\hat{x}}_{k-1}} = {F}_k {\color{royalblue} {\hat{x}}_{k-1}}</script><p>现在我们有一个可以给出下一个状态的预测矩阵, 但是我们仍然不知道怎么更新它的协方差矩阵.</p><p>这里我们需要另外一个公式. 如果我们用一个矩阵A乘以一个分布的每一个点, 然后它的协方差矩阵将会怎么变化?</p><p>好, 它很简单. 这里给出定义:</p><script type="math/tex; mode=display">Cov(x) = \Sigma\\Cov({\color{firebrick}{\mathbf{A}}}x) = {\color{firebrick}{\mathbf{A}}} \Sigma {\color{firebrick}{\mathbf{A}}^T}</script><p>所以</p><script type="math/tex; mode=display">{\color{deeppink}{\mathbf{\hat{x}}_k}} = \mathbf{F}_k {\color{royalblue}{\mathbf{\hat{x}}_{k-1}}}\\{\color{deeppink}{\mathbf{P}_k}} = \mathbf{F_k} {\color{royalblue}{\mathbf{P}_{k-1}}} \mathbf{F}_k^T</script><h3 id="外部影响"><a href="#外部影响" class="headerlink" title="外部影响"></a>外部影响</h3><p>但是, 我们还没有抓住一切影响状态的因素. 可能有一些变化和状态本身没有直接关系—外部世界可能会影响系统.</p><p>例如, 如果状态表示火车的运动, 火车司机可能会推动油门, 造成火车加速. 相似的, 在我们的机器人系统中, 导航软件可能会发出使轮子转动或者停止的命令. 如果我们知道这个关于外部世界将要如何变化的额外信息, 我们可以把它放进一个叫做$\color{darkorange}{\vec{\mathbf{u}_k}}$的向量, 用它做一些事情, 把它加入到我们的预测中作为矫正.</p><p>我们说由于我们知道了油门设置或者控制命令, 我们得到了期望的加速度$\color{darkorange}{a}$</p><p>由基础的运动学只是我们得到:</p><script type="math/tex; mode=display">{\color{deeppink}{p_k}} = {\color{royalblue}{p_{k-1}}} + {\Delta t} {\color{royalblue}{v_{k-1}}} + \frac{1}{2} {\color{darkorange}{a}} {\Delta t}^2\\{\color{deeppink}{v_k}} = {\color{royalblue}{v_{k-1}}} +  {\color{darkorange}{a}} {\Delta t}</script><p>矩阵形式:</p><script type="math/tex; mode=display">{\color{deeppink}{\mathbf{\hat{x}}_k}} = \mathbf{F}_k {\color{royalblue}{\mathbf{\hat{x}}_{k-1}}} + \begin{bmatrix} \frac{\Delta t^2}{2} \\\Delta t \end{bmatrix}\\{\color{darkorange}{a}}= \mathbf{F}_k {\color{royalblue}{\mathbf{\hat{x}}_{k-1}}} + \mathbf{B}_k {\color{darkorange}{\vec{\mathbf{u}_k}}}</script><p>$B_k$被称为控制矩阵, $\vec{u_k}$被称为控制向量.(对于没有外部影响的简单的系统, 你可以忽略它们).</p><p>让我们在多添加一个细节. 如果我们对于将要发生的预测不是一个100%精确的模型将会发生什么?</p><h3 id="外部不确定性"><a href="#外部不确定性" class="headerlink" title="外部不确定性"></a>外部不确定性</h3><p>如果事物的状态都基于自己的属性演变, 一切都很好. 同样, 如果其状态基于外部的影响变化, 一切仍然很好, 只要我们知道这些外部的影响都是什么.</p><p>但是对于我们不知道的影响怎么办? 例如, 我们正在跟踪一个四轴飞行器, 它可能会受到风的冲击. 如果我们正在跟踪一个轮式机器人, 它的轮胎可能会打滑, 可能会因为颠簸路面减速. 我们不可能考虑到一切外部影响, 如果这些外部影响中的任何一个发生了, 我们的预测就可能因为没有考虑到这些外部影响<br>而发生偏离.</p><p>我们可以通过在每一步预测之后添加一些新的不确定性来模拟与这个”世界”(即我们没有考虑的因素)相关的不确定性.</p><center><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_9.jpg" width="500"></center><p>我们原始估计中的每一个状态都可以变为一系列的状态. 因为我们非常的喜欢高斯亮斑, 我们让$x_{k-1}$中的每一个点都移动到协方差为$Q_k$的高斯亮斑内部的某一个位置, 换句话说就是我们将没有考虑到的影响看做协方差为$Q_k$的噪声.</p><center><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_10a.jpg" width="500"></center><p>这样就产生了一个新的协方差不同的高斯亮斑(但是具有相同的均值).</p><center><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_10b.jpg" width="500"></center><p>通过简单的增加一个$Q_k$, 我们得到了一个扩大的协方差, 这样就给出了预测部分完整的表达式.</p><script type="math/tex; mode=display">\begin{aligned}\color{deeppink}{\mathbf{\hat{x}}_k} &= \mathbf{F}_k {\color{royalblue}{\mathbf{\hat{x}}_{k-1}}} + \mathbf{B}_k \color{darkorange}{\vec{\mathbf{u}_k}} \\ \color{deeppink}{\mathbf{P}_k} &= \mathbf{F_k} {\color{royalblue}{\mathbf{P}_{k-1}}} \mathbf{F}_k^T + \color{mediumaquamarine}{\mathbf{Q}_k} \end{aligned}</script><p>换句话说, 当前最优估计值是从上一次最优估计值得到的一个预测值, 同时加上一个对已知外影响的矫正.</p><p>同样, 当前不确定度是从上一次不确定度得到的一个预测值, 加上一些来自外部环境的不确定度.</p><p>好吧, 这很简单. 我们已经对我们系统的状态有了一个模糊的估计, 这个模糊估计由$\color{deeppink}{\mathbf{\hat{x}}_k}$和$\color{deeppink}P_k$ 给出.</p><h3 id="通过测量细化估计"><a href="#通过测量细化估计" class="headerlink" title="通过测量细化估计"></a>通过测量细化估计</h3><p>我们已经有了若干个可以给出系统状态信息的传感器。目前它们测量的数据并不重要；也许一个传感器读到的是位置，另一个得到的是速度。每一个传感器都可以告诉我们一些间接的状态信息—换句话说，传感器在某个状态下运行并且读取到一系列的信息。</p><center><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_12-624x287.jpg" width="500"></center><p>我们注意到读取信息的单位和范围可能与我们想要追踪的状态的单位和范围并不一致。你可能猜到了将要做什么了：我们将用一个矩阵$H_K$对传感器建模。</p><center><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_13.jpg" width="500"></center><p>我们可以计算出传感器读取数据的分布像我们通常希望的那样。</p><script type="math/tex; mode=display">\begin{equation} \begin{aligned} \vec{\mu}_{\text{expected}} &= \mathbf{H}_k \color{deeppink}{\mathbf{\hat{x}}_k} \\ \mathbf{\Sigma}_{\text{expected}} &= \mathbf{H}_k \color{deeppink}{\mathbf{P}_k} \mathbf{H}_k^T \end{aligned} \end{equation}</script><p>卡尔曼滤波擅长的一件事就是处理传感器噪声。换句话说，我们的传感器至少在一定程度上是不可信的，我们原始估计的每一个状态可能会产生一系列的传感器数据。</p><center><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_14.jpg" width="500"></center><p>从观察到的每一个读取数据，我们可以猜测出出系统在一个特殊的状态。但是因为有不确定性存在，一些状态比其他状态更有可能产生我们所看到的数据：</p><center><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_11.jpg" width="500"></center><p>我们称不确定性（例如：传感器噪声）的协方差$\color{mediumaquamarine}{\mathbf{R}_k}$，分布的均值等于我们观察到的读取数据，我们称之为$\color{yellowgreen}{\vec{\mathbf{z}_k}}$.</p><p>现在我们有了两个高斯亮斑：一个在经过转化后的预测值周围，一个在我们得到的实际传感器数据周围。</p><center><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_4.jpg" width="500"></center><h3 id="合并高斯分布"><a href="#合并高斯分布" class="headerlink" title="合并高斯分布"></a>合并高斯分布</h3><h3 id="整合在一起"><a href="#整合在一起" class="headerlink" title="整合在一起"></a>整合在一起</h3><p><strong>未完待续……</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;最近学习卡尔曼滤波, 发现了一篇很好的博客. 也就是从这篇博客开始, 才逐渐开始理解卡尔曼滤波.&lt;br&gt;这篇博客没有像其他很多教程那样用一大堆公式让初学者望而却步. 但是看完之后, 你会发现你不仅理解了卡尔曼滤波的过程, 也对那些看着头痛欲裂的数学公式有所了解.&lt;/p&gt;
+&lt;p&gt;个人感觉这是一篇很棒的文章.&lt;br&gt;由于原文章是英文的, 这里将其翻译为中文.(由于水平有限, 翻译的质量本人也不敢恭维, 请见谅!)&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="翻译" scheme="https://yx1302317313.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    
+    
+      <category term="卡尔曼" scheme="https://yx1302317313.github.io/tags/%E5%8D%A1%E5%B0%94%E6%9B%BC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OSTU算法</title>
+    <link href="https://yx1302317313.github.io/2019/02/16/OSTU%E7%AE%97%E6%B3%95/"/>
+    <id>https://yx1302317313.github.io/2019/02/16/OSTU算法/</id>
+    <published>2019-02-16T10:32:12.000Z</published>
+    <updated>2019-06-22T02:19:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="OSTU算法"><a href="#OSTU算法" class="headerlink" title="OSTU算法"></a>OSTU算法</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><blockquote><p>OSTU算法(最大类间方差法、大津算法): 用来自动对基于聚类的图像进行二值化,或者说将一个灰度图像退化为二值图像。</p></blockquote><p><a href="https://zh.wikipedia.org/wiki/%E5%A4%A7%E6%B4%A5%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">大津算法wiki</a></p><a id="more"></a><div align="center"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1312971394&auto=1&height=66"></iframe></div><h4 id="算法原理"><a href="#算法原理" class="headerlink" title="算法原理:"></a>算法原理:</h4><blockquote><p>通过一个阈值T将图像分为背景和前景, 求出背景的像素均值, 前景的像素均值和整幅图的像素均值, 计算背景和前景的方差. 方差越大意味着背景与前景的区分度越明显, 只要求出使得方差最大的阈值$T<em>{max}$, 则 $T</em>{max}$就是最适合的阈值.</p></blockquote><h4 id="公式"><a href="#公式" class="headerlink" title="公式:"></a>公式:</h4><p><strong>注意: 如果文中数学公式加载错误, 请刷新后重试</strong></p><ul><li>图像大小: M * N</li><li>小于阈值的像素点数量: $N_0$</li><li>大于阈值的像素点数量: $N_1$</li><li>方差: $\sigma^2$</li></ul><script type="math/tex; mode=display">\omega_0 = \frac {N_0} {M * N}\\\omega_1 = \frac {N_1} {M * N}\\\omega_0 + \omega_1 = 1\\\mu = \omega_0 * \mu_0 + \omega_1 * \mu_1\\\sigma^2 = \omega_0 * (\mu_0 - \mu)^2 + \omega_1 * (\mu_1 - \mu)^2</script><p>将$\mu$带入$\sigma^2$得到</p><script type="math/tex; mode=display">\sigma^2 = \omega_0 * \omega_1 * (\mu_0 - \mu_1)^2</script><h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><ul><li>统计灰度图中各像素的个数, 生成像素直方图.</li><li>计算各像素的概率.</li><li>计算阈值 <ul><li>遍历每一个像素值(0-255)作为阈值.</li><li>分别计算前景和背景的像素均值以及概率.</li><li>计算全局均值.</li><li>计算方差.</li><li>更新最大方差和最优阈值.</li></ul></li></ul><h4 id="代码-Opencv"><a href="#代码-Opencv" class="headerlink" title="代码(Opencv)"></a>代码(Opencv)</h4><pre><code class="lang-cpp">#include &lt;opencv/highgui.h&gt;#include &lt;opencv2/opencv.hpp&gt;#include &lt;cmath&gt;//OSTU算法int OSTU(cv::Mat&amp; src){    int threshold=0;    //阈值    float sigma_temp=0.0f;        float sigma_max = 0.0f;        int pixel_num = src.rows * src.cols;    //像素点个数    int pixel_count[256];    //各像素个数    float pixel_pro[256];    //各像素概率    //初始化    for(int i=0; i&lt;256; i++)    {        pixel_count[i] = 0;    }    // 统计像素个数    for(int i=0; i &lt; src.rows; i++)    {            uchar* data = src.ptr&lt;uchar&gt;(i);        for(int j=0; j &lt; src.cols; j++)        {            pixel_count[data[j]]++;        }    }    //计算像素概率    for(int i=0; i&lt;256; i++)    {        pixel_pro[i] = (float)(pixel_count[i]) / (float)(pixel_num);    }    //计算阈值    for(int i=0; i&lt;256; i++)    {        float w0=0, w1=0, u0=0, u1=0, u=0;        //遍历像素        for(int j=0; j&lt;256; j++)        {                //背景像素            if(j &lt; i)            {                w0 += pixel_pro[j];                u0 += pixel_pro[j] * j;                }            else    //前景像素            {                u1 += pixel_pro[j] * j;            }        }        //全图像素均值        //u = w0 * u0 + (1-w0) * u1;        //方差        sigma_temp = w0 * (1-w0) * pow((u0 - u1), 2);        //更新阈值        if(sigma_temp &gt; sigma_max)        {            sigma_max = sigma_temp;            threshold = i;        }    }    return threshold;}//二值化图像void BinaryImage(cv::Mat&amp; src, cv::Mat&amp; des, int threshold){    for(int i=0; i &lt; src.rows; i++)    {            uchar* src_data = src.ptr&lt;uchar&gt;(i);        uchar* des_data = des.ptr&lt;uchar&gt;(i);        for(int j=0; j &lt; src.cols; j++)        {            if(src_data[j] &lt; threshold)            {                des_data[j] = 0;            }            else            {                des_data[j] = 255;            }        }    }}int main(){        cv::Mat src, gray;    cv::namedWindow(&quot;src&quot;, cv::WINDOW_NORMAL);    cv::namedWindow(&quot;gray&quot;, cv::WINDOW_NORMAL);    cv::namedWindow(&quot;binary&quot;, cv::WINDOW_NORMAL);    src = cv::imread(&quot;../wallhaven-698240.jpg&quot;, cv::IMREAD_COLOR);    cv::cvtColor(src, gray, cv::COLOR_RGB2GRAY);    //转换成灰度图    int threshold = OSTU(gray);        //计算阈值    cv::Mat binary = cv::Mat(gray.rows, gray.cols, CV_8U);        //初始化二值化图像    BinaryImage(gray, binary, threshold);    printf(&quot;threshold: %d\n&quot;, threshold);    //显示RGB图像, 灰度图像, 二值化图像    cv::imshow(&quot;src&quot;, src);    cv::imshow(&quot;gray&quot;, gray);    cv::imshow(&quot;binary&quot;, binary);    cv::waitKey(0);    return 0;}</code></pre><h5 id="RGB图像-原图"><a href="#RGB图像-原图" class="headerlink" title="RGB图像(原图)"></a>RGB图像(原图)</h5><div align="center"><img src="/img/blog/OSTU1.png" width="500"></div><h5 id="灰度图像-经过Opencv转化"><a href="#灰度图像-经过Opencv转化" class="headerlink" title="灰度图像(经过Opencv转化)"></a>灰度图像(经过Opencv转化)</h5><div align="center"><img src="/img/blog/OSTU2.png" width="500"></div><h5 id="二值化图像-OSTU算法"><a href="#二值化图像-OSTU算法" class="headerlink" title="二值化图像(OSTU算法)"></a>二值化图像(OSTU算法)</h5><div align="center"><img src="/img/blog/OSTU3.png" width="500"></div>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;OSTU算法&quot;&gt;&lt;a href=&quot;#OSTU算法&quot; class=&quot;headerlink&quot; title=&quot;OSTU算法&quot;&gt;&lt;/a&gt;OSTU算法&lt;/h3&gt;&lt;h4 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;OSTU算法(最大类间方差法、大津算法): 用来自动对基于聚类的图像进行二值化,或者说将一个灰度图像退化为二值图像。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%A4%A7%E6%B4%A5%E7%AE%97%E6%B3%95&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;大津算法wiki&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="https://yx1302317313.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="图像处理" scheme="https://yx1302317313.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu更换登录界面壁纸</title>
+    <link href="https://yx1302317313.github.io/2019/02/11/Ubuntu%E6%9B%B4%E6%8D%A2%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2%E5%A3%81%E7%BA%B8/"/>
+    <id>https://yx1302317313.github.io/2019/02/11/Ubuntu更换登录界面壁纸/</id>
+    <published>2019-02-11T02:18:53.000Z</published>
+    <updated>2019-06-22T02:19:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美.<br>为此找了半天找哪里可以修改, 但是最终还是要求助Google.</p></blockquote><a id="more"></a><h3 id="1-将准备设置为登录界面壁纸的图片移动到-usr-share-background"><a href="#1-将准备设置为登录界面壁纸的图片移动到-usr-share-background" class="headerlink" title="1. 将准备设置为登录界面壁纸的图片移动到/usr/share/background"></a>1. 将准备设置为登录界面壁纸的图片移动到/usr/share/background</h3><pre><code class="lang-shell">$ mv your_picture.jpg /usr/share/background</code></pre><h3 id="2-Ubuntu18-04登录背景相关的配置文件是-etc-alternatives-gdm3-css"><a href="#2-Ubuntu18-04登录背景相关的配置文件是-etc-alternatives-gdm3-css" class="headerlink" title="2. Ubuntu18.04登录背景相关的配置文件是 /etc/alternatives/gdm3.css"></a>2. Ubuntu18.04登录背景相关的配置文件是 /etc/alternatives/gdm3.css</h3><blockquote><p>因为需要修改这个文件, 以防万一先将该文件复制一份</p></blockquote><pre><code class="lang-shell">$ cp /etc/alternatives/gdm3.css /etc/alternatives/gdm3.css.temp</code></pre><h3 id="3-修改-etc-alternatives-gdm3-css"><a href="#3-修改-etc-alternatives-gdm3-css" class="headerlink" title="3. 修改/etc/alternatives/gdm3.css"></a>3. 修改/etc/alternatives/gdm3.css</h3><pre><code class="lang-css">#找到默认的这个部分#lockDialogGroup {  background: #2c001e url(resource:///org/gnome/shell/theme/noise-texture.png);  background-repeat: repeat; }#改为#lockDialogGroup {  background: #2c001e url(file:///usr/share/backgrounds/your_picture.jpg);           background-repeat: no-repeat;  background-size: cover;  background-position: center; }</code></pre><h3 id="4-保存文件-重启之后就可以看到新的登录界面了"><a href="#4-保存文件-重启之后就可以看到新的登录界面了" class="headerlink" title="4. 保存文件, 重启之后就可以看到新的登录界面了."></a>4. 保存文件, 重启之后就可以看到新的登录界面了.</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美.&lt;br&gt;为此找了半天找哪里可以修改, 但是最终还是要求助Google.&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://yx1302317313.github.io/categories/Linux/"/>
+    
+    
+      <category term="Ubuntu" scheme="https://yx1302317313.github.io/tags/Ubuntu/"/>
+    
+      <category term="配置" scheme="https://yx1302317313.github.io/tags/%E9%85%8D%E7%BD%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TensorBoard食用指南</title>
+    <link href="https://yx1302317313.github.io/2019/02/09/TensorBoard%E9%A3%9F%E7%94%A8%E6%8C%87%E5%8D%97/"/>
+    <id>https://yx1302317313.github.io/2019/02/09/TensorBoard食用指南/</id>
+    <published>2019-02-09T05:31:42.000Z</published>
+    <updated>2019-06-21T16:08:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<div align="center"><img src="/img/blog/TensorBoard.png" height="600" width="800"></div><a id="more"></a><div align="center"> <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=554242032&auto=1&height=66"></iframe><!--audio src="/music/体面.mp3" controls></audio--></div><h3 id="TensorBoard-数据形式"><a href="#TensorBoard-数据形式" class="headerlink" title="TensorBoard 数据形式"></a>TensorBoard 数据形式</h3><p><details>    <summary> 数据类型 </summary>    <p> 1: 标量Scalars  </p>    <p> 2: 图片Images  </p>    <p> 3: 音频Audio  </p>    <p> 4: 计算图Graph  </p>    <p> 5: 数据分布Distribution  </p>    <p> 6: 直方图Histogtams  </p>    <p> 7: 嵌入向量Embeddings  </p></details><br><br></p><h4 id="添加数据代码"><a href="#添加数据代码" class="headerlink" title="添加数据代码"></a>添加数据代码</h4><pre><code class="lang-python">import tensorflow as tftf.summary.scalar(name, scalar)tf.summary.image(name, image)tf.summary.histogram(name, histogram)tf.summary.audio(name, audio)tf.summary.distribution(name, distribution)tf.summary.graph(name, graph)tf.summary.embeddings(name, embedding)</code></pre><h3 id="TensorBoard-可视化过程"><a href="#TensorBoard-可视化过程" class="headerlink" title="TensorBoard 可视化过程"></a>TensorBoard 可视化过程</h3><ol><li>建立计算图graph, 你可以从改图中得到你想要的数据信息</li><li>在计算图的结点防止summary operation用来记录信息</li><li>运行summary operation, 只是建立了summary operation而不run, operation并不会真正执行. 有时, 我们有很多summary operation需要运行, 但是一个一个run会很麻烦. 这时, 可以利用tf.summary.merge_all()将所有结点合并成一个结点, 运行这个结点, 就可以产生所有设置的summary Data.</li><li>将数据保存得到本地磁盘, tf.summary.FileWriter(logs_path, graph=my_graph)</li><li>运行整个程序，并在命令行输入运行tensorboard的指令，之后打开web端可查看可视化的结果.</li></ol><h4 id="Python代码"><a href="#Python代码" class="headerlink" title="Python代码"></a>Python代码</h4><p>该demo使用了tensorflow提供的手写体识别数据</p><pre><code class="lang-python">from tensorflow.examples.tutorials.mnist import input_dataimport tensorflow as tfimport osos.environ[&#39;TF_CPP_MIN_LOG_LEVEL&#39;] = &#39;2&#39;logs_path = &quot;five_layers_log&quot;batch_size = 100learning_rate = 0.003training_epochs = 10mnist = input_data.read_data_sets(&quot;../data&quot;, one_hot=True)x = tf.placeholder(tf.float32, [None, 784])y = tf.placeholder(tf.float32, [None, 10])# five layers neural networkfirst_layer = 200second_layer = 100third_layer = 60fourth_layer = 30fifth_layer = 10# weight and biasW1 = tf.Variable(tf.truncated_normal([784, first_layer], stddev=0.1))B1 = tf.Variable(tf.zeros([first_layer]))W2 = tf.Variable(tf.truncated_normal([first_layer, second_layer], stddev=0.1))B2 = tf.Variable(tf.zeros([second_layer]))W3 = tf.Variable(tf.truncated_normal([second_layer, third_layer], stddev=0.1))B3 = tf.Variable(tf.zeros([third_layer]))W4 = tf.Variable(tf.truncated_normal([third_layer, fourth_layer], stddev=0.1))B4 = tf.Variable(tf.zeros([fourth_layer]))W5 = tf.Variable(tf.truncated_normal([fourth_layer, fifth_layer], stddev=0.1))B5 = tf.Variable(tf.zeros([fifth_layer]))XX = tf.reshape(x, [-1, 784])Y1 = tf.nn.sigmoid(tf.matmul(x, W1) + B1)Y2 = tf.nn.sigmoid(tf.matmul(Y1, W2) + B2)Y3 = tf.nn.sigmoid(tf.matmul(Y2, W3) + B3)Y4 = tf.nn.sigmoid(tf.matmul(Y3, W4) + B4)Ylogits = tf.matmul(Y4, W5) + B5Y = tf.nn.softmax(Ylogits)cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits=Ylogits, labels=y)cross_entropy = tf.reduce_mean(cross_entropy)*100correct_prediction = tf.equal(tf.argmax(Y, 1), tf.argmax(y, 1))accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))train_step = tf.train.AdamOptimizer(learning_rate).minimize(cross_entropy)tf.summary.scalar(&quot;cost&quot;, cross_entropy)tf.summary.scalar(&quot;accuracy&quot;, accuracy)tf.summary.image(&quot;input_image&quot;, tf.reshape(x, [-1, 28, 28, 1]), 10)summary_op = tf.summary.merge_all()init = tf.global_variables_initializer()with tf.Session() as sess:    sess.run(tf.global_variables_initializer())    writer = tf.summary.FileWriter(logs_path, graph=tf.get_default_graph())    for epoch in range(training_epochs):        batch_count = int(mnist.train.num_examples/batch_size)        for i in range(batch_count):            batch_x, batch_y = mnist.train.next_batch(batch_size)            _, summary = sess.run([train_step, summary_op], feed_dict={x: batch_x, y: batch_y})            writer.add_summary(summary, epoch*batch_count+1)        print(&quot;Epoch&quot;, epoch)    print(&quot;Accuracy&quot;, accuracy.eval(feed_dict={x: mnist.test.images, y: mnist.test.labels}))    print(&quot;Done&quot;)</code></pre><h4 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h4><pre><code class="lang-shell"># 运行Python程序$ python3 hw_recognition.py # python 文件名# 查看tensorboard$ tensorboard --logdir=&#39;five_layers_log&#39; # 程序中保存的数据路径</code></pre><h3 id="Web端TensorBoard"><a href="#Web端TensorBoard" class="headerlink" title="Web端TensorBoard"></a>Web端TensorBoard</h3><p>用浏览器打开网址 <a href="http://127.0.1.1:6006" target="_blank" rel="noopener">http://127.0.1.1:6006</a> 查看. 下面是部分截图.</p><ol><li>scalar</li></ol><div align="center"><img src="/img/blog/tensorboard_scalar.png" height="400" width="600"></div><ol><li>image</li></ol><div align="center"><img src="/img/blog/tensorboard_image.png" height="400" width="600"></div><ol><li>graph</li></ol><div align="center"><img src="/img/blog/tensorboard_graph.png" height="400" width="600"></div><h3 id="END"><a href="#END" class="headerlink" title="END"></a>END</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;/img/blog/TensorBoard.png&quot; height=&quot;600&quot; width=&quot;800&quot;&gt;
+&lt;/div&gt;
+    
+    </summary>
+    
+      <category term="TensorFlow" scheme="https://yx1302317313.github.io/categories/TensorFlow/"/>
+    
+    
+      <category term="TensorFlow" scheme="https://yx1302317313.github.io/tags/TensorFlow/"/>
+    
+      <category term="机器学习" scheme="https://yx1302317313.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Github多人协作</title>
+    <link href="https://yx1302317313.github.io/2019/02/02/Github%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C/"/>
+    <id>https://yx1302317313.github.io/2019/02/02/Github多人协作/</id>
+    <published>2019-02-02T03:44:37.000Z</published>
+    <updated>2019-06-22T02:17:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Github-团队多人协作"><a href="#Github-团队多人协作" class="headerlink" title="Github 团队多人协作"></a>Github 团队多人协作</h1><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="1-复制仓库"><a href="#1-复制仓库" class="headerlink" title="1. 复制仓库"></a>1. 复制仓库</h4><p><strong>注意：复制的仓库默认为mater分支</strong></p><pre><code>$ git clone https://github.com/repository.git # 仓库的URL</code></pre><a id="more"></a><h4 id="2-切换分支到develop"><a href="#2-切换分支到develop" class="headerlink" title="2. 切换分支到develop"></a>2. 切换分支到develop</h4><p>master分支是git的默认分支, 一般master分支用于发布稳定版本, 不是开发的主要的分支.<br>一般我们会新建一个develop分支用于开发.之后每次开发都提交到develop分支.只有要发布一个稳定的版本时才把develop分支合并到master分支.</p><pre><code># 新建分支$ git checkout -b develop# 如果已经创建了develop分支, 只需要切换到develop分支$ git checkout develop</code></pre><h4 id="3-新建开发分支"><a href="#3-新建开发分支" class="headerlink" title="3. 新建开发分支"></a>3. 新建开发分支</h4><p>由于要多人开发, 个人尽量不要在develop分支开发. 而是在本地新建一个本地分支,之后程序都要在新建的开发分支进行修改，开发完毕后与develop分支合并.</p><p><strong>开发分支只需要留在本地仓库即可，不要提交到github上。</strong></p><pre><code># 例如要添加adc模块， 可以新建分支adc_branch$ git checkout -b adc_branch</code></pre><h4 id="4-添加自己负责的模块"><a href="#4-添加自己负责的模块" class="headerlink" title="4. 添加自己负责的模块"></a>4. 添加自己负责的模块</h4><h4 id="5-合并分支"><a href="#5-合并分支" class="headerlink" title="5. 合并分支"></a>5. 合并分支</h4><p>添加完自己负责的模块之后， 先提交到自己新建的本地分支，然后切换到develop分支。<strong>在和develop分支合并前需要更新develop分支</strong>, 更新之后再将本地分支合并到develop。</p><p><strong>注意：如果合并发生冲突，不要强制提交，应该放弃本地的修改。</strong></p><pre><code># 提交到本地$ git add .# 根据自己的修改添加相应的说明， 不要用英文描述(因为可能看不懂)。$ git commit -m &quot;添加adc模块&quot; # 切换到develop分支$ git checkout develop# 更新develop分支（因为其他人可能已经修改了develop，# 你本地的develop分支不一定是最新的。）$ git pull origin develop# 在develop分支合并创建的开发分支$ git merge adc_branch</code></pre><h4 id="6-提交develop分支"><a href="#6-提交develop分支" class="headerlink" title="6. 提交develop分支"></a>6. 提交develop分支</h4><pre><code># 提交develop分支到GitHub$ git push origin develop</code></pre><h4 id="7-删除不需要的本地分支"><a href="#7-删除不需要的本地分支" class="headerlink" title="7. 删除不需要的本地分支"></a>7. 删除不需要的本地分支</h4><p>如果本地的分支不再需要， 可以将其删除。</p><pre><code># 删除adc_branch分支$ git branch -d adc_branch</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Github-团队多人协作&quot;&gt;&lt;a href=&quot;#Github-团队多人协作&quot; class=&quot;headerlink&quot; title=&quot;Github 团队多人协作&quot;&gt;&lt;/a&gt;Github 团队多人协作&lt;/h1&gt;&lt;h3 id=&quot;步骤&quot;&gt;&lt;a href=&quot;#步骤&quot; class=&quot;headerlink&quot; title=&quot;步骤&quot;&gt;&lt;/a&gt;步骤&lt;/h3&gt;&lt;h4 id=&quot;1-复制仓库&quot;&gt;&lt;a href=&quot;#1-复制仓库&quot; class=&quot;headerlink&quot; title=&quot;1. 复制仓库&quot;&gt;&lt;/a&gt;1. 复制仓库&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;注意：复制的仓库默认为mater分支&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git clone https://github.com/repository.git # 仓库的URL
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="Git" scheme="https://yx1302317313.github.io/categories/Git/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python内建函数</title>
+    <link href="https://yx1302317313.github.io/2019/01/26/%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0/"/>
+    <id>https://yx1302317313.github.io/2019/01/26/内建函数/</id>
+    <published>2019-01-26T09:23:09.000Z</published>
+    <updated>2019-06-22T02:19:54.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h3><blockquote><p>Python2: 将对象中对应的元素打包成元组(tuple), 返回由这些元组组成的列表. 可以用*解压.</p></blockquote><a id="more"></a><pre><code class="lang-python">&gt;&gt;&gt;a = [1,2,3]&gt;&gt;&gt;b = [4,5,6]&gt;&gt;&gt;zip(a, b)[(1,4),(2,5),(3,6)]&gt;&gt;&gt;print(*zip(a,b))[(1,4) (2,5) (3,6)]</code></pre><blockquote><p>Python3: 将对象中对应的元素打包成元组(tuple), 返回由这些元组组成的对象, 可以有*解压.</p><pre><code class="lang-python">&gt;&gt;a = [1,2,3]&gt;&gt;b = [4,5,6]&gt;&gt;list(zip(a, b)) # 转化成列表[(1,4),(2,5),(3,6)]&gt;&gt;print(*zip(a,b))(1,4) (2,5) (3,6)</code></pre></blockquote><hr><h3 id="字典dict"><a href="#字典dict" class="headerlink" title="字典dict"></a>字典dict</h3><h4 id="遍历key"><a href="#遍历key" class="headerlink" title="遍历key"></a>遍历key</h4><pre><code class="lang-python">for key in d.keys():    print(key)for key in d:    print(key)</code></pre><h4 id="遍历value"><a href="#遍历value" class="headerlink" title="遍历value"></a>遍历value</h4><pre><code class="lang-python">for value in d.values():    print(value)</code></pre><h4 id="遍历key和value"><a href="#遍历key和value" class="headerlink" title="遍历key和value"></a>遍历key和value</h4><pre><code class="lang-python">for key in d:    print key,&#39;corresponds to&#39;, d[key]for key, value in d.items():    print key,&#39;corresponds to&#39;,value</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;zip&quot;&gt;&lt;a href=&quot;#zip&quot; class=&quot;headerlink&quot; title=&quot;zip&quot;&gt;&lt;/a&gt;zip&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Python2: 将对象中对应的元素打包成元组(tuple), 返回由这些元组组成的列表. 可以用*解压.&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="https://yx1302317313.github.io/categories/Python/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>hexo部署到github服务器</title>
+    <link href="https://yx1302317313.github.io/2019/01/13/hexo%E9%83%A8%E7%BD%B2%E5%88%B0github%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>https://yx1302317313.github.io/2019/01/13/hexo部署到github服务器/</id>
+    <published>2019-01-13T09:06:56.000Z</published>
+    <updated>2019-06-22T02:18:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-创建github用户"><a href="#1-创建github用户" class="headerlink" title="1. 创建github用户"></a>1. 创建github用户</h3><p>如果你已经有了github的账号, 这一步直接跳过就好.<br>如果没有, 请参考下面的教程申请github账号并在你的计算机上添加ssh公钥</p><a id="more"></a><p><a href="https://github.com/gotgit/gotgithub/blob/master/02-join-github/010-account-setup.rst" target="_blank" rel="noopener">https://github.com/gotgit/gotgithub/blob/master/02-join-github/010-account-setup.rst</a></p><h3 id="2-创建用于部署博客的github仓库"><a href="#2-创建用于部署博客的github仓库" class="headerlink" title="2. 创建用于部署博客的github仓库"></a>2. 创建用于部署博客的github仓库</h3><p>github每一个用户都有一个特殊的仓库, &lt; username &gt;.github.io (&lt; username &gt; 是你的用户名)<br>将hexo生成的静态文件部署到在这个仓库, 可以通过访问http://&lt; username &gt;.github.io来访问你的博客<br>这时候其实你使用的是github的服务器, 这是github免费提供的, 省去了自己搞域名和服务器时间.<br>当然, 如果你有自己的域名和服务器, 你也可以把hexo放到你自己的服务器上.</p><p>创建仓库:<br>在github上创建名为&lt; username &gt;.github.io的仓库.<br><strong>注意: 该仓库必须是公有的.</strong></p><h3 id="3-部署hexo"><a href="#3-部署hexo" class="headerlink" title="3. 部署hexo"></a>3. 部署hexo</h3><ul><li>修改_config.yml文件, 修改deploy配置</li></ul><pre><code>deploy:  type: git # 使用git  repo: https://github.com/yx1302317313/yx1302317313.github.io.git  # 刚刚创建的仓库链接   branch: master  # master分支</code></pre><ul><li>在本地新建文章之后, 执行以下命令<pre><code>$ hexo generate     # 生成静态文件, 生成的文件在public中$ hexo deploy       # 部署到github, 只有public文件夹的内容会提交到github上.</code></pre></li><li>输入github的用户名和密码.</li><li>之后可以到github上查看你新建的仓库, 你的博客已经提交上去了.</li></ul><h3 id="4-访问你的博客"><a href="#4-访问你的博客" class="headerlink" title="4. 访问你的博客"></a>4. 访问你的博客</h3><p>访问http://&lt; username &gt;.github.io来查看你的博客</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-创建github用户&quot;&gt;&lt;a href=&quot;#1-创建github用户&quot; class=&quot;headerlink&quot; title=&quot;1. 创建github用户&quot;&gt;&lt;/a&gt;1. 创建github用户&lt;/h3&gt;&lt;p&gt;如果你已经有了github的账号, 这一步直接跳过就好.&lt;br&gt;如果没有, 请参考下面的教程申请github账号并在你的计算机上添加ssh公钥&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Hexo" scheme="https://yx1302317313.github.io/categories/Hexo/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>hexo创建分类和标签</title>
+    <link href="https://yx1302317313.github.io/2019/01/11/hexo%E5%88%9B%E5%BB%BA%E5%88%86%E7%B1%BB%E5%92%8C%E6%A0%87%E7%AD%BE/"/>
+    <id>https://yx1302317313.github.io/2019/01/11/hexo创建分类和标签/</id>
+    <published>2019-01-11T11:11:56.000Z</published>
+    <updated>2019-06-22T02:17:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>最近利用Hexo搭建了自己的博客, 在这里简单分享一下hexo的基本操作.</p></blockquote><a id="more"></a><h3 id="创建分类"><a href="#创建分类" class="headerlink" title="创建分类"></a>创建分类</h3><p>利用page模板设置分类</p><pre><code>$ hexo new page categories</code></pre><p>会在你的目录下新生成一个categories文件夹和index.md文件</p><pre><code>INFO  Created: yourdir/source/categories/index.md</code></pre><p>添加type: “categories”到index.md中，添加后是这样的：</p><pre><code>---title: categoriesdate: 2019-01-11 19:05:19type: &quot;categories&quot;      #add categories type---</code></pre><p>在文章中添加分类</p><p><strong>注意: 如果分类下面有两个分类, 并不会把文章放在两个分类中, 而是两个分类嵌套(hexo不支持多个分类).</strong></p><pre><code>title: &#39;hexo创建分类,归档和标签&#39;date: 2019-01-11 19:11:56tags:categories:  # 添加分类- Hexo  #分类为Hexo</code></pre><h3 id="创建标签"><a href="#创建标签" class="headerlink" title="创建标签"></a>创建标签</h3><p>利用page模板设置分类</p><pre><code>$ hexo new page tags</code></pre><p>会在你的目录下新生成一个tags文件夹和index.md文件</p><pre><code>INFO  Created: yourdir/source/tags/index.md</code></pre><p>添加type: “tags”到index.md中，添加后是这样的：</p><pre><code>---title: tagsdate: 2019-01-11 19:05:19type: &quot;tags&quot;      #add tags type---</code></pre><p>在文章中添加标签</p><p><strong>注意: 文章的标签可以有多个, 也就是tags下面可以设置多个标签</strong></p><pre><code>title: &#39;hexo创建分类,归档和标签&#39;date: 2019-01-11 19:11:56tags:    # 添加标签- Hexo  #标签为Hexo- Blog  #标签为Blog</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;最近利用Hexo搭建了自己的博客, 在这里简单分享一下hexo的基本操作.&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Hexo" scheme="https://yx1302317313.github.io/categories/Hexo/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux Realtek网卡驱动安装</title>
+    <link href="https://yx1302317313.github.io/2019/01/09/Linux%E4%B8%8BRealtek%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/"/>
+    <id>https://yx1302317313.github.io/2019/01/09/Linux下Realtek网卡驱动/</id>
+    <published>2019-01-09T15:26:57.000Z</published>
+    <updated>2019-06-22T03:22:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="无线网卡"><a href="#无线网卡" class="headerlink" title="无线网卡"></a>无线网卡</h3><p>Ubuntu有时会不支持电脑的无线网卡，这时就需要自己安装了。</p><a id="more"></a><h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>可以在官网找安装文件或者github上找源码编译安装。</p><p>Realtek无线网卡的安装包可以在github下载 <a href="https://github.com/rtlwifi-linux/rtlwifi_new" target="_blank" rel="noopener">https://github.com/rtlwifi-linux/rtlwifi_new</a>. 然后进入目录</p><pre><code class="lang-bash">$make$sudo make install$sudo modprobe 你的网卡型号（eg：rtl8821be）</code></pre><h3 id="rtl8821ce"><a href="#rtl8821ce" class="headerlink" title="rtl8821ce"></a>rtl8821ce</h3><p>如果你的网卡是rtl8821ce，github上暂时好像没有，可以下载这一份。<br><a href="https://download.csdn.net/download/yx1302317313/10595262" target="_blank" rel="noopener">CSDN的下载链接</a> </p><ol><li>解压进入文件夹，改一下Makefile中一个文件的路径。</li><li>找到这一句 export TopDIR ?= $(srctree)/drivers/net/wireless/rtl8821ce</li><li>修改成当前目录 export TopDIR ?= $(shell pwd)</li></ol><pre><code class="lang-bash">$make$sudo make install$sudo modprobe -a 8821ce</code></pre><p>之后就可以看见无线图标了，如果连不上网reboot试试。</p><hr><h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p>最近发现一个问题, 当Linux内核更新之后, 你的无线网又不能用了.因为新更新的内核替换了原来的内核,所以安装的网卡驱动就没了.</p><p>当然这个问题很好解决, 再重复一次上面的操作的即可.<del>但是每次更新内核都要重装一次还是很麻烦.</del></p><p>如果会shell这个问题就很好解决了,把上面的操作写成一个shell脚本, 只要执行这个脚本就可以很方便的安装网卡驱动了.</p><p>下面是我写的shell脚本(<del>很简单</del>)</p><pre><code class="lang-bash">cd ~/Driver/rtl8821ce # 网卡驱动所在的路径,需要根据实际情况修改make clean  # 清除编译文件make -j4    # 四核编译, 要确保你的电脑至少是四核的, 否则使用make即可.make install modprobe -a 8821ce</code></pre><p>把上面的shell程序保存的shell文件中,例如rtl8821ce.sh,然后给予执行权限执行即可.</p><pre><code class="lang-bash">$ chmod u+x rtl8821ce.sh    # 添加执行权限$ sudo ./rtl8821ce.sh    # root权限下执行脚本</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;无线网卡&quot;&gt;&lt;a href=&quot;#无线网卡&quot; class=&quot;headerlink&quot; title=&quot;无线网卡&quot;&gt;&lt;/a&gt;无线网卡&lt;/h3&gt;&lt;p&gt;Ubuntu有时会不支持电脑的无线网卡，这时就需要自己安装了。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://yx1302317313.github.io/categories/Linux/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>N皇后问题</title>
+    <link href="https://yx1302317313.github.io/2019/01/09/N%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/"/>
+    <id>https://yx1302317313.github.io/2019/01/09/N皇后问题/</id>
+    <published>2019-01-09T13:49:31.000Z</published>
+    <updated>2019-06-21T16:07:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="八皇后问题"><a href="#八皇后问题" class="headerlink" title="八皇后问题"></a>八皇后问题</h3><p>八皇后问题，是一个古老而著名的问题，是回溯算法的典型案例。该问题是国际西洋棋棋手马克斯·贝瑟尔于1848年提出：在8×8格的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法。</p><a id="more"></a><div align="center"><img src="/img/blog/八皇后.png" width="400" height="400"></div><h3 id="N皇后问题"><a href="#N皇后问题" class="headerlink" title="N皇后问题"></a>N皇后问题</h3><p>在这里我们解决的是N皇后问题，即在一个n*n的棋盘上，摆放n个皇后，使之不相互攻击。问有几种摆放方法（不考虑棋盘的对称性）.<br><br><br>对于8皇后问题，我们可以通过8重循环的回溯算法解决，但是对于N皇后，我们无法预知N的值，所以不能使用这种方法。但是可以使用递归实现循环：每一次递归解决一行的皇后摆放位置，使之不与前几行冲突，之后再递归调用自身确定下一行的位置。</p><h4 id="代码如下（C-）："><a href="#代码如下（C-）：" class="headerlink" title="代码如下（C++）："></a>代码如下（C++）：</h4><pre><code class="lang-cpp">#include &lt;iostream&gt;using namespace std;int N;                    //N个皇后int queen_pos[100];       //每个皇后的位置，目前最大范围是100int num = 0;              //统计最终摆放位置方案的个数void queen(int k);        //递归函数int main(){    cin &gt;&gt; N;  //输入N          queen(0); //从第0行开始摆放    cout &lt;&lt; num &lt;&lt; endl;        system(&quot;pause&quot;);    return 0;}/*@brief：递归实现每一行皇后的摆放位置@parameter：K：从第K行开始摆放*/void queen(int k)        {    if (k==N)        //摆满N行输出                                      {        for (int i = 0; i &lt; N; i++)        {            cout &lt;&lt; queen_pos[i] + 1&lt;&lt;&quot; &quot;;  //列数+1，因为棋盘从第一列开始        }        cout &lt;&lt; endl;        num++;         //统计量+1    }    for (int i = 0; i &lt; N; i++）     //枚举皇后所在的列数        {        int j = 0;        for (; j &lt; k; j++ ）      //是否与前几行冲突        {                        //与前几行同列 || 与前几行在同一对角线上，则冲突            if (queen_pos[j] == i || (abs(queen_pos[j] - i) == k - j))                break;              //如果冲突，跳出，否定这个位置        }        if (j==k)           //如果不冲突        {            queen_pos[k] = i;      //确定这一行皇后的位置            queen(k+1);            //递归进入下一行        }    }}</code></pre><hr><h3 id="以下为用程序求出的所有8皇后的解（92种）："><a href="#以下为用程序求出的所有8皇后的解（92种）：" class="headerlink" title="以下为用程序求出的所有8皇后的解（92种）："></a>以下为用程序求出的所有8皇后的解（92种）：</h3><pre><code>1 5 8 6 3 7 2 41 6 8 3 7 4 2 51 7 4 6 8 2 5 31 7 5 8 2 4 6 32 4 6 8 3 1 7 52 5 7 1 3 8 6 42 5 7 4 1 8 6 32 6 1 7 4 8 3 52 6 8 3 1 4 7 52 7 3 6 8 5 1 42 7 5 8 1 4 6 32 8 6 1 3 5 7 43 1 7 5 8 2 4 63 5 2 8 1 7 4 63 5 2 8 6 4 7 13 5 7 1 4 2 8 63 5 8 4 1 7 2 63 6 2 5 8 1 7 43 6 2 7 1 4 8 53 6 2 7 5 1 8 43 6 4 1 8 5 7 23 6 4 2 8 5 7 13 6 8 1 4 7 5 23 6 8 1 5 7 2 43 6 8 2 4 1 7 53 7 2 8 5 1 4 63 7 2 8 6 4 1 53 8 4 7 1 6 2 54 1 5 8 2 7 3 64 1 5 8 6 3 7 24 2 5 8 6 1 3 74 2 7 3 6 8 1 54 2 7 3 6 8 5 14 2 7 5 1 8 6 34 2 8 5 7 1 3 64 2 8 6 1 3 5 74 6 1 5 2 8 3 74 6 8 2 7 1 3 54 6 8 3 1 7 5 24 7 1 8 5 2 6 34 7 3 8 2 5 1 64 7 5 2 6 1 3 84 7 5 3 1 6 8 24 8 1 3 6 2 7 54 8 1 5 7 2 6 34 8 5 3 1 7 2 65 1 4 6 8 2 7 35 1 8 4 2 7 3 65 1 8 6 3 7 2 45 2 4 6 8 3 1 75 2 4 7 3 8 6 15 2 6 1 7 4 8 35 2 8 1 4 7 3 65 3 1 6 8 2 4 75 3 1 7 2 8 6 45 3 8 4 7 1 6 25 7 1 3 8 6 4 25 7 1 4 2 8 6 35 7 2 4 8 1 3 65 7 2 6 3 1 4 85 7 2 6 3 1 8 45 7 4 1 3 8 6 25 8 4 1 3 6 2 75 8 4 1 7 2 6 36 1 5 2 8 3 7 46 2 7 1 3 5 8 46 2 7 1 4 8 5 36 3 1 7 5 8 2 46 3 1 8 4 2 7 56 3 1 8 5 2 4 76 3 5 7 1 4 2 86 3 5 8 1 4 2 76 3 7 2 4 8 1 56 3 7 2 8 5 1 46 3 7 4 1 8 2 56 4 1 5 8 2 7 36 4 2 8 5 7 1 36 4 7 1 3 5 2 86 4 7 1 8 2 5 36 8 2 4 1 7 5 37 1 3 8 6 4 2 57 2 4 1 8 5 3 67 2 6 3 1 4 8 57 3 1 6 8 5 2 47 3 8 2 5 1 6 47 4 2 5 8 1 3 67 4 2 8 6 1 3 57 5 3 1 6 8 2 48 2 4 1 7 5 3 68 2 5 3 1 7 4 68 3 1 6 2 5 7 48 4 1 3 6 2 7 5</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;八皇后问题&quot;&gt;&lt;a href=&quot;#八皇后问题&quot; class=&quot;headerlink&quot; title=&quot;八皇后问题&quot;&gt;&lt;/a&gt;八皇后问题&lt;/h3&gt;&lt;p&gt;八皇后问题，是一个古老而著名的问题，是回溯算法的典型案例。该问题是国际西洋棋棋手马克斯·贝瑟尔于1848年提出：在8×8格的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="https://yx1302317313.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+  </entry>
+  
+</feed>
