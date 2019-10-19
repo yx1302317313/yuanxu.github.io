@@ -251,7 +251,7 @@ Python的编码问题可能是很多人都遇到过的问题（没遇到的终�
 
     
         <meta property="article:published_time" content="Sat Oct 19 2019 12:28:19 GMT+0800">
-        <meta property="article:modified_time" content="Sat Oct 19 2019 16:18:49 GMT+0800">
+        <meta property="article:modified_time" content="Sat Oct 19 2019 16:25:34 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -274,7 +274,7 @@ Python的编码问题可能是很多人都遇到过的问题（没遇到的终�
     "mainEntityOfPage": "https://yx1302317313.github.io/2019/10/19/浅谈Python编码/index.html",
     "headline": "浅谈Python编码",
     "datePublished": "Sat Oct 19 2019 12:28:19 GMT+0800",
-    "dateModified": "Sat Oct 19 2019 16:18:49 GMT+0800",
+    "dateModified": "Sat Oct 19 2019 16:25:34 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Yuan Xu",
@@ -359,8 +359,8 @@ Python的编码问题可能是很多人都遇到过的问题（没遇到的终�
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Unicode"><span class="post-toc-text">Unicode</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#UTF-8"><span class="post-toc-text">UTF-8</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#bytes、str与unicode"><span class="post-toc-text">bytes、str与unicode</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Python2"><span class="post-toc-text">Python2</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Python3"><span class="post-toc-text">Python3</span></a></li></ol><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#encode与decode"><span class="post-toc-text">encode与decode</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Python2-1"><span class="post-toc-text">Python2</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Python3-1"><span class="post-toc-text">Python3</span></a></li></ol>
-    </li></ul>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Unicode"><span class="post-toc-text">Unicode</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#UTF-8"><span class="post-toc-text">UTF-8</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#bytes、str与unicode"><span class="post-toc-text">bytes、str与unicode</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Python2"><span class="post-toc-text">Python2</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Python3"><span class="post-toc-text">Python3</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#encode与decode"><span class="post-toc-text">encode与decode</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Python2-1"><span class="post-toc-text">Python2</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Python3-1"><span class="post-toc-text">Python3</span></a></li></ol></li></ol>
+    </ul>
     
 
 
@@ -531,28 +531,28 @@ Python的编码问题可能是很多人都遇到过的问题（没遇到的终�
 <li>str: unicode码点序列 的字符串。</li>
 </ul>
 <p>让人疑惑的是str，str在Python2和Python3中表示不同的编码，Python2中表示字节序列，即bytes; Python3中表示Unicode码。<strong>个人理解是Python3想让在程序中定义的字符串使用Unicode码表示，而不是Python2中用字节流表示。</strong></p>
-<h3 id="Python2"><a href="#Python2" class="headerlink" title="Python2"></a>Python2</h3><pre><code class="lang-python">&gt;&gt;&gt; string = &quot;python&quot;
+<h4 id="Python2"><a href="#Python2" class="headerlink" title="Python2"></a>Python2</h4><pre><code class="lang-python">&gt;&gt;&gt; string = &quot;python&quot;
 &gt;&gt;&gt; type(string)
 &lt;type &#39;str&#39;&gt;
 &gt;&gt;&gt; u_str = u&quot;python&quot;
 &gt;&gt;&gt; type(u_str)
 &lt;type &#39;unicode&#39;&gt;
 </code></pre>
-<h3 id="Python3"><a href="#Python3" class="headerlink" title="Python3"></a>Python3</h3><pre><code class="lang-python">&gt;&gt;&gt; string = &quot;python&quot;
+<h4 id="Python3"><a href="#Python3" class="headerlink" title="Python3"></a>Python3</h4><pre><code class="lang-python">&gt;&gt;&gt; string = &quot;python&quot;
 &gt;&gt;&gt; bytes = b&quot;python&quot;
 &gt;&gt;&gt; type(string)
 &lt;class &#39;str&#39;&gt;
 &gt;&gt;&gt; type(bytes)
 &lt;class &#39;bytes&#39;&gt;
 </code></pre>
-<h2 id="encode与decode"><a href="#encode与decode" class="headerlink" title="encode与decode"></a>encode与decode</h2><blockquote>
+<h3 id="encode与decode"><a href="#encode与decode" class="headerlink" title="encode与decode"></a>encode与decode</h3><blockquote>
 <p>encode()和decode()是Python中用于bytes字节序列与Unicode序列转换的函数。</p>
 </blockquote>
 <ul>
 <li>unicode.encode() -&gt; bytes:只有对于unicode对象我们才应该使用.encode()方法。这一方法用来将一系列unicode编码为bytes流。</li>
 <li>bytes.decode() -&gt; unicode: 只有对于bytes，或说Python2中的str对象，我们才应该调用.decode()方法。这一方法将一系列bytes流解码为原本的unicode码点。</li>
 </ul>
-<h3 id="Python2-1"><a href="#Python2-1" class="headerlink" title="Python2"></a>Python2</h3><pre><code class="lang-python"># str 与 unicode
+<h4 id="Python2-1"><a href="#Python2-1" class="headerlink" title="Python2"></a>Python2</h4><pre><code class="lang-python"># str 与 unicode
 &gt;&gt;&gt; string = &quot;python&quot;
 &gt;&gt;&gt; type(string)
 &lt;type &#39;str&#39;&gt;
@@ -570,7 +570,7 @@ Python的编码问题可能是很多人都遇到过的问题（没遇到的终�
 &gt;&gt;&gt; type(en_u_str)
 &lt;type &#39;str&#39;&gt;
 </code></pre>
-<h3 id="Python3-1"><a href="#Python3-1" class="headerlink" title="Python3"></a>Python3</h3><pre><code class="lang-python"># str 与 bytes
+<h4 id="Python3-1"><a href="#Python3-1" class="headerlink" title="Python3"></a>Python3</h4><pre><code class="lang-python"># str 与 bytes
 &gt;&gt;&gt; string = &quot;python&quot;
 &gt;&gt;&gt; bytes = b&quot;python&quot;
 &gt;&gt;&gt; type(string)
