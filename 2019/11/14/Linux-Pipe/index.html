@@ -46,7 +46,7 @@
     
     <title>
         
-            标签: 通信协议 | 
+            Linux 管道通信 | 
         
         YuanXu&#39;s Blog
     </title>
@@ -57,7 +57,7 @@
 
     <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content="">
-    <meta name="keywords" content="YuanXu">
+    <meta name="keywords" content="YuanXu,Code,kernel">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -84,6 +84,9 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -220,7 +223,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="YuanXu&#39;s Blog">
-    <meta name="msapplication-starturl" content="https://yx1302317313.github.io/tags/通信协议/">
+    <meta name="msapplication-starturl" content="https://yx1302317313.github.io/2019/11/14/Linux-Pipe/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="YuanXu&#39;s Blog">
@@ -235,13 +238,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://yx1302317313.github.io/tags/通信协议/">
+    <meta property="og:url" content="https://yx1302317313.github.io/2019/11/14/Linux-Pipe/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="标签: 通信协议 | YuanXu&#39;s Blog">
+    <meta property="og:title" content="Linux 管道通信 | YuanXu&#39;s Blog">
     <meta property="og:image" content="/img/favicon.jpg">
     <meta property="og:description" content="">
-    
+    <meta property="og:article:tag" content="Code"> <meta property="og:article:tag" content="kernel"> 
 
+    
+        <meta property="article:published_time" content="Thu Nov 14 2019 18:42:32 GMT+0800">
+        <meta property="article:modified_time" content="Sat Nov 16 2019 21:54:57 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -249,13 +255,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://yx1302317313.github.io/tags/通信协议/index.html">
+        <link rel="canonical" href="https://yx1302317313.github.io/2019/11/14/Linux-Pipe/index.html">
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://yx1302317313.github.io/2019/11/14/Linux-Pipe/index.html",
+    "headline": "Linux 管道通信",
+    "datePublished": "Thu Nov 14 2019 18:42:32 GMT+0800",
+    "dateModified": "Sat Nov 16 2019 21:54:57 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Yuan Xu",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicon.jpg"
+        },
+        "description": "天之道, 利而不害,人之道, 为而不争"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "YuanXu&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.jpg"
+        }
+    },
+    "keywords": ",Code,kernelYuanXu",
+    "description": "",
+}
+</script>
 
 
     
@@ -289,100 +325,536 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/03/09/IIC为什么需要用开漏输出和上拉电阻/">IIC为什么需要用开漏输出和上拉电阻</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-最近在调ICM20602模块(一个六轴陀螺仪和加速度计), 使用IIC通信协议, 这个过程中遇到一个困扰我很长时间的问题.IIC协议正确, 但是一直读取失败.最后发现因为没配置GPIO为开漏输出.
-
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/03/09/IIC为什么需要用开漏输出和上拉电阻/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/favicon.jpg" width="44px" height="44px" alt="Yuan Xu's avatar">
-            </div>
-            <div>
-                <strong>Yuan Xu</strong>
-                <span>3月 09, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/MCU/">MCU</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 6; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                Linux 管道通信
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar">
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Yuan Xu</strong>
+        <span>11月 14, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Code/">Code</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/kernel/">kernel</a>
+    </li></ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Linux 管道通信&url=https://yx1302317313.github.io/2019/11/14/Linux-Pipe/index.html&pic=https://yx1302317313.github.io/img/favicon.jpg&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Linux 管道通信&url=https://yx1302317313.github.io/2019/11/14/Linux-Pipe/index.html&via=Yuan Xu" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://yx1302317313.github.io/2019/11/14/Linux-Pipe/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://yx1302317313.github.io/2019/11/14/Linux-Pipe/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <!--more
+## 系统调用 fork
+在linux系统中创建进程有两种方式
+- 一是由操作系统创建。
+- 二是由父进程创建进程。系统调用函数fork()是创建一个新进程的唯一方式。
+
+fork()函数通过系统调用创建一个与原来进程几乎完全相同的进程。
+
+1. 系统先给新的进程分配资源，例如存储数据和代码的空间。
+2. 然后把原来的进程（父进程）的所有值都复制到新的新进程（子进程）中，只有少数值与原来的进程的值不同。
+3. Linux的fork()采用写时拷贝实现，只有子进程发起写操作时才正真执行拷贝，在写时拷贝之前都是以只读的方式共享。这样可以避免发生拷贝大量数据而不被使用的情况。
+
+fork是Linux系统中一个比较特殊的函数，其一次调用会有两个返回值。在fork函数执行完毕后，如果创建新进程成功，则出现两个进程，一个是子进程，一个是父进程。如果失败返回值是1。
+- 在子进程中，fork函数返回0。
+- 在父进程中，fork返回新创建子进程的进程ID。
+
+因此我们可以通过fork返回的值来判断当前进程是子进程还是父进程。
+
+## 管道
+Linux中，每个管道允许两个进程交互数据，一个进程向管道写入数据，一个进程从管道读出数据。Linux并没有给管道定义一个新的数据结构，而是借用了文件系统中文件的数据结构。即管道实际是一个文件（但是与文件并不完全形同）。
+
+操作系统在内存中为每个管道开辟一页内存（4KB），给这一页赋予了文件的属性。这一页内存由两个进程共享，但不会分配给任何进程，只由内核掌控。
+
+### 示例
+> Linux pipe手册中的例子
+
+```c
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
+int main(int argc, char *argv[])
+{
+        int pipefd[2];
+        pid_t cpid;
+        char buf;
+
+        if (argc != 2)
+        {
+                fprintf(stderr, "Usage: %s <string>\n", argv[0]);
+                exit(EXIT_FAILURE);
+        }
+
+        if (pipe(pipefd) == -1)
+        {
+                perror("pipe");
+                exit(EXIT_FAILURE);
+        }
+
+        cpid = fork();
+        if (cpid == -1)
+        {
+                perror("fork");
+                exit(EXIT_FAILURE);
+        }
+
+        if (cpid == 0)
+        {                         /* Child reads from pipe */
+                close(pipefd[1]); /* Close unused write end */
+
+                while (read(pipefd[0], &buf, 1) > 0)
+                        write(STDOUT_FILENO, &buf, 1);
+
+                write(STDOUT_FILENO, "\n", 1);
+                close(pipefd[0]);
+                _exit(EXIT_SUCCESS);
+        }
+        else
+        {                         /* Parent writes argv[1] to pipe */
+                close(pipefd[0]); /* Close unused read end */
+                write(pipefd[1], argv[1], strlen(argv[1]));
+                close(pipefd[1]); /* Reader will see EOF */
+                wait(NULL);       /* Wait for child */
+                exit(EXIT_SUCCESS);
+        }
+}
+```
+
+
+![](http://xiehongfeng100.github.io/images/os/linux-kenel-0.11/inter-process-communication/pipe/%E6%A0%B7%E4%BE%8B%E7%A4%BA%E5%9B%BE.png)
+
+### 管道的读写
+- 读管道进程执行时，如果管道中有未读数据，就读取数据，没有未读数据就挂起，这样就不会读取垃圾数据。
+- 写管道进程执行时，如果管道中有剩余空间，就写入数据，没有剩余空间了，就挂起，这样就不会覆盖尚未读取的数据。
+
+#### 读管道
+对于读管道操作，数据是从管道尾读出，并使管道尾指针前移‘读取字节数’个位置。
+
+![](http://xiehongfeng100.github.io/images/os/linux-kenel-0.11/inter-process-communication/pipe/%E7%AE%A1%E9%81%93%E7%BC%93%E5%86%B2%E5%8C%BA%E6%93%8D%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.png)
+
+
+Linux 0.11 源码
+```c
+
+//fs/pipe.c
+int read_pipe(struct m_inode * inode, char * buf, int count)
+{
+    int chars, size, read = 0;
+
+    while (count>0) {
+        while (!(size=PIPE_SIZE(*inode))) {    //管道空
+            wake_up(&inode->i_wait);    //唤醒等待写管道进程
+            if (inode->i_count != 2) /* are there any writers? */
+                return read;            //没有writer，返回
+            sleep_on(&inode->i_wait);    //挂起读管道进程
+        }
+        chars = PAGE_SIZE-PIPE_TAIL(*inode);    //PAGE_SIZE: 4KB 
+        if (chars > count)
+            chars = count;
+        if (chars > size)
+            chars = size;
+        count -= chars;
+        read += chars;
+        size = PIPE_TAIL(*inode);
+        PIPE_TAIL(*inode) += chars;     // 读多少数据，指针就偏移多少
+        PIPE_TAIL(*inode) &= (PAGE_SIZE-1);     // 指针超过一个页面，（&= ）操作可以实现自动回滚
+
+        while (chars-- >0)
+            put_fs_byte(((char *)inode->i_size)[size++],buf++);     //将管道中的数据拷贝至buf
+    }
+    wake_up(&inode->i_wait);    //唤醒等待写管道进程
+    return read;
+}
+
+// include/linux/fs.h
+#define PIPE_HEAD(inode) ((inode).i_zone[0])
+#define PIPE_TAIL(inode) ((inode).i_zone[1])
+//PIPE_HEAD(inode)-PIPE_TAIL(inode) < 0，和 (PAGE_SIZE-1) 相与能够计算出管道未读数据的长度
+#define PIPE_SIZE(inode) ((PIPE_HEAD(inode)-PIPE_TAIL(inode))&(PAGE_SIZE-1))
+```
+
+#### 写管道
+对于写管道操作，数据是向管道头部写入，并使管道头指针前移‘写入字节数’个位置。
+
+
+Linux 0.11 源码
+```c
+//fs/pipe.c
+int write_pipe(struct m_inode * inode, char * buf, int count)
+{
+    int chars, size, written = 0;
+
+    while (count>0) {
+        while (!(size=(PAGE_SIZE-1)-PIPE_SIZE(*inode))) {   //管道已满
+            wake_up(&inode->i_wait);         //唤醒等待读管道进程
+            if (inode->i_count != 2) { /* no readers */
+                current->signal |= (1<<(SIGPIPE-1));
+                return written?written:-1;      //没有reader，返回
+            }
+            sleep_on(&inode->i_wait);       //挂起写管道进程
+        }
+        chars = PAGE_SIZE-PIPE_HEAD(*inode);
+        if (chars > count)
+            chars = count;
+        if (chars > size)
+            chars = size;
+        count -= chars;
+        written += chars;
+        size = PIPE_HEAD(*inode);
+        PIPE_HEAD(*inode) += chars;
+        PIPE_HEAD(*inode) &= (PAGE_SIZE-1);     // 指针超过一个页面，（&= ）操作可以实现自动回滚
+
+        while (chars-- >0)
+            ((char *)inode->i_size)[size++]=get_fs_byte(buf++); //读取buf中的数据写入管道
+    }
+    wake_up(&inode->i_wait);    //唤醒等待读管道进程
+    return written;
+}
+
+// include/linux/fs.h
+#define PIPE_HEAD(inode) ((inode).i_zone[0])
+#define PIPE_TAIL(inode) ((inode).i_zone[1])
+//PIPE_HEAD(inode)-PIPE_TAIL(inode) < 0，和 (PAGE_SIZE-1) 相与能够计算出管道未读数据的长度
+#define PIPE_SIZE(inode) ((PIPE_HEAD(inode)-PIPE_TAIL(inode))&(PAGE_SIZE-1))
+```
+
+### 管道的特点
+- 管道是半双工的，数据只能向一个方向流动；需要双方通信时，需要建立起两个管道；
+- 只能用于父子进程或者兄弟进程之间（具有亲缘关系的进程）；
+- 单独构成一种独立的文件系统：管道对于管道两端的进程而言，就是一个文件，但它不是普通的文件，它不属于某种文件系统，而是自立门户，单独构成一种文件系统，并且只存在于内存中。
+- 数据的读出和写入：一个进程向管道中写的内容被管道另一端的进程读出。写入的内容每次都添加在管道缓冲区的末尾，并且每次都是从缓冲区的头部读出数据。
+
+
+### 管道的局限性
+- 只支持单向数据流。
+- 只能用于具有亲缘关系的进程之间。
+- 没有名字（有名管道是 FIFO）。
+- 管道的缓冲区是有限的（管道制存在于内存中，在管道创建时，为缓冲区分配一个页面大小）。
+- 管道所传送的是无格式字节流，这就要求管道的读出方和写入方必须事先约定好数据的格式，比如多少字节算作一个消息（或命令、或记录）。
+- ...
+
+## 双向管道通信
+
+1. 父进程创建两个管道,pipe1和pipe2.
+2. 父进程创建子进程,调用fork()的过程中子进程会复制父进程创建的两个管道.
+3. 实现父进程向子进程通信:父进程关闭pipe1的读端,保留写端;而子进程关闭pipe1的写端,保留读端.
+4. 实现子进程向父进程通信:子进程关闭pipe2的读端,保留写端;而父进程关闭pipe2的写端,保留读端.
+
+```c
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
+int main(int argc, char *argv[])
+{
+        int pipe_command[2];    //管道1 父进程 -> 子进程
+        int pipe_result[2];     //管道2 子进程 -> 父进程 
+        pid_t cpid;
+
+        char buf[4];
+
+        //父进程创建管道
+        if (pipe(pipe_command) == -1)
+        {
+                perror("pipe_command");
+                exit(EXIT_FAILURE);
+        }
+
+        if(pipe(pipe_result) == -1)
+        {
+                perror("pipe_result");
+                exit(EXIT_FAILURE);
+        }
+
+        //创建子进程
+        cpid = fork();
+
+        if (cpid == -1)
+        {
+                perror("fork error");
+                exit(EXIT_FAILURE);
+        }
+
+        if (cpid == 0)  /*子进程*/
+        {                        
+                printf("sub: pid %d\n", getpid());      //输出子进程ID
+
+                close(pipe_command[1]);         //关闭管道写端
+                close(pipe_result[0]);            //关闭管道读端
+
+                int read_status;
+                while (1)
+                {
+                        read_status =  read(pipe_command[0], buf, 4);   //读取父进程的命令
+                        if(read_status > 0)
+                        {
+                                printf("sub: command %s\n", buf);
+                                if(strcmp(buf, "hell") == 0)
+                                {                                        
+                                        write(pipe_result[1], "okok", 4);       //回应父进程
+                                }
+                                else if( strcmp(buf, "exit") == 0)
+                                {
+                                        printf("sub: exit\n");
+                                        break;
+                                } 
+                        }                       
+                        else if(read_status < 0)        //读取错误
+                        {
+                                perror("sub: read error!");
+                                break;
+                        }                                       
+                }        
+
+                close(pipe_command[0]); //关闭管道
+                close(pipe_result[1]);
+
+                exit(EXIT_SUCCESS);
+        }
+        else    /*父进程*/
+        {
+                printf("parent: pid %d\n", getpid());      //输出父进程ID
+
+                close(pipe_command[0]); //关闭管道读端
+                close(pipe_result[1]);  //关闭管道写端
+
+                write(pipe_command[1], "hell", 4);      //向子进程发送命令
+
+                 int read_status;
+                while (1)
+                {
+                        read_status = read(pipe_result[0], buf, 4);
+                        if(read_status > 0)
+                        {
+                                printf("parent: received %s\n", buf);           //接收子进程回应
+                                write(pipe_command[1], "exit", 4);      //通知子进程退出
+                                break;
+                        }                              
+                        else if(read_status < 0)         //读取错误
+                        {
+                                perror("parent: read error!");
+                                break;
+                        }                                                          
+                }
+
+                close(pipe_command[1]); 
+                close(pipe_result[0]);
+
+                /* 等待子进程退出,并判断状态吗码*/
+                int status;
+                waitpid(-1, &status , 0);             
+
+                if(WIFEXITED(status))
+                {
+                        printf("exited: %d\n", WEXITSTATUS(status));
+                }                                
+                else if(WIFSIGNALED(status))
+                {
+                        printf("signaled: %d\n", WTERMSIG(status));
+                }
+
+                exit(EXIT_SUCCESS);
+        }
+}
+```
+
+## 参考
+1. 《Linux内核设计的艺术》
+2. 《Linux内核设计与实现》
+3.  Linux v0.11内核源码(https://github.com/karottc/linux-0.11)
+-->
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/11/09/Git-的子模块（submodule）/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -575,6 +1047,14 @@ It will not impact the appearance and can give developers a lot of support :)
                     
 
                     
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
 
                     <!--Footer-->
 <footer class="mdl-mini-footer" id="bottom">
@@ -718,6 +1198,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
 
 
 
@@ -730,6 +1214,11 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
         
     
     
