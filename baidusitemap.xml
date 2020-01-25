@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://yx1302317313.github.io/2019/11/14/Linux-Pipe/</loc>
+    <lastmod>2020-01-22</lastmod>
+  </url>  <url>
+    <loc>https://yx1302317313.github.io/2020/01/22/LeetCode-%E6%9C%80%E9%95%BF%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7/</loc>
+    <lastmod>2020-01-22</lastmod>
+  </url>  <url>
     <loc>https://yx1302317313.github.io/2020/01/19/LeeCode-%E6%89%B0%E4%B9%B1%E5%AD%97%E7%AC%A6%E4%B8%B2/</loc>
     <lastmod>2020-01-19</lastmod>
-  </url>  <url>
-    <loc>https://yx1302317313.github.io/2019/11/14/Linux-Pipe/</loc>
-    <lastmod>2020-01-14</lastmod>
   </url>  <url>
     <loc>https://yx1302317313.github.io/2019/11/09/Git-%E7%9A%84%E5%AD%90%E6%A8%A1%E5%9D%97%EF%BC%88submodule%EF%BC%89/</loc>
     <lastmod>2019-11-16</lastmod>
