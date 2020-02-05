@@ -251,7 +251,7 @@
 
     
         <meta property="article:published_time" content="Sat Mar 09 2019 15:28:44 GMT+0800">
-        <meta property="article:modified_time" content="Sat Jun 22 2019 11:19:32 GMT+0800">
+        <meta property="article:modified_time" content="Wed Feb 05 2020 15:13:12 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -274,7 +274,7 @@
     "mainEntityOfPage": "https://yx1302317313.github.io/2019/03/09/IIC为什么需要用开漏输出和上拉电阻/index.html",
     "headline": "IIC为什么需要用开漏输出和上拉电阻",
     "datePublished": "Sat Mar 09 2019 15:28:44 GMT+0800",
-    "dateModified": "Sat Jun 22 2019 11:19:32 GMT+0800",
+    "dateModified": "Wed Feb 05 2020 15:13:12 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Yuan Xu",
@@ -523,7 +523,7 @@
 <p>也就是说开漏输出如果不接上拉电阻, 没有输出高电平的能力.<br>如果需要开漏输出有输出高电平的能力需要接一个上拉电阻. 目前很多单片机GPIO可以通过软件配置上拉电阻.</p>
 </blockquote>
 <center>
-<img src="https://user-images.githubusercontent.com/39959472/59958504-50bf3380-94da-11e9-90aa-b133d878cdb4.png" width="500">
+<img src="/img/blog/blog-1-1.png" width="500">
 <p>左图为开漏输出(接上拉电阻), 右图为推挽输出</p>
 </center>
 
@@ -531,7 +531,7 @@
 <li>防止短路: 在一些情况下(比如总线), 多个GPIO口可能会连接在同一根线上, 存在某个GPIO输出高电平, 另一个GPIO输出低电平的情况. 如果使用推挽输出, 你会发现这个GPIO的VCC和另一个GPIO的GND接在了一起, 也就是短路了(<del>凉凉了</del>). 如果换成开漏输出呢? VCC和GND多了个电阻, 这样电路就是安全的.<strong>所以总线一般会使用开漏输出.</strong></li>
 </ul>
 <center>
-<img src="https://www.allaboutcircuits.com/uploads/articles/I2C2_circuit3.jpg" width="300">
+<img src="/img/blog/blog-1-2.jpg" width="300">
 <p>VCC与GND连到了一起</p>
 </center>
 
