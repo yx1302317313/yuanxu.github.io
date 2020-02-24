@@ -43,9 +43,9 @@
     <link href="https://yx1302317313.github.io/2020/02/20/Gitee-import-from-Github/"/>
     <id>https://yx1302317313.github.io/2020/02/20/Gitee-import-from-Github/</id>
     <published>2020-02-20T11:59:59.000Z</published>
-    <updated>2020-02-20T12:34:46.206Z</updated>
+    <updated>2020-02-23T11:16:41.511Z</updated>
     
-    <content type="html"><![CDATA[<p>有时我们可能需要将项目同时提交到Github和Gitee，通过使用Gitee导入Github仓库我们可以轻松完成这个任务。</p><a id="more"></a><h3 id="1-在Gitee中新建仓库"><a href="#1-在Gitee中新建仓库" class="headerlink" title="1. 在Gitee中新建仓库"></a>1. 在Gitee中新建仓库</h3><p>在最下方有一个导入已有仓库的选项，点击后可以输入github仓库的URL链接</p><center><img src="/img/blog/blog-24-1.png" width="600"></center><p>如果是私有仓库，需要提供Github的账号和密码，如下图：</p><center><img src="/img/blog/blog-24-2.png" width="600"></center><p>点击创建后，导入Github仓库就成功了。</p><h3 id="2-同步Github仓库"><a href="#2-同步Github仓库" class="headerlink" title="2. 同步Github仓库"></a>2. 同步Github仓库</h3><p>通过导入github仓库建立的gitee仓库可以同步在github中原仓库。</p><center><img src="/img/blog/blog-24-3.png" width="600"></center><p>点击上图中的强制同步选项，可以直接同步在github中的仓库。</p><p>这样在本地主机上的项目只需要提交到github的服务器之后再同步到gitee中，就可以轻松实现 <strong>将项目同时提交到github和gitee</strong> 。</p>]]></content>
+    <content type="html"><![CDATA[<p>有时我们可能需要将项目同时提交到Github和Gitee，通过使用Gitee导入Github仓库我们可以轻松完成这个任务。</p><a id="more"></a><h3 id="1-在Gitee中新建仓库"><a href="#1-在Gitee中新建仓库" class="headerlink" title="1. 在Gitee中新建仓库"></a>1. 在Gitee中新建仓库</h3><p>在最下方有一个导入已有仓库的选项，点击后可以输入github仓库的URL链接</p><center><img src="/img/blog/blog-24-1.png" width="600"></center><p>如果是私有仓库，需要提供Github的账号和密码，如下图：</p><center><img src="/img/blog/blog-24-2.png" width="600"></center><p>点击创建后，导入Github仓库就成功了。</p><h3 id="2-同步Github仓库"><a href="#2-同步Github仓库" class="headerlink" title="2. 同步Github仓库"></a>2. 同步Github仓库</h3><p>通过导入github仓库建立的gitee仓库可以同步在github中原仓库。</p><center><img src="/img/blog/blog-24-3.png" width="600"></center><p>点击上图中的强制同步选项，可以直接同步在github中的仓库。</p><p>这样在本地主机上的项目只需要提交到github的服务器之后再同步到gitee中，就可以轻松实现 <strong>将项目同时提交到github和gitee</strong> 。</p><hr><p><strong>更新：2020.02.23</strong></p><p>发现了一个问题：Gitee和Github的发布版不太一样。</p><ul><li>Github直接将tags作为发布版</li><li>Gitee的tags和发布版是独立的。</li></ul><p>所以在同步时，Github的发布版不会同步到Gitee，但是tags会进行同步。</p>]]></content>
     
     <summary type="html">
     
