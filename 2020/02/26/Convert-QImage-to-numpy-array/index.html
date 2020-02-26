@@ -247,7 +247,7 @@
 
     
         <meta property="article:published_time" content="Wed Feb 26 2020 22:26:16 GMT+0800">
-        <meta property="article:modified_time" content="Wed Feb 26 2020 23:01:17 GMT+0800">
+        <meta property="article:modified_time" content="Wed Feb 26 2020 23:07:47 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -270,7 +270,7 @@
     "mainEntityOfPage": "https://yx1302317313.github.io/2020/02/26/Convert-QImage-to-numpy-array/index.html",
     "headline": "将QImage转换为numpy array",
     "datePublished": "Wed Feb 26 2020 22:26:16 GMT+0800",
-    "dateModified": "Wed Feb 26 2020 23:01:17 GMT+0800",
+    "dateModified": "Wed Feb 26 2020 23:07:47 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Yuan Xu",
@@ -514,13 +514,13 @@ plt.show()
 <p>通过<code>s = image.bits().asstring(size.width() * size.height() * image.depth() // 8)</code>将图像数据转换成字符串。</p>
 <p>参数是图像中字节数，字节数等于图像宽度 × 图像高度 × 通道数，即$bytes = width <em> height </em> channels$</p>
 <p>需要注意的是通道数，查看QT的手册知道QT的RGB图像的格式是0xFFRRGGBB,其实就是将Alpha通道全部置为了0xFF。</p>
-<p>之前一直以为只有3个通道，所以一直有问题。QImage.depth()可以返回图像深度的比特数，对于RGB图QImage.depth()返回值为32，所以整除8之后就是通道数。</p>
+<p>之前以为只有3个通道，所以一直有问题。<code>QImage.depth()</code>可以返回图像深度的比特数，对于RGB图<code>QImage.depth()</code>返回值为32，所以整除8之后就是通道数。</p>
 <h3 id="2-将字符串转换为Numpy-array"><a href="#2-将字符串转换为Numpy-array" class="headerlink" title="2. 将字符串转换为Numpy array"></a>2. 将字符串转换为Numpy array</h3><p>之后使用<code>np.fromstring()</code>即可通过字符串构造numpy array。</p>
 <p>到这里QImage转换为numpy array的任务就完成了。之后需要将原图进行灰度处理和压缩。</p>
-<h3 id="3-灰度处理-amp-压缩"><a href="#3-灰度处理-amp-压缩" class="headerlink" title="3. 灰度处理 &amp; 压缩"></a>3. 灰度处理 &amp; 压缩</h3><ol>
+<h3 id="3-灰度处理-amp-压缩"><a href="#3-灰度处理-amp-压缩" class="headerlink" title="3. 灰度处理 &amp; 压缩"></a>3. 灰度处理 &amp; 压缩</h3><ul>
 <li>使用<code>Image.convert()</code>可以进行格式转换，详细用法见<a href="https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.Image.convert" target="_blank" rel="noopener">https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.Image.convert</a></li>
 <li>使用<code>Image.thumbnail()</code>进行压缩，注意该方法只能进行压缩，不能放大，而且是等比例压缩。如果需要放大可以使用<code>Image.resize()</code>方法。</li>
-</ol>
+</ul>
 
         
     
