@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yx1302317313.github.io/"/>
-  <updated>2020-02-20T14:55:05.752Z</updated>
+  <updated>2020-02-26T15:01:17.801Z</updated>
   <id>https://yx1302317313.github.io/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>将QImage转换为numpy array</title>
+    <link href="https://yx1302317313.github.io/2020/02/26/Convert-QImage-to-numpy-array/"/>
+    <id>https://yx1302317313.github.io/2020/02/26/Convert-QImage-to-numpy-array/</id>
+    <published>2020-02-26T14:26:16.000Z</published>
+    <updated>2020-02-26T15:01:17.801Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在做手写体识别，需要将QT中手写的数字转换成像训练集一样图片。因此需要将QImage转换为numpy array。</p><a id="more"></a><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>笔者使用的是PyQt，但是对QT和Python之间数据之间的转换不太熟悉。查了很长时间，也没有找到详细的说明，最后在stackoverflow中查到了转换方法，但是说的也不清楚。</p><p>终于，经过查阅QT的参考手册终于明白了转换过程。</p><h2 id="详细过程"><a href="#详细过程" class="headerlink" title="详细过程"></a>详细过程</h2><pre><code class="lang-python">from PIL import Imageimport numpy as npimport matplotlib.pyplot as pltimage = self.canvas_label.canvas.toImage()size = image.size()s = image.bits().asstring(size.width() * size.height() * image.depth() // 8)  # format 0xffRRGGBBarr = np.fromstring(s, dtype=np.uint8).reshape((size.height(), size.width(), image.depth() // 8))new_image = Image.fromarray(array)# convert to graynew_image.convert(&quot;L&quot;)new_image.thumbnail((28, 28))plt.imshow(new_image, cmap=&#39;gray&#39;)plt.show()</code></pre><h3 id="1-将QImage转换为字符串"><a href="#1-将QImage转换为字符串" class="headerlink" title="1. 将QImage转换为字符串"></a>1. 将QImage转换为字符串</h3><p>笔者的原图是通过QPixmap绘制的一幅RGB图。之后将其转换为QImage。</p><p>通过<code>s = image.bits().asstring(size.width() * size.height() * image.depth() // 8)</code>将图像数据转换成字符串。</p><p>参数是图像中字节数，字节数等于图像宽度 × 图像高度 × 通道数，即$bytes = width <em> height </em> channels$</p><p>需要注意的是通道数，查看QT的手册知道QT的RGB图像的格式是0xFFRRGGBB,其实就是将Alpha通道全部置为了0xFF。</p><p>之前一直以为只有3个通道，所以一直有问题。QImage.depth()可以返回图像深度的比特数，对于RGB图QImage.depth()返回值为32，所以整除8之后就是通道数。</p><h3 id="2-将字符串转换为Numpy-array"><a href="#2-将字符串转换为Numpy-array" class="headerlink" title="2. 将字符串转换为Numpy array"></a>2. 将字符串转换为Numpy array</h3><p>之后使用<code>np.fromstring()</code>即可通过字符串构造numpy array。</p><p>到这里QImage转换为numpy array的任务就完成了。之后需要将原图进行灰度处理和压缩。</p><h3 id="3-灰度处理-amp-压缩"><a href="#3-灰度处理-amp-压缩" class="headerlink" title="3. 灰度处理 &amp; 压缩"></a>3. 灰度处理 &amp; 压缩</h3><ol><li>使用<code>Image.convert()</code>可以进行格式转换，详细用法见<a href="https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.Image.convert" target="_blank" rel="noopener">https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.Image.convert</a></li><li>使用<code>Image.thumbnail()</code>进行压缩，注意该方法只能进行压缩，不能放大，而且是等比例压缩。如果需要放大可以使用<code>Image.resize()</code>方法。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在做手写体识别，需要将QT中手写的数字转换成像训练集一样图片。因此需要将QImage转换为numpy array。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Load Mnist database of handwritten digit via Python</title>
@@ -464,28 +482,6 @@
       <category term="通信协议" scheme="https://yx1302317313.github.io/tags/%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
     
       <category term="电路" scheme="https://yx1302317313.github.io/tags/%E7%94%B5%E8%B7%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>梯度与梯度下降法</title>
-    <link href="https://yx1302317313.github.io/2019/02/25/%E6%A2%AF%E5%BA%A6%E4%B8%8E%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/"/>
-    <id>https://yx1302317313.github.io/2019/02/25/梯度与梯度下降法/</id>
-    <published>2019-02-25T11:53:53.000Z</published>
-    <updated>2020-02-20T12:53:01.807Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>声明: 本文有一部分本人自己的观点和理解, 不一定完全正确, 仅供参考. 如果发现错误或者有疑问的地方, 请指出, 谢谢!</strong></p><a id="more"></a><h3 id="方向导数"><a href="#方向导数" class="headerlink" title="方向导数"></a>方向导数</h3><blockquote><p>导数和偏导数的概念比较简单而且很多人接触过，这里不进行赘诉。</p></blockquote><p>我们直接看方向导数。<br>对于多变量函数$F(x, y, z)$, 我们想知道它在点$P<em>0$沿方向$\vec l$ 的变化率，用$\left. \frac {\partial F} {\partial {\vec l}} \right| </em>{P_0} $ 表示。这就是函数F在P点沿方向$\vec l$ 的方向导数。</p><blockquote><p>如果你熟悉偏导数的话， 你可以看出来方向导数和偏导数很像。偏导数是函数在特定方向上（如x轴， y轴）的变化率。 方向导数是函数在任意方向上的变化率。<strong>方向导数可以理解为在任意方向上的偏导数</strong>。毕竟我们对于函数的研究不能仅仅局限在某几个方向。</p></blockquote><p>方向导数公式</p><script type="math/tex; mode=display">\begin{align}\left. \frac {\partial F} {\partial {\vec l}} \right| _{P_0} &= lim \frac {F(P) - F(P_0)} {|PP_0|} \\&= \left. \frac {\partial F} {\partial x} \right| _{P_0} cos \alpha + \left. \frac {\partial F} {\partial y} \right| _{P_0} cos \beta +  \left. \frac {\partial F} {\partial z} \right| _{P_0} cos \gamma\end{align}</script><p>其中$cos \alpha$, $cos \beta$, $cos \gamma$ 分别为$\vec l$ 与x, y, z 的方向余弦。</p><h3 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h3><blockquote><p>知道了方向导数，我们考虑一个问题：一个点有无数个方向，也就有无数个方向导数（前提是方向导数存在），那么我们最关心的是哪个？（总不能都关心吧，那也太花心了）答案是我们关心最大的方向导数。</p></blockquote><p><strong>最大的方向导数意为着沿着这个方向函数变化最快（函数的变化率最大）。</strong></p><h4 id="哪个方向的方向导数最大？"><a href="#哪个方向的方向导数最大？" class="headerlink" title="哪个方向的方向导数最大？"></a>哪个方向的方向导数最大？</h4><p>把方向导数的公式变换一下</p><script type="math/tex; mode=display">\begin{align}\left. \frac {\partial F} {\partial {\vec l}} \right| _{P_0}&= \left. \frac {\partial F} {\partial x} \right| _{P_0} cos \alpha + \left. \frac {\partial F} {\partial y} \right| _{P_0} cos \beta +  \left. \frac {\partial F} {\partial z} \right| _{P_0} cos \gamma \\&= G *（cos \alpha, cos \beta, cos \gamma）\\&= |G| cos<G, \vec l>\end{align}</script><p>其中$G=(\left. \frac {\partial F} {\partial x} \right| <em>{P_0}, \left. \frac {\partial F} {\partial y} \right| </em>{P<em>0},  \left. \frac {\partial F} {\partial z} \right| </em>{P_0})$<br>由向量的知识，我们知道当$\vec l$与G同向时，即$cos(G, \vec{l})=1$时值最大。</p><p><strong>梯度至此诞生</strong></p><blockquote><p>梯度的意义就是用来表示最大的方向导数。</p></blockquote><script type="math/tex; mode=display">grad F = ( \frac {\partial F} {\partial x}, \frac {\partial F} {\partial y},   \frac {\partial F} {\partial z})</script><p><strong>说明</strong></p><ul><li>梯度是一个向量</li><li>梯度的方向是最大方向导数的方向。</li><li>梯度的大小是这个最大方向导数的值。</li></ul><h3 id="梯度下降法"><a href="#梯度下降法" class="headerlink" title="梯度下降法"></a>梯度下降法</h3><blockquote><p>梯度下降法就是利用梯度的性质求解函数最小值的方法.</p></blockquote><p><strong>[思考]:</strong>  对于一元函数我们求解函数最小值的方法有很多, 很多人比较喜欢的就是求导. 如果是多元函数求解最小值或者最大值, 我们还能如此简单的解决吗?该怎么求导? 求偏导吗?求哪个偏导?</p><p>显然这个问题不是简单的求导就可以解决的, 我们可以通过梯度下降法解决.</p><p>想一想, 梯度代表着什么? 表示最大方向导数的向量. 最大方向导数的代表着函数沿着这个方向增长最快, 如果我们反其道而行之, 是不是方向就是函数减小最快的方向. 如果我们每次都能沿着减小最快的方向逼近最小值, 我们是不是就可以最快的找到最小值(或者近似的最小值).</p><p>像这样:</p><center><img src="https://user-images.githubusercontent.com/39959472/59958596-c8da2900-94db-11e9-91f5-b644e5130018.png" width="500"></center><blockquote><p>可以这样理解梯度下降法, 我们在当前点找到该点的梯度, 然后沿着梯度的负方向前进一段距离到达一个新的点, 然后再计算梯度, 前进一段距离. 一直这样重复下去, 直到找到最小值或者接近最小值.</p></blockquote><h4 id="公式"><a href="#公式" class="headerlink" title="公式:"></a>公式:</h4><script type="math/tex; mode=display">\theta_{i+1} = \theta_{i} - \alpha * grad F(\theta_{i})</script><p>其中$\theta<em>{i}$ 为当前点, 可以是一个向量, 表示函数的多个自变量.$\theta</em>{i+1}$为下一个点,   $grad F(\theta_{i}) $是当前点的梯度.$\alpha$表示步长或者学习率(在深度学习中被称为学习率).</p><h4 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h4><ol><li>式中的$\alpha$不能太大也不能太小.</li></ol><ul><li>太小, 计算速度慢, 需要迭代很多次.</li><li>太大, 可能会跳过最小值.</li></ul><p>2.由于我们每次更新点都会有一定的步长, 在这段距离中梯度是变化的, 我们在一个点找到的梯度不一定就是这一段的梯度, 所以我们不是一直沿着梯度的负方向前进的. 这一点有点像贪心算法, 基于这一点, 我们也不能让$\alpha$太大.</p><h4 id="梯度下降法的缺点"><a href="#梯度下降法的缺点" class="headerlink" title="梯度下降法的缺点"></a>梯度下降法的缺点</h4><p>如果函数比较复杂, 存在很多局部最小值, 可能最后梯度下降找到的是局部最小值, 而不是全局最小值.</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;声明: 本文有一部分本人自己的观点和理解, 不一定完全正确, 仅供参考. 如果发现错误或者有疑问的地方, 请指出, 谢谢!&lt;/strong&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Deep Learning" scheme="https://yx1302317313.github.io/categories/Deep-Learning/"/>
-    
-    
-      <category term="数学" scheme="https://yx1302317313.github.io/tags/%E6%95%B0%E5%AD%A6/"/>
     
   </entry>
   

@@ -46,7 +46,7 @@
     
     <title>
         
-            标签: 计算机组成 | 
+            将QImage转换为numpy array | 
         
         YuanXu&#39;s Blog
     </title>
@@ -56,7 +56,7 @@
     <link rel="icon" href="/img/favicon.jpg">
 
     <meta name="format-detection" content="telephone=no">
-    <meta name="description" itemprop="description" content="">
+    <meta name="description" itemprop="description" content="最近在做手写体识别，需要将QT中手写的数字转换成像训练集一样图片。因此需要将QImage转换为numpy array。">
     <meta name="keywords" content="YuanXu">
     <meta name="theme-color" content="#0097A7">
 
@@ -84,6 +84,9 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -220,7 +223,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="YuanXu&#39;s Blog">
-    <meta name="msapplication-starturl" content="https://yx1302317313.github.io/tags/计算机组成/">
+    <meta name="msapplication-starturl" content="https://yx1302317313.github.io/2020/02/26/Convert-QImage-to-numpy-array/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="YuanXu&#39;s Blog">
@@ -235,13 +238,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://yx1302317313.github.io/tags/计算机组成/">
+    <meta property="og:url" content="https://yx1302317313.github.io/2020/02/26/Convert-QImage-to-numpy-array/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="标签: 计算机组成 | YuanXu&#39;s Blog">
+    <meta property="og:title" content="将QImage转换为numpy array | YuanXu&#39;s Blog">
     <meta property="og:image" content="/img/favicon.jpg">
-    <meta property="og:description" content="">
+    <meta property="og:description" content="最近在做手写体识别，需要将QT中手写的数字转换成像训练集一样图片。因此需要将QImage转换为numpy array。">
     
 
+    
+        <meta property="article:published_time" content="Wed Feb 26 2020 22:26:16 GMT+0800">
+        <meta property="article:modified_time" content="Wed Feb 26 2020 23:01:17 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -249,13 +255,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://yx1302317313.github.io/tags/计算机组成/index.html">
+        <link rel="canonical" href="https://yx1302317313.github.io/2020/02/26/Convert-QImage-to-numpy-array/index.html">
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://yx1302317313.github.io/2020/02/26/Convert-QImage-to-numpy-array/index.html",
+    "headline": "将QImage转换为numpy array",
+    "datePublished": "Wed Feb 26 2020 22:26:16 GMT+0800",
+    "dateModified": "Wed Feb 26 2020 23:01:17 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Yuan Xu",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicon.jpg"
+        },
+        "description": "天之道, 利而不害,人之道, 为而不争"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "YuanXu&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.jpg"
+        }
+    },
+    "keywords": "YuanXu",
+    "description": "最近在做手写体识别，需要将QT中手写的数字转换成像训练集一样图片。因此需要将QImage转换为numpy array。",
+}
+</script>
 
 
     
@@ -289,100 +325,241 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#详细过程"><span class="post-toc-text">详细过程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-将QImage转换为字符串"><span class="post-toc-text">1. 将QImage转换为字符串</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-将字符串转换为Numpy-array"><span class="post-toc-text">2. 将字符串转换为Numpy array</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-灰度处理-amp-压缩"><span class="post-toc-text">3. 灰度处理 &amp; 压缩</span></a></li></ol></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/04/11/IEEE浮点数/">IEEE浮点数</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-之前在看卡马克快速开方的程序时, 看到了一些神奇的操作.其中有两条语句与浮点数在计算机中的表示方式有关.最近计算机组成原理刚讲完浮点数的表示, 于是写篇博客记录一下.
-
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/04/11/IEEE浮点数/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/favicon.jpg" width="44px" height="44px" alt="Yuan Xu's avatar">
-            </div>
-            <div>
-                <strong>Yuan Xu</strong>
-                <span>4月 11, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/MCU/">MCU</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 6; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                将QImage转换为numpy array
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar">
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Yuan Xu</strong>
+        <span>2月 26, 2020</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=将QImage转换为numpy array&url=https://yx1302317313.github.io/2020/02/26/Convert-QImage-to-numpy-array/index.html&pic=https://yx1302317313.github.io/img/favicon.jpg&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=将QImage转换为numpy array&url=https://yx1302317313.github.io/2020/02/26/Convert-QImage-to-numpy-array/index.html&via=Yuan Xu" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://yx1302317313.github.io/2020/02/26/Convert-QImage-to-numpy-array/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://yx1302317313.github.io/2020/02/26/Convert-QImage-to-numpy-array/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>最近在做手写体识别，需要将QT中手写的数字转换成像训练集一样图片。因此需要将QImage转换为numpy array。</p>
+<a id="more"></a>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>笔者使用的是PyQt，但是对QT和Python之间数据之间的转换不太熟悉。查了很长时间，也没有找到详细的说明，最后在stackoverflow中查到了转换方法，但是说的也不清楚。</p>
+<p>终于，经过查阅QT的参考手册终于明白了转换过程。</p>
+<h2 id="详细过程"><a href="#详细过程" class="headerlink" title="详细过程"></a>详细过程</h2><pre><code class="lang-python">from PIL import Image
+import numpy as np
+import matplotlib.pyplot as plt
+
+image = self.canvas_label.canvas.toImage()
+size = image.size()
+s = image.bits().asstring(size.width() * size.height() * image.depth() // 8)  # format 0xffRRGGBB
+
+arr = np.fromstring(s, dtype=np.uint8).reshape((size.height(), size.width(), image.depth() // 8))
+
+new_image = Image.fromarray(array)
+
+# convert to gray
+new_image.convert(&quot;L&quot;)
+new_image.thumbnail((28, 28))
+plt.imshow(new_image, cmap=&#39;gray&#39;)
+plt.show()
+</code></pre>
+<h3 id="1-将QImage转换为字符串"><a href="#1-将QImage转换为字符串" class="headerlink" title="1. 将QImage转换为字符串"></a>1. 将QImage转换为字符串</h3><p>笔者的原图是通过QPixmap绘制的一幅RGB图。之后将其转换为QImage。</p>
+<p>通过<code>s = image.bits().asstring(size.width() * size.height() * image.depth() // 8)</code>将图像数据转换成字符串。</p>
+<p>参数是图像中字节数，字节数等于图像宽度 × 图像高度 × 通道数，即$bytes = width <em> height </em> channels$</p>
+<p>需要注意的是通道数，查看QT的手册知道QT的RGB图像的格式是0xFFRRGGBB,其实就是将Alpha通道全部置为了0xFF。</p>
+<p>之前一直以为只有3个通道，所以一直有问题。QImage.depth()可以返回图像深度的比特数，对于RGB图QImage.depth()返回值为32，所以整除8之后就是通道数。</p>
+<h3 id="2-将字符串转换为Numpy-array"><a href="#2-将字符串转换为Numpy-array" class="headerlink" title="2. 将字符串转换为Numpy array"></a>2. 将字符串转换为Numpy array</h3><p>之后使用<code>np.fromstring()</code>即可通过字符串构造numpy array。</p>
+<p>到这里QImage转换为numpy array的任务就完成了。之后需要将原图进行灰度处理和压缩。</p>
+<h3 id="3-灰度处理-amp-压缩"><a href="#3-灰度处理-amp-压缩" class="headerlink" title="3. 灰度处理 &amp; 压缩"></a>3. 灰度处理 &amp; 压缩</h3><ol>
+<li>使用<code>Image.convert()</code>可以进行格式转换，详细用法见<a href="https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.Image.convert" target="_blank" rel="noopener">https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.Image.convert</a></li>
+<li>使用<code>Image.thumbnail()</code>进行压缩，注意该方法只能进行压缩，不能放大，而且是等比例压缩。如果需要放大可以使用<code>Image.resize()</code>方法。</li>
+</ol>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2020/02/20/Parser-Mnist/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -575,6 +752,14 @@ It will not impact the appearance and can give developers a lot of support :)
                     
 
                     
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
 
                     <!--Footer-->
 <footer class="mdl-mini-footer" id="bottom">
@@ -718,6 +903,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
 
 
 
@@ -730,6 +919,11 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
         
     
     
