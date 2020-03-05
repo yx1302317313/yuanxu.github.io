@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="zh">
-    <head><meta name="generator" content="Hexo 3.8.0">
+    <head><meta name="generator" content="Hexo 3.9.0">
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
         © Material Theme
@@ -354,12 +354,13 @@ Python的编码问题可能是很多人都遇到过的问题（没遇到的终�
     <!-- Left aligned menu below button -->
     
     
-    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">format_list_numbered</i>
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Unicode"><span class="post-toc-text">Unicode</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#UTF-8"><span class="post-toc-text">UTF-8</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#bytes、str与unicode"><span class="post-toc-text">bytes、str与unicode</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Python2"><span class="post-toc-text">Python2</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Python3"><span class="post-toc-text">Python3</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#encode与decode"><span class="post-toc-text">encode与decode</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Python2-1"><span class="post-toc-text">Python2</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Python3-1"><span class="post-toc-text">Python3</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Unicode"><span class="post-toc-text">Unicode</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#UTF-8"><span class="post-toc-text">UTF-8</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#bytes、str与unicode"><span class="post-toc-text">bytes、str与unicode</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Python2"><span class="post-toc-text">Python2</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Python3"><span class="post-toc-text">Python3</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#encode与decode"><span class="post-toc-text">encode与decode</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Python2-2"><span class="post-toc-text">Python2</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Python3-2"><span class="post-toc-text">Python3</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -405,7 +406,7 @@ Python的编码问题可能是很多人都遇到过的问题（没遇到的终�
 
     <!-- Author Avatar -->
     <div id="author-avatar">
-        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar">
+        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar"/>
     </div>
     <!-- Author Name & Date -->
     <div>
@@ -435,7 +436,7 @@ Python的编码问题可能是很多人都遇到过的问题（没遇到的终�
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
         <a class="post_tag-link" href="/tags/Code/">Code</a>
-    </li></ul>
+    </ul>
     
 
     <!-- Share -->
@@ -507,19 +508,22 @@ Python的编码问题可能是很多人都遇到过的问题（没遇到的终�
 <p>Python的编码问题可能是很多人都遇到过的问题（没遇到的终将会遇到的），笔者之前也对这个问题很模糊，今天看了《Effective Python》之后总结一下自己的理解。</p>
 </blockquote>
 <a id="more"></a>
-<h3 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h3><p>先看ASCII码，ASCII码我们比较熟悉，用一个字节表示了128个字符，其中包含标点符号，数字，英文字母等。</p>
+<h3 id="Unicode">Unicode</h3>
+<p>先看ASCII码，ASCII码我们比较熟悉，用一个字节表示了128个字符，其中包含标点符号，数字，英文字母等。</p>
 <p>但是ASCII有一个问题，就是一个字节只有8位最多只能表示256个字符，不可能表示世界各个国家的字符。于是有了Unicode码。</p>
 <p>Unicode码（统一码，万国码）：用多个字节表示全世界的所有字符，为每一个字符分配了一个唯一的标识（一个整数），在表示一个 Unicode 的字符时，通常会用“U+”然后紧接着一组十六进制的数字来表示这一个字符。</p>
 <p><strong>来自Wiki百科</strong>：在文字处理方面，统一码为每一个字符而非字形定义唯一的代码（即一个整数）。换句话说，统一码以一种抽象的方式（即数字）来处理字符，并将视觉上的演绎工作（例如字体大小、外观形状、字体形态、文体等）留给其他软件来处理，例如网页浏览器或是文字处理器。</p>
-<h3 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h3><p>UTF-8：由于Unicode只是给每一个字符分配了一个整数值，但是没有规定如何存储这个整数值（比如：用几个字节存储），所以需要utf-8等编码。utf-8是一种将Unicode码转换成字节序列编码方式，是一种可变长编码。</p>
+<h3 id="UTF-8">UTF-8</h3>
+<p>UTF-8：由于Unicode只是给每一个字符分配了一个整数值，但是没有规定如何存储这个整数值（比如：用几个字节存储），所以需要utf-8等编码。utf-8是一种将Unicode码转换成字节序列编码方式，是一种可变长编码。</p>
 <p>可以这样理解：</p>
 <ul>
 <li>Unicode -&gt; utf-8编码 -&gt; bytes</li>
-<li>bytes -&gt; utf-8解码 -&gt; Unicode  </li>
+<li>bytes -&gt; utf-8解码 -&gt; Unicode</li>
 </ul>
 <p>UTF-8只是Unicode与字节流编码方式中的一种，还有UTF-16, GB-2312, GBK（windows系统的中文编码是GBK）编码等等。这些编码做的工作就是将Unicode规定字符对应的整数值用一个或多个字节表示出来。</p>
 <p>因为IO，网络数据传输都是通过字节流的方式，所以在编程时需要将Unicode码转换成字节流再进行传输；同样需要将从IO，网络接收到的字节流转换成Unicode码。</p>
-<h3 id="bytes、str与unicode"><a href="#bytes、str与unicode" class="headerlink" title="bytes、str与unicode"></a>bytes、str与unicode</h3><p>Python2和Python3的不同点之一就是编码问题。其中str和unicode是Python2中的编码，而bytes和str是Python3中的编码。</p>
+<h3 id="bytes、str与unicode">bytes、str与unicode</h3>
+<p>Python2和Python3的不同点之一就是编码问题。其中str和unicode是Python2中的编码，而bytes和str是Python3中的编码。</p>
 <p>Python2中的编码：</p>
 <ul>
 <li>str：bytes序列的字符串</li>
@@ -531,62 +535,67 @@ Python的编码问题可能是很多人都遇到过的问题（没遇到的终�
 <li>str: unicode码点序列 的字符串。</li>
 </ul>
 <p>让人疑惑的是str，str在Python2和Python3中表示不同的编码，Python2中表示字节序列，即bytes; Python3中表示Unicode码。<strong>个人理解是Python3想让在程序中定义的字符串使用Unicode码表示，而不是Python2中用字节流表示。</strong></p>
-<h4 id="Python2"><a href="#Python2" class="headerlink" title="Python2"></a>Python2</h4><pre><code class="lang-python">&gt;&gt;&gt; string = &quot;python&quot;
+<h4 id="Python2">Python2</h4>
+<pre><code class="language-python">&gt;&gt;&gt; string = &quot;python&quot;
 &gt;&gt;&gt; type(string)
-&lt;type &#39;str&#39;&gt;
+&lt;type 'str'&gt;
 &gt;&gt;&gt; u_str = u&quot;python&quot;
 &gt;&gt;&gt; type(u_str)
-&lt;type &#39;unicode&#39;&gt;
+&lt;type 'unicode'&gt;
 </code></pre>
-<h4 id="Python3"><a href="#Python3" class="headerlink" title="Python3"></a>Python3</h4><pre><code class="lang-python">&gt;&gt;&gt; string = &quot;python&quot;
+<h4 id="Python3">Python3</h4>
+<pre><code class="language-python">&gt;&gt;&gt; string = &quot;python&quot;
 &gt;&gt;&gt; bytes = b&quot;python&quot;
 &gt;&gt;&gt; type(string)
-&lt;class &#39;str&#39;&gt;
+&lt;class 'str'&gt;
 &gt;&gt;&gt; type(bytes)
-&lt;class &#39;bytes&#39;&gt;
+&lt;class 'bytes'&gt;
 </code></pre>
-<h3 id="encode与decode"><a href="#encode与decode" class="headerlink" title="encode与decode"></a>encode与decode</h3><blockquote>
+<h3 id="encode与decode">encode与decode</h3>
+<blockquote>
 <p>encode()和decode()是Python中用于bytes字节序列与Unicode序列转换的函数。</p>
 </blockquote>
 <ul>
 <li>unicode.encode() -&gt; bytes:只有对于unicode对象我们才应该使用.encode()方法。这一方法用来将一系列unicode编码为bytes流。</li>
 <li>bytes.decode() -&gt; unicode: 只有对于bytes，或说Python2中的str对象，我们才应该调用.decode()方法。这一方法将一系列bytes流解码为原本的unicode码点。</li>
 </ul>
-<h4 id="Python2-1"><a href="#Python2-1" class="headerlink" title="Python2"></a>Python2</h4><pre><code class="lang-python"># str 与 unicode
+<h4 id="Python2-2">Python2</h4>
+<pre><code class="language-python"># str 与 unicode
 &gt;&gt;&gt; string = &quot;python&quot;
 &gt;&gt;&gt; type(string)
-&lt;type &#39;str&#39;&gt;
+&lt;type 'str'&gt;
 &gt;&gt;&gt; u_str = u&quot;python&quot;
 &gt;&gt;&gt; type(u_str)
-&lt;type &#39;unicode&#39;&gt;
+&lt;type 'unicode'&gt;
 
 # str解码 -&gt; Unicode
 &gt;&gt;&gt; de_string = string.decode()
 &gt;&gt;&gt; type(de_string)
-&lt;type &#39;unicode&#39;&gt;
+&lt;type 'unicode'&gt;
 
 # unicode 编码 -&gt; str
 &gt;&gt;&gt; en_u_str = u_str.encode()
 &gt;&gt;&gt; type(en_u_str)
-&lt;type &#39;str&#39;&gt;
+&lt;type 'str'&gt;
 </code></pre>
-<h4 id="Python3-1"><a href="#Python3-1" class="headerlink" title="Python3"></a>Python3</h4><pre><code class="lang-python"># str 与 bytes
+<h4 id="Python3-2">Python3</h4>
+<pre><code class="language-python"># str 与 bytes
 &gt;&gt;&gt; string = &quot;python&quot;
 &gt;&gt;&gt; bytes = b&quot;python&quot;
 &gt;&gt;&gt; type(string)
-&lt;class &#39;str&#39;&gt;
+&lt;class 'str'&gt;
 &gt;&gt;&gt; type(bytes)
-&lt;class &#39;bytes&#39;&gt;
+&lt;class 'bytes'&gt;
 
 # str编码 -&gt; butes
 &gt;&gt;&gt; en_string = string.encode()
 &gt;&gt;&gt; type(en_string)
-&lt;class &#39;bytes&#39;&gt;
+&lt;class 'bytes'&gt;
 
 # bytes 解码 -&gt; str
 &gt;&gt;&gt; de_bytes = bytes.decode()
 &gt;&gt;&gt; type(de_bytes)
-&lt;class &#39;str&#39;&gt;
+&lt;class 'str'&gt;
 </code></pre>
 
         
@@ -715,7 +724,7 @@ Python的编码问题可能是很多人都遇到过的问题（没遇到的终�
             <ul class="dropdown-menu">
             <li>
                 <a class="sidebar_archives-link" href="/archives/2020/03/">三月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">六月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">5</span></a>
-            </li></ul>
+            </ul>
         </li>
         
     
@@ -732,8 +741,8 @@ Python的编码问题可能是很多人都遇到过的问题（没遇到的终�
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
-            </li></ul>
+                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
+            </ul>
         </li>
         
     
@@ -794,7 +803,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -896,7 +905,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;YuanXu's Blog
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;YuanXu's Blog
             
         </div>
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="zh">
-    <head><meta name="generator" content="Hexo 3.8.0">
+    <head><meta name="generator" content="Hexo 3.9.0">
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
         © Material Theme
@@ -348,7 +348,8 @@
     <!-- Left aligned menu below button -->
     
     
-    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">format_list_numbered</i>
     </button>
 
@@ -399,7 +400,7 @@
 
     <!-- Author Avatar -->
     <div id="author-avatar">
-        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar">
+        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar"/>
     </div>
     <!-- Author Name & Date -->
     <div>
@@ -429,7 +430,7 @@
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
         <a class="post_tag-link" href="/tags/Code/">Code</a>
-    </li></ul>
+    </ul>
     
 
     <!-- Share -->
@@ -499,11 +500,15 @@
     
         <p>The handwritten digits recognition may be your first project when you get started with Tensorflow or Pytorch, and the dataset used in this project is the Mnist database of handwritten digit.</p>
 <a id="more"></a>
-<h2 id="What-is-Mnist"><a href="#What-is-Mnist" class="headerlink" title="What is Mnist?"></a>What is Mnist?</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>The <strong>MNIST database</strong> (Modified National Institute of Standards and Technology database) is a large database of handwritten digits that is commonly used for training various image processing systems.The database is also widely used for training and testing in the field of machine learning.It was created by “re-mixing” the samples from NIST’s original datasets. Source: Wikipedia.</p>
-<h3 id="Get-Mnist"><a href="#Get-Mnist" class="headerlink" title="Get Mnist"></a>Get Mnist</h3><p>You can download the Mnist database from its website, <a href="http://yann.lecun.com/exdb/mnist/index.html" target="_blank" rel="noopener">http://yann.lecun.com/exdb/mnist/index.html</a>.</p>
+<h2 id="What-is-Mnist">What is Mnist?</h2>
+<h3 id="Introduction">Introduction</h3>
+<p>The <strong>MNIST database</strong> (Modified National Institute of Standards and Technology database) is a large database of handwritten digits that is commonly used for training various image processing systems.The database is also widely used for training and testing in the field of machine <a href="http://learning.It" target="_blank" rel="noopener">learning.It</a> was created by “re-mixing” the samples from NIST’s original datasets. Source: Wikipedia.</p>
+<h3 id="Get-Mnist">Get Mnist</h3>
+<p>You can download the Mnist database from its website, <a href="http://yann.lecun.com/exdb/mnist/index.html" target="_blank" rel="noopener">http://yann.lecun.com/exdb/mnist/index.html</a>.</p>
 <p>There are four compressed files incluing training set images, training set labels, test set images and test set labels.</p>
-<h2 id="The-format-of-Mnist"><a href="#The-format-of-Mnist" class="headerlink" title="The format of Mnist"></a>The format of Mnist</h2><p>The data of Mnist  is stored in a very simple file format. However, you can’t open them with common application program, and you need write your own program to read these files.</p>
-<p>The above website has given the format of both image files and label files. </p>
+<h2 id="The-format-of-Mnist">The format of Mnist</h2>
+<p>The data of Mnist  is stored in a very simple file format. However, you can’t open them with common application program, and you need write your own program to read these files.</p>
+<p>The above website has given the format of both image files and label files.</p>
 <p>Oh, there is a little problem about thd data.</p>
 <blockquote>
 <p>All the integers in the files are stored in the MSB first (high endian) format used by most non-Intel processors. Users of Intel processors and other low-endian machines must flip the bytes of the header.</p>
@@ -511,7 +516,6 @@
 <p>It points out that the integers in the files is differen from the integers in Intel processor which used by most people’s computers.</p>
 <p>Let’s use 0x00000102 as an example. We start the memory address from 0x0000.</p>
 <p>In Intel processor, the 0x00000102 was stored like this.</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -538,9 +542,7 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>In most non-Intel processor, it likes this.</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -567,9 +569,9 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>Now, you have known the difference.</p>
-<h3 id="The-format-of-images"><a href="#The-format-of-images" class="headerlink" title="The format of images"></a>The format of images</h3><pre><code>[offset] [type]          [value]          [description]
+<h3 id="The-format-of-images">The format of images</h3>
+<pre><code>[offset] [type]          [value]          [description]
 0000     32 bit integer  0x00000803(2051) magic number
 0004     32 bit integer  60000            number of images
 0008     32 bit integer  28               number of rows
@@ -579,10 +581,12 @@
 ........
 xxxx     unsigned byte   ??               pixel
 Pixels are organized row-wise. Pixel values are 0 to 255. 0 means background (white), 255 means foreground (black).
-</code></pre><p>The first integer is a magic number 0x803. I guess it was used to comfirm whether the file is parsed correctly. You can compare your first interget with 0x803 when you read the file using your own program.</p>
+</code></pre>
+<p>The first integer is a magic number 0x803. I guess it was used to comfirm whether the file is parsed correctly. You can compare your first interget with 0x803 when you read the file using your own program.</p>
 <p>The next three integers are number of images, the rows of image and the cols of image. Their meaning is obvious.</p>
 <p>Other data is the pixel of images, ranging from 0 to 255.</p>
-<h3 id="The-format-of-Labels"><a href="#The-format-of-Labels" class="headerlink" title="The format of Labels"></a>The format of Labels</h3><pre><code>[offset] [type]          [value]          [description]
+<h3 id="The-format-of-Labels">The format of Labels</h3>
+<pre><code>[offset] [type]          [value]          [description]
 0000     32 bit integer  0x00000801(2049) magic number (MSB first)
 0004     32 bit integer  60000            number of items
 0008     unsigned byte   ??               label
@@ -590,40 +594,44 @@ Pixels are organized row-wise. Pixel values are 0 to 255. 0 means background (wh
 ........
 xxxx     unsigned byte   ??               label
 The labels values are 0 to 9.
-</code></pre><p>The first integer is also a magic number, but it is different from the image files. The next integer is number of labels.</p>
+</code></pre>
+<p>The first integer is also a magic number, but it is different from the image files. The next integer is number of labels.</p>
 <p>Other data is the label of images, ranging from 0 to 9.</p>
-<h2 id="Load-Mnist-via-Python"><a href="#Load-Mnist-via-Python" class="headerlink" title="Load Mnist via Python"></a>Load Mnist via Python</h2><p>We will import a python package help us to produce the bytes data effectively.</p>
+<h2 id="Load-Mnist-via-Python">Load Mnist via Python</h2>
+<p>We will import a python package help us to produce the bytes data effectively.</p>
 <p>It is <code>struct</code> which is a build-in class of python. The <code>struct</code> class is very easy, you can learn about it from Python API reference manual.</p>
-<h3 id="Load-images"><a href="#Load-images" class="headerlink" title="Load images"></a>Load images</h3><pre><code class="lang-python">import matplotlib.pyplot as plt
+<h3 id="Load-images">Load images</h3>
+<pre><code class="language-python">import matplotlib.pyplot as plt
 import numpy as np
 import struct
 import math
 
 def load_image(filename, count=-1):
 
-    size = struct.calcsize(&quot;&gt;IIII&quot;)
-    try:    
-        with open(filename, &#39;rb&#39;) as file:
-            buffer = file.read(size)
-            magic, number, row, col = struct.unpack(&quot;&gt;IIII&quot;, buffer)
+	size = struct.calcsize(&quot;&gt;IIII&quot;)
+	try:	
+		with open(filename, 'rb') as file:
+			buffer = file.read(size)
+			magic, number, row, col = struct.unpack(&quot;&gt;IIII&quot;, buffer)
 
-            if magic != 0x803:
-                print(&quot;parse error!&quot;)
-                return
+			if magic != 0x803:
+				print(&quot;parse error!&quot;)
+				return
 
-            if count == -1 or count &gt; number:
-                count = number
+			if count == -1 or count &gt; number:
+				count = number
 
-            # read image
-            size = count * row  * col
-            size = struct.calcsize(&#39;&gt;&#39; + str(size) + &#39;B&#39;)
-            buffer = file.read(size)
-            images = struct.unpack(&#39;&gt;&#39; + str(size) + &#39;B&#39;, buffer)
-            images = np.reshape(images, [count, row * col])
-    except FileNotFoundError:
-        print(&quot;file \&quot;%s\&quot; not found!&quot; % filename)    
+			# read image
+			size = count * row  * col
+			size = struct.calcsize('&gt;' + str(size) + 'B')
+			buffer = file.read(size)
+			images = struct.unpack('&gt;' + str(size) + 'B', buffer)
+			images = np.reshape(images, [count, row * col])
+	except FileNotFoundError:
+		print(&quot;file \&quot;%s\&quot; not found!&quot; % filename)	
 
-    return images
+	return images
+
 </code></pre>
 <p>First, we need to read four integers in the head of images file. Then we verify the magic number, there are some bugs if they are not corressonding.</p>
 <p>After that we read some images accoding to a variant <code>count</code>.</p>
@@ -634,47 +642,49 @@ def load_image(filename, count=-1):
 <li>use function <code>unpack</code> get some variants according to designative format.</li>
 </ol>
 <p>Finally, the variant <code>images</code> is a long vector, it is necessary to reshape it use numpy before return it.</p>
-<h3 id="Load-labels"><a href="#Load-labels" class="headerlink" title="Load labels"></a>Load labels</h3><pre><code class="lang-python">def load_label(filename, count=-1):
-    size = struct.calcsize(&quot;&gt;II&quot;)
-    try:    
-        with open(filename, &#39;rb&#39;) as file:
-            buffer = file.read(size)
-            magic, number= struct.unpack(&quot;&gt;II&quot;, buffer)
+<h3 id="Load-labels">Load labels</h3>
+<pre><code class="language-python">def load_label(filename, count=-1):
+	size = struct.calcsize(&quot;&gt;II&quot;)
+	try:	
+		with open(filename, 'rb') as file:
+			buffer = file.read(size)
+			magic, number= struct.unpack(&quot;&gt;II&quot;, buffer)
 
-            if magic != 0x801:
-                print(&quot;parse error!&quot;)
-                return
+			if magic != 0x801:
+				print(&quot;parse error!&quot;)
+				return
+	
+			if count == -1 or count &gt; number:
+				count = number
 
-            if count == -1 or count &gt; number:
-                count = number
+			# parser image			
+			size = struct.calcsize('&gt;' + str(count) + 'B')
+			buffer = file.read(size)
+			labels = struct.unpack('&gt;' + str(count) + 'B', buffer)			
+	except FileNotFoundError:
+		print(&quot;file \&quot;%s\&quot; not found!&quot; % filename)	
 
-            # parser image            
-            size = struct.calcsize(&#39;&gt;&#39; + str(count) + &#39;B&#39;)
-            buffer = file.read(size)
-            labels = struct.unpack(&#39;&gt;&#39; + str(count) + &#39;B&#39;, buffer)            
-    except FileNotFoundError:
-        print(&quot;file \&quot;%s\&quot; not found!&quot; % filename)    
-
-    return labels
+	return labels
 </code></pre>
 <p>The code of <code>load_label</code> is same as <code>load_image</code>. You are so smart that you will understand it.</p>
-<h3 id="Show-images"><a href="#Show-images" class="headerlink" title="Show images"></a>Show images</h3><pre><code class="lang-python">def show_image(images, count):
-    figure = plt.figure()
-    plt.subplots_adjust(left=0.1, right=0.9, bottom=0.1, top=0.9, hspace=0.2, wspace=0.2)
-    for i in range(count):
-        image = np.reshape(images[i], [28, 28])
-        ax = figure.add_subplot(math.ceil(count/5), 5, i+1)
-        ax.imshow(image, cmap=plt.cm.binary)
-
-    plt.show()
+<h3 id="Show-images">Show images</h3>
+<pre><code class="language-python">def show_image(images, count):
+	figure = plt.figure()
+	plt.subplots_adjust(left=0.1, right=0.9, bottom=0.1, top=0.9, hspace=0.2, wspace=0.2)
+	for i in range(count):
+		image = np.reshape(images[i], [28, 28])
+		ax = figure.add_subplot(math.ceil(count/5), 5, i+1)
+		ax.imshow(image, cmap=plt.cm.binary)
+	
+	plt.show()
 </code></pre>
 <p>We use <code>matplotlib</code> to show  loaded images.</p>
 <p>The result:</p>
 <center>
 <img src="/img/blog/blog-25-1.png" width="600">
 </center>
+<h2 id="END">END</h2>
 
-<h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2>
         
     
 
@@ -801,7 +811,7 @@ def load_image(filename, count=-1):
             <ul class="dropdown-menu">
             <li>
                 <a class="sidebar_archives-link" href="/archives/2020/03/">三月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">六月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">5</span></a>
-            </li></ul>
+            </ul>
         </li>
         
     
@@ -818,8 +828,8 @@ def load_image(filename, count=-1):
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
-            </li></ul>
+                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
+            </ul>
         </li>
         
     
@@ -880,7 +890,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -982,7 +992,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;YuanXu's Blog
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;YuanXu's Blog
             
         </div>
 

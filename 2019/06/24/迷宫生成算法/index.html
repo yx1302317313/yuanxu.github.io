@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="zh">
-    <head><meta name="generator" content="Hexo 3.8.0">
+    <head><meta name="generator" content="Hexo 3.9.0">
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
         © Material Theme
@@ -251,7 +251,7 @@
 
     
         <meta property="article:published_time" content="Mon Jun 24 2019 19:28:38 GMT+0800">
-        <meta property="article:modified_time" content="Mon Jun 24 2019 23:09:58 GMT+0800">
+        <meta property="article:modified_time" content="Thu Mar 05 2020 21:12:56 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -274,7 +274,7 @@
     "mainEntityOfPage": "https://yx1302317313.github.io/2019/06/24/迷宫生成算法/index.html",
     "headline": "迷宫生成算法",
     "datePublished": "Mon Jun 24 2019 19:28:38 GMT+0800",
-    "dateModified": "Mon Jun 24 2019 23:09:58 GMT+0800",
+    "dateModified": "Thu Mar 05 2020 21:12:56 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Yuan Xu",
@@ -354,12 +354,13 @@
     <!-- Left aligned menu below button -->
     
     
-    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">format_list_numbered</i>
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#最终的效果"><span class="post-toc-text">最终的效果</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何描述迷宫"><span class="post-toc-text">如何描述迷宫</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#迷宫的特点"><span class="post-toc-text">迷宫的特点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#思路"><span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#迷宫的生成过程"><span class="post-toc-text">迷宫的生成过程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-初始状态"><span class="post-toc-text">1 初始状态</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-迷宫的生成"><span class="post-toc-text">2 迷宫的生成</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-设定起点和终点"><span class="post-toc-text">3 设定起点和终点</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#核心算法—深度优先"><span class="post-toc-text">核心算法—深度优先</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#最终的效果"><span class="post-toc-text">最终的效果</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何描述迷宫"><span class="post-toc-text">如何描述迷宫</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#迷宫的特点"><span class="post-toc-text">迷宫的特点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#思路"><span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#迷宫的生成过程"><span class="post-toc-text">迷宫的生成过程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-初始状态"><span class="post-toc-text">1 初始状态</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-迷宫的生成"><span class="post-toc-text">2 迷宫的生成</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-设定起点和终点"><span class="post-toc-text">3 设定起点和终点</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#核心算法–深度优先"><span class="post-toc-text">核心算法–深度优先</span></a></li></ol>
     </ul>
     
 
@@ -405,7 +406,7 @@
 
     <!-- Author Avatar -->
     <div id="author-avatar">
-        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar">
+        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar"/>
     </div>
     <!-- Author Name & Date -->
     <div>
@@ -435,7 +436,7 @@
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
         <a class="post_tag-link" href="/tags/Qt/">Qt</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/游戏/">游戏</a>
-    </li></ul>
+    </ul>
     
 
     <!-- Share -->
@@ -509,85 +510,84 @@
 <a id="more"></a>
 <center>
 <audio controls>
-    <source src="/music/年少有为-李荣浩.mp3">
+	<source src="/music/年少有为-李荣浩.mp3">
 </audio>
 <p>年少有为-李荣浩</p>
 </center>
-
-
-<h3 id="最终的效果"><a href="#最终的效果" class="headerlink" title="最终的效果"></a>最终的效果</h3><p>先上几张效果图，图中绿色的表示障碍，灰色表示道路(<del>我的世界既视感</del>).</p>
-<p><br></p>
+<h3 id="最终的效果">最终的效果</h3>
+<p>先上几张效果图，图中绿色的表示障碍，灰色表示道路(<s>我的世界既视感</s>).</p>
+<br>
 <center>
 <img src="/img/blog/blog-18-1.png" width="500">
 </center>
-
-<p><br></p>
+<br>
 <center>
 <img src="/img/blog/blog-18-2.png" width="500">
 </center>
-
-<p><br></p>
+<br>
 <center>
 <img src="/img/blog/blog-18-3.png" width="500">
 </center>
-
-<h3 id="如何描述迷宫"><a href="#如何描述迷宫" class="headerlink" title="如何描述迷宫"></a>如何描述迷宫</h3><p>迷宫其实就是一个复杂的地形图,在这个地形中有基本的障碍和通道,当然也可以有其他元素。</p>
+<h3 id="如何描述迷宫">如何描述迷宫</h3>
+<p>迷宫其实就是一个复杂的地形图,在这个地形中有基本的障碍和通道,当然也可以有其他元素。</p>
 <p>我们这里用最简单的方式描述迷宫——矩阵。迷宫中的地形也只有障碍和通道两种元素。可以用0和1表示这两种元素。</p>
 <p>因此我们用一个存储着0和1,M*N大小的矩阵就可以描述迷宫啦!</p>
-<h3 id="迷宫的特点"><a href="#迷宫的特点" class="headerlink" title="迷宫的特点"></a>迷宫的特点</h3><ol>
-<li>从设定的起点到终点必须是连通的(<del>否则,还能不能好好玩耍了</del>)</li>
+<h3 id="迷宫的特点">迷宫的特点</h3>
+<ol>
+<li>从设定的起点到终点必须是连通的(<s>否则,还能不能好好玩耍了</s>)</li>
 <li>从起点到终点只有一条通路.(其实也可以有多条,根据实际需要设定)</li>
 </ol>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>从迷宫特点的描述有没有想到什么?</p>
+<h3 id="思路">思路</h3>
+<p>从迷宫特点的描述有没有想到什么?</p>
 <p>迷宫就是一个图,要求任意设定的起点和终点之间是连通的,就是一个 <strong>全连通图</strong>.但是如果这个图的连通度太高,迷宫就没有难度了,所以我们要求图中任意顶点之间只有一条路.</p>
 <p>什么样的图只有一条路, <strong>无环图</strong>.</p>
 <p>所以我们需要的是无环的连通图,这是什么? <strong>树</strong></p>
 <p>我们的迷宫就是一个树,因此迷宫的生成算法就是树的生成算法,树的生成算法有深度优先遍历和广度优先遍历, 在这里使用深度优先.</p>
-<h3 id="迷宫的生成过程"><a href="#迷宫的生成过程" class="headerlink" title="迷宫的生成过程"></a>迷宫的生成过程</h3><h4 id="1-初始状态"><a href="#1-初始状态" class="headerlink" title="1 初始状态"></a>1 初始状态</h4><blockquote>
+<h3 id="迷宫的生成过程">迷宫的生成过程</h3>
+<h4 id="1-初始状态">1 初始状态</h4>
+<blockquote>
 <p>图中绿色的表示障碍，灰色表示道路(空白)</p>
 </blockquote>
 <center>
 <img src="/img/blog/blog-18-4.png" width="500">
 </center>
-
 <p>由于迷宫四周都是障碍, 图的宽和高都必须是奇数.</p>
-<h4 id="2-迷宫的生成"><a href="#2-迷宫的生成" class="headerlink" title="2 迷宫的生成"></a>2 迷宫的生成</h4><p>1 任意选择一个空白块, 将该空白块作为树的根结点.</p>
+<h4 id="2-迷宫的生成">2 迷宫的生成</h4>
+<p>1 任意选择一个空白块, 将该空白块作为树的根结点.</p>
 <p>2 从根节点出发隔一个元素块查找四周(上,下,左,右,四个方向,不包括对角线方向)其他的空白块.</p>
 <center>
 <img src="/img/blog/blog-18-5.png" width="500">
 <p>从该结点出发,四周只有两个空白块</p>
 </center>
-
 <center>
 <img src="/img/blog/blog-18-6.png" width="500">
 <p>从该结点出发,四周有四个空白块</p>
 </center>
-
 <p>3 随机选取其中一个空白块, 将道路沿该方向拓展, 即把夹在这两个空白块之间的障碍块去掉, 改成空白块.</p>
 <center>
 <img src="/img/blog/blog-18-7.png" width="500">
 <p>把夹在这两个空白块之间的障碍块去掉</p>
 </center>
-
 <p>4 更新当前结点, 然后从当前结点出发,重复步骤2,3.</p>
 <p>5 当遇到一个结点周围没有空白块时, 即没有可拓展道路的方向时, 回退并更新当前结点, 直至当前结点四周有空白块, 重复步骤2,3.</p>
 <center>
 <img src="/img/blog/blog-18-8.png" width="500">
 <p>该结点周围没有空白块</p>
 </center>
-
 <p>6 当回退到根节点没有任何可以拓展的道路时, 算法结束, 迷宫也就生成了.</p>
 <center>
 <img src="/img/blog/blog-18-1.png" width="500">
 </center>
-
-
-<h4 id="3-设定起点和终点"><a href="#3-设定起点和终点" class="headerlink" title="3 设定起点和终点"></a>3 设定起点和终点</h4><p>选取迷宫中的两个空白块作为迷宫的起点和终点,一个完整的迷宫就诞生了.</p>
-<h3 id="核心算法—深度优先"><a href="#核心算法—深度优先" class="headerlink" title="核心算法—深度优先"></a>核心算法—深度优先</h3><blockquote>
+<h4 id="3-设定起点和终点">3 设定起点和终点</h4>
+<p>选取迷宫中的两个空白块作为迷宫的起点和终点,一个完整的迷宫就诞生了.</p>
+<h3 id="核心算法–深度优先">核心算法–深度优先</h3>
+<blockquote>
 <p>由于这部分算法是程序的一部分,不能完整运行,仅供参考.</p>
+</blockquote>
+<blockquote>
 <p>在程序中用到了Qt中的容器QVector,可以用STL中的std::vector代替; 用到的qsrand()和qrand()生成随机数,可以使用C标准库中的srand()和rand()函数代替.</p>
 </blockquote>
-<pre><code class="lang-cpp">/*
+<pre><code class="language-cpp">/*
 @ 生成迷宫
 */
 void GenerateMaze::Maze(int width, int height)
@@ -726,6 +726,7 @@ const QVector&lt;int&gt; Maze::existedRoad(const int **mat, int i, int j)
 
     return vec;
 }
+
 </code></pre>
 
         
@@ -854,7 +855,7 @@ const QVector&lt;int&gt; Maze::existedRoad(const int **mat, int i, int j)
             <ul class="dropdown-menu">
             <li>
                 <a class="sidebar_archives-link" href="/archives/2020/03/">三月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">六月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">5</span></a>
-            </li></ul>
+            </ul>
         </li>
         
     
@@ -871,8 +872,8 @@ const QVector&lt;int&gt; Maze::existedRoad(const int **mat, int i, int j)
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
-            </li></ul>
+                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
+            </ul>
         </li>
         
     
@@ -933,7 +934,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -1035,7 +1036,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;YuanXu's Blog
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;YuanXu's Blog
             
         </div>
 
@@ -1144,26 +1145,6 @@ It will not impact the appearance and can give developers a lot of support :)
 </script>
 
 <!-- MathJax Load-->
-
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
-        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
-        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
-        messageStyle: "none"
-    });
-</script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-    <script src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-
 
 
 <!-- Bing Background -->

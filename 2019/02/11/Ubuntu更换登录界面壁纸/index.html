@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="zh">
-    <head><meta name="generator" content="Hexo 3.8.0">
+    <head><meta name="generator" content="Hexo 3.9.0">
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
         © Material Theme
@@ -57,7 +57,8 @@
 
     <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content="
-Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美.为此找了半天找哪里可以修改, 但是最终还是要求助Google.
+Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美.
+为此找了半天找哪里可以修改, 但是最终还是要求助Google.
 ">
     <meta name="keywords" content="YuanXu,Ubuntu,美化">
     <meta name="theme-color" content="#0097A7">
@@ -245,7 +246,8 @@ Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美
     <meta property="og:title" content="Ubuntu更换登录界面壁纸 | YuanXu&#39;s Blog">
     <meta property="og:image" content="/img/favicon.jpg">
     <meta property="og:description" content="
-Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美.为此找了半天找哪里可以修改, 但是最终还是要求助Google.
+Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美.
+为此找了半天找哪里可以修改, 但是最终还是要求助Google.
 ">
     <meta property="og:article:tag" content="Ubuntu"> <meta property="og:article:tag" content="美化"> 
 
@@ -294,7 +296,8 @@ Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美
     },
     "keywords": ",Ubuntu,美化YuanXu",
     "description": "
-Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美.为此找了半天找哪里可以修改, 但是最终还是要求助Google.
+Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美.
+为此找了半天找哪里可以修改, 但是最终还是要求助Google.
 ",
 }
 </script>
@@ -354,7 +357,8 @@ Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美
     <!-- Left aligned menu below button -->
     
     
-    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">format_list_numbered</i>
     </button>
 
@@ -405,7 +409,7 @@ Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美
 
     <!-- Author Avatar -->
     <div id="author-avatar">
-        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar">
+        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar"/>
     </div>
     <!-- Author Name & Date -->
     <div>
@@ -435,7 +439,7 @@ Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
         <a class="post_tag-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/美化/">美化</a>
-    </li></ul>
+    </ul>
     
 
     <!-- Share -->
@@ -504,17 +508,21 @@ Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <blockquote>
-<p>Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美.<br>为此找了半天找哪里可以修改, 但是最终还是要求助Google.</p>
+<p>Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美.
+为此找了半天找哪里可以修改, 但是最终还是要求助Google.</p>
 </blockquote>
 <a id="more"></a>
-<h3 id="1-将准备设置为登录界面壁纸的图片移动到-usr-share-background"><a href="#1-将准备设置为登录界面壁纸的图片移动到-usr-share-background" class="headerlink" title="1. 将准备设置为登录界面壁纸的图片移动到/usr/share/background"></a>1. 将准备设置为登录界面壁纸的图片移动到/usr/share/background</h3><pre><code class="lang-shell">$ mv your_picture.jpg /usr/share/background
+<h3 id="1-将准备设置为登录界面壁纸的图片移动到-usr-share-background">1. 将准备设置为登录界面壁纸的图片移动到/usr/share/background</h3>
+<pre><code class="language-shell">$ mv your_picture.jpg /usr/share/background
 </code></pre>
-<h3 id="2-Ubuntu18-04登录背景相关的配置文件是-etc-alternatives-gdm3-css"><a href="#2-Ubuntu18-04登录背景相关的配置文件是-etc-alternatives-gdm3-css" class="headerlink" title="2. Ubuntu18.04登录背景相关的配置文件是 /etc/alternatives/gdm3.css"></a>2. Ubuntu18.04登录背景相关的配置文件是 /etc/alternatives/gdm3.css</h3><blockquote>
+<h3 id="2-Ubuntu18-04登录背景相关的配置文件是-etc-alternatives-gdm3-css">2. Ubuntu18.04登录背景相关的配置文件是 /etc/alternatives/gdm3.css</h3>
+<blockquote>
 <p>因为需要修改这个文件, 以防万一先将该文件复制一份</p>
 </blockquote>
-<pre><code class="lang-shell">$ cp /etc/alternatives/gdm3.css /etc/alternatives/gdm3.css.temp
+<pre><code class="language-shell">$ cp /etc/alternatives/gdm3.css /etc/alternatives/gdm3.css.temp
 </code></pre>
-<h3 id="3-修改-etc-alternatives-gdm3-css"><a href="#3-修改-etc-alternatives-gdm3-css" class="headerlink" title="3. 修改/etc/alternatives/gdm3.css"></a>3. 修改/etc/alternatives/gdm3.css</h3><pre><code class="lang-css">#找到默认的这个部分
+<h3 id="3-修改-etc-alternatives-gdm3-css">3. 修改/etc/alternatives/gdm3.css</h3>
+<pre><code class="language-css">#找到默认的这个部分
 #lockDialogGroup {
   background: #2c001e url(resource:///org/gnome/shell/theme/noise-texture.png);
   background-repeat: repeat; 
@@ -527,7 +535,8 @@ Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美
   background-position: center; 
 }
 </code></pre>
-<h3 id="4-保存文件-重启之后就可以看到新的登录界面了"><a href="#4-保存文件-重启之后就可以看到新的登录界面了" class="headerlink" title="4. 保存文件, 重启之后就可以看到新的登录界面了."></a>4. 保存文件, 重启之后就可以看到新的登录界面了.</h3>
+<h3 id="4-保存文件-重启之后就可以看到新的登录界面了">4. 保存文件, 重启之后就可以看到新的登录界面了.</h3>
+
         
     
 
@@ -654,7 +663,7 @@ Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美
             <ul class="dropdown-menu">
             <li>
                 <a class="sidebar_archives-link" href="/archives/2020/03/">三月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">六月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">5</span></a>
-            </li></ul>
+            </ul>
         </li>
         
     
@@ -671,8 +680,8 @@ Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
-            </li></ul>
+                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
+            </ul>
         </li>
         
     
@@ -733,7 +742,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -835,7 +844,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;YuanXu's Blog
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;YuanXu's Blog
             
         </div>
 

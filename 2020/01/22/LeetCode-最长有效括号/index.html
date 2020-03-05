@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="zh">
-    <head><meta name="generator" content="Hexo 3.8.0">
+    <head><meta name="generator" content="Hexo 3.9.0">
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
         © Material Theme
@@ -56,7 +56,7 @@
     <link rel="icon" href="/img/favicon.jpg">
 
     <meta name="format-detection" content="telephone=no">
-    <meta name="description" itemprop="description" content="">
+    <meta name="description" itemprop="description" content>
     <meta name="keywords" content="YuanXu,C++,Code">
     <meta name="theme-color" content="#0097A7">
 
@@ -242,7 +242,7 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="LeetCode-最长有效括号 | YuanXu&#39;s Blog">
     <meta property="og:image" content="/img/favicon.jpg">
-    <meta property="og:description" content="">
+    <meta property="og:description" content>
     <meta property="og:article:tag" content="C++"> <meta property="og:article:tag" content="Code"> 
 
     
@@ -348,12 +348,13 @@
     <!-- Left aligned menu below button -->
     
     
-    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">format_list_numbered</i>
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题目：最长有效括号"><span class="post-toc-text">题目：最长有效括号</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#算法：动态规划"><span class="post-toc-text">算法：动态规划</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解法："><span class="post-toc-text">解法：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#状态转移方程"><span class="post-toc-text">状态转移方程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#时间复杂度-amp-空间复杂度"><span class="post-toc-text">时间复杂度&amp;空间复杂度</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#LeetCode执行结果"><span class="post-toc-text">LeetCode执行结果</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#感受"><span class="post-toc-text">感受</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码"><span class="post-toc-text">代码</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题目：最长有效括号"><span class="post-toc-text">题目：最长有效括号</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#算法：动态规划"><span class="post-toc-text">算法：动态规划</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解法："><span class="post-toc-text">解法：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#状态转移方程"><span class="post-toc-text">状态转移方程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#时间复杂度-空间复杂度"><span class="post-toc-text">时间复杂度&amp;空间复杂度</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#LeetCode执行结果"><span class="post-toc-text">LeetCode执行结果</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#感受"><span class="post-toc-text">感受</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码"><span class="post-toc-text">代码</span></a></li></ol>
     </ul>
     
 
@@ -399,7 +400,7 @@
 
     <!-- Author Avatar -->
     <div id="author-avatar">
-        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar">
+        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar"/>
     </div>
     <!-- Author Name & Date -->
     <div>
@@ -429,7 +430,7 @@
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
         <a class="post_tag-link" href="/tags/C/">C++</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Code/">Code</a>
-    </li></ul>
+    </ul>
     
 
     <!-- Share -->
@@ -497,60 +498,77 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="题目：最长有效括号"><a href="#题目：最长有效括号" class="headerlink" title="题目：最长有效括号"></a>题目：最长有效括号</h2><p>给定一个只包含 ‘(‘ 和 ‘)’ 的字符串，找出最长的包含有效括号的子串的长度。</p>
-<p>示例 1:</p>
+        <h2 id="题目：最长有效括号">题目：最长有效括号</h2>
+<p>给定一个只包含 ‘(’ 和 ‘)’ 的字符串，找出最长的包含有效括号的子串的长度。</p>
+<p>示例 1:</p>
 <pre><code>输入: &quot;(()&quot;
 输出: 2
 解释: 最长有效括号子串为 &quot;()&quot;
-</code></pre><p>示例 2:</p>
+</code></pre>
+<p>示例 2:</p>
 <pre><code>输入: &quot;)()())&quot;
 输出: 4
 解释: 最长有效括号子串为 &quot;()()&quot;
-</code></pre><p>示例 3:</p>
+</code></pre>
+<p>示例 3:</p>
 <pre><code>输入: &quot;)(())())&quot;
 输出: 6
 解释: 最长有效括号子串为 &quot;(())()&quot;
-</code></pre><p><a href="https://leetcode-cn.com/problems/longest-valid-parentheses" target="_blank" rel="noopener">来源：力扣（LeetCode）</a></p>
-<h2 id="算法：动态规划"><a href="#算法：动态规划" class="headerlink" title="算法：动态规划"></a>算法：动态规划</h2><h3 id="解法："><a href="#解法：" class="headerlink" title="解法："></a>解法：</h3><p>定义 $dp[i]$ 表示以第i个字符结尾的字符串中最长的有效括号长度。</p>
+</code></pre>
+<p><a href="https://leetcode-cn.com/problems/longest-valid-parentheses" target="_blank" rel="noopener">来源：力扣（LeetCode）</a></p>
+<h2 id="算法：动态规划">算法：动态规划</h2>
+<h3 id="解法：">解法：</h3>
+<p>定义 $dp[i]$ 表示以第i个字符结尾的字符串中最长的有效括号长度。</p>
 <p>example1:</p>
 <pre><code>string: &quot;()()()&quot;
 index  : 0 1 2 3 4 5
 dp:      0 2 0 4 0 6
-</code></pre><p>example2:</p>
+</code></pre>
+<p>example2:</p>
 <pre><code>string: &quot;()((())&quot;
 index  : 0 1 2 3 4 5 6 
 dp:      0 2 0 0 0 2 4
-</code></pre><p>example3:</p>
+</code></pre>
+<p>example3:</p>
 <pre><code>string: &quot;()(())&quot;
 index: 0 1 2 3 4 5
 dp:    0 2 0 0 2 6
-</code></pre><ol>
-<li>若$s[j] = ‘(‘$, 由于’（’不可能是有效括号的结束字符，所以$dp[j] = 0$。</li>
-<li>若$s[j] = ‘）’$，存在多种情况<ul>
+</code></pre>
+<ol>
+<li>若$s[j] = ‘(’$, 由于’（'不可能是有效括号的结束字符，所以$dp[j] = 0$。</li>
+<li>若$s[j] = ‘）’$，存在多种情况
+<ul>
 <li>若$s[j-1]为’（’$， 若是则可以组成有效括号，有效括号长度+2。</li>
-<li>若$s[j-1]为’）’$， 也不一定不是有效括号，还可能存在括号嵌套的情况，如”example2”, 这种情况则要判断 $s[dp[j-1] - 1]$是否等于’(‘，是则+2。该情况可以和上一种情况合并，都可表示为判断 $s[dp[j-1] - 1] == ‘(‘$ 是否成立。</li>
+<li>若$s[j-1]为’）’$， 也不一定不是有效括号，还可能存在括号嵌套的情况，如&quot;example2&quot;, 这种情况则要判断 $s[dp[j-1] - 1]$是否等于’(’，是则+2。该情况可以和上一种情况合并，都可表示为判断 $s[dp[j-1] - 1] == ‘(’$ 是否成立。</li>
 </ul>
 </li>
-<li>当 $dp[j]$是有效括号的结束字符时，要判断是否和之前的有效括号连续，如果连续要加上之前的长度。如”example3”， $s[5]= ‘)’$, 且 $s[5 - dp[4] - 1] = ‘(‘$, 所以 $dp[5] = dp[4] + 2 = 4$。但是由于可以和之前的”()”连起来，所以 $dp[5] = dp[4] + 2 + dp[5 - dp[4] - 2] = 6$。</li>
+<li>当 $dp[j]$是有效括号的结束字符时，要判断是否和之前的有效括号连续，如果连续要加上之前的长度。如&quot;example3&quot;， $s[5]= ‘)’$, 且 $s[5 - dp[4] - 1] = ‘(’$, 所以 $dp[5] = dp[4] + 2 = 4$。但是由于可以和之前的&quot;()&quot;连起来，所以 $dp[5] = dp[4] + 2 + dp[5 - dp[4] - 2] = 6$。</li>
 </ol>
-<h3 id="状态转移方程"><a href="#状态转移方程" class="headerlink" title="状态转移方程"></a>状态转移方程</h3><script type="math/tex; mode=display">
+<h3 id="状态转移方程">状态转移方程</h3>
+<p>$$
 dp[i]=
-\left\{
+\left{
 \begin{aligned}
-    &0, &&{s[i]='('}\\
-    &0,&&{s[i]= '）' \quad \&\& \quad s[i-dp[i-1]-1] \neq '('}\\
-    &dp[i-1] + 2 + dp[i-dp[i-1]-2], &&{s[i]= '）' \quad \&\& \quad s[i-dp[i-1]-1] = '('}\\    
+&amp;0, &amp;&amp;{s[i]=’(’}\
+&amp;0,&amp;&amp;{s[i]= ‘）’ \quad &amp;&amp; \quad s[i-dp[i-1]-1] \neq ‘(’}\
+&amp;dp[i-1] + 2 + dp[i-dp[i-1]-2], &amp;&amp;{s[i]= ‘）’ \quad &amp;&amp; \quad s[i-dp[i-1]-1] = ‘(’}\	
 \end{aligned}
-\right.</script><h3 id="时间复杂度-amp-空间复杂度"><a href="#时间复杂度-amp-空间复杂度" class="headerlink" title="时间复杂度&amp;空间复杂度"></a>时间复杂度&amp;空间复杂度</h3><ol>
+\right.
+$$</p>
+<h3 id="时间复杂度-空间复杂度">时间复杂度&amp;空间复杂度</h3>
+<ol>
 <li>时间复杂度: $O(n)$</li>
 <li>空间复杂度: $O(n)$</li>
 </ol>
-<h2 id="LeetCode执行结果"><a href="#LeetCode执行结果" class="headerlink" title="LeetCode执行结果"></a>LeetCode执行结果</h2><ul>
-<li>执行用时 : <strong>4 ms</strong>, 在所有 C++ 提交中击败了 <strong>95.63%</strong>的用户。</li>
-<li>内存消耗 : <strong>9.8 MB</strong>, 在所有 C++ 提交中击败了 <strong>15.58%</strong>的用户。</li>
+<h2 id="LeetCode执行结果">LeetCode执行结果</h2>
+<ul>
+<li>执行用时 : <strong>4 ms</strong>, 在所有 C++ 提交中击败了 **95.63%**的用户。</li>
+<li>内存消耗 : <strong>9.8 MB</strong>, 在所有 C++ 提交中击败了 **15.58%**的用户。</li>
 </ul>
-<h2 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h2><p>其实动规比较简单，有套路可循。尤其是和字符串有关的题目，基本都与子串有关。但是难在子问题的划分，比如这道题中定义 $dp[i]$ 表示以第i个字符结尾的字符串中最长的有效括号长度，这样就比较简单。而我之前想的是定义为子串中最长有效括号的长度，到后面很难处理。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="lang-cpp">#include &lt;iostream&gt;
+<h2 id="感受">感受</h2>
+<p>其实动规比较简单，有套路可循。尤其是和字符串有关的题目，基本都与子串有关。但是难在子问题的划分，比如这道题中定义 $dp[i]$ 表示以第i个字符结尾的字符串中最长的有效括号长度，这样就比较简单。而我之前想的是定义为子串中最长有效括号的长度，到后面很难处理。</p>
+<h2 id="代码">代码</h2>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 #include &lt;vector&gt;
 #include &lt;algorithm&gt;
@@ -560,48 +578,48 @@ using namespace std;
 class Solution
 {
 public:
-    int longestValidParentheses(string s)
-    {
-        if(s.empty())
-        {
-            return 0;
-        }
+	int longestValidParentheses(string s)
+	{
+		if(s.empty())
+		{
+			return 0;
+		}
 
-        vector&lt;int&gt; dp(s.length(),0);
-        dp[0] = 0;
-        for(int i=1; i&lt;s.length(); i++)
-        {
-            if(s[i] == &#39;)&#39;)
-            {
-                if(i - dp[i-1] -1 &gt;= 0 &amp;&amp;  s[i - dp[i-1] -1] == &#39;(&#39;)
-                {
-                    if(i - dp[i-1] -2 &gt;=0)
-                    {
-                        dp[i] = 2 + dp[i-1] + dp[i - dp[i-1] -2];                    
-                    }
-                    else
-                    {
-                        dp[i] = 2 + dp[i-1];                    
-                    }                    
-                }                
-            }    
-            else
-            {
-                dp[i] = 0;
-            }
-        }
-        return *max_element(dp.begin(), dp.end());
-    }
+		vector&lt;int&gt; dp(s.length(),0);
+		dp[0] = 0;
+		for(int i=1; i&lt;s.length(); i++)
+		{
+			if(s[i] == ')')
+			{
+				if(i - dp[i-1] -1 &gt;= 0 &amp;&amp;  s[i - dp[i-1] -1] == '(')
+				{
+					if(i - dp[i-1] -2 &gt;=0)
+					{
+						dp[i] = 2 + dp[i-1] + dp[i - dp[i-1] -2];					
+					}
+					else
+					{
+						dp[i] = 2 + dp[i-1];					
+					}					
+				}				
+			}	
+			else
+			{
+				dp[i] = 0;
+			}
+		}
+		return *max_element(dp.begin(), dp.end());
+	}
 };
 
 int main()
 {
-    string str;
-    std::cout &lt;&lt; &quot;input:&quot;;
-    std::cin &gt;&gt; str;
-    Solution s;
-    std::cout&lt;&lt;s.longestValidParentheses(str)&lt;&lt;std::endl;
-    return 0;
+	string str;
+	std::cout &lt;&lt; &quot;input:&quot;;
+	std::cin &gt;&gt; str;
+	Solution s;
+	std::cout&lt;&lt;s.longestValidParentheses(str)&lt;&lt;std::endl;
+	return 0;
 }
 </code></pre>
 
@@ -731,7 +749,7 @@ int main()
             <ul class="dropdown-menu">
             <li>
                 <a class="sidebar_archives-link" href="/archives/2020/03/">三月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">六月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">5</span></a>
-            </li></ul>
+            </ul>
         </li>
         
     
@@ -748,8 +766,8 @@ int main()
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
-            </li></ul>
+                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
+            </ul>
         </li>
         
     
@@ -810,7 +828,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -912,7 +930,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;YuanXu's Blog
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;YuanXu's Blog
             
         </div>
 

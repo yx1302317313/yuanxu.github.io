@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="zh">
-    <head><meta name="generator" content="Hexo 3.8.0">
+    <head><meta name="generator" content="Hexo 3.9.0">
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
         © Material Theme
@@ -56,10 +56,12 @@
     <link rel="icon" href="/img/favicon.jpg">
 
     <meta name="format-detection" content="telephone=no">
-    <meta name="description" itemprop="description" content="优先队列优先队列是一个特殊的队列.
+    <meta name="description" itemprop="description" content="优先队列
+优先队列是一个特殊的队列.
 
 相同点: 元素从队尾插入, 从队首删除.
 不同点:
+
 队列: 队列是先进先出(FIFO)
 优先队列: 优先队列是根据元素的大小决定元素的出队顺序. 所以称之为优先队列.
 
@@ -250,10 +252,12 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="优先队列 | YuanXu&#39;s Blog">
     <meta property="og:image" content="/img/favicon.jpg">
-    <meta property="og:description" content="优先队列优先队列是一个特殊的队列.
+    <meta property="og:description" content="优先队列
+优先队列是一个特殊的队列.
 
 相同点: 元素从队尾插入, 从队首删除.
 不同点:
+
 队列: 队列是先进先出(FIFO)
 优先队列: 优先队列是根据元素的大小决定元素的出队顺序. 所以称之为优先队列.
 
@@ -305,10 +309,12 @@
         }
     },
     "keywords": ",CodeYuanXu",
-    "description": "优先队列优先队列是一个特殊的队列.
+    "description": "优先队列
+优先队列是一个特殊的队列.
 
 相同点: 元素从队尾插入, 从队首删除.
 不同点:
+
 队列: 队列是先进先出(FIFO)
 优先队列: 优先队列是根据元素的大小决定元素的出队顺序. 所以称之为优先队列.
 
@@ -372,7 +378,8 @@
     <!-- Left aligned menu below button -->
     
     
-    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">format_list_numbered</i>
     </button>
 
@@ -423,7 +430,7 @@
 
     <!-- Author Avatar -->
     <div id="author-avatar">
-        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar">
+        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar"/>
     </div>
     <!-- Author Name & Date -->
     <div>
@@ -453,7 +460,7 @@
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
         <a class="post_tag-link" href="/tags/Code/">Code</a>
-    </li></ul>
+    </ul>
     
 
     <!-- Share -->
@@ -521,45 +528,50 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h2><p>优先队列是一个特殊的队列.</p>
+        <h2 id="优先队列">优先队列</h2>
+<p>优先队列是一个特殊的队列.</p>
 <ul>
 <li>相同点: 元素从队尾插入, 从队首删除.</li>
-<li>不同点:<ul>
+<li>不同点:
+<ul>
 <li>队列: 队列是先进先出(FIFO)</li>
 <li>优先队列: 优先队列是根据元素的大小决定元素的出队顺序. 所以称之为优先队列.</li>
 </ul>
 </li>
 </ul>
 <a id="more"></a>
-<h2 id="C-STL的优先队列"><a href="#C-STL的优先队列" class="headerlink" title="C++ STL的优先队列"></a>C++ STL的优先队列</h2><pre><code class="lang-cpp">#include &lt;queue&gt;
+<h2 id="C-STL的优先队列">C++ STL的优先队列</h2>
+<pre><code class="language-cpp">#include &lt;queue&gt;
 #include &lt;iostream&gt;
 
 int main()
 {
-    std::priority_queue&lt;int&gt; pq;
-    pq.push(1);
-    pq.push(10);
-    pq.push(20);
-    pq.push(18);
-    pq.push(3);
-    pq.push(12);
+	std::priority_queue&lt;int&gt; pq;
+	pq.push(1);
+	pq.push(10);
+	pq.push(20);
+	pq.push(18);
+	pq.push(3);
+	pq.push(12);
+	
+	int size = pq.size();
 
-    int size = pq.size();
-
-    for (int i=0; i &lt; size; i++)
-    {
-        std::cout&lt;&lt;pq.top()&lt;&lt;&#39; &#39;;
-        pq.pop();
-    }
-    std::cout&lt;&lt;std::endl;
-    return 0;
+	for (int i=0; i &lt; size; i++)
+	{
+		std::cout&lt;&lt;pq.top()&lt;&lt;' ';
+		pq.pop();
+	}
+	std::cout&lt;&lt;std::endl;
+	return 0;
 }
 </code></pre>
 <pre><code># 运行结果:
 20 18 12 10 3 1
-</code></pre><h3 id="自定义优先队列比较函数"><a href="#自定义优先队列比较函数" class="headerlink" title="自定义优先队列比较函数"></a>自定义优先队列比较函数</h3><p>优先队列实际上是的一个堆, 在STL中,优先队列默认是一个大顶堆, 从排序角度看, 就是降序排序(从大到小).</p>
+</code></pre>
+<h3 id="自定义优先队列比较函数">自定义优先队列比较函数</h3>
+<p>优先队列实际上是的一个堆, 在STL中,优先队列默认是一个大顶堆, 从排序角度看, 就是降序排序(从大到小).</p>
 <p>让我们看一下优先队列在STL中的说明</p>
-<pre><code class="lang-cpp">/**
+<pre><code class="language-cpp">/**
    *  @brief  A standard container automatically sorting its contents.
    *
    *  @ingroup sequences
@@ -570,48 +582,53 @@ int main()
    *                    less&lt;_Sequence::value_type&gt;.
    */
     template&lt;typename _Tp, typename _Sequence = vector&lt;_Tp&gt;,
-       typename _Compare  = less&lt;typename _Sequence::value_type&gt; &gt;
+	   typename _Compare  = less&lt;typename _Sequence::value_type&gt; &gt;
     class priority_queue
     {}
 </code></pre>
 <p>可以看到priority_queue类模板实际有三个参数.</p>
 <ol>
 <li>_Tp: 元素类型,就是我们存放在优先队列中的元素类型.</li>
-<li>_Sequence: 元素序列, 默认是vector<_tp>.</_tp></li>
-<li>_Compare: 比较函数, 默认是less<_sequence::value_type>. 从这里可以知道默认是大顶堆.</_sequence::value_type></li>
+<li>_Sequence: 元素序列, 默认是vector&lt;_Tp&gt;.</li>
+<li>_Compare: 比较函数, 默认是less&lt;_Sequence::value_type&gt;. 从这里可以知道默认是大顶堆.</li>
 </ol>
 <p>如果我们需要一个从小到大的优先队列, 则要多增加一个比较函数的参数，但是这时第二个参数也需要传入，否则默认参数匹配会出错。</p>
-<pre><code class="lang-cpp">std::priority_queue&lt;int, std::vector&lt;int&gt;, greater&lt;int&gt; pq;    //从小到大的优先队列
+<pre><code class="language-cpp">std::priority_queue&lt;int, std::vector&lt;int&gt;, greater&lt;int&gt; pq;	//从小到大的优先队列
 </code></pre>
-<h3 id="重载比较运算符"><a href="#重载比较运算符" class="headerlink" title="重载比较运算符"></a>重载比较运算符</h3><pre><code class="lang-cpp">
+<h3 id="重载比较运算符">重载比较运算符</h3>
+<pre><code class="language-cpp">
 struct Test
 {
-    int num;
-    char c;
+	int num;
+	char c;
 
-    //注意：必须要用const修饰重载函数
-    bool operator &gt; (const Test&amp; obj) const
-    {
-        return this-&gt;num &gt; obj.num;
-    }
+	//注意：必须要用const修饰重载函数
+	bool operator &gt; (const Test&amp; obj) const
+	{
+		return this-&gt;num &gt; obj.num;
+	}
 
-    bool operator &lt; (const Test&amp; obj) const
-    {
-        return this-&gt;num &lt; obj.num;
-    }
+	bool operator &lt; (const Test&amp; obj) const
+	{
+		return this-&gt;num &lt; obj.num;
+	}
 
 }Test;
 
 int main()
 {
-    priority_queue&lt;Test, vector&lt;Test&gt;, less&lt;Test&gt;&gt; pq1;
-    priority_queue&lt;Test, vector&lt;Test&gt;, greater&lt;Test&gt;&gt; pq2;
+	priority_queue&lt;Test, vector&lt;Test&gt;, less&lt;Test&gt;&gt; pq1;
+	priority_queue&lt;Test, vector&lt;Test&gt;, greater&lt;Test&gt;&gt; pq2;
 
-    return 0;
+	return 0;
 }
+
 </code></pre>
-<h3 id="自定义比较类"><a href="#自定义比较类" class="headerlink" title="自定义比较类"></a>自定义比较类</h3><h2 id="优先队列代码实现"><a href="#优先队列代码实现" class="headerlink" title="优先队列代码实现"></a>优先队列代码实现</h2><p>上面已经提到优先队列实际是一个堆,<br>因此可以通过堆的相关算法实现优先队列.</p>
-<pre><code class="lang-cpp">#include &lt;iostream&gt;
+<h3 id="自定义比较类">自定义比较类</h3>
+<h2 id="优先队列代码实现">优先队列代码实现</h2>
+<p>上面已经提到优先队列实际是一个堆,
+因此可以通过堆的相关算法实现优先队列.</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 #include &lt;cmath&gt;
 
@@ -619,114 +636,115 @@ template&lt;class T&gt;
 class PriorityQueue
 {
 private:
-    std::vector&lt;T&gt; data;
+	std::vector&lt;T&gt; data;
 
 public:
-    PriorityQueue()
-    {
+	PriorityQueue()
+	{
 
-    }
+	}
+	
+	bool empty() const 
+	{
+		return data.size()? false:true;
+	}
 
-    bool empty() const 
-    {
-        return data.size()? false:true;
-    }
+	int size() const 
+	{
+		return data.size();
+	}
 
-    int size() const 
-    {
-        return data.size();
-    }
+	T top() const 
+	{
+		if (!this-&gt;empty())
+		{
+			return this-&gt;data[0];
+		}
+		
+		return 0;
+	}
+	
+	void push(T data)
+	{
+		this-&gt;pushHeap(data);
+	}
 
-    T top() const 
-    {
-        if (!this-&gt;empty())
-        {
-            return this-&gt;data[0];
-        }
-
-        return 0;
-    }
-
-    void push(T data)
-    {
-        this-&gt;pushHeap(data);
-    }
-
-    void pop()
-    {
-        this-&gt;popHeap();
-    }
+	void pop()
+	{
+		this-&gt;popHeap();
+	}
 
 private: 
-    void popHeap()
-    {
-        this-&gt;data.erase(this-&gt;data.begin());    //delete the top 
-        this-&gt;adjustHeap(0, this-&gt;data.size());    //adjust heap 
-    }
+	void popHeap()
+	{
+		this-&gt;data.erase(this-&gt;data.begin());	//delete the top 
+		this-&gt;adjustHeap(0, this-&gt;data.size());	//adjust heap 
+	}
 
-    void adjustHeap(int i, int length)
-    {
-        for(int child = 2*i+1; child &lt; length; child = 2*i+1)
-        {
-            if(child + 1 &lt; length &amp;&amp; this-&gt;data[child+1] &gt; this-&gt;data[child])
-            {
-                child += 1;
-            }
-            if(this-&gt;data[child] &gt; this-&gt;data[i])
-            {
-                this-&gt;swap(this-&gt;data[child], this-&gt;data[i]);
-                i = child;
-            }
-            else 
-            {
-                break; // adjust over 
-            }
-        }
-    }
+	void adjustHeap(int i, int length)
+	{
+		for(int child = 2*i+1; child &lt; length; child = 2*i+1)
+		{
+			if(child + 1 &lt; length &amp;&amp; this-&gt;data[child+1] &gt; this-&gt;data[child])
+			{
+				child += 1;
+			}
+			if(this-&gt;data[child] &gt; this-&gt;data[i])
+			{
+				this-&gt;swap(this-&gt;data[child], this-&gt;data[i]);
+				i = child;
+			}
+			else 
+			{
+				break; // adjust over 
+			}
+		}
+	}
 
-    void pushHeap(T data)
-    {
-        this-&gt;data.push_back(data);
-        int end = this-&gt;data.size()-1;  
+	void pushHeap(T data)
+	{
+		this-&gt;data.push_back(data);
+		int end = this-&gt;data.size()-1;  
 
-        for(int i=floor(end*0.5 - 0.5); i&gt;=0; i=floor(i*0.5 - 0.5))
-        {
-            this-&gt;adjustHeap(i, end+1);
-        }
-    }
+		for(int i=floor(end*0.5 - 0.5); i&gt;=0; i=floor(i*0.5 - 0.5))
+		{
+			this-&gt;adjustHeap(i, end+1);
+		}
+	}
 
-    void swap(T &amp;a, T &amp;b)
-    {
-        T temp = a;
-        a = b;
-        b = temp;
-    }
+	void swap(T &amp;a, T &amp;b)
+	{
+		T temp = a;
+		a = b;
+		b = temp;
+	}
 };
 
 
 int main()
 {
-    PriorityQueue&lt;int&gt; pq;
+	PriorityQueue&lt;int&gt; pq;
+	
+	pq.push(1);
+	pq.push(10);
+	pq.push(20);
+	pq.push(18);
+	pq.push(3);
+	pq.push(12);
 
-    pq.push(1);
-    pq.push(10);
-    pq.push(20);
-    pq.push(18);
-    pq.push(3);
-    pq.push(12);
+	int size = pq.size();
 
-    int size = pq.size();
-
-    for (int i=0; i &lt; size; i++)
-    {
-        std::cout&lt;&lt;pq.top()&lt;&lt;&#39; &#39;;
-        pq.pop();
-    }
-    std::cout&lt;&lt;std::endl;        
-    return 0;
+	for (int i=0; i &lt; size; i++)
+	{
+		std::cout&lt;&lt;pq.top()&lt;&lt;' ';
+		pq.pop();
+	}
+	std::cout&lt;&lt;std::endl;		
+	return 0;
 }
 </code></pre>
-<h3 id="END"><a href="#END" class="headerlink" title="END"></a>END</h3>
+<h3 id="END">END</h3>
+
         
     
 
@@ -853,7 +871,7 @@ int main()
             <ul class="dropdown-menu">
             <li>
                 <a class="sidebar_archives-link" href="/archives/2020/03/">三月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">六月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">5</span></a>
-            </li></ul>
+            </ul>
         </li>
         
     
@@ -870,8 +888,8 @@ int main()
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
-            </li></ul>
+                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
+            </ul>
         </li>
         
     
@@ -932,7 +950,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -1034,7 +1052,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;YuanXu's Blog
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;YuanXu's Blog
             
         </div>
 

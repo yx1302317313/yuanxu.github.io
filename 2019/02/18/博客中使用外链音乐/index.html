@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="zh">
-    <head><meta name="generator" content="Hexo 3.8.0">
+    <head><meta name="generator" content="Hexo 3.9.0">
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
         © Material Theme
@@ -57,7 +57,7 @@
 
     <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content="
-在博客中加入音乐, 可以使读者在阅读时纵享丝滑(德芙是不是应该给我广告费&amp;lt;^_^&amp;gt;)。
+在博客中加入音乐, 可以使读者在阅读时纵享丝滑(德芙是不是应该给我广告费&amp;lt;_&amp;gt;)。
 ">
     <meta name="keywords" content="YuanXu">
     <meta name="theme-color" content="#0097A7">
@@ -245,7 +245,7 @@
     <meta property="og:title" content="博客中使用外链音乐 | YuanXu&#39;s Blog">
     <meta property="og:image" content="/img/favicon.jpg">
     <meta property="og:description" content="
-在博客中加入音乐, 可以使读者在阅读时纵享丝滑(德芙是不是应该给我广告费&amp;lt;^_^&amp;gt;)。
+在博客中加入音乐, 可以使读者在阅读时纵享丝滑(德芙是不是应该给我广告费&amp;lt;_&amp;gt;)。
 ">
     
 
@@ -294,7 +294,7 @@
     },
     "keywords": "YuanXu",
     "description": "
-在博客中加入音乐, 可以使读者在阅读时纵享丝滑(德芙是不是应该给我广告费&amp;lt;^_^&amp;gt;)。
+在博客中加入音乐, 可以使读者在阅读时纵享丝滑(德芙是不是应该给我广告费&amp;lt;_&amp;gt;)。
 ",
 }
 </script>
@@ -354,7 +354,8 @@
     <!-- Left aligned menu below button -->
     
     
-    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">format_list_numbered</i>
     </button>
 
@@ -405,7 +406,7 @@
 
     <!-- Author Avatar -->
     <div id="author-avatar">
-        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar">
+        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar"/>
     </div>
     <!-- Author Name & Date -->
     <div>
@@ -495,7 +496,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <blockquote>
-<p>在博客中加入音乐, 可以使读者在阅读时纵享丝滑(德芙是不是应该给我广告费&lt;^_^&gt;)。</p>
+<p>在博客中加入音乐, 可以使读者在阅读时纵享丝滑(德芙是不是应该给我广告费&lt;<sup>_</sup>&gt;)。</p>
 </blockquote>
 <a id="more"></a>
 <p>一般在博客中嵌入的音乐有两种方式:</p>
@@ -503,18 +504,18 @@
 <li>使用本地音乐 :就是将自己本地的音乐上传到服务器上, 加载到不可中.</li>
 <li>使用其他音乐平台的音乐: 通过链接访问其他服务器的音乐资源, 将资源加载到你的博客.</li>
 </ul>
-<h3 id="网易云音乐"><a href="#网易云音乐" class="headerlink" title="网易云音乐"></a>网易云音乐</h3><blockquote>
+<h3 id="网易云音乐">网易云音乐</h3>
+<blockquote>
 <p>自从入坑网易云之后, 一直再用网易云. 网易云网页版自身提供了生成外链的接口.</p>
 </blockquote>
 <div align="center">
 <img src="/img/blog/blog-music1.png" width="500">
 </div>
-
 <p>网易云外链:</p>
 <blockquote>
-<p>只需要修改src=””网址中的id为对应音乐的id即可.</p>
+<p>只需要修改src=&quot;&quot;网址中的id为对应音乐的id即可.</p>
 </blockquote>
-<pre><code class="lang-html">&lt;div align=center&gt;
+<pre><code class="language-html">&lt;div align=center&gt;
 &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=330 height=86 src=&quot;//music.163.com/outchain/player?type=2&amp;id=1312971394&amp;auto=1&amp;height=66&quot;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 </code></pre>
@@ -522,37 +523,36 @@
 <div align="center">
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=414118616&auto=1&height=66"></iframe>
 </div>
-
 <p>再来一个:</p>
 <div align="center">
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=526464293&auto=1&height=66"></iframe>
 </div>
-
 <p>咦,你会发现上面的音乐不能播放.原因如下:</p>
-<p><strong>由于我国版权意识越来越强(&gt;_&lt;), 有些音乐需要付费才能下载, 同样需要付费下载的音乐不能通过外链播放.所以使用网易云外链只能链接免费歌曲(<del>也就是大多数音乐是不能外链的</del>).</strong></p>
+<p><strong>由于我国版权意识越来越强(&gt;_&lt;), 有些音乐需要付费才能下载, 同样需要付费下载的音乐不能通过外链播放.所以使用网易云外链只能链接免费歌曲(<s>也就是大多数音乐是不能外链的</s>).</strong></p>
 <blockquote>
 <p>其他音乐平台的音乐也可以外链,比如QQ音乐.具体方法类似,只是链接的html格式不同,这里就不多说了.</p>
 </blockquote>
-<p>对于付费歌曲还是有解决办法的, 就是上面提到的第一种方法—本地音乐.</p>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>提供一个链接: <a href="https://music.liuzhijin.cn/" target="_blank" rel="noopener">https://music.liuzhijin.cn/</a></p>
+<p>对于付费歌曲还是有解决办法的, 就是上面提到的第一种方法–本地音乐.</p>
+<h3 id="解决办法">解决办法</h3>
+<p>提供一个链接: <a href="https://music.liuzhijin.cn/" target="_blank" rel="noopener">https://music.liuzhijin.cn/</a></p>
 <div align="center">
 <img src="/img/blog/blog-music2.png" width="700">
 </div>
-
 <p>在该网站中, 搜索你需要的音乐, 复制右边的链接.将下面代码中src的内容改为你复制的链接, 就搞定了.</p>
-<pre><code class="lang-html">&lt;div align=center&gt;
+<pre><code class="language-html">&lt;div align=center&gt;
 &lt;audio controls&gt;
-    &lt;source src=&quot;http://m10.music.126.net/20190218180725/937019887458e8d14806f9b1623ec119/ymusic/6428/0c3d/4a14/cef6263c9a09bfc03fafbb15f6a99533.mp3&quot; &gt;
+	&lt;source src=&quot;http://m10.music.126.net/20190218180725/937019887458e8d14806f9b1623ec119/ymusic/6428/0c3d/4a14/cef6263c9a09bfc03fafbb15f6a99533.mp3&quot; &gt;
 &lt;/audio&gt;
 &lt;/div&gt;
 </code></pre>
 <p>效果如下:</p>
 <blockquote>
-<p>和之前的网易云外链比起来, 界面确实”空空如也”…<br>但也知足吧.如果你想美化界面, 也是可以的.</p>
+<p>和之前的网易云外链比起来, 界面确实&quot;空空如也&quot;…
+但也知足吧.如果你想美化界面, 也是可以的.</p>
 </blockquote>
 <div align="center">
 <audio controls>
-    <source src="/music/空空如也.mp3">
+	<source src="/music/空空如也.mp3">
 </audio>
 <p>空空如也-任然</p>
 </div>
@@ -683,7 +683,7 @@
             <ul class="dropdown-menu">
             <li>
                 <a class="sidebar_archives-link" href="/archives/2020/03/">三月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">六月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">5</span></a>
-            </li></ul>
+            </ul>
         </li>
         
     
@@ -700,8 +700,8 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
-            </li></ul>
+                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
+            </ul>
         </li>
         
     
@@ -762,7 +762,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -864,7 +864,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;YuanXu's Blog
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;YuanXu's Blog
             
         </div>
 

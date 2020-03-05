@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="zh">
-    <head><meta name="generator" content="Hexo 3.8.0">
+    <head><meta name="generator" content="Hexo 3.9.0">
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
         © Material Theme
@@ -354,7 +354,8 @@
     <!-- Left aligned menu below button -->
     
     
-    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">format_list_numbered</i>
     </button>
 
@@ -405,7 +406,7 @@
 
     <!-- Author Avatar -->
     <div id="author-avatar">
-        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar">
+        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar"/>
     </div>
     <!-- Author Name & Date -->
     <div>
@@ -435,7 +436,7 @@
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
         <a class="post_tag-link" href="/tags/TensorFlow/">TensorFlow</a>
-    </li></ul>
+    </ul>
     
 
     <!-- Share -->
@@ -506,14 +507,13 @@
         <div align="center">
 <img src="/img/blog/TensorBoard.png" height="600" width="800">
 </div>
-
 <a id="more"></a>
 <div align="center"> 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=554242032&auto=1&height=66"></iframe>
 <!--audio src="/music/体面.mp3" controls></audio-->
 </div>
-
-<h3 id="TensorBoard-数据形式"><a href="#TensorBoard-数据形式" class="headerlink" title="TensorBoard 数据形式"></a>TensorBoard 数据形式</h3><p><details>
+<h3 id="TensorBoard-数据形式">TensorBoard 数据形式</h3>
+<details>
     <summary> 数据类型 </summary>
     <p> 1: 标量Scalars  </p>
     <p> 2: 图片Images  </p>
@@ -522,8 +522,10 @@
     <p> 5: 数据分布Distribution  </p>
     <p> 6: 直方图Histogtams  </p>
     <p> 7: 嵌入向量Embeddings  </p>
-</details><br><br></p>
-<h4 id="添加数据代码"><a href="#添加数据代码" class="headerlink" title="添加数据代码"></a>添加数据代码</h4><pre><code class="lang-python">import tensorflow as tf
+</details>
+<br>
+<h4 id="添加数据代码">添加数据代码</h4>
+<pre><code class="language-python">import tensorflow as tf
 
 tf.summary.scalar(name, scalar)
 tf.summary.image(name, image)
@@ -533,20 +535,22 @@ tf.summary.distribution(name, distribution)
 tf.summary.graph(name, graph)
 tf.summary.embeddings(name, embedding)
 </code></pre>
-<h3 id="TensorBoard-可视化过程"><a href="#TensorBoard-可视化过程" class="headerlink" title="TensorBoard 可视化过程"></a>TensorBoard 可视化过程</h3><ol>
+<h3 id="TensorBoard-可视化过程">TensorBoard 可视化过程</h3>
+<ol>
 <li>建立计算图graph, 你可以从改图中得到你想要的数据信息</li>
 <li>在计算图的结点防止summary operation用来记录信息</li>
 <li>运行summary operation, 只是建立了summary operation而不run, operation并不会真正执行. 有时, 我们有很多summary operation需要运行, 但是一个一个run会很麻烦. 这时, 可以利用tf.summary.merge_all()将所有结点合并成一个结点, 运行这个结点, 就可以产生所有设置的summary Data.</li>
 <li>将数据保存得到本地磁盘, tf.summary.FileWriter(logs_path, graph=my_graph)</li>
 <li>运行整个程序，并在命令行输入运行tensorboard的指令，之后打开web端可查看可视化的结果.</li>
 </ol>
-<h4 id="Python代码"><a href="#Python代码" class="headerlink" title="Python代码"></a>Python代码</h4><p>该demo使用了tensorflow提供的手写体识别数据</p>
-<pre><code class="lang-python">
+<h4 id="Python代码">Python代码</h4>
+<p>该demo使用了tensorflow提供的手写体识别数据</p>
+<pre><code class="language-python">
 from tensorflow.examples.tutorials.mnist import input_data
 import tensorflow as tf
 import os
 
-os.environ[&#39;TF_CPP_MIN_LOG_LEVEL&#39;] = &#39;2&#39;
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 logs_path = &quot;five_layers_log&quot;
 batch_size = 100
@@ -616,36 +620,37 @@ with tf.Session() as sess:
         print(&quot;Epoch&quot;, epoch)
     print(&quot;Accuracy&quot;, accuracy.eval(feed_dict={x: mnist.test.images, y: mnist.test.labels}))
     print(&quot;Done&quot;)
+
 </code></pre>
-<h4 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h4><pre><code class="lang-shell"># 运行Python程序
+<h4 id="查看结果">查看结果</h4>
+<pre><code class="language-shell"># 运行Python程序
 $ python3 hw_recognition.py # python 文件名
 
 # 查看tensorboard
-$ tensorboard --logdir=&#39;five_layers_log&#39; # 程序中保存的数据路径
+$ tensorboard --logdir='five_layers_log' # 程序中保存的数据路径
 </code></pre>
-<h3 id="Web端TensorBoard"><a href="#Web端TensorBoard" class="headerlink" title="Web端TensorBoard"></a>Web端TensorBoard</h3><p>用浏览器打开网址 <a href="http://127.0.1.1:6006" target="_blank" rel="noopener">http://127.0.1.1:6006</a> 查看. 下面是部分截图.</p>
+<h3 id="Web端TensorBoard">Web端TensorBoard</h3>
+<p>用浏览器打开网址 <a href="http://127.0.1.1:6006" target="_blank" rel="noopener">http://127.0.1.1:6006</a> 查看. 下面是部分截图.</p>
 <ol>
 <li>scalar</li>
 </ol>
 <div align="center">
 <img src="/img/blog/tensorboard_scalar.png" height="400" width="600">
 </div>
-
-<ol>
+<ol start="2">
 <li>image</li>
 </ol>
 <div align="center">
 <img src="/img/blog/tensorboard_image.png" height="400" width="600">
 </div>
-
-<ol>
+<ol start="3">
 <li>graph</li>
 </ol>
 <div align="center">
 <img src="/img/blog/tensorboard_graph.png" height="400" width="600">
 </div>
+<h3 id="END">END</h3>
 
-<h3 id="END"><a href="#END" class="headerlink" title="END"></a>END</h3>
         
     
 
@@ -772,7 +777,7 @@ $ tensorboard --logdir=&#39;five_layers_log&#39; # 程序中保存的数据路�
             <ul class="dropdown-menu">
             <li>
                 <a class="sidebar_archives-link" href="/archives/2020/03/">三月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">六月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">5</span></a>
-            </li></ul>
+            </ul>
         </li>
         
     
@@ -789,8 +794,8 @@ $ tensorboard --logdir=&#39;five_layers_log&#39; # 程序中保存的数据路�
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
-            </li></ul>
+                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
+            </ul>
         </li>
         
     
@@ -851,7 +856,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -953,7 +958,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;YuanXu's Blog
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;YuanXu's Blog
             
         </div>
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="zh">
-    <head><meta name="generator" content="Hexo 3.8.0">
+    <head><meta name="generator" content="Hexo 3.9.0">
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
         © Material Theme
@@ -57,6 +57,7 @@
 
     <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content="zip
+
 Python2: 将对象中对应的元素打包成元组(tuple), 返回由这些元组组成的列表. 可以用*解压.
 ">
     <meta name="keywords" content="YuanXu,Code">
@@ -245,6 +246,7 @@ Python2: 将对象中对应的元素打包成元组(tuple), 返回由这些元�
     <meta property="og:title" content="Python内建函数 | YuanXu&#39;s Blog">
     <meta property="og:image" content="/img/favicon.jpg">
     <meta property="og:description" content="zip
+
 Python2: 将对象中对应的元素打包成元组(tuple), 返回由这些元组组成的列表. 可以用*解压.
 ">
     <meta property="og:article:tag" content="Code"> 
@@ -294,6 +296,7 @@ Python2: 将对象中对应的元素打包成元组(tuple), 返回由这些元�
     },
     "keywords": ",CodeYuanXu",
     "description": "zip
+
 Python2: 将对象中对应的元素打包成元组(tuple), 返回由这些元组组成的列表. 可以用*解压.
 ",
 }
@@ -354,7 +357,8 @@ Python2: 将对象中对应的元素打包成元组(tuple), 返回由这些元�
     <!-- Left aligned menu below button -->
     
     
-    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">format_list_numbered</i>
     </button>
 
@@ -405,7 +409,7 @@ Python2: 将对象中对应的元素打包成元组(tuple), 返回由这些元�
 
     <!-- Author Avatar -->
     <div id="author-avatar">
-        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar">
+        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar"/>
     </div>
     <!-- Author Name & Date -->
     <div>
@@ -435,7 +439,7 @@ Python2: 将对象中对应的元素打包成元组(tuple), 返回由这些元�
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
         <a class="post_tag-link" href="/tags/Code/">Code</a>
-    </li></ul>
+    </ul>
     
 
     <!-- Share -->
@@ -503,11 +507,12 @@ Python2: 将对象中对应的元素打包成元组(tuple), 返回由这些元�
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h3 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h3><blockquote>
+        <h3 id="zip">zip</h3>
+<blockquote>
 <p>Python2: 将对象中对应的元素打包成元组(tuple), 返回由这些元组组成的列表. 可以用*解压.</p>
 </blockquote>
 <a id="more"></a>
-<pre><code class="lang-python">&gt;&gt;&gt;a = [1,2,3]
+<pre><code class="language-python">&gt;&gt;&gt;a = [1,2,3]
 &gt;&gt;&gt;b = [4,5,6]
 &gt;&gt;&gt;zip(a, b)
 [(1,4),(2,5),(3,6)]
@@ -516,29 +521,34 @@ Python2: 将对象中对应的元素打包成元组(tuple), 返回由这些元�
 </code></pre>
 <blockquote>
 <p>Python3: 将对象中对应的元素打包成元组(tuple), 返回由这些元组组成的对象, 可以有*解压.</p>
-<pre><code class="lang-python">&gt;&gt;a = [1,2,3]
-&gt;&gt;b = [4,5,6]
-&gt;&gt;list(zip(a, b)) # 转化成列表
+</blockquote>
+<pre><code class="language-python">&gt;&gt;&gt;a = [1,2,3]
+&gt;&gt;&gt;b = [4,5,6]
+&gt;&gt;&gt;list(zip(a, b)) # 转化成列表
 [(1,4),(2,5),(3,6)]
-&gt;&gt;print(*zip(a,b))
+&gt;&gt;&gt;print(*zip(a,b))
 (1,4) (2,5) (3,6)
 </code></pre>
-</blockquote>
 <hr>
-<h3 id="字典dict"><a href="#字典dict" class="headerlink" title="字典dict"></a>字典dict</h3><h4 id="遍历key"><a href="#遍历key" class="headerlink" title="遍历key"></a>遍历key</h4><pre><code class="lang-python">for key in d.keys():
+<h3 id="字典dict">字典dict</h3>
+<h4 id="遍历key">遍历key</h4>
+<pre><code class="language-python">for key in d.keys():
     print(key)
 
 for key in d:
     print(key)
 </code></pre>
-<h4 id="遍历value"><a href="#遍历value" class="headerlink" title="遍历value"></a>遍历value</h4><pre><code class="lang-python">for value in d.values():
+<h4 id="遍历value">遍历value</h4>
+<pre><code class="language-python">for value in d.values():
     print(value)
+
 </code></pre>
-<h4 id="遍历key和value"><a href="#遍历key和value" class="headerlink" title="遍历key和value"></a>遍历key和value</h4><pre><code class="lang-python">for key in d:
-    print key,&#39;corresponds to&#39;, d[key]
+<h4 id="遍历key和value">遍历key和value</h4>
+<pre><code class="language-python">for key in d:
+    print key,'corresponds to', d[key]
 
 for key, value in d.items():
-    print key,&#39;corresponds to&#39;,value
+    print key,'corresponds to',value
 </code></pre>
 
         
@@ -667,7 +677,7 @@ for key, value in d.items():
             <ul class="dropdown-menu">
             <li>
                 <a class="sidebar_archives-link" href="/archives/2020/03/">三月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">六月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">5</span></a>
-            </li></ul>
+            </ul>
         </li>
         
     
@@ -684,8 +694,8 @@ for key, value in d.items():
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
-            </li></ul>
+                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
+            </ul>
         </li>
         
     
@@ -746,7 +756,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -848,7 +858,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;YuanXu's Blog
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;YuanXu's Blog
             
         </div>
 

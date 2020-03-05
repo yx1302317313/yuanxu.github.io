@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="zh">
-    <head><meta name="generator" content="Hexo 3.8.0">
+    <head><meta name="generator" content="Hexo 3.9.0">
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
         © Material Theme
@@ -56,7 +56,7 @@
     <link rel="icon" href="/img/favicon.jpg">
 
     <meta name="format-detection" content="telephone=no">
-    <meta name="description" itemprop="description" content="">
+    <meta name="description" itemprop="description" content>
     <meta name="keywords" content="YuanXu,C++,Code">
     <meta name="theme-color" content="#0097A7">
 
@@ -242,7 +242,7 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="LeetCode-扰乱字符串 | YuanXu&#39;s Blog">
     <meta property="og:image" content="/img/favicon.jpg">
-    <meta property="og:description" content="">
+    <meta property="og:description" content>
     <meta property="og:article:tag" content="C++"> <meta property="og:article:tag" content="Code"> 
 
     
@@ -348,7 +348,8 @@
     <!-- Left aligned menu below button -->
     
     
-    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">format_list_numbered</i>
     </button>
 
@@ -399,7 +400,7 @@
 
     <!-- Author Avatar -->
     <div id="author-avatar">
-        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar">
+        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar"/>
     </div>
     <!-- Author Name & Date -->
     <div>
@@ -429,7 +430,7 @@
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
         <a class="post_tag-link" href="/tags/C/">C++</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Code/">Code</a>
-    </li></ul>
+    </ul>
     
 
     <!-- Share -->
@@ -497,8 +498,9 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h3 id="题目：扰乱字符串"><a href="#题目：扰乱字符串" class="headerlink" title="题目：扰乱字符串"></a>题目：扰乱字符串</h3><p>给定一个字符串 s1，我们可以把它递归地分割成两个非空子字符串，从而将其表示为二叉树。</p>
-<p>下图是字符串 s1 = “great” 的一种可能的表示形式。</p>
+        <h3 id="题目：扰乱字符串">题目：扰乱字符串</h3>
+<p>给定一个字符串 s1，我们可以把它递归地分割成两个非空子字符串，从而将其表示为二叉树。</p>
+<p>下图是字符串 s1 = “great” 的一种可能的表示形式。</p>
 <pre><code>    great
    /    \
   gr    eat
@@ -506,8 +508,9 @@
 g   r  e   at
            / \
           a   t
-</code></pre><p>在扰乱这个字符串的过程中，我们可以挑选任何一个非叶节点，然后交换它的两个子节点。</p>
-<p>例如，如果我们挑选非叶节点 “gr” ，交换它的两个子节点，将会产生扰乱字符串 “rgeat” 。</p>
+</code></pre>
+<p>在扰乱这个字符串的过程中，我们可以挑选任何一个非叶节点，然后交换它的两个子节点。</p>
+<p>例如，如果我们挑选非叶节点 “gr” ，交换它的两个子节点，将会产生扰乱字符串 “rgeat” 。</p>
 <pre><code>    rgeat
    /    \
   rg    eat
@@ -515,8 +518,9 @@ g   r  e   at
 r   g  e   at
            / \
           a   t
-</code></pre><p>我们将 “rgeat” 称作 “great” 的一个扰乱字符串。</p>
-<p>同样地，如果我们继续交换节点 “eat” 和 “at” 的子节点，将会产生另一个新的扰乱字符串 “rgtae” 。</p>
+</code></pre>
+<p>我们将 &quot;rgeat” 称作 “great” 的一个扰乱字符串。</p>
+<p>同样地，如果我们继续交换节点 “eat” 和 “at” 的子节点，将会产生另一个新的扰乱字符串 “rgtae” 。</p>
 <pre><code>    rgtae
    /    \
   rg    tae
@@ -524,27 +528,35 @@ r   g  e   at
 r   g  ta  e
        / \
       t   a
-</code></pre><p>我们将 “rgtae” 称作 “great” 的一个扰乱字符串。</p>
-<p>给出两个长度相等的字符串 s1 和 s2，判断 s2 是否是 s1 的扰乱字符串。</p>
-<p>示例 1:</p>
+</code></pre>
+<p>我们将 &quot;rgtae” 称作 “great” 的一个扰乱字符串。</p>
+<p>给出两个长度相等的字符串 s1 和 s2，判断 s2 是否是 s1 的扰乱字符串。</p>
+<p>示例 1:</p>
 <pre><code>输入: s1 = &quot;great&quot;, s2 = &quot;rgeat&quot;
 输出: true
-</code></pre><p>示例 2:</p>
+</code></pre>
+<p>示例 2:</p>
 <pre><code>输入: s1 = &quot;abcde&quot;, s2 = &quot;caebd&quot;
 输出: false
-</code></pre><p>来源：力扣（LeetCode）。链接：<a href="https://leetcode-cn.com/problems/scramble-string" target="_blank" rel="noopener">https://leetcode-cn.com/problems/scramble-string</a></p>
-<h3 id="解题思路：递归"><a href="#解题思路：递归" class="headerlink" title="解题思路：递归"></a>解题思路：递归</h3><p>由于无法得知原字符串分割的位置，所以通过蛮力遍历每一个位置对原字符串进行分割，然后比较原字符串和扰乱字符串分割之后的子串是否相等。子串同样进行了分割，则需要再对子串进行分割判断。这个时候就可以使用递归了。</p>
+</code></pre>
+<p>来源：力扣（LeetCode）。链接：<a href="https://leetcode-cn.com/problems/scramble-string" target="_blank" rel="noopener">https://leetcode-cn.com/problems/scramble-string</a></p>
+<h3 id="解题思路：递归">解题思路：递归</h3>
+<p>由于无法得知原字符串分割的位置，所以通过蛮力遍历每一个位置对原字符串进行分割，然后比较原字符串和扰乱字符串分割之后的子串是否相等。子串同样进行了分割，则需要再对子串进行分割判断。这个时候就可以使用递归了。</p>
 <p>由于分割之后还可能进行交换，所以需要判断两种情况：</p>
 <ol>
 <li>直接对原字符串进行分割，比较原字符串和扰乱字符串分割之后的子串是否相等。即s1[0, i] == s2[0, i] &amp;&amp; s1[i+1, len - 1] == s2[i+1, len -1]。</li>
 <li>将分割后的两个子串交换，然后比较交换后的子串。s1[0, i] == s2[len-1 - i, len-1] &amp;&amp; s1[i+1, len - 1] == s2[0, len-i]。</li>
 </ol>
-<p>优化：<br>由于分割交换并不会改变字符串中字符的个数，所以可以通过统计并比较两字符串中各字符的个数是否相等做一次筛选。<br>如果不等，则一定不是扰乱字符串。这是一个 <strong>必要条件</strong>。</p>
-<h3 id="LeetCode-运行结果"><a href="#LeetCode-运行结果" class="headerlink" title="LeetCode 运行结果"></a>LeetCode 运行结果</h3><ul>
+<p>优化：
+由于分割交换并不会改变字符串中字符的个数，所以可以通过统计并比较两字符串中各字符的个数是否相等做一次筛选。
+如果不等，则一定不是扰乱字符串。这是一个 <strong>必要条件</strong>。</p>
+<h3 id="LeetCode-运行结果">LeetCode 运行结果</h3>
+<ul>
 <li>执行用时 :8 ms, 在所有 C++ 提交中击败88.36的用户。</li>
 <li>内存消耗 :10 MB, 在所有 C++ 提交中击败了78.16%的用户。</li>
 </ul>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="lang-cpp">class Solution
+<h3 id="代码">代码</h3>
+<pre><code class="language-cpp">class Solution
 {
 public:
         bool isScramble(string s1, string s2)
@@ -576,8 +588,8 @@ public:
                 int char_num[26] = {0};
                 for(int i=0; i&lt;m;i++)
                 {
-                        char_num[s1[i] - &#39;a&#39;]++;
-                        char_num[s2[i] - &#39;a&#39;]--;
+                        char_num[s1[i] - 'a']++;
+                        char_num[s2[i] - 'a']--;
                 }
 
                 for(int i=0; i&lt;26; i++)
@@ -607,6 +619,7 @@ public:
                 return false;
         }
 };
+
 </code></pre>
 
         
@@ -735,7 +748,7 @@ public:
             <ul class="dropdown-menu">
             <li>
                 <a class="sidebar_archives-link" href="/archives/2020/03/">三月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">六月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">5</span></a>
-            </li></ul>
+            </ul>
         </li>
         
     
@@ -752,8 +765,8 @@ public:
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
-            </li></ul>
+                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
+            </ul>
         </li>
         
     
@@ -814,7 +827,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -916,7 +929,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;YuanXu's Blog
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;YuanXu's Blog
             
         </div>
 

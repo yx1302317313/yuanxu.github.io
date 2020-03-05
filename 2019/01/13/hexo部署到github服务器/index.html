@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="zh">
-    <head><meta name="generator" content="Hexo 3.8.0">
+    <head><meta name="generator" content="Hexo 3.9.0">
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
         © Material Theme
@@ -56,7 +56,9 @@
     <link rel="icon" href="/img/favicon.jpg">
 
     <meta name="format-detection" content="telephone=no">
-    <meta name="description" itemprop="description" content="1. 创建github用户如果你已经有了github的账号, 这一步直接跳过就好.如果没有, 请参考下面的教程申请github账号并在你的计算机上添加ssh公钥">
+    <meta name="description" itemprop="description" content="1. 创建github用户
+如果你已经有了github的账号, 这一步直接跳过就好.
+如果没有, 请参考下面的教程申请github账号并在你的计算机上添加ssh公钥">
     <meta name="keywords" content="YuanXu">
     <meta name="theme-color" content="#0097A7">
 
@@ -242,7 +244,9 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="hexo部署到github服务器 | YuanXu&#39;s Blog">
     <meta property="og:image" content="/img/favicon.jpg">
-    <meta property="og:description" content="1. 创建github用户如果你已经有了github的账号, 这一步直接跳过就好.如果没有, 请参考下面的教程申请github账号并在你的计算机上添加ssh公钥">
+    <meta property="og:description" content="1. 创建github用户
+如果你已经有了github的账号, 这一步直接跳过就好.
+如果没有, 请参考下面的教程申请github账号并在你的计算机上添加ssh公钥">
     
 
     
@@ -289,7 +293,9 @@
         }
     },
     "keywords": "YuanXu",
-    "description": "1. 创建github用户如果你已经有了github的账号, 这一步直接跳过就好.如果没有, 请参考下面的教程申请github账号并在你的计算机上添加ssh公钥",
+    "description": "1. 创建github用户
+如果你已经有了github的账号, 这一步直接跳过就好.
+如果没有, 请参考下面的教程申请github账号并在你的计算机上添加ssh公钥",
 }
 </script>
 
@@ -348,7 +354,8 @@
     <!-- Left aligned menu below button -->
     
     
-    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">format_list_numbered</i>
     </button>
 
@@ -399,7 +406,7 @@
 
     <!-- Author Avatar -->
     <div id="author-avatar">
-        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar">
+        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar"/>
     </div>
     <!-- Author Name & Date -->
     <div>
@@ -488,26 +495,40 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h3 id="1-创建github用户"><a href="#1-创建github用户" class="headerlink" title="1. 创建github用户"></a>1. 创建github用户</h3><p>如果你已经有了github的账号, 这一步直接跳过就好.<br>如果没有, 请参考下面的教程申请github账号并在你的计算机上添加ssh公钥</p>
+        <h3 id="1-创建github用户">1. 创建github用户</h3>
+<p>如果你已经有了github的账号, 这一步直接跳过就好.
+如果没有, 请参考下面的教程申请github账号并在你的计算机上添加ssh公钥</p>
 <a id="more"></a>
 <p><a href="https://github.com/gotgit/gotgithub/blob/master/02-join-github/010-account-setup.rst" target="_blank" rel="noopener">https://github.com/gotgit/gotgithub/blob/master/02-join-github/010-account-setup.rst</a></p>
-<h3 id="2-创建用于部署博客的github仓库"><a href="#2-创建用于部署博客的github仓库" class="headerlink" title="2. 创建用于部署博客的github仓库"></a>2. 创建用于部署博客的github仓库</h3><p>github每一个用户都有一个特殊的仓库, &lt; username &gt;.github.io (&lt; username &gt; 是你的用户名)<br>将hexo生成的静态文件部署到在这个仓库, 可以通过访问http://&lt; username &gt;.github.io来访问你的博客<br>这时候其实你使用的是github的服务器, 这是github免费提供的, 省去了自己搞域名和服务器时间.<br>当然, 如果你有自己的域名和服务器, 你也可以把hexo放到你自己的服务器上.</p>
-<p>创建仓库:<br>在github上创建名为&lt; username &gt;.github.io的仓库.<br><strong>注意: 该仓库必须是公有的.</strong></p>
-<h3 id="3-部署hexo"><a href="#3-部署hexo" class="headerlink" title="3. 部署hexo"></a>3. 部署hexo</h3><ul>
+<h3 id="2-创建用于部署博客的github仓库">2. 创建用于部署博客的github仓库</h3>
+<p>github每一个用户都有一个特殊的仓库, &lt; username &gt;.github.io (&lt; username &gt; 是你的用户名)
+将hexo生成的静态文件部署到在这个仓库, 可以通过访问http://&lt; username &gt;.github.io来访问你的博客
+这时候其实你使用的是github的服务器, 这是github免费提供的, 省去了自己搞域名和服务器时间.
+当然, 如果你有自己的域名和服务器, 你也可以把hexo放到你自己的服务器上.</p>
+<p>创建仓库:
+在github上创建名为&lt; username &gt;.github.io的仓库.
+<strong>注意: 该仓库必须是公有的.</strong></p>
+<h3 id="3-部署hexo">3. 部署hexo</h3>
+<ul>
 <li>修改_config.yml文件, 修改deploy配置</li>
 </ul>
 <pre><code>deploy:
   type: git # 使用git
   repo: https://github.com/yx1302317313/yx1302317313.github.io.git  # 刚刚创建的仓库链接 
   branch: master  # master分支
-</code></pre><ul>
-<li>在本地新建文章之后, 执行以下命令<pre><code>$ hexo generate     # 生成静态文件, 生成的文件在public中
+</code></pre>
+<ul>
+<li>在本地新建文章之后, 执行以下命令</li>
+</ul>
+<pre><code>$ hexo generate     # 生成静态文件, 生成的文件在public中
 $ hexo deploy       # 部署到github, 只有public文件夹的内容会提交到github上.
-</code></pre></li>
+</code></pre>
+<ul>
 <li>输入github的用户名和密码.</li>
 <li>之后可以到github上查看你新建的仓库, 你的博客已经提交上去了.</li>
 </ul>
-<h3 id="4-访问你的博客"><a href="#4-访问你的博客" class="headerlink" title="4. 访问你的博客"></a>4. 访问你的博客</h3><p>访问http://&lt; username &gt;.github.io来查看你的博客</p>
+<h3 id="4-访问你的博客">4. 访问你的博客</h3>
+<p>访问http://&lt; username &gt;.github.io来查看你的博客</p>
 
         
     
@@ -635,7 +656,7 @@ $ hexo deploy       # 部署到github, 只有public文件夹的内容会提交�
             <ul class="dropdown-menu">
             <li>
                 <a class="sidebar_archives-link" href="/archives/2020/03/">三月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">六月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">5</span></a>
-            </li></ul>
+            </ul>
         </li>
         
     
@@ -652,8 +673,8 @@ $ hexo deploy       # 部署到github, 只有public文件夹的内容会提交�
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
-            </li></ul>
+                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/object-Object/">[object Object]<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">3</span></a>
+            </ul>
         </li>
         
     
@@ -714,7 +735,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -816,7 +837,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;YuanXu's Blog
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;YuanXu's Blog
             
         </div>
 
