@@ -57,7 +57,7 @@
 
     <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content>
-    <meta name="keywords" content="YuanXu">
+    <meta name="keywords" content="Blog Program Reading Travel">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -247,7 +247,7 @@
 
     
         <meta property="article:published_time" content="Sun Mar 01 2020 21:18:35 GMT+0800">
-        <meta property="article:modified_time" content="Tue Mar 10 2020 20:46:46 GMT+0800">
+        <meta property="article:modified_time" content="Tue Mar 10 2020 20:50:55 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -270,13 +270,13 @@
     "mainEntityOfPage": "https://yx1302317313.github.io/2020/03/01/Google-MapReduce/index.html",
     "headline": "MapReduce-翻译",
     "datePublished": "Sun Mar 01 2020 21:18:35 GMT+0800",
-    "dateModified": "Tue Mar 10 2020 20:46:46 GMT+0800",
+    "dateModified": "Tue Mar 10 2020 20:50:55 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Yuan Xu",
         "image": {
             "@type": "ImageObject",
-            "url": "/img/favicon.jpg"
+            "url": "/img/awesome.png"
         },
         "description": "天之道, 利而不害,人之道, 为而不争"
     },
@@ -288,7 +288,7 @@
             "url": "/img/favicon.jpg"
         }
     },
-    "keywords": "YuanXu",
+    "keywords": "Blog Program Reading Travel",
     "description": "",
 }
 </script>
@@ -400,7 +400,7 @@
 
     <!-- Author Avatar -->
     <div id="author-avatar">
-        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar"/>
+        <img src="/img/awesome.png" width="44px" height="44px" alt="Author Avatar"/>
     </div>
     <!-- Author Name & Date -->
     <div>
@@ -437,41 +437,23 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=MapReduce-翻译&url=https://yx1302317313.github.io/2020/03/01/Google-MapReduce/index.html&pic=https://yx1302317313.github.io/img/favicon.jpg&searchPic=false&style=simple" target="_blank">
-            <li class="mdl-menu__item">
-                分享到微博
-            </li>
-        </a>
-    
 
     <!-- Share Twitter -->
-    
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=MapReduce-翻译&url=https://yx1302317313.github.io/2020/03/01/Google-MapReduce/index.html&via=Yuan Xu" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 Twitter
-            </li>
-        </a>
     
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://yx1302317313.github.io/2020/03/01/Google-MapReduce/index.html" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 Facebook
-            </li>
-        </a>
-    
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://yx1302317313.github.io/2020/03/01/Google-MapReduce/index.html" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 Google+
-            </li>
-        </a>
-    
 
     <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=https://yx1302317313.github.io/2020/03/01/Google-MapReduce/index.html&title=MapReduce-翻译" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 LinkedIn
+            </li>
+        </a>
     
 
     <!-- Share QQ -->
@@ -494,7 +476,7 @@
 <p>用这种函数风格写成的程序可以自动在大型商用机器集群上并行化执行。这个运行时系统负责分割输入数据的细节，调度程序在机器集群上执行，处理机器的错误和管理请求的内部机器通信。这样允许没有任何并行化和分布式系统经验的程序员可以轻松地利用大型分布式系统的资源。</p>
 <p>我们实现的MapReduce运行在大型商业机器集群上并且是高度可拓展的：一个典型的MapReduce计算在数以千计的机器上处理许多兆兆字节（2^40字节）的数据。程序员发现这个系统使用起来是简单的：数以百计的MapReduce程序已经被实现，每天高达一千多个MapReduce工作正在Google的集群上执行。</p>
 <h2 id="1-简介">1 简介</h2>
-<p>在过去的五年里，作者和许多在Google工作的其他人实现了数百种有专用目的的计算，用来处理大量原始数据，例如爬取的文档，网络请求日志等等，计算多种多样的派生数据，例如反转的索引，网页文档图结构的各种表示方式，爬取主机的页数摘要，在给定一天的最频繁查询集合等等。大多数此类计算在概念上是简单明了的。但是输入数据通常是巨大的，为了在合理的时间内完成计算必须分布在成百上千个机器上。怎样并行化计算，分布数据和处理错误这些问题共同困扰了原先使用大量复杂代码处理这些问题的简单计算。</p>
+<p>在过去的五年里，作者和许多在Google工作的其他人实现了数百种有专用目的的计算，用来处理大量原始数据，例如爬取的文档，网络请求日志等等，计算多种多样的派生数据，例如反向索引，网页文档图结构的各种表示方式，爬取主机的页数摘要，在给定一天的最频繁查询集合等等。大多数此类计算在概念上是简单明了的。但是输入数据通常是巨大的，为了在合理的时间内完成计算必须分布在成百上千个机器上。怎样并行化计算，分布数据和处理错误这些问题共同困扰了原先使用大量复杂代码处理这些问题的简单计算。</p>
 <p>为了应对这种复杂性，我们设计了一个新的抽象概念允许我们表达试图执行的简单计算，但是我们在库中隐藏了并行化，容错，数据分布和负载平衡的复杂细节。我们的抽象概念的灵感来源于当前在 <em>Lisp</em> 和许多其他函数式语言中的 <em>Map</em> 和 <em>Reduce</em> 原函数。我们意识到大多数我们的计算涉及到对输入数据的每一个逻辑“记录”应用一个 <em>Map</em> 操作来计算一组中间<code>键值对</code>，然后对共享同一个键的所有值应用一个 <em>Reduce</em> 操作适当地合并派生的数据。我们使用具有用户指定的 <em>Map</em> 和 <em>Reduce</em> 操作的函数模型，使我们方便地并行化进行大型计算，我们使用重新计算作为容错的主要机制。</p>
 <p>这项工作的主要贡献是一个简单而又强大的接口，该接口能够自动实现大规模计算的并行化和分布，并且该接口的是实现在大型商业计算机集群上达到高性能。</p>
 <p>第2节描述了基本的编程模型并且给出了若干实例。第3节 描述了为我们基于集群计算环境定制的MapReduce接口的实现。第4节描述了我们发现有用的对编程模型的一些改进。第5节对大量任务的实现进行了性能度量。第6节探索了MapReduce在Google的应用，包括我们将其作为重写产品索引系统的基础的经历。第7节讨论了与其相关的和未来的工作。</p>
@@ -697,7 +679,7 @@ int main(int argc, char** argv) {
 
     <!-- Sidebar Avatar -->
     <div class="sidebar-image">
-        <img src="/img/favicon.jpg" alt="Yuan Xu's avatar">
+        <img src="/img/awesome.png" alt="Yuan Xu's avatar">
     </div>
 
     <!-- Sidebar Email -->
@@ -715,7 +697,7 @@ int main(int argc, char** argv) {
         <ul id="settings-dropdown" class="dropdown-menu">
             
                 <li>
-                    <a href="#" target="_blank" title="Email Me">
+                    <a href="mailto:yx1302317313@163.com" target="_blank" title="Email Me">
                         
                             <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
                         
