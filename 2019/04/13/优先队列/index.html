@@ -57,7 +57,7 @@
 
     <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content="优先队列
-优先队列是一个特殊的队列。队列是先进先出(FIFO)的，而优先队列是根据元素的大小（优先级）决定元素的出队顺序。">
+优先队列是一个特殊的队列，普通队列是先进先出(FIFO)的，而优先队列是根据元素的大小（优先级）决定元素的出队顺序。">
     <meta name="keywords" content="Blog Program Reading Travel,C++,Code,数据结构">
     <meta name="theme-color" content="#0097A7">
 
@@ -244,12 +244,12 @@
     <meta property="og:title" content="优先队列 | YuanXu&#39;s Blog">
     <meta property="og:image" content="/img/favicon.jpg">
     <meta property="og:description" content="优先队列
-优先队列是一个特殊的队列。队列是先进先出(FIFO)的，而优先队列是根据元素的大小（优先级）决定元素的出队顺序。">
+优先队列是一个特殊的队列，普通队列是先进先出(FIFO)的，而优先队列是根据元素的大小（优先级）决定元素的出队顺序。">
     <meta property="og:article:tag" content="C++"> <meta property="og:article:tag" content="Code"> <meta property="og:article:tag" content="数据结构"> 
 
     
         <meta property="article:published_time" content="Sat Apr 13 2019 21:53:40 GMT+0800">
-        <meta property="article:modified_time" content="Thu Apr 02 2020 15:43:06 GMT+0800">
+        <meta property="article:modified_time" content="Thu Apr 02 2020 22:30:32 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -272,7 +272,7 @@
     "mainEntityOfPage": "https://yx1302317313.github.io/2019/04/13/优先队列/index.html",
     "headline": "优先队列",
     "datePublished": "Sat Apr 13 2019 21:53:40 GMT+0800",
-    "dateModified": "Thu Apr 02 2020 15:43:06 GMT+0800",
+    "dateModified": "Thu Apr 02 2020 22:30:32 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Yuan Xu",
@@ -292,7 +292,7 @@
     },
     "keywords": ",C++,Code,数据结构Blog Program Reading Travel",
     "description": "优先队列
-优先队列是一个特殊的队列。队列是先进先出(FIFO)的，而优先队列是根据元素的大小（优先级）决定元素的出队顺序。",
+优先队列是一个特殊的队列，普通队列是先进先出(FIFO)的，而优先队列是根据元素的大小（优先级）决定元素的出队顺序。",
 }
 </script>
 
@@ -514,7 +514,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <h2 id="优先队列">优先队列</h2>
-<p>优先队列是一个特殊的队列。队列是先进先出(FIFO)的，而优先队列是根据元素的大小（优先级）决定元素的出队顺序。</p>
+<p>优先队列是一个特殊的队列，普通队列是先进先出(FIFO)的，而优先队列是根据元素的大小（优先级）决定元素的出队顺序。</p>
 <a id="more"></a>
 <h2 id="C-STL的优先队列">C++ STL的优先队列</h2>
 <pre><code class="language-cpp">#include &lt;queue&gt;
@@ -544,6 +544,7 @@ int main()
 <pre><code># 运行结果:
 20 18 12 10 3 1
 </code></pre>
+<p>priority_queue默认是从大到小排序，是因为priority_queue使用了一个默认的比较行为，下面介绍如何自定义比较行为从而按照我们的意愿得到想要的结果。</p>
 <h2 id="自定义比较行为">自定义比较行为</h2>
 <h3 id="函数对象">函数对象</h3>
 <p>先让我们看一下优先队列在STL中的说明。</p>
@@ -642,7 +643,7 @@ int main()
 }
 </code></pre>
 <h2 id="自己实现优先队列">自己实现优先队列</h2>
-<p>优先队列实际上是的一个堆, 在STL中,优先队列默认是一个大顶堆, 从排序角度看, 就是降序排序(从大到小)，因此可以通过堆的相关算法实现优先队列。</p>
+<p>优先队列实际上是一个堆, 在STL中,优先队列默认是一个大顶堆, 从排序角度看, 就是降序排序(从大到小)，因此可以通过堆的相关算法实现优先队列。</p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 #include &lt;cmath&gt;
@@ -754,7 +755,7 @@ int main()
 		std::cout&lt;&lt;pq.top()&lt;&lt;' ';
 		pq.pop();
 	}
-	std::cout&lt;&lt;std::endl;		
+	std::cout&lt;&lt;std::endl;
 	return 0;
 }
 </code></pre>

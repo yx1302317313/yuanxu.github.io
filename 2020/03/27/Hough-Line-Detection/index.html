@@ -247,7 +247,7 @@
 
     
         <meta property="article:published_time" content="Fri Mar 27 2020 09:42:25 GMT+0800">
-        <meta property="article:modified_time" content="Fri Mar 27 2020 09:55:40 GMT+0800">
+        <meta property="article:modified_time" content="Fri Apr 03 2020 19:00:08 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -270,7 +270,7 @@
     "mainEntityOfPage": "https://yx1302317313.github.io/2020/03/27/Hough-Line-Detection/index.html",
     "headline": "Hough（霍夫）直线检测",
     "datePublished": "Fri Mar 27 2020 09:42:25 GMT+0800",
-    "dateModified": "Fri Mar 27 2020 09:55:40 GMT+0800",
+    "dateModified": "Fri Apr 03 2020 19:00:08 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Yuan Xu",
@@ -354,7 +354,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Hough-变换的原理"><span class="post-toc-text">Hough 变换的原理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#算法实现"><span class="post-toc-text">算法实现</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Hough（霍夫）直线检测"><span class="post-toc-text">Hough（霍夫）直线检测</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Hough-变换的原理"><span class="post-toc-text">Hough 变换的原理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#算法实现"><span class="post-toc-text">算法实现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Code-Python"><span class="post-toc-text">Code[Python]</span></a></li></ol>
     </ul>
     
 
@@ -510,30 +510,185 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p><br><strong>直线检测</strong>：对于边界上有 n 个点的点集,找出共线的点集和直线方程，这个过程就称为直线检测。<br></p>
-<h3 id="Hough-变换的原理">Hough 变换的原理</h3>
+        <h2 id="Hough（霍夫）直线检测">Hough（霍夫）直线检测</h2>
+<p><strong>直线检测</strong>：对于边界上有 n 个点的点集,找出共线的点集和直线方程。</p>
+<h2 id="Hough-变换的原理">Hough 变换的原理</h2>
 <p><img src="https://cdn.nlark.com/yuque/0/2020/png/805252/1585227700298-c654d948-87f4-4092-abb2-65ee4d93376c.png#align=left&amp;display=inline&amp;height=409&amp;name=image.png&amp;originHeight=409&amp;originWidth=590&amp;size=16888&amp;status=done&amp;style=stroke&amp;width=590" alt="image.png"></p>
-<p>对于直线 $y = a*x + b$，从原点做其垂线，如图中的$CD$。如果将其看做极坐标系，则$CD$可以用$(\rho, \theta)$表示。</p>
-<p>接下来我们怎么表达这条垂线呢？
+<p>对于直线$y = a*x + b$，从原点做其垂线，如图中的$CD$。如果将其看做极坐标系，则$CD$可以用$(\rho, \theta)$表示。</p>
+<p>怎么表达AB与CD的关系呢？
 <img src="https://cdn.nlark.com/yuque/0/2020/png/805252/1585236081496-fadd6219-a0f4-403e-ad17-dc63d74ec037.png#align=left&amp;display=inline&amp;height=467&amp;name=image.png&amp;originHeight=560&amp;originWidth=720&amp;size=31179&amp;status=done&amp;style=stroke&amp;width=600" alt="image.png"></p>
 <p>任取AB上一点E(x,y),做CD的垂线GH，AB的垂线GI。从而我们可以得到角度关系$\angle{IGE} = \angle {GHC} = \angle{DCB} = \theta$。
-所以，$CH = y sin\theta, HD = GI = x cos\theta$，从而$CD = CH+HD = xcos\theta + ysin\theta$，即$\rho = xcos\theta + ysin\theta$。可以证明对于直线AB上的任意一点，都满足上式。</p>
-<p>至此，我们可以用AB上的点来表达其垂线CD。我们知道一条直线和从一个固定点引出的它的垂线是一一对应。</p>
-<p>再看$\rho = xcos\theta + ysin\theta$，如果我们固定$x,y$，将$\theta$作为自变量，可以得到一个$\rho - \theta$的一个函数关系式。它所表达的是经过点$(x,y)$的<strong>所有直线对应的垂线</strong>$(\rho, \theta)$（前面提到可以用$(\rho, \theta)$表达AB的垂线CD），每一个$(\rho, \theta)$都对应一条垂线。</p>
-<p>例如：$\rho = 3cos\theta + 2sin\theta$，曲线上每一个点$(\rho, \theta)$可以表示一条经过点$(3,2)$的直线对应的垂线。
+所以，$CH = y sin\theta, HD = GI = x cos\theta$，从而$CD = CH+HD = xcos\theta + ysin\theta$，即$\rho = xcos\theta + ysin\theta$。可以证明对于直线AB上的任意一点，都满足上式，即$\rho = xcos\theta + ysin\theta$是直线AB的表达式。</p>
+<p>再看$\rho = xcos\theta + ysin\theta$，如果我们固定$x,y$，将$\theta$作为自变量，可以得到一个$\rho - \theta$的一个函数关系式。当$\theta$变化时（CD绕原点旋转时），AB也会随之变化（转动）。由于固定了$x,y$，所以直线AB一定会经过点$（x,y）$，所以它表达了经过点$(x,y)$的<strong>所有直线。</strong></p>
+<p>例如：$\rho = 3cos\theta + 2sin\theta$，曲线上每一个点$(\rho, \theta)$都可以表示一条经过点$(3,2)$的直线。
 <img src="https://cdn.nlark.com/yuque/0/2020/png/805252/1585231138357-57e10448-03c3-4835-9786-8f606001095b.png#align=left&amp;display=inline&amp;height=360&amp;name=image.png&amp;originHeight=351&amp;originWidth=522&amp;size=25591&amp;status=done&amp;style=stroke&amp;width=536" alt="image.png"></p>
-<p>下图分别是$\rho = 3cos\theta + 2sin\theta$，$\rho = 2cos\theta + sin\theta$，$\rho = cos\theta$的图像，则分别表示所有经过点$(3,2)$，$(2,1)$，$(1,0)$的直线对应的垂线。那么图中的<strong>交点A</strong>表示什么？
-经过点$(3,2)$，$(2,1)$，$(1,0)$的直线对应的垂线是同一条线，前面提到<strong>直线与其垂线一一对应</strong>，所以经过点$(3,2)$，$(2,1)$，$(1,0)$的直线也是同一条线。咦？这不就是说明$(3,2)$，$(2,1)$，$(1,0)$<strong>三点共线</strong>吗，感觉忽然发现了新大陆。
-<img src="https://cdn.nlark.com/yuque/0/2020/png/805252/1585233503192-ad1d6d3d-555c-41a8-af24-be7c100baae4.png#align=left&amp;display=inline&amp;height=506&amp;name=image.png&amp;originHeight=653&amp;originWidth=669&amp;size=64302&amp;status=done&amp;style=stroke&amp;width=518" alt="image.png"></p>
+<p>下图分别是$\rho = 3cos\theta + 2sin\theta$，$\rho = 2cos\theta + sin\theta$，$\rho = cos\theta$的图像，则分别表示所有经过点$(3,2)$，$(2,1)$，$(1,0)$的所有直线。那么图中的<strong>交点A</strong>表示什么？
+经过点$(3,2)$，$(2,1)$，$(1,0)$的直线是<strong>同一条线</strong>。Amazing！这不就是说明$(3,2)$，$(2,1)$，$(1,0)$<strong>三点共线</strong>吗，感觉忽然发现了新大陆。
+<img src="https://cdn.nlark.com/yuque/0/2020/png/805252/1585897533787-17380fa4-3331-4aac-b26b-a5ef52e27aaa.png#align=left&amp;display=inline&amp;height=570&amp;name=image.png&amp;originHeight=809&amp;originWidth=761&amp;size=73786&amp;status=done&amp;style=stroke&amp;width=536" alt="image.png"></p>
 <p>现在，我们已经找到了证明多个点共线的方法了。让我们重新梳理一下：</p>
 <ol>
-<li>设有一个点集$R$，可得到$R$中任意点$(x_i,y_i)$对应的曲线$\rho_i = x_icos\theta + y_isin\theta$，$\theta \in [0, 2\pi)$。</li>
+<li>设有一个点集$R$，可得到$R$中任意点$(x_i,y_i)$对应的曲线$\rho_i = x_icos\theta + y_isin\theta$，$\theta \in [0, 2\pi)$。它表示了经过该点的所有直线。</li>
 <li>设$(x_i, y_i),(x_j,y_j) \in R,i \ne j$ ，如果$\rho_i = x_icos\theta + y_isin\theta$与$\rho_j = x_jcos\theta + y_jsin\theta$有交点$A_{ij}(p_{ij}, \theta_{ij}$)，就说明$(x_i, y_i),(x_j,y_j) $两点共线。</li>
-<li>由$A_{ij}(p_{ij}, \theta_{ij})$可得到$(x_i, y_i),(x_j,y_j)$所在直线的垂线$\rho_{ij} = xcos\theta_{ij} + ysin\theta_{ij}$。</li>
-<li>由垂线$\rho_{ij} = xcos\theta_{ij} + ysin\theta_{ij}$便可以解出$(x_i, y_i),(x_j,y_j) $所在直线方程。</li>
+<li>由$A_{ij}(p_{ij}, \theta_{ij})$可得到$(x_i, y_i),(x_j,y_j) $所在的直线$\rho_{ij} = xcos\theta_{ij} + ysin\theta_{ij}$。</li>
 </ol>
-<p>刚才分析的都是基于连续的函数，如果要用算法实现，则需要将其<strong>离散化</strong>。</p>
-<h3 id="算法实现">算法实现</h3>
+<p>刚才分析的都是基于连续的函数，如果要用算法实现，则需要将其<strong>离散化</strong>。
+因为$\theta \in [0, 2\pi)$，但是如果用程序实现只能将$\theta$离散化，如令<code>theta = range(0, 360)</code> 取360个离散的值（具体的精度根据实际情况决定）。</p>
+<h2 id="算法实现">算法实现</h2>
+<ol>
+<li>输入一幅RGB图</li>
+<li>检测图中的边缘，可以使用Canny边缘检测得到一幅<strong>二值图像</strong></li>
+<li>开辟一个二维数组 <code>array</code> ，初始值全部为0，用于存储共线点的个数；确定$\theta$的精度。</li>
+<li>对于每一个边缘点$(x_i,y_i)$，使用公式$\rho_i = x_icos\theta + y_isin\theta$计算每一个$\theta$对应的,将作为数组 <code>array</code> 的索引，将对应的数组元素值加 <code>1</code> 。</li>
+<li>设定一个阈值，过滤出共线点较多的直线（也可以选取共线点最多的几条直线）。</li>
+<li>将检测出的直线绘制到原图上。</li>
+</ol>
+<h2 id="Code-Python">Code[Python]</h2>
+<ul>
+<li>hough_without_canny 中直接使用的是经过Canny检测后的二值图像。</li>
+<li>hough_with_canny 中调用了之前写过的Canny算法。（有时间会把Canny检测的代码也贴出来）</li>
+</ul>
+<p>效果如下：</p>
+<center>
+<img src="/img/blog/blog-29-1.jpg" width="500">
+<p>原图</p>
+</center>
+<br>
+<center>
+<img src="/img/blog/blog-29-2.jpg" width="500">
+<p>直线检测</p>
+</center>
+<pre><code class="language-python">from PIL import Image
+import matplotlib.pyplot as plt
+import numpy as np
+import canny
+import math
+
+
+def to_gray(img):
+    height, width, _ = img.shape
+    gray = np.zeros((height, width), dtype=np.uint8)
+    k = np.array([0.299, 0.587, 0.114])
+
+    for i in range(height):
+        for j in range(width):
+            gray[i][j] = (k * img[i][j]).sum()
+
+    return gray
+
+
+def to_rgb(img):
+    height, width = img.shape
+    rgb = np.zeros((height, width, 3), dtype=np.uint8)
+
+    for i in range(height):
+        for j in range(width):
+            rgb[i][j] = [img[i][j]] * 3
+
+    return rgb
+
+
+def plot_line(img, expression):
+    if len(img.shape) != 3 or img.shape[2] != 3:
+        print('The image shape must be (height, width, 3)')
+        return img
+
+    height = img.shape[0]
+    width = img.shape[1]
+
+    def func(x, a, b):
+        return int(a * x + b)
+
+    for exp in expression:
+        a, b = exp
+        point = [(x, func(x, a, b)) for x in range(width)
+                 if 0 &lt;= func(x, a, b) &lt; height]
+
+        for x, y in point:
+            img[y][x] = [255, 0, 0]
+
+    return img
+
+
+def hough_check(img, precision=360, threshold=50, number=-1):
+    height, width = img.shape
+    theta = range(0, precision)
+    factor = 360 / precision
+
+    tab_height = len(theta)
+    tab_width = (height + width) &lt;&lt; 1
+    tab = [[0] * tab_width for i in range(tab_height)]
+
+    for i in range(height):
+        for j in range(width):
+            if img[i][j] == 255:
+                for k in theta:
+                    arc = k * factor * math.pi / 180
+                    rho = int(j * math.cos(arc) + i * math.sin(arc))
+                    tab[k][rho + height + width] += 1
+
+    line = []
+    for i in range(tab_height):
+        for j in range(tab_width):
+            if tab[i][j] &gt; threshold:
+                # append theta (0-360) and rho to line
+                line.append((i * factor, j - height - width))
+
+    if number == -1 or len(line) &lt;= number:
+        return line
+    else:
+        line.sort(key=lambda x: tab[int(x[0] / factor)][x[1] + height + width])
+        return line[0:number]
+
+
+def get_expression(pair):
+    theta, rho = pair
+    theta = theta * math.pi / 180
+    k = -math.cos(theta) / (math.sin(theta) + 1e-8)
+    b = rho / (math.sin(theta) + 1e-8)
+    return k, b
+
+
+def hough_with_canny():
+    filename = 'hf.jpg'
+    rgb_img = Image.open(filename)
+    gray_img = rgb_img.convert('L')
+    gray_array = np.array(gray_img)
+    # img = to_gray(img_array)
+    gray_array = canny.canny(gray_array, (3, 3))
+
+    line = hough_check(gray_array, number=5)
+    print('The number of lines is {}'.format(len(line)))
+    expression = [get_expression(x) for x in line]
+    rgb_array = to_rgb(gray_array)
+    rgb_array = plot_line(rgb_array, expression)
+
+    plt.figure()
+    plt.imshow(rgb_array)
+    plt.show()
+
+
+def hough_without_canny():
+    filename = 'gray.jpg'
+    rgb_img = Image.open(filename)
+    gray_img = rgb_img.convert('L')
+
+    gray_array = np.array(gray_img)
+    rgb_array = to_rgb(gray_array)
+
+    line = hough_check(gray_array, number=5)
+    print('The number of lines is {}'.format(len(line)))
+    expression = [get_expression(x) for x in line]
+    rgb_array = plot_line(rgb_array, expression)
+
+    plt.figure()
+    plt.imshow(rgb_array)
+    plt.show()
+
+
+if __name__ == '__main__':
+    # main()
+    hough_without_canny()
+</code></pre>
 
         
     
