@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.6 -->
+    <script>
+        window.materialVersion = "1.5.6"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            傅里叶变换 | 
+        
+        YuanXu&#39;s Blog
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.jpg">
+    <link rel="icon" href="/img/favicon.jpg">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" itemprop="description" content="傅里叶变换是一种线性积分变换，用于信号在时域和频域之间的变换。由法国学者约瑟夫·傅里叶系统地提出，所以以其名字来命名以示纪念。本文主要讲解傅里叶变换的公式推导和快速傅里叶变换算法的原理及实现。">
+    <meta name="keywords" content="Blog Program Reading Travel,数学,信号">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body {
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text {
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="YuanXu&#39;s Blog">
+    <meta name="msapplication-starturl" content="https://yx1302317313.github.io/2020/04/30/Fourier-TransForm/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="YuanXu&#39;s Blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.jpg">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://yx1302317313.github.io/2020/04/30/Fourier-TransForm/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="傅里叶变换 | YuanXu&#39;s Blog">
+    <meta property="og:image" content="/img/favicon.jpg">
+    <meta property="og:description" content="傅里叶变换是一种线性积分变换，用于信号在时域和频域之间的变换。由法国学者约瑟夫·傅里叶系统地提出，所以以其名字来命名以示纪念。本文主要讲解傅里叶变换的公式推导和快速傅里叶变换算法的原理及实现。">
+    <meta property="og:article:tag" content="数学"> <meta property="og:article:tag" content="信号"> 
+
+    
+        <meta property="article:published_time" content="Thu Apr 30 2020 17:42:45 GMT+0800">
+        <meta property="article:modified_time" content="Thu Apr 30 2020 22:58:15 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="https://yx1302317313.github.io/2020/04/30/Fourier-TransForm/index.html">
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://yx1302317313.github.io/2020/04/30/Fourier-TransForm/index.html",
+    "headline": "傅里叶变换",
+    "datePublished": "Thu Apr 30 2020 17:42:45 GMT+0800",
+    "dateModified": "Thu Apr 30 2020 22:58:15 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Yuan Xu",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicon.jpg"
+        },
+        "description": "天之道, 利而不害,人之道, 为而不争"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "YuanXu&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.jpg"
+        }
+    },
+    "keywords": ",数学,信号Blog Program Reading Travel",
+    "description": "傅里叶变换是一种线性积分变换，用于信号在时域和频域之间的变换。由法国学者约瑟夫·傅里叶系统地提出，所以以其名字来命名以示纪念。本文主要讲解傅里叶变换的公式推导和快速傅里叶变换算法的原理及实现。",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#傅里叶变换的公式推导"><span class="post-toc-text">傅里叶变换的公式推导</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三角函数的正交性"><span class="post-toc-text">三角函数的正交性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#证明"><span class="post-toc-text">证明</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#傅里叶级数"><span class="post-toc-text">傅里叶级数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#系数的求解"><span class="post-toc-text">系数的求解</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#傅里叶级数的意义"><span class="post-toc-text">傅里叶级数的意义</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#欧拉公式"><span class="post-toc-text">欧拉公式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#傅里叶级数的复指数形式"><span class="post-toc-text">傅里叶级数的复指数形式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#连续傅里叶变换"><span class="post-toc-text">连续傅里叶变换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#傅里叶变换公式的含义"><span class="post-toc-text">傅里叶变换公式的含义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#傅里叶变换的逆变换公式的含义"><span class="post-toc-text">傅里叶变换的逆变换公式的含义</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#离散傅里叶变换（DFT）"><span class="post-toc-text">离散傅里叶变换（DFT）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#快速傅里叶变换原理"><span class="post-toc-text">快速傅里叶变换原理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#快速傅里叶变换算法实现"><span class="post-toc-text">快速傅里叶变换算法实现</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#递归"><span class="post-toc-text">递归</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#迭代"><span class="post-toc-text">迭代</span></a></li></ol></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                傅里叶变换
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Yuan Xu</strong>
+        <span>4月 30, 2020</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/信号/">信号</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/数学/">数学</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=傅里叶变换&url=https://yx1302317313.github.io/2020/04/30/Fourier-TransForm/index.html&pic=https://yx1302317313.github.io/img/favicon.jpg&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=傅里叶变换&url=https://yx1302317313.github.io/2020/04/30/Fourier-TransForm/index.html&via=Yuan Xu" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://yx1302317313.github.io/2020/04/30/Fourier-TransForm/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://yx1302317313.github.io/2020/04/30/Fourier-TransForm/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=https://yx1302317313.github.io/2020/04/30/Fourier-TransForm/index.html&title=傅里叶变换" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=YuanXu&#39;s Blog&title=傅里叶变换&summary=&pics=https://yx1302317313.github.io/img/favicon.jpg&url=https://yx1302317313.github.io/2020/04/30/Fourier-TransForm/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>傅里叶变换是一种线性积分变换，用于信号在时域和频域之间的变换。由法国学者约瑟夫·傅里叶系统地提出，所以以其名字来命名以示纪念。本文主要讲解傅里叶变换的公式推导和快速傅里叶变换算法的原理及实现。</p>
+<a id="more"></a>
+<p>笔者并没有在课程中学习过傅里叶变换，最初的基础仅仅是高数中讲到的傅里叶级数。由于项目需要，查阅了大量资料自学了傅里叶变换，学习过程中有一些较难理解的地方，而且感觉其中的一些东西容易忘记，于是决定记录下来，以备后患。</p>
+<p><strong>Let’s Go!!!</strong></p>
+<h2 id="傅里叶变换的公式推导"><a href="#傅里叶变换的公式推导" class="headerlink" title="傅里叶变换的公式推导"></a>傅里叶变换的公式推导</h2><h3 id="三角函数的正交性"><a href="#三角函数的正交性" class="headerlink" title="三角函数的正交性"></a>三角函数的正交性</h3><p>傅里叶变换的公式推导需要一些基础性的知识，三角函数的正交性便是其中的关键。</p>
+<p>何为三角函数的正交性？</p>
+<blockquote>
+<p>在线性代数中，向量正交指两个向量内积为0。而三角函数的正交指在三角函数系中，任意两个不同的函数乘积在区间的积分为0。当然这个区间是有限制的，区间大小必须是三角函数周期的整数倍。</p>
+</blockquote>
+<p>例如：</p>
+<ul>
+<li>$\int_{-\pi}^{\pi} sin(nx)cos(mx) = 0$</li>
+<li>$\int_{-\pi}^{\pi} sin(nx)sin(mx) = 0, n \ne m$</li>
+<li>$\int_{-\pi}^{\pi} cos(nx)cos(mx) = 0, n \ne m$</li>
+</ul>
+<p><em>上面提到的$m,n$均为整数。</em></p>
+<h4 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h4><p>这里需要用到三角函数的积化和差公式：</p>
+<ul>
+<li>$sin(\alpha)cos(\beta) = \frac{1}{2}(sin(\alpha + \beta) + sin(\alpha - \beta))$</li>
+<li>$cos(\alpha)cos(\beta) = \frac{1}{2}(cos(\alpha + \beta) + cos(\alpha - \beta))$</li>
+<li>$sin(\alpha)sin(\beta) = -\frac{1}{2}(cos(\alpha + \beta) - cos(\alpha - \beta))$</li>
+</ul>
+<p>当$m \ne n$时:</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\int_{-\pi}^{\pi} sin(nx)sin(mx)\\\\
+&= \int_{-\pi}^{\pi} (\frac{1}{2}[cos(nx - mx) - cos(nx + mx)]) \\\\
+&= \int_{-\pi}^{\pi} \frac{1}{2}cos(n-m)x + \int_{-\pi}^{\pi} \frac{1}{2}cos(m+n)x \\\\
+&= 0 \\\\
+\end{align}</script><p>而当$m = n$时，不满足正交性。</p>
+<p>积分的结果为：</p>
+<ul>
+<li>$\int_{-\pi}^{\pi} sin(nx)sin(nx) = \pi$</li>
+<li>$\int_{-\pi}^{\pi} cos(nx)cos(nx) = \pi$</li>
+</ul>
+<p>这个可以用半角公式证明：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\int_{-\pi}^{\pi} sin(nx)sin(nx) dx \\\\
+&= \int_{-\pi}^{\pi} \frac{1 - cos(2nx)}{2} dx\\\\
+&= \int_{-\pi}^{\pi} \frac{1}{2} + \int_{-\pi}^{\pi} \frac{-cos(2nx)}{2} dx \\\\ 
+&= \pi
+\end{align}</script><h3 id="傅里叶级数"><a href="#傅里叶级数" class="headerlink" title="傅里叶级数"></a>傅里叶级数</h3><p>OK, 到这里我们既可以说一说傅里叶级数了。What is Fourier series？</p>
+<blockquote>
+<p>傅里叶级数可以用来表示任意一个周期函数。</p>
+</blockquote>
+<p>对于一个周期函数 $f(x) = f(x + T),\ T = \frac{2\pi}{\omega}$，<br>其傅里叶级数为</p>
+<script type="math/tex; mode=display">f(x) = \frac{a_0}{2} + \Sigma_{n=1}^{\infty}(a_n cos(n\omega x) + b_n sin(n\omega x))</script><p>其中</p>
+<ul>
+<li>$a<em>0 = \frac{2}{T} \int</em>{0}^{T} f(x) dx$</li>
+<li>$a<em>n = \frac{2}{T} \int</em>{0}^{T} f(x) cos(n\omega x) dx$</li>
+<li>$b<em>n = \frac{2}{T} \int</em>{0}^{T} f(x) sin(n\omega x) dx$</li>
+</ul>
+<p>至于是怎么推导出来的这里就不说明了（<del>其实我也不知道</del>)。不过可以说一下$a_0, a_n, b_n$三个系数是怎么求出来的。</p>
+<h4 id="系数的求解"><a href="#系数的求解" class="headerlink" title="系数的求解"></a>系数的求解</h4><p>这就用到我们上面提到的三角函数正交性了。</p>
+<p>我们选取周期为$[-\pi, \pi]$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+& f(x) = \frac{a_0}{2} + \Sigma_{n=1}^{\infty}(a_n cos(n\omega x) + b_n sin(n\omega x)) \\\\
+& \int_{-\pi}^{\pi} f(x)dx = \int_{-\pi}^{\pi} \frac{a_0}{2} dx + \int_{-\pi}^{\pi} (\Sigma_{n=1}^{\infty}(a_n cos(n\omega x) + b_n sin(n\omega x))) dx \\\\
+& \int_{-\pi}^{\pi} f(x)dx = \int_{-\pi}^{\pi} \frac{a_0}{2} dx + \Sigma_{n=1}^{\infty} \int_{-\pi}^{\pi} (a_n cos(n\omega x))dx +  \Sigma_{n=1}^{\infty} \int_{-\pi}^{\pi} (b_n sin(n\omega x)) dx \\\\
+& \int_{-\pi}^{\pi} f(x)dx = a_0 \cdot \pi + 0 + 0 
+\end{align}</script><p>所以，$a<em>0 = \frac{1}{\pi} \int</em>{-\pi}^{\pi} f(x) dx$</p>
+<p>$a_n$的证明稍微麻烦一点,需要一个小小的技巧。</p>
+<script type="math/tex; mode=display">
+\begin{align}
+& f(x) = \frac{a_0}{2} + \Sigma_{n=1}^{\infty}(a_n cos(n\omega x) + b_n sin(n\omega x)) \\\\
+& f(x)cos(m\omega x) = \frac{a_0}{2}cos(m\omega x) + \Sigma_{n=1}^{\infty}(a_n cos(n\omega x) + b_n sin(n\omega x))cos(m\omega x) \\\\
+& \int_{-\pi}^{\pi} f(x)cos(m\omega x)dx = \int_{-\pi}^{\pi} \frac{a_0}{2} cos(m\omega x)dx \\\\
+&  + \int_{-\pi}^{\pi} (\Sigma_{n=1}^{\infty}(a_n cos(n\omega x)cos(m\omega x) + b_n sin(n\omega x))) cos(m\omega x)dx \\\\
+\end{align}</script><p>机智如你，一定想到了为什么要多乘一个$cos(m\omega x)$。对，这样就可以让$a_0, b_n$消失，只剩下我们需要的$a_n$。</p>
+<p>我们继续</p>
+<script type="math/tex; mode=display">
+\begin{align}
+& \int_{-\pi}^{\pi} f(x)cos(m\omega x)dx = 0 + \Sigma_{n=1}^{\infty} \int_{-\pi}^{\pi} (a_n cos(n\omega x) cos(m\omega x))dx + 0\\\\
+& \int_{-\pi}^{\pi} f(x)cos(m\omega x)dx = \Sigma_{n=1}^{\infty} \int_{-\pi}^{\pi} (a_n cos(n\omega x) cos(m\omega x))dx\\\\
+\end{align}</script><p>其实这里的系数$a_n$也只有一个能保留下来，那就是当$m = n$时。</p>
+<script type="math/tex; mode=display">
+\begin{align}
+& \int_{-\pi}^{\pi} f(x)cos(m\omega x)dx = \Sigma_{n=1}^{\infty} \int_{-\pi}^{\pi} (a_n cos(n\omega x) cos(m\omega x))dx\\\\
+& \int_{-\pi}^{\pi} f(x)cos(n\omega x)dx = a_n \int_{-\pi}^{\pi} (cos(n\omega x) cos(n\omega x))dx\\\\
+& \int_{-\pi}^{\pi} f(x)cos(n\omega x)dx = a_n \pi\\\\
+\end{align}</script><p>可以解得：$a<em>n = \frac{1}{\pi} \int</em>{0}^{T} f(x) cos(n\omega x) dx$。$b_n$的求解这里就不进行赘述了，与$a_n$同理。</p>
+<p>将$a_0, a_n, b_n$推广到任意周期，即可得到上面的结果：</p>
+<ul>
+<li>$a<em>0 = \frac{2}{T} \int</em>{0}^{T} f(x) dx$</li>
+<li>$a<em>n = \frac{2}{T} \int</em>{0}^{T} f(x) cos(n\omega x) dx$</li>
+<li>$b<em>n = \frac{2}{T} \int</em>{0}^{T} f(x) sin(n\omega x) dx$</li>
+</ul>
+<h4 id="傅里叶级数的意义"><a href="#傅里叶级数的意义" class="headerlink" title="傅里叶级数的意义"></a>傅里叶级数的意义</h4><script type="math/tex; mode=display">f(x) = \frac{a_0}{2} + \Sigma_{n=1}^{\infty}(a_n cos(n\omega x) + b_n sin(n\omega x))</script><p>从这个公式中我们可以看到，一个周期函数可以由一个常函数和无穷多个正弦函数和余弦函数叠加而成。</p>
+<p>其中$n\omega$表示这些正弦函数和余弦函数的角频率是周期函数角频率的整数倍。</p>
+<h3 id="欧拉公式"><a href="#欧拉公式" class="headerlink" title="欧拉公式"></a>欧拉公式</h3><blockquote>
+<p>傅里叶变换只能表示周期性函数，但是现实世界中周期性函数很少。那么问题来了，能不能表示非周期函数。答案是可以的，其实非周期性的函数就是一个周期无穷大的函数。</p>
+</blockquote>
+<p>开始之前，仍然需要一个预备知识——欧拉公式(Euler formula)。让我们见识一下这个号称<strong>数学界最美的公式</strong>。</p>
+<p><strong>初见惊为天人，其形也，翩若惊鸿，婉若游龙。荣曜秋菊，华茂春松。</strong></p>
+<script type="math/tex; mode=display">e^{i\theta} = cos\theta + isin\theta</script><p><strong>再见则细思恐极。</strong></p>
+<p>当$\theta = \pi$时，$e^{i\pi}  + 1 = 0$，这便是欧拉恒等式。<br>是不是感觉数学中最基本的符号和数字都被包含在这个等式中，一切浑然天成！</p>
+<p>其实吧，我们只想要从中得到下面的两个公式：</p>
+<ul>
+<li>$cos\theta = \frac{1}{2}(e^{i\theta} + e^{-i\theta})$</li>
+<li>$sin\theta = -\frac{1}{2}i(e^{i\theta} - e^{-i\theta})$</li>
+</ul>
+<p><br></p>
+<h3 id="傅里叶级数的复指数形式"><a href="#傅里叶级数的复指数形式" class="headerlink" title="傅里叶级数的复指数形式"></a>傅里叶级数的复指数形式</h3><p>将$cos\theta,sin\theta$替换之后，我们便得到了傅里叶级数的复指数形式：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+& f(x) = \frac{a_0}{2} + \Sigma_{n=1}^{\infty}(a_n 
+ cos(n\omega x) + b_n sin(n\omega x)) \\\\
+&= \frac{a_0}{2} + \Sigma_{n=1}^{\infty}(a_n \frac{1}{2}(e^{in\omega x} + e^{-in\omega x}) - b_n \frac{1}{2}i(e^{in\omega x} - e^{-in\omega x})) \\\\
+&= \frac{a_0}{2} + \Sigma_{n=1}^{\infty}a_n \frac{1}{2}(e^{in\omega x} + e^{-in\omega x}) -  \Sigma_{n=1}^{\infty}b_n \frac{1}{2}i(e^{in\omega x} - e^{-in\omega x})) \\\\
+&= \frac{a_0}{2} + \Sigma_{n=1}^{\infty} \frac{1}{2}(a_n - b_n i)e^{in\omega x} +  \Sigma_{n=1}^{\infty} \frac{1}{2}(a_n + b_n i)e^{-in\omega x} \\\\
+& = \Sigma_{0}^{0} \frac{a_0}{2} e^{i0\omega x} + \Sigma_{n=1}^{\infty} \frac{1}{2}(a_n - b_n i)e^{in\omega x} +  \Sigma_{n=- \infty}^{-1} \frac{1}{2}(a_{-n} + b_{-n} i)e^{in\omega x} \\\\
+&= \Sigma_{n=-\infty}^{\infty} C_n e^{in\omega x}
+\end{align}</script><p>其中</p>
+<script type="math/tex; mode=display">
+C_n =\left\\{
+\begin{align}
+& \frac{a_0}{2}, n = 0\\\\
+& \frac{1}{2}(a_n - b_n i), n > 0\\\\
+& \frac{1}{2}(a_{-n} + b_{-n} i), n<0\\\\
+\end{align}
+\right.</script><p>接下来我们求$C_n$.</p>
+<p>我们已知</p>
+<script type="math/tex; mode=display">
+\left\\{
+\begin{align}
+& a_0 = \frac{2}{T} \int_{0}^{T} f(x) dx\\\\
+& a_n = \frac{2}{T} \int_{0}^{T} f(x) cos(n\omega x) dx\\\\
+& b_n = \frac{2}{T} \int_{0}^{T} f(x) sin(n\omega x) dx\\\\
+\end{align}
+\right.</script><ol>
+<li><p>当$n = 0$时</p>
+<script type="math/tex; mode=display">
+\begin{align}
+& C_0 = \frac{a_0}{2} = \frac{1}{T} \int_{0}^{T} f(x) dx\\\\
+\end{align}</script></li>
+<li><p>当$n &gt; 0$时</p>
+<script type="math/tex; mode=display">
+\begin{align}
+C_n &= \frac{1}{2}(a_n - b_n i)\\\\
+&  = \frac{1}{2} \frac{2}{T} \int_{0}^{T} f(x) cos(n\omega x)dx - \frac{1}{2}i\frac{2}{T} \int_{0}^{T} f(x) sin(n\omega x) dx\\\\
+&  = \frac{1}{T} \int_{0}^{T} f(x) cos(n\omega x) - i \cdot sin(n\omega x) dx\\\\
+&  = \frac{1}{T} \int_{0}^{T} f(x) e^{-in\omega x} dx\\\\
+\end{align}</script></li>
+<li><p>当$n &lt; 0$时</p>
+<script type="math/tex; mode=display">
+\begin{align}
+C_n &= \frac{1}{2}(a_{-n} + b_{-n} i)\\\\
+&  = \frac{1}{2} \frac{2}{T} \int_{0}^{T} f(x) cos(-n\omega x)dx + \frac{1}{2}i\frac{2}{T} \int_{0}^{T} f(x) sin(-n\omega x) dx\\\\
+&  = \frac{1}{T} \int_{0}^{T} f(x) cos(-n\omega x) + i \cdot sin(-n\omega x) dx\\\\
+&  = \frac{1}{T} \int_{0}^{T} f(x) e^{-in\omega x} dx\\\\
+\end{align}</script></li>
+</ol>
+<p>咦！$n&gt;0$和$n&lt;0$时，$C_n$居然是一样的，如果$n=0$时也一样那就Prefect了！</p>
+<p>下面是见证奇迹的时刻！</p>
+<script type="math/tex; mode=display">
+\begin{align}
+C_0 &= \frac{1}{T} \int_{0}^{T} f(x) dx\\\\
+&  = \frac{1}{T} \int_{0}^{T} f(x) e^{-i0\omega x} dx\\\\
+\end{align}</script><p>$C<em>n$的形式居然统一了，$C_n = \frac{1}{T} \int</em>{0}^{T} f(x) e^{-in\omega x} dx$。</p>
+<p><br><br>到此，转换到复指数形式之后，傅里叶级数就看起来简单多了。</p>
+<script type="math/tex; mode=display">
+f(x)= \Sigma_{n=-\infty}^{\infty} \frac{1}{T} \int_{0}^{T} f(x) e^{-in\omega x} dx \ e^{in\omega x}</script><h3 id="连续傅里叶变换"><a href="#连续傅里叶变换" class="headerlink" title="连续傅里叶变换"></a>连续傅里叶变换</h3><p>对于非周期函数（可视为周期为无穷的函数）$f(x) = f(x + T), T \to \infty$</p>
+<p>在周期函数中，$\omega  = \frac{2\pi}{T}$ 表示角频率。$n\omega$表示正弦函数和余弦函数的角频率是该周期函数角频率的整数倍。<br><br><br>但是当$T \to \infty$时， $\omega  \to 0$。$n\omega$表示的含义则是$n\omega$变成了一个连续的量（之前是离散的）。</p>
+<p>也就是说非周期函数仍然可以由一个常函数和无穷多个正弦函数和余弦函数叠加而成。但是这些正弦函数和余弦函数的角频率变得特别密集，充斥在整个实数轴上。</p>
+<p>为了表示方便，我们用$\omega$代替$n\omega$。则$T$可以表示为$\frac{\Delta \omega}{2\pi}$</p>
+<p>于是，傅里叶变换的公式就诞生了。真是千呼万唤始出来呀！</p>
+<script type="math/tex; mode=display">\begin{align}
+f(x)
+&= \Sigma_{n=-\infty}^{\infty} \frac{\Delta \omega}{2\pi} \int_{-\infty}^{\infty} f(x) e^{-i\omega x} dx \ e^{i\omega x}\\\\
+&= \int_{-\infty}^{\infty} \frac{1}{2\pi}  \int_{-\infty}^{\infty} f(x) e^{-i\omega x} dx \ e^{i\omega x} d\omega\\\\
+&= \frac{1}{2\pi} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x) e^{-i\omega x} dx \ e^{i\omega x} d\omega\\\\
+\end{align}</script><p>令$F(\omega) = \int_{-\infty}^{\infty} f(x) e^{-i\omega x} dx$，该式即为傅里叶变换。</p>
+<p>则$f(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\omega) \ e^{i\omega x} d\omega$，称为傅里叶变换的逆变换 。</p>
+<h4 id="傅里叶变换公式的含义"><a href="#傅里叶变换公式的含义" class="headerlink" title="傅里叶变换公式的含义"></a>傅里叶变换公式的含义</h4><p>一个时域内的函数$f(x)$经过傅里叶变换之后，得到了一个频域内的函数$F(\omega)$。给定一个$\omega$，就可以得到一个$F(\omega)$，$F(\omega)$表示函数$f(x)$在对应频率的振幅。由于$\omega \in (-\infty, \infty)$，所以可以得到无穷多个$F(\omega)$。</p>
+<h4 id="傅里叶变换的逆变换公式的含义"><a href="#傅里叶变换的逆变换公式的含义" class="headerlink" title="傅里叶变换的逆变换公式的含义"></a>傅里叶变换的逆变换公式的含义</h4><p>对得到的无穷多个$F(\omega)$积分由重新得到了原函数$f(x)$。说明了$f(x)$可以由这无穷多个函数叠加而成。这与之前的傅里叶级数表示的意义是相同的。</p>
+<h3 id="离散傅里叶变换（DFT）"><a href="#离散傅里叶变换（DFT）" class="headerlink" title="离散傅里叶变换（DFT）"></a>离散傅里叶变换（DFT）</h3><blockquote>
+<p>由于傅里叶变换经常用于信号的处理，将一个信号拆分成多个正弦信号的叠加。但是由于信号需要使用计算机处理，计算机只能处理离散的数据，所以需要将傅里叶变换离散化。</p>
+</blockquote>
+<p>傅里叶变换中$\omega$是一个连续的量，而实际的信号处理中 $\omega$的值是根据输入信号的采集频率确定的。</p>
+<p>令T表示采样周期，N表示采样次数。对于一个输入为N个点的离散序列${x[n]}, 0 \le n \lt N$</p>
+<p>其离散傅里叶变换为：</p>
+<script type="math/tex; mode=display">\bar {x}[k] = \Sigma_{n=0}^{N-1} (x[n] \cdot e^{-i\frac{2 \pi n}{N} k})</script><p>逆变换为：</p>
+<script type="math/tex; mode=display">x[n] = \frac{1}{N} \Sigma_{k=0}^{N-1} \bar {x}[k] \cdot e^{i\frac{2\pi k}{N} n}</script><p>其中$\frac{2\pi n}{N}$为角频率</p>
+<p><em>具体证明比较复杂，此处不进行叙述。</em></p>
+<h2 id="快速傅里叶变换原理"><a href="#快速傅里叶变换原理" class="headerlink" title="快速傅里叶变换原理"></a>快速傅里叶变换原理</h2><h2 id="快速傅里叶变换算法实现"><a href="#快速傅里叶变换算法实现" class="headerlink" title="快速傅里叶变换算法实现"></a>快速傅里叶变换算法实现</h2><h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p><strong>OK！ Time for bed！</strong></p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2020/04/07/AI-SUPERPOWERS/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/favicon.jpg" alt="Yuan Xu's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        yx1302317313@163.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:yx1302317313@163.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/03/">三月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">六月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">5</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Deep-Learning/">Deep Learning<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hexo/">Hexo<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Linux/">Linux<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/MCU/">MCU<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/翻译/">翻译<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/自控力/">自控力<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/远方/">远方<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/阅读/">阅读<span class="sidebar_archives-count">4</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签">
+                
+                    <i class="material-icons sidebar-material-icons">bookmark_border</i>
+                
+                标签
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/about" title="关于我">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于我
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友链">
+                
+                    <i class="material-icons sidebar-material-icons">link</i>
+                
+                友链
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/yx1302317313" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+        <a href="https://www.linkedin.com/in/xander-yuan-1b7618159/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-linkedin">
+                <span class="visuallyhidden">LinkedIn</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;YuanXu's Blog
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+<script type="text/ls-javascript" id="Bing-Background-script">
+    queue.offer(function(){
+        $('body').attr('data-original', 'https://api.i-meto.com/bing?');
+    });
+</script>
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 2019;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+    
+</html>
