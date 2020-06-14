@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>傅里叶变换</title>
+      <link href="/2020/04/30/fourier-transform/"/>
+      <url>/2020/04/30/fourier-transform/</url>
+      
+        <content type="html"><![CDATA[<p>傅里叶变换是一种线性积分变换，用于信号在时域和频域之间的变换。由法国学者约瑟夫·傅里叶系统地提出，所以以其名字来命名以示纪念。本文主要讲解傅里叶变换的公式推导和快速傅里叶变换算法的原理及实现。</p><a id="more"></a><p>笔者并没有在课程中学习过傅里叶变换，最初的基础仅仅是高数中讲到的傅里叶级数。由于项目需要，查阅了大量资料自学了傅里叶变换，学习过程中有一些较难理解的地方，而且感觉其中的一些东西容易忘记，于是决定记录下来，以备后患。</p><p><strong>Let’s Go!!!</strong></p><h2 id="傅里叶变换的公式推导">傅里叶变换的公式推导</h2><h3 id="三角函数的正交性">三角函数的正交性</h3><p>傅里叶变换的公式推导需要一些基础性的知识，三角函数的正交性便是其中的关键。</p><p>何为三角函数的正交性？</p><blockquote><p>在线性代数中，向量正交指两个向量内积为0。而三角函数的正交指在三角函数系中，任意两个不同的函数乘积在区间的积分为0。当然这个区间是有限制的，区间大小必须是三角函数周期的整数倍。</p></blockquote><p>例如：</p><ul><li>$\int_{-\pi}^{\pi} sin(nx)cos(mx) = 0$</li><li>$\int_{-\pi}^{\pi} sin(nx)sin(mx) = 0, n \ne m$</li><li>$\int_{-\pi}^{\pi} cos(nx)cos(mx) = 0, n \ne m$</li></ul><p><em>上面提到的$m,n$均为整数。</em></p><h4 id="证明">证明</h4><p>这里需要用到三角函数的积化和差公式：</p><ul><li>$sin(\alpha)cos(\beta) = \frac{1}{2}(sin(\alpha + \beta) + sin(\alpha - \beta))$</li><li>$cos(\alpha)cos(\beta) = \frac{1}{2}(cos(\alpha + \beta) + cos(\alpha - \beta))$</li><li>$sin(\alpha)sin(\beta) = -\frac{1}{2}(cos(\alpha + \beta) - cos(\alpha - \beta))$</li></ul><p>当$m \ne n$时:$$\begin{align}&amp;\int_{-\pi}^{\pi} sin(nx)sin(mx)\\&amp;= \int_{-\pi}^{\pi} (\frac{1}{2}[cos(nx - mx) - cos(nx + mx)]) \\&amp;= \int_{-\pi}^{\pi} \frac{1}{2}cos(n-m)x + \int_{-\pi}^{\pi} \frac{1}{2}cos(m+n)x \\&amp;= 0 \\\end{align}$$</p><p>而当$m = n$时，不满足正交性。</p><p>积分的结果为：</p><ul><li>$\int_{-\pi}^{\pi} sin(nx)sin(nx) = \pi$</li><li>$\int_{-\pi}^{\pi} cos(nx)cos(nx) = \pi$</li></ul><p>这个可以用半角公式证明：$$\begin{align}&amp;\int_{-\pi}^{\pi} sin(nx)sin(nx) dx \\&amp;= \int_{-\pi}^{\pi} \frac{1 - cos(2nx)}{2} dx\\&amp;= \int_{-\pi}^{\pi} \frac{1}{2} + \int_{-\pi}^{\pi} \frac{-cos(2nx)}{2} dx \\&amp;= \pi\end{align}$$</p><h3 id="傅里叶级数">傅里叶级数</h3><p>OK, 到这里我们既可以说一说傅里叶级数了。What is Fourier series？</p><blockquote><p>傅里叶级数可以用来表示任意一个周期函数。</p></blockquote><p>对于一个周期函数 $f(x) = f(x + T),\ T = \frac{2\pi}{\omega}$，其傅里叶级数为$$f(x) = \frac{a_0}{2} + \Sigma_{n=1}^{\infty}(a_n cos(n\omega x) + b_n sin(n\omega x))$$</p><p>其中</p><ul><li>$a_0 = \frac{2}{T} \int_{0}^{T} f(x) dx$</li><li>$a_n = \frac{2}{T} \int_{0}^{T} f(x) cos(n\omega x) dx$</li><li>$b_n = \frac{2}{T} \int_{0}^{T} f(x) sin(n\omega x) dx$</li></ul><p>至于是怎么推导出来的这里就不说明了（<s>其实我也不知道</s>)。不过可以说一下$a_0, a_n, b_n$三个系数是怎么求出来的。</p><h4 id="系数的求解">系数的求解</h4><p>这就用到我们上面提到的三角函数正交性了。</p><p>我们选取周期为$[-\pi, \pi]$$$\begin{align}&amp; f(x) = \frac{a_0}{2} + \Sigma_{n=1}^{\infty}(a_n cos(n\omega x) + b_n sin(n\omega x)) \\&amp; \int_{-\pi}^{\pi} f(x)dx = \int_{-\pi}^{\pi} \frac{a_0}{2} dx + \int_{-\pi}^{\pi} (\Sigma_{n=1}^{\infty}(a_n cos(n\omega x) + b_n sin(n\omega x))) dx \\&amp; \int_{-\pi}^{\pi} f(x)dx = \int_{-\pi}^{\pi} \frac{a_0}{2} dx + \Sigma_{n=1}^{\infty} \int_{-\pi}^{\pi} (a_n cos(n\omega x))dx +  \Sigma_{n=1}^{\infty} \int_{-\pi}^{\pi} (b_n sin(n\omega x)) dx \\&amp; \int_{-\pi}^{\pi} f(x)dx = a_0 \cdot \pi + 0 + 0\end{align}$$</p><p>所以，$a_0 = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) dx$</p><p>$a_n$的证明稍微麻烦一点,需要一个小小的技巧。</p><p>$$\begin{align}&amp; f(x) = \frac{a_0}{2} + \Sigma_{n=1}^{\infty}(a_n cos(n\omega x) + b_n sin(n\omega x)) \\&amp; f(x)cos(m\omega x) = \frac{a_0}{2}cos(m\omega x) + \Sigma_{n=1}^{\infty}(a_n cos(n\omega x) + b_n sin(n\omega x))cos(m\omega x) \\&amp; \int_{-\pi}^{\pi} f(x)cos(m\omega x)dx = \int_{-\pi}^{\pi} \frac{a_0}{2} cos(m\omega x)dx \\&amp;  + \int_{-\pi}^{\pi} (\Sigma_{n=1}^{\infty}(a_n cos(n\omega x)cos(m\omega x) + b_n sin(n\omega x))) cos(m\omega x)dx \\\end{align}$$</p><p>机智如你，一定想到了为什么要多乘一个$cos(m\omega x)$。对，这样就可以让$a_0, b_n$消失，只剩下我们需要的$a_n$。</p><p>我们继续$$\begin{align}&amp; \int_{-\pi}^{\pi} f(x)cos(m\omega x)dx = 0 + \Sigma_{n=1}^{\infty} \int_{-\pi}^{\pi} (a_n cos(n\omega x) cos(m\omega x))dx + 0\\&amp; \int_{-\pi}^{\pi} f(x)cos(m\omega x)dx = \Sigma_{n=1}^{\infty} \int_{-\pi}^{\pi} (a_n cos(n\omega x) cos(m\omega x))dx\\\end{align}$$</p><p>其实这里的系数$a_n$也只有一个能保留下来，那就是当$m = n$时。</p><p>$$\begin{align}&amp; \int_{-\pi}^{\pi} f(x)cos(m\omega x)dx = \Sigma_{n=1}^{\infty} \int_{-\pi}^{\pi} (a_n cos(n\omega x) cos(m\omega x))dx\\&amp; \int_{-\pi}^{\pi} f(x)cos(n\omega x)dx = a_n \int_{-\pi}^{\pi} (cos(n\omega x) cos(n\omega x))dx\\&amp; \int_{-\pi}^{\pi} f(x)cos(n\omega x)dx = a_n \pi\\\end{align}$$</p><p>可以解得：$a_n = \frac{1}{\pi} \int_{0}^{T} f(x) cos(n\omega x) dx$。$b_n$的求解这里就不进行赘述了，与$a_n$同理。</p><p>将$a_0, a_n, b_n$推广到任意周期，即可得到上面的结果：</p><ul><li>$a_0 = \frac{2}{T} \int_{0}^{T} f(x) dx$</li><li>$a_n = \frac{2}{T} \int_{0}^{T} f(x) cos(n\omega x) dx$</li><li>$b_n = \frac{2}{T} \int_{0}^{T} f(x) sin(n\omega x) dx$</li></ul><h4 id="傅里叶级数的意义">傅里叶级数的意义</h4><p>$$f(x) = \frac{a_0}{2} + \Sigma_{n=1}^{\infty}(a_n cos(n\omega x) + b_n sin(n\omega x))$$</p><p>从这个公式中我们可以看到，一个周期函数可以由一个常函数和无穷多个正弦函数和余弦函数叠加而成。</p><p>其中$n\omega$表示这些正弦函数和余弦函数的角频率是周期函数角频率的整数倍。</p><h3 id="欧拉公式">欧拉公式</h3><blockquote><p>傅里叶变换只能表示周期性函数，但是现实世界中周期性函数很少。那么问题来了，能不能表示非周期函数。答案是可以的，其实非周期性的函数就是一个周期无穷大的函数。</p></blockquote><p>开始之前，仍然需要一个预备知识——欧拉公式(Euler formula)。让我们见识一下这个号称<strong>数学界最美的公式</strong>。</p><p><strong>初见惊为天人，其形也，翩若惊鸿，婉若游龙。荣曜秋菊，华茂春松。</strong></p><p>$$e^{i\theta} = cos\theta + isin\theta$$</p><p><strong>再见则细思恐极。</strong></p><p>当$\theta = \pi$时，$e^{i\pi}  + 1 = 0$，这便是欧拉恒等式。是不是感觉数学中最基本的符号和数字都被包含在这个等式中，一切浑然天成！</p><p>其实吧，我们只想要从中得到下面的两个公式：</p><ul><li>$cos\theta = \frac{1}{2}(e^{i\theta} + e^{-i\theta})$</li><li>$sin\theta = -\frac{1}{2}i(e^{i\theta} - e^{-i\theta})$</li></ul><br><h3 id="傅里叶级数的复指数形式">傅里叶级数的复指数形式</h3><p>将$cos\theta,sin\theta$替换之后，我们便得到了傅里叶级数的复指数形式：$$\begin{align}&amp; f(x) = \frac{a_0}{2} + \Sigma_{n=1}^{\infty}(a_ncos(n\omega x) + b_n sin(n\omega x)) \\&amp;= \frac{a_0}{2} + \Sigma_{n=1}^{\infty}(a_n \frac{1}{2}(e^{in\omega x} + e^{-in\omega x}) - b_n \frac{1}{2}i(e^{in\omega x} - e^{-in\omega x})) \\&amp;= \frac{a_0}{2} + \Sigma_{n=1}^{\infty}a_n \frac{1}{2}(e^{in\omega x} + e^{-in\omega x}) -  \Sigma_{n=1}^{\infty}b_n \frac{1}{2}i(e^{in\omega x} - e^{-in\omega x})) \\&amp;= \frac{a_0}{2} + \Sigma_{n=1}^{\infty} \frac{1}{2}(a_n - b_n i)e^{in\omega x} +  \Sigma_{n=1}^{\infty} \frac{1}{2}(a_n + b_n i)e^{-in\omega x} \\&amp; = \Sigma_{0}^{0} \frac{a_0}{2} e^{i0\omega x} + \Sigma_{n=1}^{\infty} \frac{1}{2}(a_n - b_n i)e^{in\omega x} +  \Sigma_{n=- \infty}^{-1} \frac{1}{2}(a_{-n} + b_{-n} i)e^{in\omega x} \\&amp;= \Sigma_{n=-\infty}^{\infty} C_n e^{in\omega x}\end{align}$$</p><p>其中$$C_n =\left\{\begin{align}&amp; \frac{a_0}{2}, n = 0\\&amp; \frac{1}{2}(a_n - b_n i), n &gt; 0\\&amp; \frac{1}{2}(a_{-n} + b_{-n} i), n&lt;0\\\end{align}\right.$$</p><p>接下来我们求$C_n$.</p><p>我们已知$$\left\{\begin{align}&amp; a_0 = \frac{2}{T} \int_{0}^{T} f(x) dx\\&amp; a_n = \frac{2}{T} \int_{0}^{T} f(x) cos(n\omega x) dx\\&amp; b_n = \frac{2}{T} \int_{0}^{T} f(x) sin(n\omega x) dx\\\end{align}\right.$$</p><ol><li><p>当$n = 0$时$$\begin{align}&amp; C_0 = \frac{a_0}{2} = \frac{1}{T} \int_{0}^{T} f(x) dx\\\end{align}$$</p></li><li><p>当$n &gt; 0$时$$\begin{align}C_n &amp;= \frac{1}{2}(a_n - b_n i)\\&amp;  = \frac{1}{2} \frac{2}{T} \int_{0}^{T} f(x) cos(n\omega x)dx - \frac{1}{2}i\frac{2}{T} \int_{0}^{T} f(x) sin(n\omega x) dx\\&amp;  = \frac{1}{T} \int_{0}^{T} f(x) cos(n\omega x) - i \cdot sin(n\omega x) dx\\&amp;  = \frac{1}{T} \int_{0}^{T} f(x) e^{-in\omega x} dx\\\end{align}$$</p></li><li><p>当$n &lt; 0$时$$\begin{align}C_n &amp;= \frac{1}{2}(a_{-n} + b_{-n} i)\\&amp;  = \frac{1}{2} \frac{2}{T} \int_{0}^{T} f(x) cos(-n\omega x)dx + \frac{1}{2}i\frac{2}{T} \int_{0}^{T} f(x) sin(-n\omega x) dx\\&amp;  = \frac{1}{T} \int_{0}^{T} f(x) cos(-n\omega x) + i \cdot sin(-n\omega x) dx\\&amp;  = \frac{1}{T} \int_{0}^{T} f(x) e^{-in\omega x} dx\\\end{align}$$</p></li></ol><p>咦！$n&gt;0$和$n&lt;0$时，$C_n$居然是一样的，如果$n=0$时也一样那就Prefect了！</p><p>下面是见证奇迹的时刻！$$\begin{align}C_0 &amp;= \frac{1}{T} \int_{0}^{T} f(x) dx\\&amp;  = \frac{1}{T} \int_{0}^{T} f(x) e^{-i0\omega x} dx\\\end{align}$$</p><p>$C_n$的形式居然统一了，$C_n = \frac{1}{T} \int_{0}^{T} f(x) e^{-in\omega x} dx$。</p><br>到此，转换到复指数形式之后，傅里叶级数就看起来简单多了。$$f(x)= \Sigma_{n=-\infty}^{\infty} \frac{1}{T} \int_{0}^{T} f(x) e^{-in\omega x} dx \ e^{in\omega x}$$<h3 id="连续傅里叶变换">连续傅里叶变换</h3><p>对于非周期函数（可视为周期为无穷的函数）$f(x) = f(x + T), T \to \infty$</p><p>在周期函数中，$\omega  = \frac{2\pi}{T}$ 表示角频率。$n\omega$表示正弦函数和余弦函数的角频率是该周期函数角频率的整数倍。<br>但是当$T \to \infty$时， $\omega  \to 0$。$n\omega$表示的含义则是$n\omega$变成了一个连续的量（之前是离散的）。</p><p>也就是说非周期函数仍然可以由一个常函数和无穷多个正弦函数和余弦函数叠加而成。但是这些正弦函数和余弦函数的角频率变得特别密集，充斥在整个实数轴上。</p><p>为了表示方便，我们用$\omega$代替$n\omega$。则$T$可以表示为$\frac{\Delta \omega}{2\pi}$</p><p>于是，傅里叶变换的公式就诞生了。真是千呼万唤始出来呀！$$\begin{align}f(x)&amp;= \Sigma_{n=-\infty}^{\infty} \frac{\Delta \omega}{2\pi} \int_{-\infty}^{\infty} f(x) e^{-i\omega x} dx \ e^{i\omega x}\\&amp;= \int_{-\infty}^{\infty} \frac{1}{2\pi}  \int_{-\infty}^{\infty} f(x) e^{-i\omega x} dx \ e^{i\omega x} d\omega\\&amp;= \frac{1}{2\pi} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x) e^{-i\omega x} dx \ e^{i\omega x} d\omega\\\end{align}$$</p><p>令$F(\omega) = \int_{-\infty}^{\infty} f(x) e^{-i\omega x} dx$，该式即为傅里叶变换。</p><p>则$f(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\omega) \ e^{i\omega x} d\omega$，称为傅里叶变换的逆变换 。</p><h4 id="傅里叶变换公式的含义">傅里叶变换公式的含义</h4><p>一个时域内的函数$f(x)$经过傅里叶变换之后，得到了一个频域内的函数$F(\omega)$。给定一个$\omega$，就可以得到一个$F(\omega)$，$F(\omega)$表示函数$f(x)$在对应频率的振幅。由于$\omega \in (-\infty, \infty)$，所以可以得到无穷多个$F(\omega)$。</p><h4 id="傅里叶变换的逆变换公式的含义">傅里叶变换的逆变换公式的含义</h4><p>对得到的无穷多个$F(\omega)$积分由重新得到了原函数$f(x)$。说明了$f(x)$可以由这无穷多个函数叠加而成。这与之前的傅里叶级数表示的意义是相同的。</p><h3 id="离散傅里叶变换（DFT）">离散傅里叶变换（DFT）</h3><blockquote><p>由于傅里叶变换经常用于信号的处理，将一个信号拆分成多个正弦信号的叠加。但是由于信号需要使用计算机处理，计算机只能处理离散的数据，所以需要将傅里叶变换离散化。</p></blockquote><p>傅里叶变换中$\omega$是一个连续的量，而实际的信号处理中 $\omega$的值是根据输入信号的采集频率确定的。</p><p>令T表示采样周期，N表示采样次数。对于一个输入为N个点的离散序列${x[n]}, 0 \le n \lt N$</p><p>其离散傅里叶变换为：$$\bar {x}[k] = \Sigma_{n=0}^{N-1} (x[n] \cdot e^{-i\frac{2 \pi n}{N} k})$$</p><p>逆变换为：$$x[n] = \frac{1}{N} \Sigma_{k=0}^{N-1} \bar {x}[k] \cdot e^{i\frac{2\pi k}{N} n}$$</p><p>其中$\frac{2\pi n}{N}$为角频率</p><p><em>具体证明比较复杂，此处不进行叙述。</em></p><h2 id="快速傅里叶变换原理">快速傅里叶变换原理</h2><h2 id="快速傅里叶变换算法实现">快速傅里叶变换算法实现</h2><h3 id="递归">递归</h3><h3 id="迭代">迭代</h3><p><strong>OK！ Time for bed！</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数学 </tag>
+            
+            <tag> 信号 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>AI 未来[阅读]</title>
+      <link href="/2020/04/07/ai-superpowers/"/>
+      <url>/2020/04/07/ai-superpowers/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 阅读 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hough（霍夫）直线检测</title>
+      <link href="/2020/03/27/hough-line-detection/"/>
+      <url>/2020/03/27/hough-line-detection/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Hough（霍夫）直线检测">Hough（霍夫）直线检测</h2><p><strong>直线检测</strong>：对于边界上有 n 个点的点集,找出共线的点集和直线方程。</p><h2 id="Hough-变换的原理">Hough 变换的原理</h2><p><img src="https://cdn.nlark.com/yuque/0/2020/png/805252/1585227700298-c654d948-87f4-4092-abb2-65ee4d93376c.png#align=left&amp;display=inline&amp;height=409&amp;name=image.png&amp;originHeight=409&amp;originWidth=590&amp;size=16888&amp;status=done&amp;style=stroke&amp;width=590" alt="image.png"></p><p>对于直线$y = a*x + b$，从原点做其垂线，如图中的$CD$。如果将其看做极坐标系，则$CD$可以用$(\rho, \theta)$表示。</p><p>怎么表达AB与CD的关系呢？<img src="https://cdn.nlark.com/yuque/0/2020/png/805252/1585236081496-fadd6219-a0f4-403e-ad17-dc63d74ec037.png#align=left&amp;display=inline&amp;height=467&amp;name=image.png&amp;originHeight=560&amp;originWidth=720&amp;size=31179&amp;status=done&amp;style=stroke&amp;width=600" alt="image.png"></p><p>任取AB上一点E(x,y),做CD的垂线GH，AB的垂线GI。从而我们可以得到角度关系$\angle{IGE} = \angle {GHC} = \angle{DCB} = \theta$。所以，$CH = y sin\theta, HD = GI = x cos\theta$，从而$CD = CH+HD = xcos\theta + ysin\theta$，即$\rho = xcos\theta + ysin\theta$。可以证明对于直线AB上的任意一点，都满足上式，即$\rho = xcos\theta + ysin\theta$是直线AB的表达式。</p><p>再看$\rho = xcos\theta + ysin\theta$，如果我们固定$x,y$，将$\theta$作为自变量，可以得到一个$\rho - \theta$的一个函数关系式。当$\theta$变化时（CD绕原点旋转时），AB也会随之变化（转动）。由于固定了$x,y$，所以直线AB一定会经过点$（x,y）$，所以它表达了经过点$(x,y)$的<strong>所有直线。</strong></p><p>例如：$\rho = 3cos\theta + 2sin\theta$，曲线上每一个点$(\rho, \theta)$都可以表示一条经过点$(3,2)$的直线。<img src="https://cdn.nlark.com/yuque/0/2020/png/805252/1585231138357-57e10448-03c3-4835-9786-8f606001095b.png#align=left&amp;display=inline&amp;height=360&amp;name=image.png&amp;originHeight=351&amp;originWidth=522&amp;size=25591&amp;status=done&amp;style=stroke&amp;width=536" alt="image.png"></p><p>下图分别是$\rho = 3cos\theta + 2sin\theta$，$\rho = 2cos\theta + sin\theta$，$\rho = cos\theta$的图像，则分别表示所有经过点$(3,2)$，$(2,1)$，$(1,0)$的所有直线。那么图中的<strong>交点A</strong>表示什么？经过点$(3,2)$，$(2,1)$，$(1,0)$的直线是<strong>同一条线</strong>。Amazing！这不就是说明$(3,2)$，$(2,1)$，$(1,0)$<strong>三点共线</strong>吗，感觉忽然发现了新大陆。<img src="https://cdn.nlark.com/yuque/0/2020/png/805252/1585897533787-17380fa4-3331-4aac-b26b-a5ef52e27aaa.png#align=left&amp;display=inline&amp;height=570&amp;name=image.png&amp;originHeight=809&amp;originWidth=761&amp;size=73786&amp;status=done&amp;style=stroke&amp;width=536" alt="image.png"></p><p>现在，我们已经找到了证明多个点共线的方法了。让我们重新梳理一下：</p><ol><li>设有一个点集$R$，可得到$R$中任意点$(x_i,y_i)$对应的曲线$\rho_i = x_icos\theta + y_isin\theta$，$\theta \in [0, 2\pi)$。它表示了经过该点的所有直线。</li><li>设$(x_i, y_i),(x_j,y_j) \in R,i \ne j$ ，如果$\rho_i = x_icos\theta + y_isin\theta$与$\rho_j = x_jcos\theta + y_jsin\theta$有交点$A_{ij}(p_{ij}, \theta_{ij}$)，就说明$(x_i, y_i),(x_j,y_j) $两点共线。</li><li>由$A_{ij}(p_{ij}, \theta_{ij})$可得到$(x_i, y_i),(x_j,y_j) $所在的直线$\rho_{ij} = xcos\theta_{ij} + ysin\theta_{ij}$。</li></ol><p>刚才分析的都是基于连续的函数，如果要用算法实现，则需要将其<strong>离散化</strong>。因为$\theta \in [0, 2\pi)$，但是如果用程序实现只能将$\theta$离散化，如令<code>theta = range(0, 360)</code> 取360个离散的值（具体的精度根据实际情况决定）。</p><h2 id="算法实现">算法实现</h2><ol><li>输入一幅RGB图</li><li>检测图中的边缘，可以使用Canny边缘检测得到一幅<strong>二值图像</strong></li><li>开辟一个二维数组 <code>array</code> ，初始值全部为0，用于存储共线点的个数；确定$\theta$的精度。</li><li>对于每一个边缘点$(x_i,y_i)$，使用公式$\rho_i = x_icos\theta + y_isin\theta$计算每一个$\theta$对应的,将作为数组 <code>array</code> 的索引，将对应的数组元素值加 <code>1</code> 。</li><li>设定一个阈值，过滤出共线点较多的直线（也可以选取共线点最多的几条直线）。</li><li>将检测出的直线绘制到原图上。</li></ol><h2 id="Code-Python">Code[Python]</h2><ul><li>hough_without_canny 中直接使用的是经过Canny检测后的二值图像。</li><li>hough_with_canny 中调用了之前写过的Canny算法。（有时间会把Canny检测的代码也贴出来）</li></ul><p>效果如下：</p><center><img src="/img/blog/blog-29-1.jpg" width=500><p>原图</p></center><br><center><img src="/img/blog/blog-29-2.jpg" width=500><p>直线检测</p></center><pre><code class="language-python">from PIL import Imageimport matplotlib.pyplot as pltimport numpy as npimport cannyimport mathdef to_gray(img):    height, width, _ = img.shape    gray = np.zeros((height, width), dtype=np.uint8)    k = np.array([0.299, 0.587, 0.114])    for i in range(height):        for j in range(width):            gray[i][j] = (k * img[i][j]).sum()    return graydef to_rgb(img):    height, width = img.shape    rgb = np.zeros((height, width, 3), dtype=np.uint8)    for i in range(height):        for j in range(width):            rgb[i][j] = [img[i][j]] * 3    return rgbdef plot_line(img, expression):    if len(img.shape) != 3 or img.shape[2] != 3:        print('The image shape must be (height, width, 3)')        return img    height = img.shape[0]    width = img.shape[1]    def func(x, a, b):        return int(a * x + b)    for exp in expression:        a, b = exp        point = [(x, func(x, a, b)) for x in range(width)                 if 0 &lt;= func(x, a, b) &lt; height]        for x, y in point:            img[y][x] = [255, 0, 0]    return imgdef hough_check(img, precision=360, threshold=50, number=-1):    height, width = img.shape    theta = range(0, precision)    factor = 360 / precision    tab_height = len(theta)    tab_width = (height + width) &lt;&lt; 1    tab = [[0] * tab_width for i in range(tab_height)]    for i in range(height):        for j in range(width):            if img[i][j] == 255:                for k in theta:                    arc = k * factor * math.pi / 180                    rho = int(j * math.cos(arc) + i * math.sin(arc))                    tab[k][rho + height + width] += 1    line = []    for i in range(tab_height):        for j in range(tab_width):            if tab[i][j] &gt; threshold:                # append theta (0-360) and rho to line                line.append((i * factor, j - height - width))    if number == -1 or len(line) &lt;= number:        return line    else:        line.sort(key=lambda x: tab[int(x[0] / factor)][x[1] + height + width])        return line[0:number]def get_expression(pair):    theta, rho = pair    theta = theta * math.pi / 180    k = -math.cos(theta) / (math.sin(theta) + 1e-8)    b = rho / (math.sin(theta) + 1e-8)    return k, bdef hough_with_canny():    filename = 'hf.jpg'    rgb_img = Image.open(filename)    gray_img = rgb_img.convert('L')    gray_array = np.array(gray_img)    # img = to_gray(img_array)    gray_array = canny.canny(gray_array, (3, 3))    line = hough_check(gray_array, number=5)    print('The number of lines is {}'.format(len(line)))    expression = [get_expression(x) for x in line]    rgb_array = to_rgb(gray_array)    rgb_array = plot_line(rgb_array, expression)    plt.figure()    plt.imshow(rgb_array)    plt.show()def hough_without_canny():    filename = 'gray.jpg'    rgb_img = Image.open(filename)    gray_img = rgb_img.convert('L')    gray_array = np.array(gray_img)    rgb_array = to_rgb(gray_array)    line = hough_check(gray_array, number=5)    print('The number of lines is {}'.format(len(line)))    expression = [get_expression(x) for x in line]    rgb_array = plot_line(rgb_array, expression)    plt.figure()    plt.imshow(rgb_array)    plt.show()if __name__ == '__main__':    # main()    hough_without_canny()</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数字图像处理 </tag>
+            
+            <tag> 数学 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>书单</title>
+      <link href="/2020/03/05/reading-list/"/>
+      <url>/2020/03/05/reading-list/</url>
+      
+        <content type="html"><![CDATA[<h3 id="在读">在读</h3><ul><li>经济学原理-微观经济学</li><li>北欧神话</li><li>浩荡两千年</li><li>人月神话</li></ul><h3 id="经济类">经济类</h3><ul class="contains-task-list"><li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> 经济学原理-微观经济学</li><li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> 经济学原理-宏观经济学</li><li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> 浩荡两千年</li><li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> 跌荡一百年</li><li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> 激荡三十年</li></ul><h3 id="计算机类">计算机类</h3><ul class="contains-task-list"><li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> 人月神话</li><li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> 摩托车维修艺术</li><li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> 设计模式之禅</li><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 浪潮之巅</li><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> AI未来</li><li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> 软件估算</li><li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> 一本书读懂互联网思维</li><li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> 集成测试框架</li></ul><h3 id="历史类">历史类</h3><ul class="contains-task-list"><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 明朝那些事儿</li><li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> 易中天中华史</li><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 血腥的盛唐</li><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 被封印的唐史</li><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 两宋风云</li></ul><h3 id="科幻类">科幻类</h3><ul class="contains-task-list"><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 三体</li><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 球状闪电</li><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 乡村教师</li><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 白垩纪往事</li><li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> 流浪地球</li></ul><h3 id="文学类">文学类</h3><ul class="contains-task-list"><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 百年孤独</li><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 白夜行</li><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 流星之绊</li><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 解忧杂货店</li><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 迷宫中的将军</li><li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> 北欧神话</li><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 小李飞刀-多情剑客无情剑</li><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 追风筝的人</li></ul><h3 id="传记">传记</h3><ul class="contains-task-list"><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 特斯拉传</li><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 世界因我而不同</li></ul><h3 id="其他">其他</h3><ul class="contains-task-list"><li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 白说</li><li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> 黑天鹅</li><li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> 灰犀牛</li><li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox">  …</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 阅读 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MapReduce-翻译</title>
+      <link href="/2020/03/01/google-mapreduce/"/>
+      <url>/2020/03/01/google-mapreduce/</url>
+      
+        <content type="html"><![CDATA[<h2 id="摘要">摘要</h2><p>MapReduce是一个编程模型，是一个与处理和生成大数据集相关的实现。用户指定一个处理<code>键值对</code>的  <em>Map</em> 函数生成一个中间<code>键值对</code>的集合，指定一个 <em>Reduce</em> 函数来合并有相同中间<code>键</code>的所有中间<code>值</code>。许多现实中的任务都可以用这种模型表达，像这篇论文中所展示的一样。</p><p>用这种函数风格写成的程序可以自动在大型商用机器集群上并行化执行。这个运行时系统负责分割输入数据的细节，调度程序在机器集群上执行，处理机器的错误和管理请求的内部机器通信。这样允许没有任何并行化和分布式系统经验的程序员可以轻松地利用大型分布式系统的资源。</p><p>我们实现的MapReduce运行在大型商业机器集群上并且是高度可拓展的：一个典型的MapReduce计算在数以千计的机器上处理许多兆兆字节（2^40字节）的数据。程序员发现这个系统使用起来是简单的：数以百计的MapReduce程序已经被实现，每天高达一千多个MapReduce工作正在Google的集群上执行。</p><h2 id="1-简介">1 简介</h2><p>在过去的五年里，作者和许多在Google工作的其他人实现了数百种有专用目的的计算，用来处理大量原始数据，例如爬取的文档，网络请求日志等等，计算多种多样的派生数据，例如反向索引，网页文档图结构的各种表示方式，爬取主机的页数摘要，在给定一天的最频繁查询集合等等。大多数此类计算在概念上是简单明了的。但是输入数据通常是巨大的，为了在合理的时间内完成计算必须分布在成百上千个机器上。怎样并行化计算，分布数据和处理错误这些问题共同困扰了原先使用大量复杂代码处理这些问题的简单计算。</p><p>为了应对这种复杂性，我们设计了一个新的抽象概念允许我们表达试图执行的简单计算，但是我们在库中隐藏了并行化，容错，数据分布和负载平衡的复杂细节。我们的抽象概念的灵感来源于当前在 <em>Lisp</em> 和许多其他函数式语言中的 <em>Map</em> 和 <em>Reduce</em> 原函数。我们意识到大多数我们的计算涉及到对输入数据的每一个逻辑“记录”应用一个 <em>Map</em> 操作来计算一组中间<code>键值对</code>，然后对共享同一个键的所有值应用一个 <em>Reduce</em> 操作适当地合并派生的数据。我们使用具有用户指定的 <em>Map</em> 和 <em>Reduce</em> 操作的函数模型，使我们方便地并行化进行大型计算，我们使用重新计算作为容错的主要机制。</p><p>这项工作的主要贡献是一个简单而又强大的接口，该接口能够自动实现大规模计算的并行化和分布，并且该接口的是实现在大型商业计算机集群上达到高性能。</p><p>第2节描述了基本的编程模型并且给出了若干实例。第3节 描述了为我们基于集群计算环境定制的MapReduce接口的实现。第4节描述了我们发现有用的对编程模型的一些改进。第5节对大量任务的实现进行了性能度量。第6节探索了MapReduce在Google的应用，包括我们将其作为重写产品索引系统的基础的经历。第7节讨论了与其相关的和未来的工作。</p><h2 id="2-编程模型">2 编程模型</h2><p>计算会获取一个输入<code>键值对</code>集合，然后产生一个输出<code>键值对</code>集合。MapReduce库的用户通过两个函数：<em>Map</em> 和 <em>Reduce</em> 来表达计算。</p><p>由用户编写的 <em>Map</em> 函数获取一个输入对，产生一个中间键值对集合。MapReduce库将具有相同中间键 <em>I</em> 的中间值分成一组，然后把它们传递给 <em>Reduce</em> 函数。</p><p><em>Reduce</em> 函数同样由用户编写，接受一个中间键 <em>I</em> 和一个与该键对应的中间值集合。它将这些值合并起来形成一个可能更小的值的集合。通常每一次 <em>Reduce</em> 调用仅仅产生零或一个输出值。中间值通过一个迭代器被提供给用户的reduce函数。这样允许我们处理太大而不能放入内存的值列表。</p><h3 id="2-1-实例">2.1 实例</h3><p>考虑统计大量文档中每个单词出现次数的问题。用户需要编写类似于下面伪码的代码：</p><pre><code class="language-python">map(String key, String value):// key: document name// value: document contentsfor each word w in value:EmitIntermediate(w, &quot;1&quot;); reduce(String key, Iterator values):// key: a word// values: a list of countsint result = 0;for each v in values:result += ParseInt(v);Emit(AsString(result));</code></pre><p><em>map</em> 函数发出（emit）每个单词加上一个相关的出现次数（在这个简单的例子中仅仅是“1”）。<em>reduce</em> 函数将每一个特定单词的所有发出的（emited）次数加在一起。</p><p>另外，用户需要编写代码用输入，输出文件的文件名和额外的调整参数填充 <em>mapreduce</em> 规范对象。用户然后调用 <em>MapRedece</em> 函数，将这个规范的对象传递给它。用户代码会被MapReduce库（用C++实现的）链接到一起。附录A包含了这个例子的所有程序文本。</p><h3 id="2-2-类型">2.2 类型</h3><p>尽管之前的伪码是根据字符串输入输出编写的，但是概念上用户提供的map和reduce函数具有相关的类型：</p><pre><code>map (k1, v1) -&gt; list(k2, v2)reduce (k2, list(v2)) -&gt; list(v2)</code></pre><p>也就是说，输入键和值从不同于输出键和值的域中提取。另外，中间键和值与输出键和值来自同一个域。</p><p>我们的C++实现向用户定义的函数传递字符串，而从字符串转换为合适的类型留给用户定义的代码实现。</p><h3 id="2-3-更多实例">2.3 更多实例</h3><p>这里有一些有趣而又简单的例子，这些例子能够轻易的表达成MapReduce计算。</p><p><strong>Distributed Grep:</strong> 如果与提供的模式匹配，map函数会发出（emit）一行文本。reduce函数是一个identity函数，它仅仅将提供的中间数据复制到输出。</p><p><em>译者注：grep是Linux的一个命令，该命令会根据给定的模式查找文本中匹配的部分，如果匹配会输出所在行。</em></p><p><strong>Count of URL Access Frequency:</strong> map函数处理网页请求日志，输出 <em>&lt;URL, 1&gt;</em> 。reduce函数将来自相同URL的值加在一起并且发出（emit）一个 <em>&lt;URL, total count&gt;</em> 键值对。</p><p><strong>Reverse Web-Link Graph:</strong> map函数为在名为 <em>source</em> 的网页中找到的所以指向 <em>target</em> URL的每一个链接输出 <em>&lt;target, source&gt;</em> 键值对。reduce函数将与给定的目标URL有关的所有源URL列表连接起来，发出（emit）键值对： <em>&lt;target, list(source)&gt;</em></p><p><strong>Term-Vector per Host:</strong> 术语向量（term vector）将出现在一个文档或者一组文档中最重要的单词概括为 <em>&lt;words, frequence&gt;</em> 键值对。map函数为每一个输入文档发出（emit）一个 <em>&lt;hostname, term vector&gt;</em> 键值对（主机名从文档的URL中提取）。将给定主机所有文档的术语向量传递给reduce函数。它把这些术语向量加在一起，去掉不常出现的属于，然后发出（emit）一个最终的 <em>&lt;hostnamem, term vetor&gt;</em> 键值对。</p><p><strong>Inverted Index:</strong> map函数解析每一个文档，然后发出（emit）<em>&lt;word, document ID&gt;</em> 键值对序列。reduce函数接收给定单词的所有键值对，根据文档ID排序，之后发出（emit）一个 <em>&lt;word, list(document ID)&gt;</em> 键值对。所有输出键值对构成的集合形成了一个简单的反向索引。这样很容易拓展计算来跟踪每个单词的位置。</p><p><strong>Distributed Sort:</strong> map函数从每个记录中提取键，然后发出（emit）一个 <em>&lt;key, record&gt;</em> 键值对。reduce函数发出（emit）没有变化的全部键值对。这个计算依赖于在4.1节描述的隔离设施和在4.2节描述的可排序属性。</p><h2 id="3-实现">3 实现</h2><p>MapReduce接口可能有多种不同的实现方式。正确的选择依赖于环境。例如，一种实现可能适合小型共享内存机器，另一种适合大型的NUMA多处理器，另一种适合更大的网络计算机集群。本节描述了一个针对Google广泛使用的计算环境：通过交换以太网连接在一起的大型商用计算机集群的实现。在我们的环境中：</p><ol><li>机器通常是运行Linux系统的双X86处理器，每台有2-4G内存。</li><li>使用的是商用网络硬件，在机器级别上通常是100M/s或者是1G/s，但是平均考虑下来要少于一半的带宽。</li><li>一个集群包含成百上千台机器，因此机器故障是很常见的。</li><li>存储使用的是廉价的IDE磁盘，这些磁盘与单独的机器直接相连。使用内部开发的分布式文件系统管理存储在这些磁盘上的数据。文件系统使用拷贝的方式在不可靠的硬件之上提供实用性和可靠性。</li><li>用户提交作业到一个调度系统。每个作业由一系列任务组成，作业被调度器映射到集群内一系列可使用的机器上。</li></ol><br><h3 id="3-1-执行概述">3.1 执行概述</h3><center><img src="/img/blog/blog-28-1.png"></center><p>通过自动地将输入数据分割成 <em>M</em> 份，<em>Map</em> 函数的调用被分布在多台机器上。分割后的输入数据可以被不同的机器并行处理。使用分割函数（例如： <em>hash(key) mod R</em>）将中间键分成 <em>R</em> 份, <em>Reduce</em> 函数的调用也被分布化。分割的份数（ <em>R</em> ）和分割函数由用户指定。</p><p>图1展示了我们实现的MapReduce操作的全部流程。当用户程序调用MapReduce函数时，会发生以下一系列动作（图1中的数字标签对应下面列表中的编号）：</p><ol><li>用户程序中的MapReduce库首先将输入文件分成M份，通常每份是16MB或者64MB（用户可以通过一个可选参数控制）。然后在机器集群上启动多个程序副本。</li><li>这些程序副本当中有一个是特殊的——master。其余的是被master分配任务的worker。这里分配了 <em>M</em> 个map任务和 <em>R</em> 个reduce任务。管理程序找出空闲的worker然后给它分配一个map任务或者reduce任务。</li><li>被分配了map任务的worker从相应的输入文件中读取内容。它从输入数据中解析出键值对，将每一个键值对传递给用户定义的 <em>Map</em> 函数。<em>Map</em> 函数生成中间键值对并缓冲在内存中。</li><li>缓冲的键值对被周期性地写入本地磁盘，然后被分割程序分割成 <em>R</em> 份。这些在本地磁盘上缓冲的键值对的位置被传回master，master负责将这些位置向前传递给reduce worker。</li><li>当reduce worker被master告知中间键值对的位置时，它使用远程调用读取在map worker的磁盘上缓冲的数据。当reduce worker读取了全部的中间数据后，它通过中间键对读取数据排序，因此所有有相同键的数据被分成了一组。排序是必须的，因为通常会有许多不同的键映射到同一个reduce任务。如果中间数据的数量太大而不能装入内存，此时使用外部排序。</li><li>reduce worker遍历已排序的中间数据，对于遇到的每个唯一的中间键，它将键和相应的中间值集合传递给用户的reduce函数。<em>Reduce</em> 函数的输出被附加到这个reduce分区的输出文件中。</li><li>当所有的map任务和reduce任务完成时，master唤醒用户程序。这时候，用户程序从MapReduce调用返回到用户代码中。</li></ol><p>在顺利完成后，mapreduce执行结果保存在 <em>R</em> 个输出文件中(每一个reduce任务有一个输出文件，文件名由用户指定)。通常，用户不需要将这_R_ 个输出文件合并成一个文件——他们通常将这些文件作为另一个MapReduce调用的输入，或者在另一个分布式应用中使用它们，这个分布式应用能够处理被分成多个文件的输入。</p><h3 id="3-2-Master-数据结构">3.2 Master 数据结构</h3><p>master保存多个数据结构。对于每一个map任务和reduce任务，它存储它们的状态（空闲，正在处理，已经完成）和worker机器的身份（对于非空闲任务）。（译者注：所谓的身份指的是该计算机运行的是map任务还是reduce任务）</p><p>master是一个将中间文件区的位置从map任务传输到reduce任务的管道。因此，对于每一个已经完成的map任务，master存储了由该map任务处理的 <em>R</em> 个中间文件区的位置和大小。当map任务完成时，接收位置和大小信息的更新。这些信息以增量的方式推送到正在处理reduce任务的worker。</p><h3 id="3-3-容错性">3.3 容错性</h3><p>因为MapReduce库的设计目的是帮助使用成百上千的机器处理大量数据，因此MapReduce库必须优雅地容忍机器故障。</p><h4 id="Worker-故障">Worker 故障</h4><p>master会定期的ping（译者注：向计算机发送信号等待回复测试是否连通互联网）每一个worker。如果在一定时间内没有收到worker的响应，master会将该worker标记为故障。任何由worker完成的map任务都会被重置为初始的空闲状态，然后可以被其他worker调度。同样地，任何在故障的worker上处理的map和reduce任务也会被重置为空闲状态，变得可以被调度。</p><p>发生故障时已经完成的map任务会重新执行，因为它们的输出存储在故障机器的本地磁盘上，所以不能访问。已经完成的reduce任务不必重新执行，因为它们的输出存储在全局文件系统。</p><p>当map任务被一个worker A首次执行，之后又被worker B执行（因为A失败了）时，所有正在执行reduce任务的worker被通知重新执行。任何还没有从worker A读取数据的reduce任务将会从worker B读取数据。</p><p>MapReduce对于大规模worker故障具有弹性。例如，在MapReduce操作过程中，正在运行的集群的网络维护导致了80台机器在数分钟之内无法访问。MapReduce master简单地重新执行被这些不可访问的机器完成的工作，继续向前处理，最终完成MapReduce操作。</p><h4 id="Master-故障">Master 故障</h4><p>很容易使master写入上面描述的master数据结构的周期性检查点。如果master任务失败了，可以从上一次检查点状态启动一个新的备份。然而，鉴于只有一个master，它不太可能出现故障。因此，如果master故障了，我们当前的实现会终止MapReduce计算。用户可以检查状态，如果愿意可以重新尝试MapReduce操作。</p><h4 id="表示故障的语义">表示故障的语义</h4><p>当用户提供的map和reduce操作对于他们输入的值是确定性的函数，我们的分布式实现会产生和整个程序无错串行执行相同的结果。</p><p>我们依赖于map、reduce任务输出的原子性提交来实现这一特性。每一个正在处理的任务将它的输出写到私有临时文件。reduce任务会产生一个这样的文件，map任务会产生 $R$ 个这样的文件（每个reduce任务一个）。当一个map任务完成时，worker发送一条消息给master，在这个消息包括了这 $R$ 个临时文件的文件名。如果master接收到已经完成的map任务发来的一条完成消息，它会忽略这条消息。否则，它在master数据结构中记录这 $R$ 个文件的文件名。</p><p>当一个reduce任务完成时，reducer worker自动将它的临时输出文件重命名为最终输出文件名。如果同一个reduce任务在多个机器上被执行，那么将对同一个最终输出文件执行多次重命名操作。我们依赖于由底层文件系统提供的原子性重命名操作，来保证最终文件系统状态仅包含reduce任务的一个执行结果产生的数据。</p><p>我们绝大多数的map和reduce操作是确定性的，在这种情况下我们的语义与顺序执行是等价的，这使得程序员推理程序的行为非常容易。当map和reduce操作是非确定的，我们提供弱化但仍然可推理的语义。在非确定操作中会出现，一个特定reduce任务 $R_1$ 的输出等价于非确定程序一种串行执行产生的$R_1$的输出。但是另外一个不同的reduce任务$R_2$的输出可能与非确定程序另外一种不同的串行执行产生的$R_2$的输出相对应。</p><p>考虑map任务$M$和reduce任务$R_1$和$R_2$。令$e(R_i)$表示已经提交的$R_i$的执行结果（准确的说只有一个执行结果）。弱化的语义产生了，因为$e(R_1)$可能读取了任务$M$的一个执行产生的输出，$e(R_2)$可能读取了任务$M$另外一个不同的执行产生的输出。</p><h3 id="3-4-局部性">3.4 局部性</h3><p>在我们的计算环境中，网络带宽是一个相对紧缺的资源。我们通过利用输入数据保存在组成集群的机器的本地磁盘上的优势来节约网络带宽。</p><h3 id="3-5-任务粒度">3.5 任务粒度</h3><h3 id="3-6-备份任务">3.6 备份任务</h3><h2 id="4-改进">4 改进</h2><h3 id="4-1-分割函数">4.1 分割函数</h3><h3 id="4-2-有序保证">4.2 有序保证</h3><h3 id="4-3-合并函数">4.3 合并函数</h3><h3 id="4-4-输入输出类型">4.4 输入输出类型</h3><h3 id="4-5-副作用">4.5 副作用</h3><h3 id="4-6-跳过糟糕的记录">4.6 跳过糟糕的记录</h3><h3 id="4-7-局部执行">4.7 局部执行</h3><h3 id="4-8-状态信息">4.8 状态信息</h3><h3 id="4-9-计数器">4.9 计数器</h3><h2 id="5-性能">5 性能</h2><h3 id="5-1-集群配置">5.1 集群配置</h3><h3 id="5-2-Grep">5.2 Grep</h3><h3 id="5-3-排序">5.3 排序</h3><h3 id="5-4-备份任务的作用">5.4 备份任务的作用</h3><h3 id="5-5-机器故障">5.5 机器故障</h3><h2 id="6-实验">6 实验</h2><h3 id="6-1-大规模索引">6.1 大规模索引</h3><h2 id="7-相关工作">7 相关工作</h2><h2 id="8-结论">8 结论</h2><h2 id="致谢">致谢</h2><p>致谢请查阅原论文，此处不做翻译。</p><h2 id="参考文献">参考文献</h2><p>参考文献请查阅原论文。</p><h3 id="A-单词频率">A 单词频率</h3><p>本节包含了一个程序，该程序统计了通过命令行指定的文件集合中的每一个单词的出现次数。</p><pre><code class="language-cpp">#include &quot;mapreduce/mapreduce.h&quot;// User’s map functionclass WordCounter : public Mapper {public:virtual void Map(const MapInput&amp; input) {const string&amp; text = input.value();const int n = text.size();for (int i = 0; i &lt; n; ) {// Skip past leading whitespacewhile ((i &lt; n) &amp;&amp; isspace(text[i]))i++;// Find word endint start = i;while ((i &lt; n) &amp;&amp; !isspace(text[i]))i++;if (start &lt; i)Emit(text.substr(start,i-start),&quot;1&quot;);}}};REGISTER_MAPPER(WordCounter);// User’s reduce functionclass Adder : public Reducer {virtual void Reduce(ReduceInput* input) {// Iterate over all entries with the// same key and add the valuesint64 value = 0;while (!input-&gt;done()) {value += StringToInt(input-&gt;value());input-&gt;NextValue();}// Emit sum for input-&gt;key()Emit(IntToString(value));}};REGISTER_REDUCER(Adder);int main(int argc, char** argv) {ParseCommandLineFlags(argc, argv);MapReduceSpecification spec;// Store list of input files into &quot;spec&quot;for (int i = 1; i &lt; argc; i++) {MapReduceInput* input = spec.add_input();input-&gt;set_format(&quot;text&quot;);input-&gt;set_filepattern(argv[i]);input-&gt;set_mapper_class(&quot;WordCounter&quot;);}// Specify the output files:// /gfs/test/freq-00000-of-00100// /gfs/test/freq-00001-of-00100// ...MapReduceOutput* out = spec.output();out-&gt;set_filebase(&quot;/gfs/test/freq&quot;);out-&gt;set_num_tasks(100);out-&gt;set_format(&quot;text&quot;);out-&gt;set_reducer_class(&quot;Adder&quot;);// Optional: do partial sums within map// tasks to save network bandwidthout-&gt;set_combiner_class(&quot;Adder&quot;);// Tuning parameters: use at most 2000// machines and 100 MB of memory per taskspec.set_machines(2000);spec.set_map_megabytes(100);spec.set_reduce_megabytes(100);// Now run itMapReduceResult result;if (!MapReduce(spec, &amp;result)) abort();// Done: ’result’ structure contains info// about counters, time taken, number of// machines used, etc.return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 翻译 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>将QImage转换为numpy array</title>
+      <link href="/2020/02/26/convert-qimage-to-numpy-array/"/>
+      <url>/2020/02/26/convert-qimage-to-numpy-array/</url>
+      
+        <content type="html"><![CDATA[<p>最近在做手写体识别，需要将QT中手写的数字转换成像训练集一样图片。因此需要将QImage转换为numpy array。</p><a id="more"></a><h2 id="前言">前言</h2><p>笔者使用的是PyQt，但是对QT和Python之间数据之间的转换不太熟悉。查了很长时间，也没有找到详细的说明，最后在stackoverflow中查到了转换方法，但是说的也不清楚。</p><p>终于，经过查阅QT的参考手册终于明白了转换过程。</p><h2 id="详细过程">详细过程</h2><pre><code class="language-python">from PIL import Imageimport numpy as npimport matplotlib.pyplot as pltimage = self.canvas_label.canvas.toImage()size = image.size()s = image.bits().asstring(size.width() * size.height() * image.depth() // 8)  # format 0xffRRGGBBarr = np.fromstring(s, dtype=np.uint8).reshape((size.height(), size.width(), image.depth() // 8))new_image = Image.fromarray(array)# convert to graynew_image.convert(&quot;L&quot;)new_image.thumbnail((28, 28))plt.imshow(new_image, cmap='gray')plt.show()</code></pre><h3 id="1-将QImage转换为字符串">1. 将QImage转换为字符串</h3><p>笔者的原图是通过QPixmap绘制的一幅RGB图。之后将其转换为QImage。</p><p>通过<code>s = image.bits().asstring(size.width() * size.height() * image.depth() // 8) </code>将图像数据转换成字符串。</p><p>参数是图像中字节数，字节数等于图像宽度 × 图像高度 × 通道数，即$bytes = width * height * channels$</p><p>需要注意的是通道数，查看QT的手册知道QT的RGB图像的格式是0xFFRRGGBB,其实就是将Alpha通道全部置为了0xFF。</p><p>之前以为只有3个通道，所以一直有问题。<code>QImage.depth()</code>可以返回图像深度的比特数，对于RGB图<code>QImage.depth()</code>返回值为32，所以整除8之后就是通道数。</p><h3 id="2-将字符串转换为Numpy-array">2. 将字符串转换为Numpy array</h3><p>之后使用<code>np.fromstring()</code>即可通过字符串构造numpy array。</p><p>到这里QImage转换为numpy array的任务就完成了。之后需要将原图进行灰度处理和压缩。</p><h3 id="3-灰度处理-压缩">3. 灰度处理 &amp; 压缩</h3><ul><li>使用<code>Image.convert()</code>可以进行格式转换，详细用法见https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.Image.convert</li><li>使用<code>Image.thumbnail()</code>进行压缩，注意该方法只能进行压缩，不能放大，而且是等比例压缩。如果需要放大可以使用<code>Image.resize()</code>方法。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Qt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Load Mnist database of handwritten digit via Python</title>
+      <link href="/2020/02/20/parser-mnist/"/>
+      <url>/2020/02/20/parser-mnist/</url>
+      
+        <content type="html"><![CDATA[<p>The handwritten digits recognition may be your first project when you get started with Tensorflow or Pytorch, and the dataset used in this project is the Mnist database of handwritten digit.</p><a id="more"></a><h2 id="What-is-Mnist">What is Mnist?</h2><h3 id="Introduction">Introduction</h3><p>The <strong>MNIST database</strong> (Modified National Institute of Standards and Technology database) is a large database of handwritten digits that is commonly used for training various image processing systems.The database is also widely used for training and testing in the field of machine <a href="http://learning.It" target="_blank" rel="noopener">learning.It</a> was created by “re-mixing” the samples from NIST’s original datasets. Source: Wikipedia.</p><h3 id="Get-Mnist">Get Mnist</h3><p>You can download the Mnist database from its website, <a href="http://yann.lecun.com/exdb/mnist/index.html" target="_blank" rel="noopener">http://yann.lecun.com/exdb/mnist/index.html</a>.</p><p>There are four compressed files incluing training set images, training set labels, test set images and test set labels.</p><h2 id="The-format-of-Mnist">The format of Mnist</h2><p>The data of Mnist  is stored in a very simple file format. However, you can’t open them with common application program, and you need write your own program to read these files.</p><p>The above website has given the format of both image files and label files.</p><p>Oh, there is a little problem about thd data.</p><blockquote><p>All the integers in the files are stored in the MSB first (high endian) format used by most non-Intel processors. Users of Intel processors and other low-endian machines must flip the bytes of the header.</p></blockquote><p>It points out that the integers in the files is differen from the integers in Intel processor which used by most people’s computers.</p><p>Let’s use 0x00000102 as an example. We start the memory address from 0x0000.</p><p>In Intel processor, the 0x00000102 was stored like this.</p><table><thead><tr><th>address</th><th>value</th></tr></thead><tbody><tr><td>0x0000</td><td>0x02</td></tr><tr><td>0x0001</td><td>0x01</td></tr><tr><td>0x0002</td><td>0x00</td></tr><tr><td>0x0003</td><td>0x00</td></tr></tbody></table><p>In most non-Intel processor, it likes this.</p><table><thead><tr><th>address</th><th>value</th></tr></thead><tbody><tr><td>0x0000</td><td>0x00</td></tr><tr><td>0x0001</td><td>0x00</td></tr><tr><td>0x0002</td><td>0x01</td></tr><tr><td>0x0003</td><td>0x02</td></tr></tbody></table><p>Now, you have known the difference.</p><h3 id="The-format-of-images">The format of images</h3><pre><code>[offset] [type]          [value]          [description]0000     32 bit integer  0x00000803(2051) magic number0004     32 bit integer  60000            number of images0008     32 bit integer  28               number of rows0012     32 bit integer  28               number of columns0016     unsigned byte   ??               pixel0017     unsigned byte   ??               pixel........xxxx     unsigned byte   ??               pixelPixels are organized row-wise. Pixel values are 0 to 255. 0 means background (white), 255 means foreground (black).</code></pre><p>The first integer is a magic number 0x803. I guess it was used to comfirm whether the file is parsed correctly. You can compare your first interget with 0x803 when you read the file using your own program.</p><p>The next three integers are number of images, the rows of image and the cols of image. Their meaning is obvious.</p><p>Other data is the pixel of images, ranging from 0 to 255.</p><h3 id="The-format-of-Labels">The format of Labels</h3><pre><code>[offset] [type]          [value]          [description]0000     32 bit integer  0x00000801(2049) magic number (MSB first)0004     32 bit integer  60000            number of items0008     unsigned byte   ??               label0009     unsigned byte   ??               label........xxxx     unsigned byte   ??               labelThe labels values are 0 to 9.</code></pre><p>The first integer is also a magic number, but it is different from the image files. The next integer is number of labels.</p><p>Other data is the label of images, ranging from 0 to 9.</p><h2 id="Load-Mnist-via-Python">Load Mnist via Python</h2><p>We will import a python package help us to produce the bytes data effectively.</p><p>It is <code>struct</code> which is a build-in class of python. The <code>struct</code> class is very easy, you can learn about it from Python API reference manual.</p><h3 id="Load-images">Load images</h3><pre><code class="language-python">import matplotlib.pyplot as pltimport numpy as npimport structimport mathdef load_image(filename, count=-1):size = struct.calcsize(&quot;&gt;IIII&quot;)try:with open(filename, 'rb') as file:buffer = file.read(size)magic, number, row, col = struct.unpack(&quot;&gt;IIII&quot;, buffer)if magic != 0x803:print(&quot;parse error!&quot;)returnif count == -1 or count &gt; number:count = number# read imagesize = count * row  * colsize = struct.calcsize('&gt;' + str(size) + 'B')buffer = file.read(size)images = struct.unpack('&gt;' + str(size) + 'B', buffer)images = np.reshape(images, [count, row * col])except FileNotFoundError:print(&quot;file \&quot;%s\&quot; not found!&quot; % filename)return images</code></pre><p>First, we need to read four integers in the head of images file. Then we verify the magic number, there are some bugs if they are not corressonding.</p><p>After that we read some images accoding to a variant <code>count</code>.</p><p>Now, you may understand the steps of <code>struct</code>.</p><ol><li>use function <code>calcsize</code> get the size of bytes.</li><li>read some bytes from file.</li><li>use function <code>unpack</code> get some variants according to designative format.</li></ol><p>Finally, the variant <code>images</code> is a long vector, it is necessary to reshape it use numpy before return it.</p><h3 id="Load-labels">Load labels</h3><pre><code class="language-python">def load_label(filename, count=-1):size = struct.calcsize(&quot;&gt;II&quot;)try:with open(filename, 'rb') as file:buffer = file.read(size)magic, number= struct.unpack(&quot;&gt;II&quot;, buffer)if magic != 0x801:print(&quot;parse error!&quot;)returnif count == -1 or count &gt; number:count = number# parser imagesize = struct.calcsize('&gt;' + str(count) + 'B')buffer = file.read(size)labels = struct.unpack('&gt;' + str(count) + 'B', buffer)except FileNotFoundError:print(&quot;file \&quot;%s\&quot; not found!&quot; % filename)return labels</code></pre><p>The code of <code>load_label</code> is same as <code>load_image</code>. You are so smart that you will understand it.</p><h3 id="Show-images">Show images</h3><pre><code class="language-python">def show_image(images, count):figure = plt.figure()plt.subplots_adjust(left=0.1, right=0.9, bottom=0.1, top=0.9, hspace=0.2, wspace=0.2)for i in range(count):image = np.reshape(images[i], [28, 28])ax = figure.add_subplot(math.ceil(count/5), 5, i+1)ax.imshow(image, cmap=plt.cm.binary)plt.show()</code></pre><p>We use <code>matplotlib</code> to show  loaded images.</p><p>The result:</p><center><img src="/img/blog/blog-25-1.png" width=600></center><h2 id="END">END</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> Deep Learning </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Code </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Gitee导入Github仓库</title>
+      <link href="/2020/02/20/gitee-import-from-github/"/>
+      <url>/2020/02/20/gitee-import-from-github/</url>
+      
+        <content type="html"><![CDATA[<p>有时我们可能需要将项目同时提交到Github和Gitee，通过使用Gitee导入Github仓库我们可以轻松完成这个任务。</p><a id="more"></a><h2 id="导入Github仓库">导入Github仓库</h2><p>在新建仓库时最下方有一个 <code>导入已有仓库</code> 的选项，点击后可以输入github仓库的URL链接。如果选择导入，上面的所有信息都不需要填写，即使填写了也会被覆盖。</p><center><img src="/img/blog/blog-24-1.png" width=600></center><p>如果是私有仓库，需要提供Github的账号和密码，如下图：</p><center><img src="/img/blog/blog-24-2.png" width=600></center><p>点击创建后，导入Github仓库就成功了。</p><h2 id="同步Github仓库">同步Github仓库</h2><p>通过导入github仓库建立的gitee仓库可以同步在github中原仓库。</p><center><img src="/img/blog/blog-24-3.png" width=600></center><p>点击上图中的强制同步选项，可以直接同步在github中的仓库。</p><p>这样在本地主机上的项目只需要提交到github的服务器之后再同步到gitee中，就可以轻松实现 <strong>将项目同时提交到github和gitee</strong> 。</p><h2 id="存在的问题">存在的问题</h2><h3 id="Gitee与Github的发行版设置不同。">Gitee与Github的发行版设置不同。</h3><ul><li>Github会直接将tags作为发行版，如果创建了一个tag，那么在releases中也可以看到多了一个发行版。</li><li>Gitee的tags和发行版是独立的，创建tag之后，不会自动创建发行版，而是由用户决定是否从该tag创建发行版。</li></ul><p><strong>在同步时，Github的发行版不会同步到Gitee，但是tags会进行同步。</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Git </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>LeetCode-最长有效括号</title>
+      <link href="/2020/01/22/leetcode-zui-chang-you-xiao-gua-hao/"/>
+      <url>/2020/01/22/leetcode-zui-chang-you-xiao-gua-hao/</url>
+      
+        <content type="html"><![CDATA[<h2 id="题目：最长有效括号">题目：最长有效括号</h2><p>给定一个只包含 ‘(’ 和 ‘)’ 的字符串，找出最长的包含有效括号的子串的长度。</p><p>示例 1:</p><pre><code>输入: &quot;(()&quot;输出: 2解释: 最长有效括号子串为 &quot;()&quot;</code></pre><p>示例 2:</p><pre><code>输入: &quot;)()())&quot;输出: 4解释: 最长有效括号子串为 &quot;()()&quot;</code></pre><p>示例 3:</p><pre><code>输入: &quot;)(())())&quot;输出: 6解释: 最长有效括号子串为 &quot;(())()&quot;</code></pre><p><a href="https://leetcode-cn.com/problems/longest-valid-parentheses" target="_blank" rel="noopener">来源：力扣（LeetCode）</a></p><h2 id="算法：动态规划">算法：动态规划</h2><h3 id="解法：">解法：</h3><p>定义 $dp[i]$ 表示以第i个字符结尾的字符串中最长的有效括号长度。</p><p>example1:</p><pre><code>string: &quot;()()()&quot;index  : 0 1 2 3 4 5dp:      0 2 0 4 0 6</code></pre><p>example2:</p><pre><code>string: &quot;()((())&quot;index  : 0 1 2 3 4 5 6 dp:      0 2 0 0 0 2 4</code></pre><p>example3:</p><pre><code>string: &quot;()(())&quot;index: 0 1 2 3 4 5dp:    0 2 0 0 2 6</code></pre><ol><li>若$s[j] = ‘(’$, 由于’（'不可能是有效括号的结束字符，所以$dp[j] = 0$。</li><li>若$s[j] = ‘）’$，存在多种情况<ul><li>若$s[j-1]为’（’$， 若是则可以组成有效括号，有效括号长度+2。</li><li>若$s[j-1]为’）’$， 也不一定不是有效括号，还可能存在括号嵌套的情况，如&quot;example2&quot;, 这种情况则要判断 $s[dp[j-1] - 1]$是否等于’(’，是则+2。该情况可以和上一种情况合并，都可表示为判断 $s[dp[j-1] - 1] == ‘(’$ 是否成立。</li></ul></li><li>当 $dp[j]$是有效括号的结束字符时，要判断是否和之前的有效括号连续，如果连续要加上之前的长度。如&quot;example3&quot;， $s[5]= ‘)’$, 且 $s[5 - dp[4] - 1] = ‘(’$, 所以 $dp[5] = dp[4] + 2 = 4$。但是由于可以和之前的&quot;()&quot;连起来，所以 $dp[5] = dp[4] + 2 + dp[5 - dp[4] - 2] = 6$。</li></ol><h3 id="状态转移方程">状态转移方程</h3><p>$$dp[i]=\left{\begin{aligned}&amp;0, &amp;&amp;{s[i]=’(’}\&amp;0,&amp;&amp;{s[i]= ‘）’ \quad &amp;&amp; \quad s[i-dp[i-1]-1] \neq ‘(’}\&amp;dp[i-1] + 2 + dp[i-dp[i-1]-2], &amp;&amp;{s[i]= ‘）’ \quad &amp;&amp; \quad s[i-dp[i-1]-1] = ‘(’}\\end{aligned}\right.$$</p><h3 id="时间复杂度-空间复杂度">时间复杂度&amp;空间复杂度</h3><ol><li>时间复杂度: $O(n)$</li><li>空间复杂度: $O(n)$</li></ol><h2 id="LeetCode执行结果">LeetCode执行结果</h2><ul><li>执行用时 : <strong>4 ms</strong>, 在所有 C++ 提交中击败了 **95.63%**的用户。</li><li>内存消耗 : <strong>9.8 MB</strong>, 在所有 C++ 提交中击败了 **15.58%**的用户。</li></ul><h2 id="感受">感受</h2><p>其实动规比较简单，有套路可循。尤其是和字符串有关的题目，基本都与子串有关。但是难在子问题的划分，比如这道题中定义 $dp[i]$ 表示以第i个字符结尾的字符串中最长的有效括号长度，这样就比较简单。而我之前想的是定义为子串中最长有效括号的长度，到后面很难处理。</p><h2 id="代码">代码</h2><pre><code class="language-cpp">#include &lt;iostream&gt;#include &lt;string&gt;#include &lt;vector&gt;#include &lt;algorithm&gt;using namespace std;class Solution{public:int longestValidParentheses(string s){if(s.empty()){return 0;}vector&lt;int&gt; dp(s.length(),0);dp[0] = 0;for(int i=1; i&lt;s.length(); i++){if(s[i] == ')'){if(i - dp[i-1] -1 &gt;= 0 &amp;&amp;  s[i - dp[i-1] -1] == '('){if(i - dp[i-1] -2 &gt;=0){dp[i] = 2 + dp[i-1] + dp[i - dp[i-1] -2];}else{dp[i] = 2 + dp[i-1];}}}else{dp[i] = 0;}}return *max_element(dp.begin(), dp.end());}};int main(){string str;std::cout &lt;&lt; &quot;input:&quot;;std::cin &gt;&gt; str;Solution s;std::cout&lt;&lt;s.longestValidParentheses(str)&lt;&lt;std::endl;return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> Code </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>LeetCode-扰乱字符串</title>
+      <link href="/2020/01/19/leecode-rao-luan-zi-fu-chuan/"/>
+      <url>/2020/01/19/leecode-rao-luan-zi-fu-chuan/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目：扰乱字符串">题目：扰乱字符串</h3><p>给定一个字符串 s1，我们可以把它递归地分割成两个非空子字符串，从而将其表示为二叉树。</p><p>下图是字符串 s1 = “great” 的一种可能的表示形式。</p><pre><code>    great   /    \  gr    eat / \    /  \g   r  e   at           / \          a   t</code></pre><p>在扰乱这个字符串的过程中，我们可以挑选任何一个非叶节点，然后交换它的两个子节点。</p><p>例如，如果我们挑选非叶节点 “gr” ，交换它的两个子节点，将会产生扰乱字符串 “rgeat” 。</p><pre><code>    rgeat   /    \  rg    eat / \    /  \r   g  e   at           / \          a   t</code></pre><p>我们将 &quot;rgeat” 称作 “great” 的一个扰乱字符串。</p><p>同样地，如果我们继续交换节点 “eat” 和 “at” 的子节点，将会产生另一个新的扰乱字符串 “rgtae” 。</p><pre><code>    rgtae   /    \  rg    tae / \    /  \r   g  ta  e       / \      t   a</code></pre><p>我们将 &quot;rgtae” 称作 “great” 的一个扰乱字符串。</p><p>给出两个长度相等的字符串 s1 和 s2，判断 s2 是否是 s1 的扰乱字符串。</p><p>示例 1:</p><pre><code>输入: s1 = &quot;great&quot;, s2 = &quot;rgeat&quot;输出: true</code></pre><p>示例 2:</p><pre><code>输入: s1 = &quot;abcde&quot;, s2 = &quot;caebd&quot;输出: false</code></pre><p>来源：力扣（LeetCode）。链接：<a href="https://leetcode-cn.com/problems/scramble-string" target="_blank" rel="noopener">https://leetcode-cn.com/problems/scramble-string</a></p><h3 id="解题思路：递归">解题思路：递归</h3><p>由于无法得知原字符串分割的位置，所以通过蛮力遍历每一个位置对原字符串进行分割，然后比较原字符串和扰乱字符串分割之后的子串是否相等。子串同样进行了分割，则需要再对子串进行分割判断。这个时候就可以使用递归了。</p><p>由于分割之后还可能进行交换，所以需要判断两种情况：</p><ol><li>直接对原字符串进行分割，比较原字符串和扰乱字符串分割之后的子串是否相等。即s1[0, i] == s2[0, i] &amp;&amp; s1[i+1, len - 1] == s2[i+1, len -1]。</li><li>将分割后的两个子串交换，然后比较交换后的子串。s1[0, i] == s2[len-1 - i, len-1] &amp;&amp; s1[i+1, len - 1] == s2[0, len-i]。</li></ol><p>优化：由于分割交换并不会改变字符串中字符的个数，所以可以通过统计并比较两字符串中各字符的个数是否相等做一次筛选。如果不等，则一定不是扰乱字符串。这是一个 <strong>必要条件</strong>。</p><h3 id="LeetCode-运行结果">LeetCode 运行结果</h3><ul><li>执行用时 :8 ms, 在所有 C++ 提交中击败88.36的用户。</li><li>内存消耗 :10 MB, 在所有 C++ 提交中击败了78.16%的用户。</li></ul><h3 id="代码">代码</h3><pre><code class="language-cpp">class Solution{public:        bool isScramble(string s1, string s2)        {                if (s1.size() &lt;= 1)                {                        if (s1 == s2)                        {                                return true;                        }                }                else                {                        return _isScramble(s1, s2);                }                return false;        }        bool _isScramble(string s1, string s2)        {                                       int m = s1.length();                if(s1 == s2)                {                        return true;                }                //统计s1和s2的字符个数，判断相应的字符个数是否相等。（必要条件）                int char_num[26] = {0};                for(int i=0; i&lt;m;i++)                {                        char_num[s1[i] - 'a']++;                        char_num[s2[i] - 'a']--;                }                for(int i=0; i&lt;26; i++)                {                        if(char_num[i] != 0)                        {                                return false;                        }                }                for (int i = 0; i &lt; m-1; i++)                {                        //蛮力切割                        if ((_isScramble(s1.substr(0, i+1), s2.substr(0, i+1)) &amp;&amp;                        _isScramble(s1.substr(i + 1, m - (i + 1)), s2.substr(i + 1, m - (i + 1)))) == 1)                        {                                return true;                        }                        //切割并且交换                        if ((_isScramble(s1.substr(0, i+1), s2.substr(m-(i+1), i+1)) &amp;&amp;                        _isScramble(s1.substr(i + 1, m - (i + 1)), s2.substr(0, m - (i + 1)))) == 1)                        {                                return true;                        }                }                return false;        }};</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> Code </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux 管道通信</title>
+      <link href="/2019/11/14/linux-pipe/"/>
+      <url>/2019/11/14/linux-pipe/</url>
+      
+        <content type="html"><![CDATA[<h2 id="系统调用-fork">系统调用 fork</h2><p>在linux系统中创建进程有两种方式</p><ul><li>一是由操作系统创建。</li><li>二是由父进程创建进程。系统调用函数fork()是创建一个新进程的唯一方式。</li></ul><p>fork()函数通过系统调用创建一个与原来进程几乎完全相同的进程。</p><ol><li>系统先给新的进程分配资源，例如存储数据和代码的空间。</li><li>然后把原来的进程（父进程）的所有值都复制到新的新进程（子进程）中，只有少数值与原来的进程的值不同。</li><li>Linux的fork()采用写时拷贝实现，只有子进程发起写操作时才正真执行拷贝，在写时拷贝之前都是以只读的方式共享。这样可以避免发生拷贝大量数据而不被使用的情况。</li></ol><p>fork是Linux系统中一个比较特殊的函数，其一次调用会有两个返回值。在fork函数执行完毕后，如果创建新进程成功，则出现两个进程，一个是子进程，一个是父进程。如果失败返回值是1。</p><ul><li>在子进程中，fork函数返回0。</li><li>在父进程中，fork返回新创建子进程的进程ID。</li></ul><p>因此我们可以通过fork返回的值来判断当前进程是子进程还是父进程。</p><h2 id="管道">管道</h2><p>Linux中，每个管道允许两个进程交互数据，一个进程向管道写入数据，一个进程从管道读出数据。Linux并没有给管道定义一个新的数据结构，而是借用了文件系统中文件的数据结构。即管道实际是一个文件（但是与文件并不完全形同）。</p><p>操作系统在内存中为每个管道开辟一页内存（4KB），给这一页赋予了文件的属性。这一页内存由两个进程共享，但不会分配给任何进程，只由内核掌控。</p><h3 id="示例">示例</h3><blockquote><p>Linux pipe手册中的例子</p></blockquote><pre><code class="language-c">#include &lt;sys/types.h&gt;#include &lt;sys/wait.h&gt;#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;unistd.h&gt;#include &lt;string.h&gt;int main(int argc, char *argv[]){        int pipefd[2];        pid_t cpid;        char buf;        if (argc != 2)        {                fprintf(stderr, &quot;Usage: %s &lt;string&gt;\n&quot;, argv[0]);                exit(EXIT_FAILURE);        }        if (pipe(pipefd) == -1)        {                perror(&quot;pipe&quot;);                exit(EXIT_FAILURE);        }        cpid = fork();        if (cpid == -1)        {                perror(&quot;fork&quot;);                exit(EXIT_FAILURE);        }        if (cpid == 0)        {                         /* Child reads from pipe */                close(pipefd[1]); /* Close unused write end */                while (read(pipefd[0], &amp;buf, 1) &gt; 0)                        write(STDOUT_FILENO, &amp;buf, 1);                write(STDOUT_FILENO, &quot;\n&quot;, 1);                close(pipefd[0]);                _exit(EXIT_SUCCESS);        }        else        {                         /* Parent writes argv[1] to pipe */                close(pipefd[0]); /* Close unused read end */                write(pipefd[1], argv[1], strlen(argv[1]));                close(pipefd[1]); /* Reader will see EOF */                wait(NULL);       /* Wait for child */                exit(EXIT_SUCCESS);        }}</code></pre><p><img src="http://xiehongfeng100.github.io/images/os/linux-kenel-0.11/inter-process-communication/pipe/%E6%A0%B7%E4%BE%8B%E7%A4%BA%E5%9B%BE.png" alt=""></p><h3 id="管道的读写">管道的读写</h3><ul><li>读管道进程执行时，如果管道中有未读数据，就读取数据，没有未读数据就挂起，这样就不会读取垃圾数据。</li><li>写管道进程执行时，如果管道中有剩余空间，就写入数据，没有剩余空间了，就挂起，这样就不会覆盖尚未读取的数据。</li></ul><h4 id="读管道">读管道</h4><p>对于读管道操作，数据是从管道尾读出，并使管道尾指针前移‘读取字节数’个位置。</p><p><img src="http://xiehongfeng100.github.io/images/os/linux-kenel-0.11/inter-process-communication/pipe/%E7%AE%A1%E9%81%93%E7%BC%93%E5%86%B2%E5%8C%BA%E6%93%8D%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt=""></p><p>Linux 0.11 源码</p><pre><code class="language-c">//fs/pipe.cint read_pipe(struct m_inode * inode, char * buf, int count){int chars, size, read = 0;while (count&gt;0) {while (!(size=PIPE_SIZE(*inode))) {//管道空wake_up(&amp;inode-&gt;i_wait);//唤醒等待写管道进程if (inode-&gt;i_count != 2) /* are there any writers? */return read;//没有writer，返回sleep_on(&amp;inode-&gt;i_wait);//挂起读管道进程}chars = PAGE_SIZE-PIPE_TAIL(*inode);//PAGE_SIZE: 4KB if (chars &gt; count)chars = count;if (chars &gt; size)chars = size;count -= chars;read += chars;size = PIPE_TAIL(*inode);PIPE_TAIL(*inode) += chars;     // 读多少数据，指针就偏移多少PIPE_TAIL(*inode) &amp;= (PAGE_SIZE-1);     // 指针超过一个页面，（&amp;= ）操作可以实现自动回滚while (chars-- &gt;0)put_fs_byte(((char *)inode-&gt;i_size)[size++],buf++);     //将管道中的数据拷贝至buf}wake_up(&amp;inode-&gt;i_wait);    //唤醒等待写管道进程return read;}// include/linux/fs.h#define PIPE_HEAD(inode) ((inode).i_zone[0])#define PIPE_TAIL(inode) ((inode).i_zone[1])//PIPE_HEAD(inode)-PIPE_TAIL(inode) &lt; 0，和 (PAGE_SIZE-1) 相与能够计算出管道未读数据的长度#define PIPE_SIZE(inode) ((PIPE_HEAD(inode)-PIPE_TAIL(inode))&amp;(PAGE_SIZE-1))</code></pre><h4 id="写管道">写管道</h4><p>对于写管道操作，数据是向管道头部写入，并使管道头指针前移‘写入字节数’个位置。</p><p>Linux 0.11 源码</p><pre><code class="language-c">//fs/pipe.cint write_pipe(struct m_inode * inode, char * buf, int count){int chars, size, written = 0;while (count&gt;0) {while (!(size=(PAGE_SIZE-1)-PIPE_SIZE(*inode))) {   //管道已满wake_up(&amp;inode-&gt;i_wait);         //唤醒等待读管道进程if (inode-&gt;i_count != 2) { /* no readers */current-&gt;signal |= (1&lt;&lt;(SIGPIPE-1));return written?written:-1;      //没有reader，返回}sleep_on(&amp;inode-&gt;i_wait);       //挂起写管道进程}chars = PAGE_SIZE-PIPE_HEAD(*inode);if (chars &gt; count)chars = count;if (chars &gt; size)chars = size;count -= chars;written += chars;size = PIPE_HEAD(*inode);PIPE_HEAD(*inode) += chars;PIPE_HEAD(*inode) &amp;= (PAGE_SIZE-1);     // 指针超过一个页面，（&amp;= ）操作可以实现自动回滚while (chars-- &gt;0)((char *)inode-&gt;i_size)[size++]=get_fs_byte(buf++); //读取buf中的数据写入管道}wake_up(&amp;inode-&gt;i_wait);    //唤醒等待读管道进程return written;}// include/linux/fs.h#define PIPE_HEAD(inode) ((inode).i_zone[0])#define PIPE_TAIL(inode) ((inode).i_zone[1])//PIPE_HEAD(inode)-PIPE_TAIL(inode) &lt; 0，和 (PAGE_SIZE-1) 相与能够计算出管道未读数据的长度#define PIPE_SIZE(inode) ((PIPE_HEAD(inode)-PIPE_TAIL(inode))&amp;(PAGE_SIZE-1))</code></pre><h3 id="管道的特点">管道的特点</h3><ul><li>管道是半双工的，数据只能向一个方向流动；需要双方通信时，需要建立起两个管道；</li><li>只能用于父子进程或者兄弟进程之间（具有亲缘关系的进程）；</li><li>单独构成一种独立的文件系统：管道对于管道两端的进程而言，就是一个文件，但它不是普通的文件，它不属于某种文件系统，而是自立门户，单独构成一种文件系统，并且只存在于内存中。</li><li>数据的读出和写入：一个进程向管道中写的内容被管道另一端的进程读出。写入的内容每次都添加在管道缓冲区的末尾，并且每次都是从缓冲区的头部读出数据。</li></ul><h3 id="管道的局限性">管道的局限性</h3><ul><li>只支持单向数据流。</li><li>只能用于具有亲缘关系的进程之间。</li><li>没有名字（有名管道是 FIFO）。</li><li>管道的缓冲区是有限的（管道制存在于内存中，在管道创建时，为缓冲区分配一个页面大小）。</li><li>管道所传送的是无格式字节流，这就要求管道的读出方和写入方必须事先约定好数据的格式，比如多少字节算作一个消息（或命令、或记录）。</li><li>…</li></ul><h2 id="双向管道通信">双向管道通信</h2><ol><li>父进程创建两个管道,pipe1和pipe2.</li><li>父进程创建子进程,调用fork()的过程中子进程会复制父进程创建的两个管道.</li><li>实现父进程向子进程通信:父进程关闭pipe1的读端,保留写端;而子进程关闭pipe1的写端,保留读端.</li><li>实现子进程向父进程通信:子进程关闭pipe2的读端,保留写端;而父进程关闭pipe2的写端,保留读端.</li></ol><pre><code class="language-c">#include &lt;sys/types.h&gt;#include &lt;sys/wait.h&gt;#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;unistd.h&gt;#include &lt;string.h&gt;int main(int argc, char *argv[]){        int pipe_command[2];    //管道1 父进程 -&gt; 子进程        int pipe_result[2];     //管道2 子进程 -&gt; 父进程         pid_t cpid;        char buf[4];        //父进程创建管道        if (pipe(pipe_command) == -1)        {                perror(&quot;pipe_command&quot;);                exit(EXIT_FAILURE);        }        if(pipe(pipe_result) == -1)        {                perror(&quot;pipe_result&quot;);                exit(EXIT_FAILURE);        }        //创建子进程        cpid = fork();        if (cpid == -1)        {                perror(&quot;fork error&quot;);                exit(EXIT_FAILURE);        }        if (cpid == 0)  /*子进程*/        {                                        printf(&quot;sub: pid %d\n&quot;, getpid());      //输出子进程ID                close(pipe_command[1]);         //关闭管道写端                close(pipe_result[0]);            //关闭管道读端                int read_status;                while (1)                {                        read_status =  read(pipe_command[0], buf, 4);   //读取父进程的命令                        if(read_status &gt; 0)                        {                                printf(&quot;sub: command %s\n&quot;, buf);                                if(strcmp(buf, &quot;hell&quot;) == 0)                                {                                                                                write(pipe_result[1], &quot;okok&quot;, 4);       //回应父进程                                }                                else if( strcmp(buf, &quot;exit&quot;) == 0)                                {                                        printf(&quot;sub: exit\n&quot;);                                        break;                                }                         }                                               else if(read_status &lt; 0)        //读取错误                        {                                perror(&quot;sub: read error!&quot;);                                break;                        }                                                       }                        close(pipe_command[0]); //关闭管道                close(pipe_result[1]);                exit(EXIT_SUCCESS);        }        else    /*父进程*/        {                printf(&quot;parent: pid %d\n&quot;, getpid());      //输出父进程ID                close(pipe_command[0]); //关闭管道读端                close(pipe_result[1]);  //关闭管道写端                write(pipe_command[1], &quot;hell&quot;, 4);      //向子进程发送命令                 int read_status;                while (1)                {                        read_status = read(pipe_result[0], buf, 4);                        if(read_status &gt; 0)                        {                                printf(&quot;parent: received %s\n&quot;, buf);           //接收子进程回应                                write(pipe_command[1], &quot;exit&quot;, 4);      //通知子进程退出                                break;                        }                                                      else if(read_status &lt; 0)         //读取错误                        {                                perror(&quot;parent: read error!&quot;);                                break;                        }                                                                          }                                close(pipe_command[1]);                 close(pipe_result[0]);                /* 等待子进程退出,并判断状态吗码*/                int status;                waitpid(-1, &amp;status , 0);                                             if(WIFEXITED(status))                {                        printf(&quot;exited: %d\n&quot;, WEXITSTATUS(status));                }                                                else if(WIFSIGNALED(status))                {                        printf(&quot;signaled: %d\n&quot;, WTERMSIG(status));                }                exit(EXIT_SUCCESS);        }}</code></pre><h2 id="参考">参考</h2><ol><li>《Linux内核设计的艺术》</li><li>《Linux内核设计与实现》</li><li>Linux v0.11内核源码(<a href="https://github.com/karottc/linux-0.11" target="_blank" rel="noopener">https://github.com/karottc/linux-0.11</a>)</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Code </tag>
+            
+            <tag> Kernel </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Git子模块（submodule）</title>
+      <link href="/2019/11/09/git-zi-mo-kuai-submodule/"/>
+      <url>/2019/11/09/git-zi-mo-kuai-submodule/</url>
+      
+        <content type="html"><![CDATA[<h3 id="submodule的作用">submodule的作用</h3><p>Git使用submodule(子模块)解决Git仓库的嵌套问题，允许一个 Git 仓库作为另一个 Git 仓库的子目录。 能够将一个仓库同步到自己的项目中的同时，保持Git仓库提交的独立性。详细参见<a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97" target="_blank" rel="noopener">《pro git》子模块</a></p><h3 id="submodule的原理">submodule的原理</h3><p>submodule的实现很巧妙也很简单。其实submodule只是在原Git仓库中多添加了一条或者几条子模块的记录(保存在 <code>.gitmodule</code> 中)，它记录了仓库中包含的子模块的路径和URL。</p><pre><code>[submodule &quot;project/submodule&quot;]path = project/submodule# 在项目中的路径，即子模块所在的文件夹是project/submoduleurl = https://github.com/submodule.git# 远程仓库的URL</code></pre><p>当需要同步子模块的文件时，通过指定的URL使用HTTP协议下载到本地，同样如果对子模块里的内容做出修改之后，通过该URL可以提交到子模块的远程仓库（而不是提交到依赖该子模块项目的仓库）。</p><p>为了保证父仓库当前子模块的内容不会随着子模块仓库内容更新而改变，父仓库中还记录了子模块当前指向的提交记录。</p><p>例如：project仓库中包含了一个submodule子模块，当前子模块指向的远程仓库中的索引是 <code>ef34</code> 。Git会对每一次提交建立一个索引，该索引与提交记录一一对应。</p><pre><code>---project    |---submodule@ef34|---others|---.git</code></pre><p>如果子模块仓库发生了不兼容更新，最新的提交记录是 <code>ty23</code> 。由于父仓库中子模块指向的索引是 <code>ef34</code> ，即使子模块远程仓库中的内容发生了变化，也不会影响依赖于旧代码的项目。project在clone或者pull的时候，拉取的仍然是 <code>ef34</code> 的内容。如果此时project需要使用最新的submodule代码，通过更新子模块即可将子模块的索引修改为 <code>ty23</code> 。</p><pre><code>commit ty23 commit ef34commit jk93......</code></pre><h3 id="使用submodule">使用submodule</h3><h4 id="1、新建submodule">1、新建submodule</h4><p>使用<code>git submodule add</code>添加新的子模块</p><pre><code class="language-sh">$ git submodule add &quot;URL&quot;</code></pre><p>下图演示了添加名为Game的子模块</p><center><img src="/img/blog/blog-23-1.png" width=600></center><p>之后会发现目录下多了一个Game目录和.gitmodules的文件。其中Game目录下是你所希望包含项目的分支代码，而gitmodules的内容如下。也就是之前提到的submodule使用子模块的名称和URL记录本仓库包含的子模块。</p><pre><code>[submodule &quot;Game&quot;]path = Gameurl = https://github.com/yx1302317313/Game.git</code></pre><p>提交之后查看远程仓库会发现添加的子模块的文件并没有传到远程仓库，子模块的文件夹实际是一个URL，指向了包含子模块本身的远程仓库。</p><center><img src="/img/blog/blog-23-2.png" width=600></center><h4 id="2、克隆包含submodule的项目">2、克隆包含submodule的项目</h4><p>当使用<code>git clone </code>克隆一个包含子模块的项目时，子模块的文件并不会一同并拉取到本地，而只是一个空目录。</p><center><img src="/img/blog/blog-23-3.png" width=600></center><p>这时需要使用<code>git submodule init</code>用来初始化本地配置文件,而 <code>git submodule update</code>则从该项目中抓取所有数据并检出父项目中列出的合适的提交。</p><center><img src="/img/blog/blog-23-4.png" width=600></center><br><center><img src="/img/blog/blog-23-5.png" width=600></center><p>一个更简单的方法是给<code>git clone</code>加上递归选项<code> --recursive</code></p><pre><code class="language-sh">$ git clone --recursive &quot;URL&quot; # 自动初始化并更新仓库中的每一个子模块</code></pre><p><strong>[注意]：</strong> 由于git的子模块跟踪的是提交记录(commit id)，所以拉取下来的是一个游离分支，其实是将一个提交记录作为了一个游离的分支。这时候还需要切换到master分支。</p><pre><code class="language-sh">$ cd Game$ git checkout master</code></pre><p>所以整个克隆的步骤如下：</p><ol><li>克隆远程仓库：git clone “URL”</li><li>初始化子模块：git submodule init</li><li>拉取子模块的内容：git submodule update</li><li>进入子模块切换至主分支: git checkout master</li></ol><h4 id="3、更新submodule">3、更新submodule</h4><ol><li>进入submodule的目录。</li><li>使用<code>git fetch</code>和<code>git merge</code>更新submodule,与远程仓库的最新代码合并（当然也可以直接使用<code>git pull</code>）。</li></ol><h5 id="关于-git-fetch-与-git-pull">关于 git fetch 与 git pull</h5><blockquote><p>git pull = git fetch + git merge, 可以参考<a href="https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch" target="_blank" rel="noopener">stack overflow</a></p></blockquote><p><strong>更简单的方式</strong>：运行<code>git submodule update --remote</code>, 使用该命令Git将会进入子模块然后进行抓取并更新。</p><p><strong>注意：该命令默认fetch和merge主分支（master），如果是其他分支，需要进行配置（见《pro git》）。</strong></p><h4 id="4、修改并提交submodule">4、修改并提交submodule</h4><h5 id="提交前的fetch">提交前的fetch</h5><p>当修改了submodule的文件时，这里有一个需要注意的地方。一般我们在提交之前都需要查看远程分支是否有更新，会不会有冲突。我们的方法是使用<code>git fetch</code>抓取远程分支查看是否更新然后进行<code>git merge</code>。（使用<code>git pull</code>也没什么太大的问题）。</p><p>需要注意的地方是<code>git submodule update</code>，之前提到这个命令也可以完成上面的功能，还更方便。</p><p>但是《pro git》中提到</p><blockquote><p>当我们运行 git submodule update 从子模块仓库中抓取修改时,Git 将会获得这些改动并更新子目录中的文件,但是会将子仓库留在一个称作“游离的 HEAD”的状态。 这意味着没有本地工作分支(例如“master” )跟踪改动。 所以你做的任何改动都不会被跟踪。</p></blockquote><p>这段话感觉很难理解，英文版说的更直接一点。</p><blockquote><p>So far, when we’ve run the git submodule update command to fetch changes from the submodule repositories, Git would get the changes and update the files in the subdirectory but will leave the sub-repository in what’s called a “detached HEAD” state. This means that there is no local working branch (like “master”, for example) tracking changes. With no working branch tracking changes, that means even if you commit changes to the submodule, those changes will quite possibly be lost the next time you run git submodule update. You have to do some extra steps if you want changes in a submodule to be tracked.</p></blockquote><p>关键是这句话</p><blockquote><p>With no working branch tracking changes, that means even if you commit changes to the submodule, those changes will quite possibly be lost the next time you run git submodule update.</p></blockquote><p>意思就是如果远程仓库发生了改动，并且你本地有未推送到远程仓库的提交（commit），执行<code>git submodule update</code>后你的提交并不会与远程仓库进行合并（merge）。而是成为了一个游离的分支。</p><p>像这样，在update之后，分支变成了a58a3ae,而不再是master（master变成了游离状态）。</p><center><img src="/img/blog/blog-23-11.png" width=600></center><br><center><img src="/img/blog/blog-23-12.png" width=600></center><p>如果发生了这种情况，处理很简单，使用<code>git checkout master</code></p><center><img src="/img/blog/blog-23-13.png" width=600></center><p>正确的做法是使用<code>git submodule update --merge</code>，这个命令会告诉Git进行合并（前提是不发生冲突，如果发生了冲突请看下一节）。</p><center><img src="/img/blog/blog-23-14.png" width=600></center><h5 id="提交">提交</h5><p><strong>注意：使用git push并不会提交子模块。</strong></p><p>为了防止这种错误发生，git推荐提交使用<code>git push --recurse-submodules=check</code>，如果没有提交子模块，会提示你使用两种方法完成子模块的提交。</p><ol><li>进入各个子模块目录使用<code>git push</code>提交各个子模块，然后提交你的项目。</li><li>使用<code>git push --recurse-submodules=on-demand</code>命令提交， 该命令会自动提交子模块，然后再提交你的项目。如果子模块提交失败，整个提交也会失败。</li></ol><center><img src="/img/blog/blog-23-15.png" width=600></center><p>到这里，子模块的使用就快基本完成了。最后一部分是最令人麻烦的conflict。</p><h4 id="5、解决submodule冲突">5、解决submodule冲突</h4><p>解决冲突的步骤如下：</p><ol><li>进入子模块目录，解决冲突。（方法同解决正常的git冲突）</li><li>在子模块中提交解决冲突的记录。</li><li>切换到你的项目目录。</li><li>提交解决子模块冲突的记录。</li><li>推送到远程（如果需要）。</li></ol><center><img src="/img/blog/blog-23-16.png" width=600><p>git pull 发生冲突</p></center><br><center><img src="/img/blog/blog-23-17.png" width=600><p>找到冲突的文件</p></center><br><center><img src="/img/blog/blog-23-18.png" width=600><p>解决冲突，并在子模块目录提交记录</p></center><br><center><img src="/img/blog/blog-23-19.png" width=600><p>在父目录中提交子模块冲突的提交记录</p></center><br><center><img src="/img/blog/blog-23-20.png" width=600><p>成功推送到远程仓库</p></center><h3 id="写在最后">写在最后</h3><p>当然子模块还有些技巧，比如子模块遍历，命令别名等，见《pro git》。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Git </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>浅谈Python编码</title>
+      <link href="/2019/10/19/qian-tan-python-bian-ma/"/>
+      <url>/2019/10/19/qian-tan-python-bian-ma/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Python的编码问题可能是很多人都遇到过的问题（没遇到的终将会遇到的），笔者之前也对这个问题很模糊，今天看了《Effective Python》之后总结一下自己的理解。</p></blockquote><a id="more"></a><h3 id="Unicode">Unicode</h3><p>先看ASCII码，ASCII码我们比较熟悉，用一个字节表示了128个字符，其中包含标点符号，数字，英文字母等。</p><p>但是ASCII有一个问题，就是一个字节只有8位最多只能表示256个字符，不可能表示世界各个国家的字符。于是有了Unicode码。</p><p>Unicode码（统一码，万国码）：用多个字节表示全世界的所有字符，为每一个字符分配了一个唯一的标识（一个整数），在表示一个 Unicode 的字符时，通常会用“U+”然后紧接着一组十六进制的数字来表示这一个字符。</p><p><strong>来自Wiki百科</strong>：在文字处理方面，统一码为每一个字符而非字形定义唯一的代码（即一个整数）。换句话说，统一码以一种抽象的方式（即数字）来处理字符，并将视觉上的演绎工作（例如字体大小、外观形状、字体形态、文体等）留给其他软件来处理，例如网页浏览器或是文字处理器。</p><h3 id="UTF-8">UTF-8</h3><p>UTF-8：由于Unicode只是给每一个字符分配了一个整数值，但是没有规定如何存储这个整数值（比如：用几个字节存储），所以需要utf-8等编码。utf-8是一种将Unicode码转换成字节序列编码方式，是一种可变长编码。</p><p>可以这样理解：</p><ul><li>Unicode -&gt; utf-8编码 -&gt; bytes</li><li>bytes -&gt; utf-8解码 -&gt; Unicode</li></ul><p>UTF-8只是Unicode与字节流编码方式中的一种，还有UTF-16, GB-2312, GBK（windows系统的中文编码是GBK）编码等等。这些编码做的工作就是将Unicode规定字符对应的整数值用一个或多个字节表示出来。</p><p>因为IO，网络数据传输都是通过字节流的方式，所以在编程时需要将Unicode码转换成字节流再进行传输；同样需要将从IO，网络接收到的字节流转换成Unicode码。</p><h3 id="bytes、str与unicode">bytes、str与unicode</h3><p>Python2和Python3的不同点之一就是编码问题。其中str和unicode是Python2中的编码，而bytes和str是Python3中的编码。</p><p>Python2中的编码：</p><ul><li>str：bytes序列的字符串</li><li>unicode：unicode码点序列 的字符串</li></ul><p>Python3中的编码：</p><ul><li>bytes: bytes序列的字符串。</li><li>str: unicode码点序列 的字符串。</li></ul><p>让人疑惑的是str，str在Python2和Python3中表示不同的编码，Python2中表示字节序列，即bytes; Python3中表示Unicode码。<strong>个人理解是Python3想让在程序中定义的字符串使用Unicode码表示，而不是Python2中用字节流表示。</strong></p><h4 id="Python2">Python2</h4><pre><code class="language-python">&gt;&gt;&gt; string = &quot;python&quot;&gt;&gt;&gt; type(string)&lt;type 'str'&gt;&gt;&gt;&gt; u_str = u&quot;python&quot;&gt;&gt;&gt; type(u_str)&lt;type 'unicode'&gt;</code></pre><h4 id="Python3">Python3</h4><pre><code class="language-python">&gt;&gt;&gt; string = &quot;python&quot;&gt;&gt;&gt; bytes = b&quot;python&quot;&gt;&gt;&gt; type(string)&lt;class 'str'&gt;&gt;&gt;&gt; type(bytes)&lt;class 'bytes'&gt;</code></pre><h3 id="encode与decode">encode与decode</h3><blockquote><p>encode()和decode()是Python中用于bytes字节序列与Unicode序列转换的函数。</p></blockquote><ul><li>unicode.encode() -&gt; bytes:只有对于unicode对象我们才应该使用.encode()方法。这一方法用来将一系列unicode编码为bytes流。</li><li>bytes.decode() -&gt; unicode: 只有对于bytes，或说Python2中的str对象，我们才应该调用.decode()方法。这一方法将一系列bytes流解码为原本的unicode码点。</li></ul><h4 id="Python2-2">Python2</h4><pre><code class="language-python"># str 与 unicode&gt;&gt;&gt; string = &quot;python&quot;&gt;&gt;&gt; type(string)&lt;type 'str'&gt;&gt;&gt;&gt; u_str = u&quot;python&quot;&gt;&gt;&gt; type(u_str)&lt;type 'unicode'&gt;# str解码 -&gt; Unicode&gt;&gt;&gt; de_string = string.decode()&gt;&gt;&gt; type(de_string)&lt;type 'unicode'&gt;# unicode 编码 -&gt; str&gt;&gt;&gt; en_u_str = u_str.encode()&gt;&gt;&gt; type(en_u_str)&lt;type 'str'&gt;</code></pre><h4 id="Python3-2">Python3</h4><pre><code class="language-python"># str 与 bytes&gt;&gt;&gt; string = &quot;python&quot;&gt;&gt;&gt; bytes = b&quot;python&quot;&gt;&gt;&gt; type(string)&lt;class 'str'&gt;&gt;&gt;&gt; type(bytes)&lt;class 'bytes'&gt;# str编码 -&gt; butes&gt;&gt;&gt; en_string = string.encode()&gt;&gt;&gt; type(en_string)&lt;class 'bytes'&gt;# bytes 解码 -&gt; str&gt;&gt;&gt; de_bytes = bytes.decode()&gt;&gt;&gt; type(de_bytes)&lt;class 'str'&gt;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Code </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>球状闪电[阅读]</title>
+      <link href="/2019/10/07/qiu-zhuang-shan-dian/"/>
+      <url>/2019/10/07/qiu-zhuang-shan-dian/</url>
+      
+        <content type="html"><![CDATA[<!-- <center><img src="/img/blog/blog-22-1.jpg" width=800></center> --><blockquote><p>考试周的时候重新看了刘慈欣的《球状闪电》，个人一直很喜欢这本书，甚至超过了《三体》。但是一直没时间为这本书写一点东西，趁机抓住国庆假期的尾巴，写写我的体会。</p></blockquote><a id="more"></a><center><img src="/img/blog/blog-27-balllightning.jpg" width=600></center><h3 id="前言">前言</h3><p>第一次看《球状闪电》是一场意外。本来在看三体，第一部看完之后，应该是第二部《黑暗森林》。但是越看越不对，为什么和前面一点关系都没有，陈博士是干吗的？球状闪电是什么？</p><p>看了一半了才发现原来这个不是《黑暗森林》，而是《球状闪电》。<s>(论盗版小说的危害)</s>。但是看都看了，而且感觉写的不错，索性就看完了。可能当时还太年轻，没有太多感触，哈哈~~。不过对其中的一段话影响很深。</p><center>一片树林里分出两条路，<br>而我选了人迹更少的一条，<br>从此决定了我一生的道路。</center><p>这段话来自弗罗斯特的《未选择的路》， 考试周期间的一些事又让我想起了这段话，于是决定重新看一遍《球状闪电》。</p><p><strong>以下内容可能会因为记忆错误或者理解错误有所偏差，当然也有剧透噢</strong></p><h3 id="没有名字的男主">没有名字的男主</h3><p>前一段时间一直在想男主的名字是什么，想了很长时间也没有想起来。<s>(疯狂怀疑自己的记忆力)</s>。之后查了才发现，原来刘慈欣根本就没有提及男主的名字，全书都是用“我”、“陈博士”叙述，卑微呀。</p><p>仔细想想男主确实挺惨的，少年时期父母因球状闪电双双去世；自己追寻球状闪电十几年，发现球状闪电原来是自然界最基本的物质，并不是自己所学能解决的；注定与自己喜欢的女孩无缘；没有林云的勇敢；没有丁仪对物理学的那份热爱与执着；甚至在林云的大尉男友面前都感到自惭形秽。</p><p>不过，他也是幸运的。和那些追寻球状闪电一生却连球状闪电都没有见过的人比起来，他简直是幸福的，他发现了球状闪电的秘密，甚至捕捉到了球状闪电。</p><blockquote><p>一个美妙的人生并不难，听爸爸教你：你选一个公认的世界难题，最好只用一张纸和一支铅笔的数学难题，比如哥德巴赫猜想或者费马大定理什么的，或连纸笔都不要的纯自然哲学难题，比如宇宙的本源之类，投入全部身心钻研，只问耕耘不问收获，不知不觉的专注中，一辈子也就过去了。</p></blockquote><p>上面的这段话是男主的父亲之前对他说的，男主的前半生可以说是做到了这一点，一直在追寻球状闪电的秘密。当然，这句话不仅在说男主，书中的很多人都在做着这样的事——用一生追寻一个问题或者一件事。像男主的老师那样终生寻找球状闪电之谜的人；对武器痴迷的林云少校；对物理学执着追求的丁仪教授…</p><h3 id="物理学家——六分仪">物理学家——六分仪</h3><p>在发现球状闪电是自然界的基本物质之后，另外一位主角上场了——丁仪教授（很多人叫他六分仪，因为他出现在刘慈欣多部小说中，包括三体。每部小说中都是一个物理学家的身份，只不过研究领域不同）。</p><p>他的出现是因为主角这些搞应用科学的人根本没有办法解开自然界基本物质之谜，只能请“神仙”了。</p><blockquote><p>我们只能在牛顿、爱因斯坦、麦克斯韦这些人设定的框架中进行推演，不可能越雷池半步，否则就行步入没有空气的虚空一样，但在这个框架中，我们什么也推演不出来。</p></blockquote><p>这是另一句触动我的话，我相信只要是工科或者应用科学的人都多少会被这句话触动。对于工科或者应用科学的人来说，我们确实在那些伟大的科学家制定的框架中活着，很难越过雷池，甚至是不敢越过雷池。有些羡慕那些搞理论科学的人了，至少他们有机会“天马行空”。</p><p>丁仪的出现，很快解开了球状闪电之谜，<code>球状闪电是宏电子</code>。佩服刘慈欣的想象力，不过球状闪电的一些表现出来的现象还真的可以用量子力学解释。</p><p>我觉得他的解释还是有一定道理的（我对量子力学的了解有限）。至于球状闪电究竟是什么，我也不知道呀，毕竟对于现在的物理学，球状闪电还是个迷。不过是宏电子的可能性微乎其微（如果是，刘慈欣可以再拿一个诺贝尔物理学奖啦）</p><p>看完小说之后，我都想在有生之年见一次球状闪电了。据说河北邯郸曾经出现过。</p><h3 id="危险与魅力并存的美女少校">危险与魅力并存的美女少校</h3><p>小说中另外一位主角就是林云少校了。她是国防科技大学的博士研究生，专业为防控武器系统。</p><p>这是陈博士第一次见到林云时的印象。</p><blockquote><p>雾散了一些，天上有稀疏的星星出现，这星光立刻映在她那清澈的双眸中，我出神地看着她眼中的星光，又赶紧将目光转向真正的星空。如果说我的人生是一部电影，那前面已经放映过的都是黑白色，今天，在泰山之巅，画面突然变成彩色的了。</p></blockquote><p><s>后半句是一句不错的情话。。。</s></p><p>你以为他们最后会在一起？你想多了。像林云这样的女孩，或者说想她这样的人感情不会成为他们最重要的东西，因为有一种东西已经占据了他们的方寸之地。</p><p>陈博士对丁仪的情人说过“有物理学在，谁在他（丁仪）心里都不可能是第一位的”。《球状闪电》中人物的性格还是很鲜明的。</p><p>对于林云来说，武器就是那样一种东西。</p><p>你很难想象一个女孩会痴迷于武器，会在本应该抱着洋娃娃的年纪抱着枪膛仍然发热的机枪，会把一个精致的小型地雷作为饰品挂在车前，会将一个由硅材料制成如剑般锋利的胸针戴在胸前，会偷偷研制液体地雷并出售给正在交战的两个国家。</p><p>她之所以痴迷于武器是因为她母亲。她父亲是一位将军，母亲同样是一位军人。但不幸的是她母亲在越战期间惨死于一种武器——杀人蜂。年幼的林云因此憎恨武器，不过慢慢地变成了痴迷。</p><p>林云最后为了强行进行宏聚变实验而坍缩成量子态。其实林云这个人物才像整本书的主角，因为她和球状闪电一样即危险又令人着迷。</p><h3 id="球状闪电">球状闪电</h3><p>最后说说球状闪电。</p><p>球状闪电，俗称滚地雷。通常在雷暴时发生，为圆球形状的闪电。这是一种真实的物理现象。它十分亮，近圆球形，直径约15至40厘米不等。通常仅维持数秒，但也有维持了1至2分钟的记录。颜色除常见的橙色和红色外，还有黄色、紫色、蓝色、亮白色、幽绿色的光环，呈多种多样的色彩。</p><p>球状闪电的危害较大，它可以随气流起伏在近地空中自在飘飞或逆风而行。它可以通过开着的门窗进入室内，常见的是穿过烟囱后进入建筑物。它甚至可以在导线上滑动，有时会悬停，有时会无声消失，有时又会因为碰到障碍物爆炸。</p><p>球状闪电是形成雷电的电动趋势，在半击穿空气时产生的空气离子球。它其中携带能量，包裹相对稳定。当有导体破坏它的平衡时，它会和周围的空气中和，并释放出能量。</p><p>来源：百度百科。</p><h3 id="后记">后记</h3><p>据说，刘慈欣写这本小说之前被查出疑似有癌症，于是他将《球状闪电》作为他的最后一本书来写，所以《球状闪电》的结局也比较凄美。不过，写完之后再查发现根本不是癌症。“重获新生”之后，刘慈欣开始构建三体世界。</p><h3 id="附：《未选择的路》">附：《未选择的路》</h3><center>黄色的树林里分出两条路，<br>可惜我不能同时去涉足，<br>我在那路口久久伫立，<br>我向着一条路极目望去，<br>直到它消失在丛林深处。<br>但我却选了另外一条路，<br>它荒草萋萋，十分幽寂，<br>显得更诱人、更美丽，<br>虽然在这两条小路上，<br>都很少留下旅人的足迹，<br>虽然那天清晨落叶满地，<br>两条路都未经脚印污染。<br>呵，留下一条路等改日再见！<br>但我知道路径延绵无尽头，<br>恐怕我难以再回返。<br>也许多少年后在某个地方，<br>我将轻声叹息把往事回顾，<br>一片树林里分出两条路，<br>而我选了人迹更少的一条，<br>从此决定了我一生的道路。<br></center>]]></content>
+      
+      
+      <categories>
+          
+          <category> 阅读 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>仙境蓬莱</title>
+      <link href="/2019/10/07/xian-jing-peng-lai/"/>
+      <url>/2019/10/07/xian-jing-peng-lai/</url>
+      
+        <content type="html"><![CDATA[<p>蓬莱市为山东省烟台市的一个县级市，位于渤海和黄海的交界之处。“八仙过海”的神话传说，便发生在这里。中国四大名楼之一的蓬莱阁也坐落在这里。</p><a id="more"></a><p><strong>多图预警，小心流量</strong></p><center><img src="/img/blog/blog-26-penglai1.jpg" width=500></center><br><center><img src="/img/blog/blog-26-penglai2.jpg" width=500></center><br><center><img src="/img/blog/blog-26-penglai3.jpg" width=500></center><br><center><img src="/img/blog/blog-26-penglai4.jpg" width=500></center><br><center><img src="/img/blog/blog-26-penglai5.jpg" width=500></center><br><center><img src="/img/blog/blog-26-penglai6.jpg" width=500></center><br><center><img src="/img/blog/blog-26-penglai7.jpg" width=500></center><br><center><img src="/img/blog/blog-26-penglai8.jpg" width=500></center><br><center><img src="/img/blog/blog-26-penglai9.jpg" width=500></center><br><center><img src="/img/blog/blog-26-penglai10.jpg" width=500></center><br><center><img src="/img/blog/blog-26-penglai11.jpg" width=500></center><br><center><img src="/img/blog/blog-26-penglai12.jpg" width=500></center><br><center><img src="/img/blog/blog-26-penglai13.jpg" width=500></center><br><center><img src="/img/blog/blog-26-penglai14.jpg" width=500></center><br><center><img src="/img/blog/blog-26-penglai15.jpg" width=500></center><br><p>有没有感觉不对劲？</p><p>对，为什么有知乎的水印。当然是因为照片不是我拍的啦。</p><p>好吧，其实我没有照片，<strong>但我真真真真真的去了蓬莱</strong>，不过因为某些原因拍的照片没了。</p><p>原因就是你——<strong>华为手机</strong>。</p><p><em>你为什么在删除云端相册的时候会把本地相册也删了？</em></p><p><em>你为什么不提醒我？</em></p><p><em>你为什么要做这么鸡肋的一个云相册？</em></p><p><em>我为什么没备份？</em></p><p><em>我为什么要删除云相册？</em></p><p><em>我为什么还要清空回收站？</em></p><p><strong>一定注意：华为手机在删除云相册的时候本地相册也会被删除</strong></p><p>其他感受等心情好了再说…</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 远方 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>自控力</title>
+      <link href="/2019/10/07/zi-kong-li/"/>
+      <url>/2019/10/07/zi-kong-li/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 自控力 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Shadowsocks网络代理</title>
+      <link href="/2019/09/17/shadowsocks-wang-luo-dai-li/"/>
+      <url>/2019/09/17/shadowsocks-wang-luo-dai-li/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>昨天,在2019年网络安全周的第一天,搭建不到一个月的国外VPS被封了…特来记录一下最近的搭建过程.</p></blockquote><a id="more"></a><h2 id="前言">前言</h2><p>昨天荷兰和西雅图的VPS都被封了.期间还用traceroute(之后会介绍)分析了半天节点也没找到问题. 之后才知道是网络安全周. 据说, 网络安全周是特殊情况,之后可能会被解封.  <strong>Waiting…</strong></p><p>再说使用国外VPS会不会被请去喝茶的问题. 只要是 <strong>正常访问</strong> Facebook,Google,YouTube之类的都没什么问题. 不过具体的我也不清楚,想知道请查阅国家法律或者咨询法律人士. 但是如果自己搭建网络代理然后出售VPN一类的东西好像是违法的,网上也有一些案例. 自己搭个服务器自己玩就行了,不要去碰这种生意. 还有也不要浏览什么政治敏感话题,更不要在这些方面发表不适合的言论.</p><h2 id="国外VPS购买">国外VPS购买</h2><p>提供国外VPS的公司有很多, 比如Vultr, DigitalOcean, hostwinds等等.我用的是<a href="https://clients.hostwinds.com" target="_blank" rel="noopener">hostwinds</a>, 因为hostwinds相对比较便宜, 最低配版一个月$4.49元. 不过大部分价格差不多,每个月5美元左右. 有的也提供一些更便宜的服务器, 比如3美元左右, 但是现在基本已经售空了, 一般很难抢到. 如果你发现了一定要快点下手, 并且通过邮箱通知我一下. 哈哈…</p><p>对于服务器配置, 如果只是自己搭建Shadowsocks, 搭建个人博客, 做FTP, 做图床等等, 最低配就够用了.</p><p>下图是某网站发布的2019国外VPS服务商排行, 可以参考一下, 然后根据自己的需求选择即可.</p><center><img src="/img/blog/blog-20-1.png"></center><h2 id="Shadowsocks服务端搭建">Shadowsocks服务端搭建</h2><p>买完服务器之后就可以开始Shadowsocks服务器的搭建了.</p><p>通过ssh远程登录服务器 <s>(既然都准备自己搭建服务器了, 这个应该都会吧)</s>. 可以先对服务器配置一下, 再开始.</p><ul><li>创建个普通用户, 尽量少用root用户.</li><li>换换终端, 强烈推荐zsh, 让终端操作更加丝滑.</li><li>…</li></ul><p>好了, 正式开始!</p><ol><li>服务器上安装Shadowsocks, 下面是一个一键安装脚本. 在终端运行下面的命令</li></ol><pre><code class="language-sh">wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.shchmod +x shadowsocks-all.sh./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log</code></pre><ol start="2"><li><p>运行之后需要选择一些选项</p><ul><li>选择ss服务端的版本, 有Python, R, 和Go等等, 我选择的是Go.</li><li>输入密码: 输入自己想要设定的密码.</li><li>输入端口: 回车默认.</li><li>输入加密方式: 同样选默认, 回车.</li></ul></li><li><p>按任意健开始, 或者按Ctrl + C 取消. 当然是开始了.</p></li><li><p>等待安装完成. 然后将ip, 端口等信息截图保存一下.</p></li><li><p>完成, Enjoy it!</p></li></ol><p><strong>[注意]</strong>: 密码,端口和加密方式需要记住, 因为配置客户端时要用. 安装完成后会显示这些信息, 到时候截个图就可以. 同时会生成一个二维码, 可以使用手机扫描, 或者使用电脑读取二维码配置客户端. 至于怎么把二维码从服务器下载下来… 可以利用vsftpd搭一个FTP服务器, 然后下载. 不过这里使用手动配置.</p><p>完成之后可以看一下ss服务是否启动</p><pre><code class="language-sh">$ systemctl list-units --type=service | grep Shadowsocks</code></pre><p>如果看到有Shadowsocks服务, 并且状态是active和running, 则服务已经启动. 服务端配置就完成了.</p><h2 id="Shadowsocks客户端">Shadowsocks客户端</h2><p>在Github上有各个平台的Shadowsocks客户端. <a href="https://github.com/shadowsocks" target="_blank" rel="noopener">Shadowsocks</a></p><h3 id="Android">Android</h3><p>国内的应用商店肯定是没有shadowsocks应用的, 直接下github上的apk安装包安装即可.<s>(不过墙内好像下载速度极慢)</s>.</p><p>打开Android端Shadowsocks.</p><center><img src="/img/blog/blog-21-1.jpg" height=500></center><p>点击右上角的添加图标, 选择手动设置.</p><center><img src="/img/blog/blog-21-2.jpg" height=500></center><p>现在就用到之前保留的截图了, 按照服务器的配置信息依次设置服务器IP, 服务器端口, 密码, 以及加密方式.</p><p><strong>[注意]</strong>: 最下面的路由选择 <strong>绕过局域网及中国大陆地址</strong> , 这样访问局域网的网址和大陆网址时不使用代理. 你访问国内网站, 总不想绕大半个地球到欧洲或者北美再回来吧.</p><p>还有, 国内某些网站是不对国外的IP提供服务的, 比如网易云音乐, 如果使用国外的IP访问, 不能播放音乐, 更不能下载了.</p><center><img src="/img/blog/blog-21-3.jpg" height=500></center><h3 id="Windows">Windows</h3><p>Windows安装之后, 打开应用之后会直接显示在底栏的右下角. 右键进行手动配置, 基本同Android端配置一样.</p><p>同样, 为了访问局域网的网址和大陆网址时不使用代理, 也需要进行相应的配置, 在右键菜单中找到系统代理这一项, 将默认的全局模式改为PAC模式.</p><p>由于电脑上没有Windows系统, 就不截图了. Windows具体配置见<a href="https://github.com/Shadowsocks-Wiki/shadowsocks/blob/master/2-windows-setup-guide-cn.md" target="_blank" rel="noopener">Windows Shadowsocks配置</a>.</p><h3 id="Linux">Linux</h3><blockquote><p>Linux当然是最&quot;麻烦&quot;的了.</p></blockquote><p>我的Linux发行版是Ubuntu18，不同发行版之间操作可能不同。</p><h4 id="全局代理">全局代理</h4><ol><li><p>打开设置-&gt;网络-&gt;网络代理</p></li><li><p>选择网络代理中的手动代理，再选择sockts主机为本地IP地址：172.0.0.1，端口为1080。具体设置见下图</p></li></ol><center><img src="/img/blog/blog-21-7.png"></center><h5 id="终端的全局代理">终端的全局代理</h5><p>在shell的配置文件(.bashrc、.zshrc等等)中添加下面内容</p><pre><code class="language-sh">export http_proxy=&quot;socks5://127.0.0.1:1080&quot;export https_proxy=&quot;socks5://127.0.0.1:1080&quot;</code></pre><p><strong>目前还没有找到终端使用PAC代理的方法，我在终端使用的还是全局代理。。。</strong></p><h4 id="PAC代理">PAC代理</h4><blockquote><p>PAC，一个自动代理配置脚本，包含了很多使用 JavaScript 编写的规则，它能够决定网络流量走默认通道还是代理服务器通道，控制的流量类型包括：HTTP、HTTPS 和 FTP。</p></blockquote><h5 id="系统的PAC代理">系统的PAC代理</h5><ul><li>安装pip（很多人可能已经装了）</li></ul><pre><code class="language-sh">sudo apt-get install python-pip python-dev build-essential sudo pip install --upgrade pip sudo pip install --upgrade virtualenv</code></pre><ul><li>安装genpac</li></ul><pre><code class="language-sh">sudo pip install genpac</code></pre><ul><li>建立一个存放pac文件的目录，进入该目录。（注意，在执行时需挂系统代理 sock5，否则会出现获取 gfwlist 失败的情况）</li></ul><pre><code class="language-sh">genpac --proxy=&quot;SOCKS5 127.0.0.1:1080&quot; --gfwlist-proxy=&quot;SOCKS5 127.0.0.1:1080&quot; -o autoproxy.pac --gfwlist-url=&quot;https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt&quot; </code></pre><ul><li>选择网络代理中的自动代理，url 填写刚生成的 pac 文件的路径file:///path/autoproxy.pac (# 这个文件是一个JS脚本文件，里面存放着目前大部分被gfw屏蔽的域名)，<strong>如果有需要添加的域名，可以自己手动添加进去。</strong></li></ul><h5 id="Chrome的PAC代理">Chrome的PAC代理</h5><ol><li>安装chrome插件SwitchyOmega</li><li>打开SwitchyOmega配置</li><li>新建情景模式，选择PAC情景模式</li><li>在PAC脚本内复制下载的PAC文件的内容，也可以通过填写PAC网址从网站下载PAC文件。</li><li>选择SwitchyOmega的模式是刚刚新建的情景模式。</li></ol><h5 id="Firefox的PAC代理">Firefox的PAC代理</h5><ol><li>打开：设置 -&gt;首选项 -&gt;常规 -&gt;最下方的网络设置。</li><li>点击设置-&gt; 选择自动代理配置URL（PAC）</li><li>填写下载的PAC文件的路径，例如： file:///path/autoproxy.pac</li><li>确认</li></ol><h2 id="traceroute分析">traceroute分析</h2><blockquote><p>说说traceroute, 这是一个Linux命令(在Windows下相应命令为tracert). 它的作用就是跟踪消息在网络核心之间的传输, 也就是在各个路由器之间的传输. 通过这个命令我们可以看到网络传输中的时延和丢包现象.</p></blockquote><h3 id="原理">原理</h3><p>traceroute主要使用了IP头部生存时间(time to live, TTL), TTL值在每经过一个路由之后会减去1, 当TTL值为0时, 路由器认为发送超时, 将报文丢弃并向源主机发送ICMP超时差错报文. 报文中包含了路由器的IP.</p><p>利用TTL的这种工作原理, traceroute可以依次得到每一个路由器的IP地址.</p><ul><li>源主机将TTL值设置为1发送报文, 在报文到达第一个路由器时, $TTL - 1 = 0$, 于是路由器认为超时, 发送一份ICMP超时差错报文给源主机, 得到第一个路由器的IP.</li><li>源主机再将TTL值设置为2发送报文, 同理得到第二个路由器的IP地址.</li><li>…</li><li>当报文到达目的主机时, 由于traceroute通过UDP数据包向不常见端口发送数据包，因此会收到目的主机ICMP port unreachable消息，故可判断到达目的地。</li><li>停止发送报文.</li></ul><p>通过上述方法可以得到从源主机到目的主机过程中各个路由器的IP地址, 由于源主机收到路由器或者目的主机的消息所用的时间是从源主机到路由器或者目的主机的2倍, 可以简单的将这个时间除以2得到从源主机到路由器或者目的主机的时间. 通过这个时间我们可以分析传输时延和丢包现象.</p><h3 id="分析">分析</h3><p>这是traceroute访问百度的过程, 其中*表示丢包.</p><center><img src="/img/blog/blog-21-4.png" width=800></center><p>访问cnn, 其中202.97.50.54是电信主干网, 之后的一个IP 38.104.138.105就已经到了美国了.</p><center><img src="/img/blog/blog-21-5.png" width=800></center><p>再看youtube, 在电信主干网就挂掉了, 连走出国门的机会都没有(-_-).</p><center><img src="/img/blog/blog-21-6.png" width=800></center>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络代理 </tag>
+            
+            <tag> Network </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>天津之行</title>
+      <link href="/2019/08/31/tian-jin-zhi-xing/"/>
+      <url>/2019/08/31/tian-jin-zhi-xing/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>其实很多人都希望一场旅行,去追寻自己心中的诗与远方.可能由于时间问题,经济问题等,只能一次次的打消念头.如果你真的下定决心去尝试一次,你会发现之前的那些问题并不会阻碍你.很幸运,我迈出了这一步.</p></blockquote><center><img src="/img/blog/blog-19-1.jpg" width=500></center><a id="more"></a><h3 id="Why">Why</h3><h4 id="为什么想要一次旅行">为什么想要一次旅行</h4><blockquote><p>当然,很久之前就想要来一次旅行,只不过由于开篇提到的问题很多次打消了念头.</p></blockquote><blockquote><p>让我下定决心的是想要放空自己.最近几场比赛都已结束了,感觉自己的大学也快要结束了 <s>(其实真的快结束啦)</s>, 而自己对于之后的&quot;何去何从&quot;还没有想清楚,说到底是没有想清楚自己想要的究竟是什么,是浪潮之巅,是诗与远方,亦或是其他的什么.</p></blockquote><blockquote><p>而当时又不愿去想,于是决定来一次旅行,放空自己,然后想一想这个哲学问题 – <strong>我要到哪里去?</strong></p></blockquote><div align=center><audio controls><source src="/music/贝加尔湖畔.mp3" ></audio><p>贝加尔湖畔-李健</p></div><h4 id="为什么是天津">为什么是天津</h4><blockquote><p>这个问题好像很好回答,因为贫穷,哈哈!</p></blockquote><blockquote><p>某一天,忽然发现了一个问题. 从家到学校(或者学校到家),如果换不同的换乘方案,我可以经过很多城市,北京,天津,济南,青岛… 途中在这些城市玩几天可以节省旅行的路费 <s>(真的是因为贫穷)</s>.</p></blockquote><blockquote><p>北京消费有点高 <s>(再一次的贫穷)</s>,而且个人感觉北京的人太多了,所以就放弃了北京.至于天津,自己一直对这个城市有一种希冀,可能之前想过以后在天津定居吧.不过这次旅行真的让我喜欢上了这个城市.</p></blockquote><h3 id="准备">准备</h3><blockquote><p>原本准备从学校回家的途中在天津停留几天,并且制定了一份比较详细的计划.但是由于某些原因,改到了从家到学校的途中.</p></blockquote><blockquote><p>第一次自己如此详细的准备一份出行计划,以前如果有其他人一起,自己就懒得计划了.其实最主要的问题就是规划各个景点的游览顺序和交通方式,想要在一定的时间内游览更多的地方. (不知不觉抽象成了一道优化问题 <sup>-</sup>). 早知道在数据结构实验的时候就做景点之间的路径规划了.</p></blockquote><h4 id="我的计划">我的计划</h4><table><thead><tr><th>日期</th><th>起点</th><th>终点</th><th>方式</th><th>时长</th></tr></thead><tbody><tr><td>8.29</td><td>天津西</td><td>古文化街</td><td>公交</td><td>0：7</td></tr><tr><td>8.29</td><td>古文化街</td><td>意风区</td><td>步行， 骑行</td><td>0：21， 0：10</td></tr><tr><td>8.29</td><td>意风区</td><td>天津之眼</td><td>公交， 骑行</td><td>0：34， 0：14</td></tr><tr><td>8.30</td><td>天津之眼</td><td>天大</td><td>公交</td><td>0：38</td></tr><tr><td>8.30</td><td>天大， 南开</td><td>河北工业大学</td><td></td><td></td></tr><tr><td>8.30</td><td>天大</td><td>滨海图书馆</td><td>公交</td><td>1：45</td></tr></tbody></table><br><blockquote><p>最终并没有完全按照计划进行,毕竟计划是赶不上变化的.但计划中的地方都去了,所以计划也没有白做.</p></blockquote><!--more### 青年旅社>  第一次尝试青年旅社，之前也想过住青年旅社，不过总觉得这样的地方不正规，不安全。经过这次的体验，改变了我的看法。--><h3 id="天津之眼">天津之眼</h3><blockquote><p>第一天到天津已经是傍晚了,所以直接去了天津之眼（晚上是去天津之眼的绝佳时间）。</p></blockquote><blockquote><p>建在桥上的摩天轮还是很壮观的，也难怪会成为天津的名片，我个人比较喜欢建筑，每次见到这些建筑都有一种敬畏之感。（高考报志愿也曾考虑过建筑学，至于为什么没报…）</p></blockquote><blockquote><p>本来想上摩天轮上的，直径110米的摩天轮在最高点，确实能将两岸的景色尽收眼底。不过时间问题，过去已经停止售票了，有一点遗憾，但是之后听到曾经发生过一次没关舱门的事件(&gt;_&lt;)，这一点遗憾就荡然无存了。</p></blockquote><blockquote><p>如果只有一个摩天轮，这个地方也没有那么大的吸引力。我感觉相比天津之眼，它所在的海河两岸的风景才是天津一张特殊的名片，天津之眼只是海河的锦上添花。</p></blockquote><blockquote><p>到了天津之后才知道天津居然从海河这条“母亲河”发源的，乘船在海河游览一遍才能真正感觉到天津之美。</p></blockquote><blockquote><p>现在很多城市随着城市的现代化都已经失去了自己的特点。车水马龙中，见到的只是灯红酒绿，高楼大厦。漫步于城市中，某一瞬间可能真的不知自己身在何处。</p></blockquote><blockquote><p>不过天津让我看到了她的独特之处，乘船穿过一座座桥梁，每一座桥都有自己独特的风韵，有着自己的“故事”。而两岸是各种近代和现代建筑，你可以见到袁世凯的总统府，周总理与邓颖超的纪念馆，纪念弘一法师（李叔同）的大悲禅院…</p></blockquote><blockquote><p>天津有很多名人故居，少帅张学良的府邸，张伯苓先生的故居等等，所以天津确实是一个适合定居的地方。</p></blockquote><blockquote><p>同样，你也可以经过天津的很多租界，意租界，英租界，法租界，奥租界等等，天津是中国保留租界最多的城市，其中的意租界最有名，是意大利在国外保留最大的租界。</p></blockquote><blockquote><p>所以天津是一个古今，中外文化融合的城市，有着自己风格。</p></blockquote><blockquote><p>感受天津独特之美的最好方式一定是沿着海河游览，或步行，或骑车，亦或乘船。</p></blockquote><center><img src="/img/blog/blog-19-2.jpg" width=500></center><br><center><img src="/img/blog/blog-19-3.jpg" width=500></center><br><center><img src="/img/blog/blog-19-4.jpg" width=500></center><br><center><img src="/img/blog/blog-19-5.jpg" width=500></center><br><h3 id="古文化街">古文化街</h3><blockquote><p>按照计划，来到了古文化街。古文化街这个名字对于我来说就够有吸引力了，从小印象中的天津就是一个极具中国传统文化的地方，有着很多奇人异事，泥人张，刷子李等等。</p></blockquote><center><img src="/img/blog/blog-19-6.jpg" width=500><p>传说中的泥人张</p></center><br><center><img src="/img/blog/blog-19-7.jpg" width=500><p>达摩祖师</p></center><p>当然还有天津有名的狗不理，据说太贵，卑微的我只能在门外逗留一会儿。</p><center><img src="/img/blog/blog-19-8.jpg" width=500></center><blockquote><p>之后就遇到了相声大会正好开始，本来没打算进去，但是转念一想，来天津总要体验一下天津相声。不过听相声最好多带个人一起去，或者一个人不要点茶，否则你喝不完那壶茶 <s>(一个半小时一直喝，也就喝了不到半壶)</s></p></blockquote><center><img src="/img/blog/blog-19-9.jpg" width=500></center><br><center><img src="/img/blog/blog-19-10.jpg" width=500><p>那壶万恶的茶...</p></center><h3 id="意风区">意风区</h3><blockquote><p>下午和某个人来到了意风区，不是自己想象中的那样，这里主要是当时的意大利租界，保留了租界的建筑，然后最多的就是酒吧和咖啡馆了。</p></blockquote><center><img src="/img/blog/blog-19-11.jpg" width=500><p>马可波罗像</p></center><br><center><img src="/img/blog/blog-19-21.jpg" width=500><p>酒吧中唱歌的小姐姐</p></center><blockquote><p>之后喝了人生中的第一杯鸡尾酒，感觉还算不错，除了贵…不过积累了一个经验——鸡尾酒不要点看起来比较绿的，哈哈！</p></blockquote><center><img src="/img/blog/blog-19-12.jpg" width=500></center><h3 id="南天门">南天门</h3><blockquote><p>依然是按计划，第二天上午去了天大和南开，见到了传说中的“南天门”，真的天大和南开之间只是一门之隔，出了天大还没感觉就进了南开。</p></blockquote><h4 id="天大">天大</h4><p>羡慕一下天大的食堂</p><center><img src="/img/blog/blog-19-13.jpg" width=500></center><p>天大应该是中国最早的大学了。</p><center><img src="/img/blog/blog-19-14.jpg" width=500></center><h4 id="南开">南开</h4><blockquote><p>对于南开的印象应该主要是两个人，张伯苓先生——中国近代一位伟大的教育家，也是南开的创始人（好像还是西南联大的校长）；还有一位是被张伯苓先生称为南开最优秀的学生——周恩来总理。</p></blockquote><center><img src="/img/blog/blog-19-15.jpg" width=500><p>南开主楼（感觉还是哈工大主楼好看）</p></center><p>今年是南开的百年校庆，下图是校庆的吉祥物，有点可爱(<sup>_</sup>)。</p><center><img src="/img/blog/blog-19-16.jpg" width=500><p>南开百年校庆吉祥物</p></center><h3 id="传说中的网红图书馆">传说中的网红图书馆</h3><blockquote><p>在南开的时候已经有点玩不动了，于是决定休息一下，坐地铁去滨海新区。。。</p></blockquote><blockquote><p>之前是打算去滨海传说中的网红图书馆的，但是由于离市区太远了，一直犹豫去还是不去，不过现在有理由了。</p></blockquote><blockquote><p>出门一直用百度地图，不过百度地图你能不能好好搞一下立体空间导航，找了半天滨海图书馆在哪，结果是它在我上面。。。</p></blockquote><blockquote><p>想去滨海图书馆，主要是因为它的建筑风格很独特，真的很像梯田（怀疑这位欧洲的设计师去过云南）。</p></blockquote><center><img src="/img/blog/blog-19-17.jpg" width=500></center><br><center><img src="/img/blog/blog-19-18.jpg" width=500></center><blockquote><p>确实像网上说的那样，高处的书是假的，只是画在了书架上。可能是因为书不够，这个好处理。不过我想知道天花板上的书要怎么取？</p></blockquote><center><img src="/img/blog/blog-19-19.jpg" width=500></center><blockquote><p>成功通过图书馆的管理系统找到了最近正在看的书——《白说》，在图书馆里面看了一章，体验很好。</p></blockquote><center><img src="/img/blog/blog-19-20.jpg" width=500></center><h3 id="体会">体会</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 远方 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>何去何从</title>
+      <link href="/2019/07/29/he-qu-he-cong/"/>
+      <url>/2019/07/29/he-qu-he-cong/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>迷宫生成算法</title>
+      <link href="/2019/06/24/mi-gong-sheng-cheng-suan-fa/"/>
+      <url>/2019/06/24/mi-gong-sheng-cheng-suan-fa/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>最近做课设时,有一个部分需要用到迷宫的生成算法. 在这里介绍一种使用深度优先搜索生成迷宫的算法.</p></blockquote><a id="more"></a><center><audio controls><source src="/music/年少有为-李荣浩.mp3" ></audio><p>年少有为-李荣浩</p></center><h3 id="最终的效果">最终的效果</h3><p>先上几张效果图，图中绿色的表示障碍，灰色表示道路(<s>我的世界既视感</s>).</p><br><center><img src="/img/blog/blog-18-1.png" width=500></center><br><center><img src="/img/blog/blog-18-2.png" width=500></center><br><center><img src="/img/blog/blog-18-3.png" width=500></center><h3 id="如何描述迷宫">如何描述迷宫</h3><p>迷宫其实就是一个复杂的地形图,在这个地形中有基本的障碍和通道,当然也可以有其他元素。</p><p>我们这里用最简单的方式描述迷宫——矩阵。迷宫中的地形也只有障碍和通道两种元素。可以用0和1表示这两种元素。</p><p>因此我们用一个存储着0和1,M*N大小的矩阵就可以描述迷宫啦!</p><h3 id="迷宫的特点">迷宫的特点</h3><ol><li>从设定的起点到终点必须是连通的(<s>否则,还能不能好好玩耍了</s>)</li><li>从起点到终点只有一条通路.(其实也可以有多条,根据实际需要设定)</li></ol><h3 id="思路">思路</h3><p>从迷宫特点的描述有没有想到什么?</p><p>迷宫就是一个图,要求任意设定的起点和终点之间是连通的,就是一个 <strong>全连通图</strong>.但是如果这个图的连通度太高,迷宫就没有难度了,所以我们要求图中任意顶点之间只有一条路.</p><p>什么样的图只有一条路, <strong>无环图</strong>.</p><p>所以我们需要的是无环的连通图,这是什么? <strong>树</strong></p><p>我们的迷宫就是一个树,因此迷宫的生成算法就是树的生成算法,树的生成算法有深度优先遍历和广度优先遍历, 在这里使用深度优先.</p><h3 id="迷宫的生成过程">迷宫的生成过程</h3><h4 id="1-初始状态">1 初始状态</h4><blockquote><p>图中绿色的表示障碍，灰色表示道路(空白)</p></blockquote><center><img src="/img/blog/blog-18-4.png" width=500></center><p>由于迷宫四周都是障碍, 图的宽和高都必须是奇数.</p><h4 id="2-迷宫的生成">2 迷宫的生成</h4><p>1 任意选择一个空白块, 将该空白块作为树的根结点.</p><p>2 从根节点出发隔一个元素块查找四周(上,下,左,右,四个方向,不包括对角线方向)其他的空白块.</p><center><img src="/img/blog/blog-18-5.png" width=500><p>从该结点出发,四周只有两个空白块</p></center><center><img src="/img/blog/blog-18-6.png" width=500><p>从该结点出发,四周有四个空白块</p></center><p>3 随机选取其中一个空白块, 将道路沿该方向拓展, 即把夹在这两个空白块之间的障碍块去掉, 改成空白块.</p><center><img src="/img/blog/blog-18-7.png" width=500><p>把夹在这两个空白块之间的障碍块去掉</p></center><p>4 更新当前结点, 然后从当前结点出发,重复步骤2,3.</p><p>5 当遇到一个结点周围没有空白块时, 即没有可拓展道路的方向时, 回退并更新当前结点, 直至当前结点四周有空白块, 重复步骤2,3.</p><center><img src="/img/blog/blog-18-8.png" width=500><p>该结点周围没有空白块</p></center><p>6 当回退到根节点没有任何可以拓展的道路时, 算法结束, 迷宫也就生成了.</p><center><img src="/img/blog/blog-18-1.png" width=500></center><h4 id="3-设定起点和终点">3 设定起点和终点</h4><p>选取迷宫中的两个空白块作为迷宫的起点和终点,一个完整的迷宫就诞生了.</p><h3 id="核心算法–深度优先">核心算法–深度优先</h3><blockquote><p>由于这部分算法是程序的一部分,不能完整运行,仅供参考.</p></blockquote><blockquote><p>在程序中用到了Qt中的容器QVector,可以用STL中的std::vector代替; 用到的qsrand()和qrand()生成随机数,可以使用C标准库中的srand()和rand()函数代替.</p></blockquote><pre><code class="language-cpp">/*@ 生成迷宫*/void GenerateMaze::Maze(int width, int height){    //初始化矩阵, 申请内存    maze_matrix_ = new int*[height];    for(int i=0; i&lt;height; i++)    {        maze_matrix_[i] = new int[width];    }    for(int i=0; i&lt;height; i++)    {        for(int j=0; j&lt;width;j++)        {            if(i % 2 == 0 || j % 2==0)            {                maze_matrix_[i][j] = 1;  //障碍            }            else            {                maze_matrix_[i][j] = 0;  //道路(空白)            }        }    }    qsrand(QTime(0,0,0).secsTo(QTime::currentTime())); //设置随机数种子    maze_matrix_[1][1] = 2; //选取(1,1)作为根节点, 并将根节点的状态设置成2    this-&gt;generateMaze(1, 1);   //深度优先遍历    for(int i=0; i&lt;height; i++)    {        for(int j=0; j&lt;width;j++)        {            if(maze_matrix_[i][j] == 2)            {                maze_matrix_[i][j] = 0; //将状态为2的结点重新设置为0, 表示可通行道路            }        }    }}/*@ brief:深度优先生成迷宫(递归实现)*/void Maze::generateMaze(int pos_i, int pos_j){    //到达边界, 返回    if(pos_j &lt; 0 || pos_j &gt;= width || pos_i &lt; 0 || pos_i &gt;= height)    {        return;    }    QVector&lt;int&gt; vec = existedRoad((const int**)maze_matrix_, pos_i, pos_j); //查找当前结点四周空白块    //四周没有空白块, 返回    if(vec.size() == 0)    {        return;    }    for(int i=0; i &lt; vec.size();)    {        int index = qrand()%vec.size(); //随机选择其中一个空白块        switch(vec[index])        {        case D_LEFT:    //左            if(maze_matrix_[pos_i][pos_j-2] != 2)            {                maze_matrix_[pos_i][pos_j-1] = 2;    //将走过的路径设为2, 防止重复经过                maze_matrix_[pos_i][pos_j-2] = 2;                this-&gt;generateMaze(pos_i, pos_j-2); //更新结点, 递归            }            break;        case D_RIGHT:   //右            if(maze_matrix_[pos_i][pos_j+2] != 2)            {                maze_matrix_[pos_i][pos_j+1] = 2;                maze_matrix_[pos_i][pos_j+2] = 2;                this-&gt;generateMaze(pos_i, pos_j+2); //更新结点, 递归            }            break;          case D_UP:  //上            if(maze_matrix_[pos_i-2][pos_j] != 2)            {                maze_matrix_[pos_i-1][pos_j] = 2;                maze_matrix_[pos_i-2][pos_j] = 2;                this-&gt;generateMaze(pos_i-2, pos_j); //更新结点, 递归            }            break;        case D_DOWN:    //下            if(maze_matrix_[pos_i+2][pos_j] != 2)            {                maze_matrix_[pos_i+1][pos_j] = 2;                maze_matrix_[pos_i+2][pos_j] = 2;                this-&gt;generateMaze(pos_i+2, pos_j); //更新结点, 递归            }            break;        }        vec.remove(index);  //清空vec    }}/*@brief: 查找结点周围的空白块*/const QVector&lt;int&gt; Maze::existedRoad(const int **mat, int i, int j){    QVector&lt;int&gt; vec;    if(j-2 &gt;= 0 &amp;&amp; mat[i][j-2] == 0)    {        vec.push_back(D_LEFT);  //左边有空白块    }    if(j+2 &lt; width &amp;&amp; mat[i][j+2] == 0)    {        vec.push_back(D_RIGHT); //右边有空白块    }    if(i-2 &gt;= 0 &amp;&amp; mat[i-2][j] == 0)    {        vec.push_back(D_UP);    //上边有空白块    }    if(i+2 &lt; height &amp;&amp; mat[i+2][j] == 0)    {        vec.push_back(D_DOWN);  //下边有空白块    }    return vec;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Qt </tag>
+            
+            <tag> 游戏 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>回溯法的多米诺性质</title>
+      <link href="/2019/05/05/hui-su-fa-zhong-de-duo-mi-nuo-xing-zhi/"/>
+      <url>/2019/05/05/hui-su-fa-zhong-de-duo-mi-nuo-xing-zhi/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>最近在复习算法, <s>没办法,要考试啦</s>. 在复习回溯法的时候终于理解了之前不是很清楚的多米诺性质.</p></blockquote><a id="more"></a><div align=center><audio controls><source src="/music/情深深雨蒙蒙-张杰.mp3" ></audio><p>情深深雨蒙蒙-张杰</p></div><h3 id="1-回溯法">1 回溯法</h3><p>由于这篇博客主要讲解多米诺性质, 默认大家已经了解回溯法啦,这里对回溯法的具体内容就不进行讲解了,<s>其实是太懒不想写</s>.</p><p>回溯法是一个很实用的算法,适合求解搜索问题和优化问题.你也可以将它看做是蛮力法(枚举法)的改进.</p><p>但不是什么情况下都可以使用回溯法, 那么就要问了,回溯法的适用条件是什么? 这就是今天的主角: <strong>多米诺性质</strong></p><h3 id="2-多米诺性质">2 多米诺性质</h3><p>先不看多米诺性质是什么,在了解了回溯法的基本思想后,我们可以总结一下什么情况下可以使用回溯法.</p><h4 id="2-1-回溯法的基本思想">2.1 回溯法的基本思想</h4><blockquote><p>将待求解问题看做一个解空间树, 问题的解可以表示为$X= (x_1, x_2, …, x_n )$.然后利用深度优先搜索逐步确定每一个解$x_i$, 当搜索到树的叶子结点时, 就得到问题的一个解$X_i$.当然这个解不一定是最优解,在将整个解空间树搜索完之后,通比较得到的每个$X_i$,便可以得到最优解.</p></blockquote><p>其实上面的思想是枚举搜索的思想,并不是回溯法.但是加上下面这一部分就成了回溯法了. <strong>下面这一部分是回溯法的核心</strong></p><blockquote><p>在搜索的过程中, 问题的解$X$需要满足约束条件$P(X)$.在搜索到一个结点的时候发现当前结点不满足约束条件,则放弃向下搜索,即不再搜索该结点的子结点, 而是回溯到上一个结点继续搜索.</p></blockquote><p>由于在搜索过程中,放弃了一些没有必要搜索的结点,整个算法的效率就提高了.</p><p><strong>为什么能够放弃? that is the question.</strong></p><p>如果当前结点不满足约束条件,能够推导出它的子结点也不满足约束条件,那么就可以放弃搜索它的子结点.其实这就是多米诺性质.</p><h4 id="2-2-多米诺性质的定义">2.2 多米诺性质的定义</h4><blockquote><p>设$X = (x_1, x_2, …, x_n )$是问题的解,$X_i= (x_1, x_2, …, x_i), X_{i+1} = (x_1, x_2, …, x_i, x_{i+1}), X_i, X_{i+1} \subseteq X$.$X_{i}和X_{i+1}$ 分别是搜索到第i层和第i+1层的解.如果 $P(X_{i+1}) \rightarrow P(X_i)$ , 即 $P(X_{i+1})$ 蕴含 $P(X_i)$, 则称该问题满足多米诺性质.</p></blockquote><p>是不是很难理解?<s>数学是个好东西,表达简洁优雅,没有二义性,但是太难理解.</s></p><p>其实上面定义的意思是: 如果子结点满足约束条件能够推导出其父结点满足约束条件,那么就满足多米诺性质.</p><p>为什么感觉和之前说的不太一样? 对比一下</p><ul><li>如果当前结点不满足约束条件,能够推导出它的子结点也不满足约束条件.</li><li>如果子结点满足约束条件能够推导出其父结点满足约束条件.</li></ul><p>你会发现其实这两个命题互为逆否命题,也就是这两个命题说的是同一件事.下面给出证明.(涉及一点数理逻辑的知识,但是逻辑很简单)</p><p><strong>[证明]</strong>:$$\begin{aligned}&amp; 如果问题满足多米诺性质, 则有P(X_{i+1}) \rightarrow P(X_i)\\&amp; 有逆否命题 \neg P(X_{i}) \rightarrow \neg P(X_{i+1}) 成立\\&amp; 在当前结点不满足约束条件时, 即\neg P(X_{i}).\\&amp; 可得到\neg P(X_{i+1})成立\\&amp; 即当前结点不满足约束条件时, 它的子结点也不满足约束条件.\end{aligned}$$</p><p><strong>因此只要求解的问题满足多米诺性质,我们在使用回溯法时, 当发现当前结点不满足约束条件,就可以放弃对其子节点的搜索.</strong></p><p><strong>[理解]</strong>:</p><blockquote><p>考察多米诺性质的目的是为了确认, 在对解空间搜索的过程中, 在当前结点不满足约束条件时, 能不能放弃对当前结点的子结点的搜索.如果问题满足多米诺性质,则可以;否则, 不可以, 在这种情况下回溯法可能会丢解.</p></blockquote><h3 id="3-Example">3 Example</h3><h4 id="3-1-背包问题">3.1 背包问题</h4><blockquote><p>背包问题的描述在这里不进行赘诉.</p></blockquote><p>背包问题的约束条件</p><ol><li>$n$: 物品的数量</li><li>$x_i$: 表示是否选择该物品</li><li>$w_i$: 物品的重量</li><li>$C$:背包容量</li></ol><p>$$\left \{\begin{aligned}&amp;\Sigma_{i=1}^{n} x_i * w_i \le C, 0 &lt; i \le n\\&amp;x_i \in {0,1}, 0 &lt; i \le n\\&amp;w_i &gt; 0,0 &lt; i \le n\\\end{aligned}\right.$$</p><h5 id="背包问题的多米诺性质">背包问题的多米诺性质</h5><p><strong>[证明]</strong>:</p><p>$$\begin{aligned}&amp; 设X_{i}= \Sigma_{k=1}^{i} x_k * w_k, X_{i+1}= \Sigma_{k=1}^{i+1} x_k * w_k\\&amp; \because X_{i+1} \le C, w_k &gt; 0, x_k \in {0,1}\\&amp; \therefore X_{i} &lt; X_{i+1} \le C\end{aligned}$$</p><p>因此背包问题满足多米诺条件,可以使用回溯法解决.</p><h4 id="3-2-不等式的整数解">3.2 不等式的整数解</h4><blockquote><p>求解不等式$5x_1 + 4x_2 - x_3 \le 10, 1 \le x_i \le 3, i=1,2,3$ 的整数解.</p></blockquote><p>这个问题不满足多米诺性质<s>否则为什么要举这个例子</s></p><p><strong>[证明]</strong>:</p><p>$$\begin{aligned}&amp; 当 5x_1 + 4x_2 - x_3 \le 10 成立时 \\&amp; 显然 5x_1 + 4x_2 \le 10 不一定成立\\\end{aligned}$$因此如果只是这样的话,没办法用回溯法解决.</p><p>但也是可以用回溯法解决的.</p><p>将不等式 $5x_1 + 4x_2 - x_3 \le 10, 1 \le x_i \le 3, i=1,2,3$ 修改为 $- x_1 + 5x_2 + 4x_3 \le 10, 1 \le x_i \le 3, i=1,2,3$ , 就可以使用回溯法了.</p><p><strong>[证明]</strong>:</p><p>$$\begin{aligned}&amp; 当 - x_1 + 5x_2 + 4x_3 \le 10 成立时 \\&amp; 显然 - x_1 + 5x_2 \le - x_1 + 5x_2 + 4x_3 \le 10 成立\\&amp; 当 - x_1 + 5x_2 \le 10 成立时\\&amp; 显然 - x_1 \le - x_1 + 5x_2 \le 10成立\\\end{aligned}$$</p><p>因此不等式$-x_1 + 5x_2 + 4x_3 \le 10, 1 \le x_i \le 3, i=1,2,3$满足多米诺性质.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>优先队列</title>
+      <link href="/2019/04/13/you-xian-dui-lie/"/>
+      <url>/2019/04/13/you-xian-dui-lie/</url>
+      
+        <content type="html"><![CDATA[<h2 id="优先队列">优先队列</h2><p>优先队列是一个特殊的队列，普通队列是先进先出(FIFO)的，而优先队列是根据元素的大小（优先级）决定元素的出队顺序。</p><a id="more"></a><h2 id="C-STL的优先队列">C++ STL的优先队列</h2><pre><code class="language-cpp">#include &lt;queue&gt;#include &lt;iostream&gt;int main(){std::priority_queue&lt;int&gt; pq;pq.push(1);pq.push(10);pq.push(20);pq.push(18);pq.push(3);pq.push(12);int size = pq.size();for (int i=0; i &lt; size; i++){std::cout&lt;&lt;pq.top()&lt;&lt;' ';pq.pop();}std::cout&lt;&lt;std::endl;return 0;}</code></pre><pre><code># 运行结果:20 18 12 10 3 1</code></pre><p>priority_queue默认是从大到小排序，是因为priority_queue使用了一个默认的比较行为，下面介绍如何自定义比较行为从而按照我们的意愿得到想要的结果。</p><h2 id="自定义比较行为">自定义比较行为</h2><h3 id="函数对象">函数对象</h3><p>先让我们看一下优先队列在STL中的说明。</p><pre><code class="language-cpp">/**   *  @brief  A standard container automatically sorting its contents.   *   *  @ingroup sequences   *   *  @tparam _Tp  Type of element.   *  @tparam _Sequence  Type of underlying sequence, defaults to vector&lt;_Tp&gt;.   *  @tparam _Compare  Comparison function object type, defaults to   *                    less&lt;_Sequence::value_type&gt;.   */    template&lt;typename _Tp, typename _Sequence = vector&lt;_Tp&gt;,   typename _Compare  = less&lt;typename _Sequence::value_type&gt; &gt;    class priority_queue    {}</code></pre><p>可以看到priority_queue类模板实际有三个参数.</p><ol><li>_Tp: 元素类型,就是我们存放在优先队列中的元素类型。</li><li>_Sequence: 元素序列, 默认是vector&lt;_Tp&gt;。</li><li>_Compare: 比较函数对象, 默认是less&lt;_Sequence::value_type&gt;。</li></ol><p>前两个模板参数很好理解，第三个参数比较特殊，<code> _Compare</code> 是一个函数对象（也叫仿函数）。函数对象是一个行为类似于函数的对象，也是通过类来定义的。函数对象可以使得函数功能更加的泛化，STL的算法中很多都使用了函数对象，允许用户可以通过函数对象自定义函数的行为。比如：sort函数接收一个函数对象允许自定义比较行为。</p><p>priority_queue默认的函数对象是less，less的定义如下：</p><pre><code class="language-cpp">/// One of the @link comparison_functors comparison functors@endlink.template&lt;typename _Tp&gt;struct less : public binary_function&lt;_Tp, _Tp, bool&gt;{_GLIBCXX14_CONSTEXPRbooloperator()(const _Tp&amp; __x, const _Tp&amp; __y) const{ return __x &lt; __y; }};</code></pre><p><code>less</code>就是一个函数对象类，其继承了<code>binary_function</code>。类内自定义了一个函数<code>operate()</code>，所有的函数对象都是通过<code>operate()</code>发挥作用的。在以函数对象为参数的函数内部通过调用函数对象的<code>operate()</code>方法实现函数行为的泛化。</p><pre><code class="language-cpp">void algorithm(arg1, arg2,..,,functorObj){...functorObj();...}</code></pre><p>通过<em>functorObj()</em> 便可以调用函数对象的<code>operate()</code>方法，这种语法类似于Python的callable对象（定义了 __call__ 方法的对象）。我们通过重写<code>operate()</code>或者编写新的<code>operate()</code>方法就可以定制算法的行为。</p><h3 id="使用STL定义的函数对象">使用STL定义的函数对象</h3><p>STL标准库定义了多个用于比较的函数对象，如<code>less</code>、<code>less_equal</code>、<code>greater</code>、<code>greater_equal</code>等</p><pre><code class="language-cpp">std::priority_queue&lt;int, std::vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;//从小到大的优先队列std::priority_queue&lt;int, std::vector&lt;int&gt;, less&lt;int&gt;&gt; pq;//从大到小的优先队列</code></pre><p>因为priority_queue定义的最后两个参数都是默认参数，如果需要传入第三个参数，那么第二参数也需要传入。</p><h3 id="重载比较运算符">重载比较运算符</h3><p>我们可以看到less等函数对象都是通过模板实现的，且在<code>operate()</code>方法使用的是比较运算符。因此可以通过重载类的比较运算符定制priority_queue的行为。</p><pre><code class="language-cpp">struct Test{int num;char c;bool operator &gt; (const Test&amp; obj) const{return this-&gt;num &gt; obj.num;}bool operator &lt; (const Test&amp; obj) const{return this-&gt;num &lt; obj.num;}}Test;int main(){priority_queue&lt;Test, vector&lt;Test&gt;, less&lt;Test&gt;&gt; pq1;priority_queue&lt;Test, vector&lt;Test&gt;, greater&lt;Test&gt;&gt; pq2;return 0;}</code></pre><h3 id="自定义函数对象">自定义函数对象</h3><p>因为priority_queue第三个参数需要的是一个函数对象，我们可以定义自己定义一个函数对象定制priority_queue的行为。</p><pre><code class="language-cpp">//函数对象QueueCmpstruct QueueCmp{bool operator()(const vector&lt;int&gt; &amp;v1, const vector&lt;int&gt; &amp;v2)const{return v1[0] &gt; v2[0];}};int main(){priority_queue&lt;vector&lt;int&gt;, vector&lt;vector&lt;int&gt;&gt;, QueueCmp&gt; pq;return 0;}</code></pre><h2 id="自己实现优先队列">自己实现优先队列</h2><p>优先队列实际上是一个堆, 在STL中,优先队列默认是一个大顶堆, 从排序角度看, 就是降序排序(从大到小)，因此可以通过堆的相关算法实现优先队列。</p><pre><code class="language-cpp">#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;cmath&gt;template&lt;class T&gt;class PriorityQueue{private:std::vector&lt;T&gt; data;public:PriorityQueue(){}bool empty() const {return data.size()? false:true;}int size() const {return data.size();}T top() const {if (!this-&gt;empty()){return this-&gt;data[0];}return 0;}void push(T data){this-&gt;pushHeap(data);}void pop(){this-&gt;popHeap();}private: void popHeap(){this-&gt;data.erase(this-&gt;data.begin());//delete the top this-&gt;adjustHeap(0, this-&gt;data.size());//adjust heap }void adjustHeap(int i, int length){for(int child = 2*i+1; child &lt; length; child = 2*i+1){if(child + 1 &lt; length &amp;&amp; this-&gt;data[child+1] &gt; this-&gt;data[child]){child += 1;}if(this-&gt;data[child] &gt; this-&gt;data[i]){this-&gt;swap(this-&gt;data[child], this-&gt;data[i]);i = child;}else {break; // adjust over }}}void pushHeap(T data){this-&gt;data.push_back(data);int end = this-&gt;data.size()-1;  for(int i=floor(end*0.5 - 0.5); i&gt;=0; i=floor(i*0.5 - 0.5)){this-&gt;adjustHeap(i, end+1);}}void swap(T &amp;a, T &amp;b){T temp = a;a = b;b = temp;}};int main(){PriorityQueue&lt;int&gt; pq;pq.push(1);pq.push(10);pq.push(20);pq.push(18);pq.push(3);pq.push(12);int size = pq.size();for (int i=0; i &lt; size; i++){std::cout&lt;&lt;pq.top()&lt;&lt;' ';pq.pop();}std::cout&lt;&lt;std::endl;return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> Code </tag>
+            
+            <tag> 数据结构 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>IEEE浮点数</title>
+      <link href="/2019/04/11/ieee-fu-dian-shu/"/>
+      <url>/2019/04/11/ieee-fu-dian-shu/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>之前在看卡马克快速开方的程序时, 看到了一些神奇的操作.其中有两条语句与浮点数在计算机中的表示方式有关.最近计算机组成原理刚讲完浮点数的表示, 于是写篇博客记录一下.</p></blockquote><a id="more"></a><center><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=402073807&auto=1&height=66"></iframe></center><h3 id="计算机中定点数的表示">计算机中定点数的表示</h3><p><strong>定点数</strong>: 顾名思义, 定点数就是小数点的位置固定. 但是我们一般不会在计算机中用专门的一个位表示小数点,那样太浪费了. 因为小数点的位置的固定,只要我们知道它的位置就可以确定这个定点数, 没有必要把它表示出来.</p><p>下图是纯小数和纯整数的表示, 这个比较简单, 不进行赘诉.</p><center><img src =http://ww1.sinaimg.cn/mw690/78f9859egw1eysn2zlj5sg20cg03h3yc.gif ></center><h3 id="计算机中浮点数的表示">计算机中浮点数的表示</h3><p><strong>浮点数</strong>: 与定点数相对, 浮点数就是这个数的小数点是不固定的(浮动的).</p><h3 id="IEEE浮点数">IEEE浮点数</h3><h3 id="转换demo">转换demo</h3><h3 id="卡马克快速开方">卡马克快速开方</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> MCU </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机组成 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>流星之绊[阅读]</title>
+      <link href="/2019/03/17/yue-du-liu-xing-zhi-ban/"/>
+      <url>/2019/03/17/yue-du-liu-xing-zhi-ban/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>我们三人就像流星, 毫无目标的飞逝, 不知将在何处燃烧殆尽. 但不论何时, 都会有一根纽带将我们紧密相联: 一定要手刃凶手.</p></blockquote><a id="more"></a><center><img src="/img/blog/star.jpg"></center><blockquote><p>开学三个星期了, 虽然感觉课不多, 但是一直没有时间写博客. 今天终于在肝完一个动态规划之后还有点时间(&gt;_&lt;).于是写写开学前两周看完的一本书. <strong>流星之绊–东野圭吾</strong></p></blockquote><blockquote><p>之前也看过几本东野圭吾的书, 这本书还是东野圭吾一贯的风格, 不过感觉结局相对其他书较好一点.</p></blockquote><div align=center><audio controls><source src="/music/重生-容祖儿.mp3" ></audio><p>重生-容祖儿</p></div><h3 id="背景">背景</h3><p>故事开篇, 兄妹三人(老大:功一; 老二: 泰辅; 妹妹: 静奈)背着父母跑出去看流星, 然而由于天气原因, 无功而返. 但他们回到家之后, 发现父母已经被人杀死了. 这对于几个还在上小学的孩子来说绝对如世界末日一般. 随后警察到来, 当然肯定是找不到凶手的啦(否则作者怎么往下写呀). 几个月的调查, 都是一些不痛不痒的线索, 无奈之下只能不了了之, 兄妹三人被送到了孤儿所.</p><h3 id="中篇">中篇</h3><p>兄妹三人一直在孤儿所生活直到高中毕业. 期间他们又去看了几次流星, 并且下定决心一定要找到凶手.</p><blockquote><p>我们三人就像流星, 毫无目标的飞逝, 不知将在何处燃烧殆尽. 但不论何时, 都会有一根纽带将我们紧密相联: 一定要手刃凶手.</p></blockquote><p>离开孤儿院后, 三人走上了一条行骗之路. 利用三人各自的特点骗钱.决定走上诈骗这条路是因为功一和静奈都被人骗过, 三人感到社会不公, 决定以其人之道还制其人之身, 用诈骗的方式为自己找公道(好像很有道理, 嘻嘻!).</p><p>大哥功一思维缜密, 制定行动方案. 泰辅擅长表演, 非常适合扮演各类角色. 而妹妹则是另外一个重要环节, 由于妹妹是一个翩若惊鸿,婉若游龙(<s>在这里不得不佩服一下曹植</s>)的美女, 在接触诈骗对象时可以降低他们的防御心理.(<s>不要想歪了</s>)</p><p>所以诈骗对象都是一些有钱的但是没有女朋友的青年男子(<s>好惨…</s>).</p><p>基本套路就是妹妹先接触诈骗对象, 而后伙同泰辅扮演的角色按照大哥功一制定的计划进行诈骗.就这样兄妹三人非常顺利的完成了几次诈骗. 同时父母的案件也快要到期了, 凶手仍然无从找起.</p><h3 id="高潮">高潮</h3><p>就在兄妹三人准备完成最后一次诈骗就金盆洗手时, 他们发现了凶手. 这次的诈骗对象是一家洋食店老板的儿子(行成). 本来打算想让他喜欢上静奈, 然后给静奈买一枚戒指. 然而老二却发现这家洋食店的老板就是当时案发从他家后门跑出的人. 于是三人开始寻找证据手刃凶手, 然而没有找到, 于是三人打算制造证据让警察调查凶手.在这种关键时刻, 他们的嫁祸行为被行成发现了, 同时静奈也真正喜欢上了行成(<s>故事当然要一波三折啦</s>). 本以为一切都泡汤了, 谁知行成也发现了父亲的可疑, 想知道真相,帮助他们完成了嫁祸行动(未免也太正直了吧).就在所有证据都指向行成的父亲时, 他父亲仍然否认他是凶手. 随后抛出了一个 <strong>惊人的秘密</strong>.(<s>半夜写这种东西, 有点惊悚</s>)</p><h3 id="结局">结局</h3><p>行成的父亲拿出了一把雨伞, 原来行成的父亲真的在案发当天去了兄妹三人家中, 但是他去的的时候他们的父母已经被人迫害. 惊慌之下他拿错了雨伞, 因为案发当天正在下雨(<s>正常操作</s>), 凶手和他用着同一款雨伞, 而他那错的那把伞是真正的凶手的, 留有凶手的指纹. 最终发现, 凶手居然是一开始帮助兄妹三人积极调查案件的警察. 这位警察为了给自己的儿子治病, 向兄妹三人的父亲借钱, 但是没有谈妥, 情急之下杀了他们的父母. 但是这个警察的儿子还是不治而终.(或许是报应吧)</p><p>虽然找到了凶手, 但是功一决定原谅这位警察. 而这位警察却选择自杀了, 或许是因为儿子的死已经绝望, 或许是为自己的罪行救赎.经过这件事之后, 老大和老二决定为他们的行骗行为赎罪, 决定自首. 但是他们不想自己的妹妹去自首, 于是把妹妹托付给了行成.</p><p>故事到这里就结束了.</p><h3 id="感受">感受</h3><ol><li><p>其实还是很难接受这个结果, 警察居然为了钱杀了兄妹三人的父母, 一直以为他是好人的, 虽然东野圭吾在写的时候已经留下了伏笔.</p></li><li><p>还有一个问题, 行成的父亲发现了案发现场为什么不去报警.</p></li><li><p>这篇小说中能感受到一些令人感到温暖的情节, 尤其是兄妹三人在父母去世后互帮互助, 能感受到一种令人欣慰的亲情.  还有兄弟二人在找到凶手后, 为自己之前的行骗行为赎罪.</p></li><li><p>书中另外一个重要的角色行成, 一个认真, 正直的人, 让我们感觉到这个世界还是有好人的.</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 阅读 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>IIC为什么需要用开漏输出和上拉电阻</title>
+      <link href="/2019/03/09/iic-wei-shi-me-xu-yao-yong-kai-lou-shu-chu-he-shang-la-dian-zu/"/>
+      <url>/2019/03/09/iic-wei-shi-me-xu-yao-yong-kai-lou-shu-chu-he-shang-la-dian-zu/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>最近在调ICM20602模块(一个六轴陀螺仪和加速度计), 使用IIC通信协议, 这个过程中遇到一个困扰我很长时间的问题.IIC协议正确, 但是一直读取失败.最后发现因为没配置GPIO为开漏输出.</p></blockquote><a id="more"></a><center><img src=https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/I2C.svg/1920px-I2C.svg.png width=500></center><h3 id="推挽输出和开漏输出">推挽输出和开漏输出</h3><ul><li>推挽输出: 输出逻辑0，则N-MOS激活；输出逻辑1，P-MOS激活。</li><li>开漏输出:<ul><li>在不接上拉电阻时, 输出逻辑0，则N-MOS激活；输出逻辑1，P-MOS不会激活, 不会输出高电平。</li><li>在接上拉电阻时, 输出逻辑0，则N-MOS激活；输出逻辑1，P-MOS激活, 可以输出高电平。</li></ul></li></ul><blockquote><p>也就是说开漏输出如果不接上拉电阻, 没有输出高电平的能力.如果需要开漏输出有输出高电平的能力需要接一个上拉电阻. 目前很多单片机GPIO可以通过软件配置上拉电阻.</p></blockquote><center><img src=/img/blog/blog-1-1.png width=500><p>左图为开漏输出(接上拉电阻), 右图为推挽输出</p></center><h3 id="开漏输出的作用">开漏输出的作用</h3><ul><li>防止短路: 在一些情况下(比如总线), 多个GPIO口可能会连接在同一根线上, 存在某个GPIO输出高电平, 另一个GPIO输出低电平的情况. 如果使用推挽输出, 你会发现这个GPIO的VCC和另一个GPIO的GND接在了一起, 也就是短路了(<s>凉凉了</s>). 如果换成开漏输出呢? VCC和GND多了个电阻, 这样电路就是安全的.<strong>所以总线一般会使用开漏输出.</strong></li></ul><center><img src=/img/blog/blog-1-2.jpg width=300><p>VCC与GND连到了一起</p></center><center><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=480579211&auto=1&height=66"></iframe></center><ul><li>线与: 开漏输出还能实现 <strong>线与</strong> (自行百度), 减少一个与门, 简化电路.</li></ul><br><h3 id="IIC为什么用开漏输出和上拉电阻">IIC为什么用开漏输出和上拉电阻</h3><blockquote><p>其实知道了开漏输出的作用, 这个问题不难回答</p></blockquote><ol><li><p>IIC协议支持多个主设备与多个从设备在一条总线上, 如果不用开漏输出, 而用推挽输出, 会出现主设备之间短路的情况. 至于为什么需要上拉电阻, 那是因为IIC通信需要输出高电平的能力.</p></li><li><p>为了实现多个主设备抢占总线时的仲裁.</p><p>IIC只有两根线(SCL和SDA), 怎么判断哪个主设备占用总线(当然是先来后到了). 假设主设备A需要启动IIC, 他需要在SCL高电平时, 将SDA由高电平转换为低电平作为启动信号. 主设备A在把SDA拉高后, 它需要再检查一下SDA的电平.</p><ul><li>SDA是高电平, 说明主设备A可以占用总线, 然后主设备A将SDA拉低, 开始通信.</li><li>SDA是低电平, 说明有人已经捷足先登了, 主设备A不能占用总线, 结束通信.</li></ul><p>为什么? 因为线与. 如果主设备A拉高SDA时, 已经有其他主设备将SDA拉低了. 由于 <strong>1 &amp; 0 = 0</strong> 那么主设备A在检查SDA电平时, 会发现不是高电平, 而是低电平. <strong>说明其他主设备抢占总线的时间比它早</strong>, 主设备A只能放弃占用总线. 如果是高电平, 则可以占用.</p><p>这就是开漏输出在IIC通信中的另一个作用.</p></li></ol><p><strong>因此, 模拟IIC一定要将GPIO端口设置为开漏输出并加上上拉电阻.(硬件IIC会自动配置为开漏输出)</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> MCU </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 通信协议 </tag>
+            
+            <tag> 电路 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>梯度与梯度下降法</title>
+      <link href="/2019/02/25/ti-du-yu-ti-du-xia-jiang-fa/"/>
+      <url>/2019/02/25/ti-du-yu-ti-du-xia-jiang-fa/</url>
+      
+        <content type="html"><![CDATA[<p><strong>声明: 本文有一部分本人自己的观点和理解, 不一定完全正确, 仅供参考. 如果发现错误或者有疑问的地方, 请指出, 谢谢!</strong></p><a id="more"></a><h3 id="方向导数">方向导数</h3><blockquote><p>导数和偏导数的概念比较简单而且很多人接触过，这里不进行赘诉。</p></blockquote><p>我们直接看方向导数。对于多变量函数$F(x, y, z)$, 我们想知道它在点$P_0$沿方向$\vec l$ 的变化率，用$\left. \frac {\partial F} {\partial {\vec l}} \right| _{P_0} $ 表示。这就是函数F在P点沿方向$\vec l$ 的方向导数。</p><blockquote><p>如果你熟悉偏导数的话， 你可以看出来方向导数和偏导数很像。偏导数是函数在特定方向上（如x轴， y轴）的变化率。 方向导数是函数在任意方向上的变化率。<strong>方向导数可以理解为在任意方向上的偏导数</strong>。毕竟我们对于函数的研究不能仅仅局限在某几个方向。</p></blockquote><p>方向导数公式$$\begin{align}\left. \frac {\partial F} {\partial {\vec l}} \right| _{P_0} &amp;= lim \frac {F§ - F(P_0)} {|PP_0|} \\&amp;= \left. \frac {\partial F} {\partial x} \right| _{P_0} cos \alpha + \left. \frac {\partial F} {\partial y} \right| _{P_0} cos \beta +  \left. \frac {\partial F} {\partial z} \right| _{P_0} cos \gamma\end{align}$$</p><p>其中$cos \alpha$, $cos \beta$, $cos \gamma$ 分别为$\vec l$ 与x, y, z 的方向余弦。</p><h3 id="梯度">梯度</h3><blockquote><p>知道了方向导数，我们考虑一个问题：一个点有无数个方向，也就有无数个方向导数（前提是方向导数存在），那么我们最关心的是哪个？（总不能都关心吧，那也太花心了）答案是我们关心最大的方向导数。</p></blockquote><p><strong>最大的方向导数意为着沿着这个方向函数变化最快（函数的变化率最大）。</strong></p><h4 id="哪个方向的方向导数最大？">哪个方向的方向导数最大？</h4><p>把方向导数的公式变换一下</p><p>$$\begin{align}\left. \frac {\partial F} {\partial {\vec l}} \right| _{P_0}&amp;= \left. \frac {\partial F} {\partial x} \right| _{P_0} cos \alpha + \left. \frac {\partial F} {\partial y} \right| _{P_0} cos \beta +  \left. \frac {\partial F} {\partial z} \right| _{P_0} cos \gamma\\&amp;= G *（cos \alpha, cos \beta, cos \gamma）\\&amp;= |G| cos&lt;G, \vec l&gt;\end{align}$$</p><p>其中$G=(\left. \frac {\partial F} {\partial x} \right| _{P_0}, \left. \frac {\partial F} {\partial y} \right| _{P_0},  \left. \frac {\partial F} {\partial z} \right| _{P_0})$由向量的知识，我们知道当$\vec l$与G同向时，即$cos(G, \vec{l})=1$时值最大。</p><p><strong>梯度至此诞生</strong></p><blockquote><p>梯度的意义就是用来表示最大的方向导数。</p></blockquote><p>$$grad F = ( \frac {\partial F} {\partial x}, \frac {\partial F} {\partial y},   \frac {\partial F} {\partial z})$$</p><p><strong>说明</strong></p><ul><li>梯度是一个向量</li><li>梯度的方向是最大方向导数的方向。</li><li>梯度的大小是这个最大方向导数的值。</li></ul><h3 id="梯度下降法">梯度下降法</h3><blockquote><p>梯度下降法就是利用梯度的性质求解函数最小值的方法.</p></blockquote><p><strong>[思考]:</strong>  对于一元函数我们求解函数最小值的方法有很多, 很多人比较喜欢的就是求导. 如果是多元函数求解最小值或者最大值, 我们还能如此简单的解决吗?该怎么求导? 求偏导吗?求哪个偏导?</p><p>显然这个问题不是简单的求导就可以解决的, 我们可以通过梯度下降法解决.</p><p>想一想, 梯度代表着什么? 表示最大方向导数的向量. 最大方向导数的代表着函数沿着这个方向增长最快, 如果我们反其道而行之, 是不是方向就是函数减小最快的方向. 如果我们每次都能沿着减小最快的方向逼近最小值, 我们是不是就可以最快的找到最小值(或者近似的最小值).</p><p>像这样:</p><center><img src="https://user-images.githubusercontent.com/39959472/59958596-c8da2900-94db-11e9-91f5-b644e5130018.png" width=500></center><blockquote><p>可以这样理解梯度下降法, 我们在当前点找到该点的梯度, 然后沿着梯度的负方向前进一段距离到达一个新的点, 然后再计算梯度, 前进一段距离. 一直这样重复下去, 直到找到最小值或者接近最小值.</p></blockquote><h4 id="公式">公式:</h4><p>$$\theta_{i+1} = \theta_{i} - \alpha * grad F(\theta_{i})<br>$$</p><p>其中$\theta_{i}$ 为当前点, 可以是一个向量, 表示函数的多个自变量.$\theta_{i+1}$为下一个点,   $grad F(\theta_{i}) $是当前点的梯度.$\alpha$表示步长或者学习率(在深度学习中被称为学习率).</p><h4 id="说明">说明:</h4><ol><li>式中的$\alpha$不能太大也不能太小.</li></ol><ul><li>太小, 计算速度慢, 需要迭代很多次.</li><li>太大, 可能会跳过最小值.</li></ul><p>2.由于我们每次更新点都会有一定的步长, 在这段距离中梯度是变化的, 我们在一个点找到的梯度不一定就是这一段的梯度, 所以我们不是一直沿着梯度的负方向前进的. 这一点有点像贪心算法, 基于这一点, 我们也不能让$\alpha$太大.</p><h4 id="梯度下降法的缺点">梯度下降法的缺点</h4><p>如果函数比较复杂, 存在很多局部最小值, 可能最后梯度下降找到的是局部最小值, 而不是全局最小值.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Deep Learning </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数学 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>博客中使用外链音乐</title>
+      <link href="/2019/02/18/bo-ke-zhong-shi-yong-wai-lian-yin-le/"/>
+      <url>/2019/02/18/bo-ke-zhong-shi-yong-wai-lian-yin-le/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>在博客中加入音乐, 可以使读者在阅读时纵享丝滑(德芙是不是应该给我广告费&lt;<sup>_</sup>&gt;)。</p></blockquote><a id="more"></a><p>一般在博客中嵌入的音乐有两种方式:</p><ul><li>使用本地音乐 :就是将自己本地的音乐上传到服务器上, 加载到不可中.</li><li>使用其他音乐平台的音乐: 通过链接访问其他服务器的音乐资源, 将资源加载到你的博客.</li></ul><h3 id="网易云音乐">网易云音乐</h3><blockquote><p>自从入坑网易云之后, 一直再用网易云. 网易云网页版自身提供了生成外链的接口.</p></blockquote><div align=center><img src="/img/blog/blog-music1.png" width=500></div><p>网易云外链:</p><blockquote><p>只需要修改src=&quot;&quot;网址中的id为对应音乐的id即可.</p></blockquote><pre><code class="language-html">&lt;div align=center&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=330 height=86 src=&quot;//music.163.com/outchain/player?type=2&amp;id=1312971394&amp;auto=1&amp;height=66&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;</code></pre><p>效果如下:</p><div align=center><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=414118616&auto=1&height=66"></iframe></div><p>再来一个:</p><div align=center><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=526464293&auto=1&height=66"></iframe></div><p>咦,你会发现上面的音乐不能播放.原因如下:</p><p><strong>由于我国版权意识越来越强(&gt;_&lt;), 有些音乐需要付费才能下载, 同样需要付费下载的音乐不能通过外链播放.所以使用网易云外链只能链接免费歌曲(<s>也就是大多数音乐是不能外链的</s>).</strong></p><blockquote><p>其他音乐平台的音乐也可以外链,比如QQ音乐.具体方法类似,只是链接的html格式不同,这里就不多说了.</p></blockquote><p>对于付费歌曲还是有解决办法的, 就是上面提到的第一种方法–本地音乐.</p><h3 id="解决办法">解决办法</h3><p>提供一个链接: <a href="https://music.liuzhijin.cn/" target="_blank" rel="noopener">https://music.liuzhijin.cn/</a></p><div align=center><img src="/img/blog/blog-music2.png" width=700></div><p>在该网站中, 搜索你需要的音乐, 复制右边的链接.将下面代码中src的内容改为你复制的链接, 就搞定了.</p><pre><code class="language-html">&lt;div align=center&gt;&lt;audio controls&gt;&lt;source src=&quot;http://m10.music.126.net/20190218180725/937019887458e8d14806f9b1623ec119/ymusic/6428/0c3d/4a14/cef6263c9a09bfc03fafbb15f6a99533.mp3&quot; &gt;&lt;/audio&gt;&lt;/div&gt;</code></pre><p>效果如下:</p><blockquote><p>和之前的网易云外链比起来, 界面确实&quot;空空如也&quot;…但也知足吧.如果你想美化界面, 也是可以的.</p></blockquote><div align=center><audio controls><source src="/music/空空如也.mp3" ></audio><p>空空如也-任然</p></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>卡尔曼滤波-翻译</title>
+      <link href="/2019/02/18/qia-er-man-lu-bo-fan-yi/"/>
+      <url>/2019/02/18/qia-er-man-lu-bo-fan-yi/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>最近学习卡尔曼滤波, 发现了一篇很好的博客. 也就是从这篇博客开始, 才逐渐开始理解卡尔曼滤波.这篇博客没有像其他很多教程那样用一大堆公式让初学者望而却步. 但是看完之后, 你会发现你不仅理解了卡尔曼滤波的过程, 也对那些看着头痛欲裂的数学公式有所了解.</p></blockquote><blockquote><p>个人感觉这是一篇很棒的文章.由于原文章是英文的, 这里将其翻译为中文.(由于水平有限, 翻译的质量本人也不敢恭维, 请见谅!)</p></blockquote><a id="more"></a><blockquote><p>如果英文水平还可以, 建议直接阅读原英文文章. 这里给出原文链接. <a href="http://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/#mathybits" target="_blank" rel="noopener">How a Kalman filter works, in pictures</a></p></blockquote><p><strong>如有侵权, 请联系我删除 !</strong>(博客末尾有本人邮箱联系方式)</p><br><div align=center><audio controls><source src="/music/一千年以后-林俊杰.mp3" ></audio><p>一千年以后-林俊杰</p></div><p>翻译如下:<strong>注意: 如果文中数学公式加载错误, 请刷新后重试</strong></p><h3 id="卡尔曼滤波可以做什么">卡尔曼滤波可以做什么</h3><p>让我们看一个玩具的例子: 假设你有一个可以在树林中运动的小机器人， 这个机器人需要确切的位置用于导航。</p><img src=https://www.bzarg.com/wp-content/uploads/2015/08/robot_forest-300x160.png><p>这个机器人有一个状态$\vec {x_k}$, 它包含位置和速度信息。</p><p>$$\vec{x_k} = (\vec{p}, \vec{v})$$</p><p>注意状态仅仅是关于你的系统底层配置的一系列数字,它可以是任何数字.在我们的例子中它是位置和速度, 但它可以是有关水池中的液体量的数据, 可以是汽车引擎的温度, 可以是用户手指在触摸板上的位置, 或者是任何你需要跟踪的数据.</p><p>我们的机器人同时有一个精度是10米的GPS传感器, 这很好, 但是我们需要知道机器人的位置精度要高于10米. 在树林中有大量的水沟和悬崖, 如果机器人运动出错超过几英尺, 他可能会掉下悬崖. 所以它携带的GPS传感器不是足够的好.</p><img src=https://www.bzarg.com/wp-content/uploads/2015/08/robot_ohnoes-300x283.png><p>我们可能也知道一些关于机器人运动的信息. 例如, 它知道发送给机器人动机的指令, 它知道如果它一直不受干扰的向着一个方向前进, 在下一个瞬间它可能会在相同的方向走的更远. 当然它不知道关于电机的所有信息: 它可能受到风的冲击, 轮子可能有一点打滑, 或者是滚过崎岖不平的地形; 所以车轮转动的数量可能并不完全代表机器人实际行驶的距离，这样的预测是不完美的.</p><p>GPS <strong>传感器</strong> 告诉了我们一些关于机器人状态的信息, 但仅仅是间接的, 并且伴随着一些不确定性和不准确性. 我们的 <strong>预测</strong> 告诉我们一些机器人如何移动的信息,但只是间接的, 同样伴随着一些不确定性和不准确性.</p><p>但是如果我们使用所有可用信息, 我们是否能够得到一个比估计更好的答案? 当然答案是肯定的, 这就是卡尔曼滤波的作用.</p><h3 id="卡尔曼滤波怎么看待你的问题">卡尔曼滤波怎么看待你的问题</h3><p>我们看一下我们尝试解决的问题的背景. 我们继续用一个只有位置和速度信息的状态进行讨论.</p><p>$$\vec{x} = \begin{bmatrix}p\\v\end{bmatrix}$$</p><p>我们不知道实际的位置和速度是什么; 有大量位置和速度的组合可能是正确的.但是有一些组合会比其他组合更有可能.</p><img src=https://www.bzarg.com/wp-content/uploads/2015/08/gauss_0.png width=400><p>卡尔曼滤波假设所有变量(在我们的例子中是位置和速度)都是随机的并且符合高斯分布. 每一个变量都有一个均值$\mu$, 它是随机分布的平均值(它也是最可能的状态), 和一个方差$\sigma^2$, 它表示了不确定度.</p><img src=https://www.bzarg.com/wp-content/uploads/2015/08/gauss_1.png width=400><p>在上面的图片中, 位置和速度是不相关的, 意味着一个变量的状态不会告诉你其他变量可能的任何信息.</p><p>下面的例子展示了一些更有趣的事情: 位置和速度是相关的.观察到一个特定位置的可能性取决于你拥有的速度.</p><img src=https://www.bzarg.com/wp-content/uploads/2015/08/gauss_3.png width=400><p>这种情况是可能出现的, 例如, 你正在基于一个旧的位置估计一个新的位置.如果我们的速度很高, 我们可能移动的更远, 因此我们的位置将会更远. 如果我们移动的比较慢, 我们就不能达到那么远.</p><p>这种关系对于跟踪数据非常重要，因为它为我们提供了更多信息: 一个测量数据告诉了我们一些关于其他数据可能的信息. 这就是卡尔曼滤波的目的, 我们希望尽可能地从我们不确定的测量中得到更多的信息.</p><p>这种相关性可以用<a href="https://zh.wikipedia.org/wiki/%E5%8D%8F%E6%96%B9%E5%B7%AE" target="_blank" rel="noopener">协方差矩阵</a>描述. 总之, 矩阵$\Sigma_{ij}$的每一个元素是第i个状态变量和第j个状态变量的相关度.(您可能会猜到协方差矩阵是对称的，这意味着如果交换i和j是无关紧要的). 协方差矩阵通常标记为“$\Sigma$”，因此我们将其元素称为“$\Sigma_{ij}$”。</p><img src=https://www.bzarg.com/wp-content/uploads/2015/08/gauss_2.png width=400><h3 id="用矩阵描述问题">用矩阵描述问题</h3><p>我们将关于机器人状态的信息建模为斑点, 因此我们需要时间k时的两条信息: 我们将把我们的最佳估计称为$\mathbf{\hat{x}_k}$ (均值, 也称为$\mu$), 和它的协方差矩阵$P_k$</p><p>$$\mathbf{ \hat{x}<em>k } =\left[\begin{matrix}\text{position}\\\text{velocity}\end{matrix}\right]\\P_k =\left[\begin{matrix}\Sigma</em>{ pp } &amp; \Sigma_{pv} \\\Sigma_{vp} &amp; \Sigma_{vv}\end{matrix}\right]$$</p><p>当然我们在这里只使用位置和速度，但是请记住, 状态可以包含任意数量的变量, 用来代表你想要的任何东西.</p><p>接下来，我们需要一些方法来查看当前状态（在时间k-1时）并预测在时间k时的下一个状态.</p><p>请记住，我们不知道哪个状态是“真正的”状态，但我们的预测功能并不关心这个。它适用于这些情况，并为我们提供一个新的分布.</p><div align=center><img src=https://www.bzarg.com/wp-content/uploads/2015/08/gauss_7.jpg width=500></div><p>我们可以使用矩阵 $F_k$重新表示这个预测步骤.</p><div align=center><img src=https://www.bzarg.com/wp-content/uploads/2015/08/gauss_8.jpg width=500></div><p>如果原估计是正确的, 它将原始估计的每一个点移动到一个新的预测位置.</p><p>让我们应用这个矩阵, 我们怎样使用这个矩阵预测接下来的一个瞬间的位置和速度呢?我们将会使用一个非常基础的运动公式.</p><p>$${\color{deeppink}{p_k}} = {\color{royalblue}{p_{k-1}}} + \Delta t \color{royalblue}{v_{k-1}}\\{\color{deeppink}{v_k}} = \color{royalblue}{v_{k-1}}$$</p><p>换成矩阵的形式:</p><p>$${\color{deeppink} { \hat{x}}<em>k } =\begin{bmatrix}1 &amp; \Delta t \\0 &amp; 1\end{bmatrix} {\color{royalblue} { \hat{x}}</em>{k-1} }= {F}<em>k  {\color{royalblue} { \hat{x}}</em>{k-1} }$$</p><p>现在我们有一个可以给出下一个状态的预测矩阵, 但是我们仍然不知道怎么更新它的协方差矩阵.</p><p>这里我们需要另外一个公式. 如果我们用一个矩阵A乘以一个分布的每一个点, 然后它的协方差矩阵将会怎么变化?</p><p>好, 它很简单. 这里给出定义:</p><p>$$Cov(x) = \Sigma\\Cov({\color{firebrick}{\mathbf{A}}}x) = {\color{firebrick}{\mathbf{A}}} \Sigma {\color{firebrick}{\mathbf{A}}^T}$$</p><p>所以</p><p>$${\color{deeppink}{\mathbf{ \hat{x}}_k }} = \mathbf{F}<em>k {\color{royalblue}{\mathbf{ \hat{x}}</em>{k-1}} }\\{\color{deeppink}{\mathbf{P}<em>k}} = \mathbf{F_k} {\color{royalblue}{ \mathbf{P}</em>{k-1}} } \mathbf{F}_k^T$$</p><h3 id="外部影响">外部影响</h3><p>但是, 我们还没有抓住一切影响状态的因素. 可能有一些变化和状态本身没有直接关系–外部世界可能会影响系统.</p><p>例如, 如果状态表示火车的运动, 火车司机可能会推动油门, 造成火车加速. 相似的, 在我们的机器人系统中, 导航软件可能会发出使轮子转动或者停止的命令. 如果我们知道这个关于外部世界将要如何变化的额外信息, 我们可以把它放进一个叫做$\color{darkorange}{\vec{\mathbf{u}_k}}$的向量, 用它做一些事情, 把它加入到我们的预测中作为矫正.</p><p>我们说由于我们知道了油门设置或者控制命令, 我们得到了期望的加速度$\color{darkorange}{a}$</p><p>由基础的运动学只是我们得到:</p><p>$${\color{deeppink}{p_k}} = {\color{royalblue}{p_{k-1}}} + {\Delta t} {\color{royalblue}{v_{k-1}}} + \frac{1}{2} {\color{darkorange}{a}} {\Delta t}^2\\{\color{deeppink}{v_k}} = {\color{royalblue}{v_{k-1}}} +  {\color{darkorange}{a}} {\Delta t}$$</p><p>矩阵形式:</p><p>$${\color{deeppink}{\mathbf{\hat{x}}_k}} = \mathbf{F}<em>k {\color{royalblue}{\mathbf{\hat{x}}</em>{k-1}}} + \begin{bmatrix}\frac{\Delta t^2}{2} \\\Delta t\end{bmatrix}\\{\color{darkorange}{a}}= \mathbf{F}<em>k {\color{royalblue}{\mathbf{\hat{x}}</em>{k-1}}} + \mathbf{B}_k {\color{darkorange}{\vec{\mathbf{u}_k}}}$$</p><p>$B_k$被称为控制矩阵, $\vec{u_k}$被称为控制向量.(对于没有外部影响的简单的系统, 你可以忽略它们).</p><p>让我们在多添加一个细节. 如果我们对于将要发生的预测不是一个100%精确的模型将会发生什么?</p><h3 id="外部不确定性">外部不确定性</h3><p>如果事物的状态都基于自己的属性演变, 一切都很好. 同样, 如果其状态基于外部的影响变化, 一切仍然很好, 只要我们知道这些外部的影响都是什么.</p><p>但是对于我们不知道的影响怎么办? 例如, 我们正在跟踪一个四轴飞行器, 它可能会受到风的冲击. 如果我们正在跟踪一个轮式机器人, 它的轮胎可能会打滑, 可能会因为颠簸路面减速. 我们不可能考虑到一切外部影响, 如果这些外部影响中的任何一个发生了, 我们的预测就可能因为没有考虑到这些外部影响而发生偏离.</p><p>我们可以通过在每一步预测之后添加一些新的不确定性来模拟与这个&quot;世界&quot;(即我们没有考虑的因素)相关的不确定性.</p><center><img src=https://www.bzarg.com/wp-content/uploads/2015/08/gauss_9.jpg width=500></center><p>我们原始估计中的每一个状态都可以变为一系列的状态. 因为我们非常的喜欢高斯亮斑, 我们让$x_{k-1}$中的每一个点都移动到协方差为$Q_k$的高斯亮斑内部的某一个位置, 换句话说就是我们将没有考虑到的影响看做协方差为$Q_k$的噪声.</p><center><img src=https://www.bzarg.com/wp-content/uploads/2015/08/gauss_10a.jpg width=500></center><p>这样就产生了一个新的协方差不同的高斯亮斑(但是具有相同的均值).</p><center><img src=https://www.bzarg.com/wp-content/uploads/2015/08/gauss_10b.jpg width=500></center><p>通过简单的增加一个$Q_k$, 我们得到了一个扩大的协方差, 这样就给出了预测部分完整的表达式.</p><p>$$\begin{aligned}\color{deeppink}{\mathbf{\hat{x}}_k} &amp;= \mathbf{F}<em>k {\color{royalblue}{\mathbf{\hat{x}}</em>{k-1}}} + \mathbf{B}_k \color{darkorange}{\vec{\mathbf{u}_k}} \\\color{deeppink}{\mathbf{P}<em>k} &amp;= \mathbf{F_k} {\color{royalblue}{\mathbf{P}</em>{k-1}}} \mathbf{F}_k^T + \color{mediumaquamarine}{\mathbf{Q}_k}\end{aligned}$$</p><p>换句话说, 当前最优估计值是从上一次最优估计值得到的一个预测值, 同时加上一个对已知外影响的矫正.</p><p>同样, 当前不确定度是从上一次不确定度得到的一个预测值, 加上一些来自外部环境的不确定度.</p><p>好吧, 这很简单. 我们已经对我们系统的状态有了一个模糊的估计, 这个模糊估计由$\color{deeppink}{\mathbf{\hat{x}}_k}$和$\color{deeppink}P_k$ 给出.</p><h3 id="通过测量细化估计">通过测量细化估计</h3><p>我们已经有了若干个可以给出系统状态信息的传感器。目前它们测量的数据并不重要；也许一个传感器读到的是位置，另一个得到的是速度。每一个传感器都可以告诉我们一些间接的状态信息–换句话说，传感器在某个状态下运行并且读取到一系列的信息。</p><center><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_12-624x287.jpg" width=500></center><p>我们注意到读取信息的单位和范围可能与我们想要追踪的状态的单位和范围并不一致。你可能猜到了将要做什么了：我们将用一个矩阵$H_K$对传感器建模。</p><center><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_13.jpg" width=500></center><p>我们可以计算出传感器读取数据的分布像我们通常希望的那样。</p><p>$$\begin{equation}\begin{aligned}\vec{\mu}_{\text{expected}} &amp;= \mathbf{H}_k \color{deeppink}{\mathbf{\hat{x}}<em>k} \\\mathbf{\Sigma}</em>{\text{expected}} &amp;= \mathbf{H}_k \color{deeppink}{\mathbf{P}_k} \mathbf{H}_k^T\end{aligned}\end{equation}$$</p><p>卡尔曼滤波擅长的一件事就是处理传感器噪声。换句话说，我们的传感器至少在一定程度上是不可信的，我们原始估计的每一个状态可能会产生一系列的传感器数据。</p><center><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_14.jpg" width=500></center><p>从观察到的每一个读取数据，我们可以猜测出出系统在一个特殊的状态。但是因为有不确定性存在，一些状态比其他状态更有可能产生我们所看到的数据：</p><center><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_11.jpg" width=500></center><p>我们称不确定性（例如：传感器噪声）的协方差$\color{mediumaquamarine}{\mathbf{R}_k}$，分布的均值等于我们观察到的读取数据，我们称之为$\color{yellowgreen}{\vec{\mathbf{z}_k}}$.</p><p>现在我们有了两个高斯亮斑：一个在经过转化后的预测值周围，一个在我们得到的实际传感器数据周围。</p><center><img src="https://www.bzarg.com/wp-content/uploads/2015/08/gauss_4.jpg" width=500></center><h3 id="合并高斯分布">合并高斯分布</h3><h3 id="整合在一起">整合在一起</h3><p><strong>未完待续…</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 翻译 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数学 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>OSTU算法</title>
+      <link href="/2019/02/16/ostu-suan-fa/"/>
+      <url>/2019/02/16/ostu-suan-fa/</url>
+      
+        <content type="html"><![CDATA[<h3 id="OSTU算法">OSTU算法</h3><h4 id="简介">简介</h4><blockquote><p>OSTU算法(最大类间方差法、大津算法): 用来自动对基于聚类的图像进行二值化,或者说将一个灰度图像退化为二值图像。</p></blockquote><p><a href="https://zh.wikipedia.org/wiki/%E5%A4%A7%E6%B4%A5%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">大津算法wiki</a></p><a id="more"></a><div align=center><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1312971394&auto=1&height=66"></iframe></div><h4 id="算法原理">算法原理:</h4><blockquote><p>通过一个阈值T将图像分为背景和前景, 求出背景的像素均值, 前景的像素均值和整幅图的像素均值, 计算背景和前景的方差. 方差越大意味着背景与前景的区分度越明显, 只要求出使得方差最大的阈值$T_{max}$, 则 $T_{max}$就是最适合的阈值.</p></blockquote><h4 id="公式">公式:</h4><p><strong>注意: 如果文中数学公式加载错误, 请刷新后重试</strong></p><ul><li>图像大小: M * N</li><li>小于阈值的像素点数量: $N_0$</li><li>大于阈值的像素点数量: $N_1$</li><li>方差: $\sigma^2$</li></ul><p>$$\begin{align}&amp; \omega_0 = \frac {N_0} {M * N} \\&amp; \omega_1 = \frac {N_1} {M * N} \\&amp; \omega_0 + \omega_1 = 1 \\&amp; \mu = \omega_0 * \mu_0 + \omega_1 * \mu_1 \\&amp; \sigma^2 = \omega_0 * (\mu_0 - \mu)^2 + \omega_1 * (\mu_1 - \mu)^2\end{align}$$</p><p>将$\mu$带入$\sigma^2$得到</p><p>$$\sigma^2 = \omega_0 * \omega_1 * (\mu_0 - \mu_1)^2$$</p><h4 id="算法">算法</h4><ul><li>统计灰度图中各像素的个数, 生成像素直方图.</li><li>计算各像素的概率.</li><li>计算阈值<ul><li>遍历每一个像素值(0-255)作为阈值.</li><li>分别计算前景和背景的像素均值以及概率.</li><li>计算全局均值.</li><li>计算方差.</li><li>更新最大方差和最优阈值.</li></ul></li></ul><h4 id="代码-Opencv">代码(Opencv)</h4><pre><code class="language-cpp">#include &lt;opencv/highgui.h&gt;#include &lt;opencv2/opencv.hpp&gt;#include &lt;cmath&gt;//OSTU算法int OSTU(cv::Mat&amp; src){int threshold=0;//阈值float sigma_temp=0.0f;float sigma_max = 0.0f;int pixel_num = src.rows * src.cols;//像素点个数int pixel_count[256];//各像素个数float pixel_pro[256];//各像素概率//初始化for(int i=0; i&lt;256; i++){pixel_count[i] = 0;}// 统计像素个数for(int i=0; i &lt; src.rows; i++){uchar* data = src.ptr&lt;uchar&gt;(i);for(int j=0; j &lt; src.cols; j++){pixel_count[data[j]]++;}}//计算像素概率for(int i=0; i&lt;256; i++){pixel_pro[i] = (float)(pixel_count[i]) / (float)(pixel_num);}//计算阈值for(int i=0; i&lt;256; i++){float w0=0, w1=0, u0=0, u1=0, u=0;//遍历像素for(int j=0; j&lt;256; j++){//背景像素if(j &lt; i){w0 += pixel_pro[j];u0 += pixel_pro[j] * j;}else//前景像素{u1 += pixel_pro[j] * j;}}//全图像素均值//u = w0 * u0 + (1-w0) * u1;//方差sigma_temp = w0 * (1-w0) * pow((u0 - u1), 2);//更新阈值if(sigma_temp &gt; sigma_max){sigma_max = sigma_temp;threshold = i;}}return threshold;}//二值化图像void BinaryImage(cv::Mat&amp; src, cv::Mat&amp; des, int threshold){for(int i=0; i &lt; src.rows; i++){uchar* src_data = src.ptr&lt;uchar&gt;(i);uchar* des_data = des.ptr&lt;uchar&gt;(i);for(int j=0; j &lt; src.cols; j++){if(src_data[j] &lt; threshold){des_data[j] = 0;}else{des_data[j] = 255;}}}}int main(){cv::Mat src, gray;cv::namedWindow(&quot;src&quot;, cv::WINDOW_NORMAL);cv::namedWindow(&quot;gray&quot;, cv::WINDOW_NORMAL);cv::namedWindow(&quot;binary&quot;, cv::WINDOW_NORMAL);src = cv::imread(&quot;../wallhaven-698240.jpg&quot;, cv::IMREAD_COLOR);cv::cvtColor(src, gray, cv::COLOR_RGB2GRAY);//转换成灰度图int threshold = OSTU(gray);//计算阈值cv::Mat binary = cv::Mat(gray.rows, gray.cols, CV_8U);//初始化二值化图像BinaryImage(gray, binary, threshold);printf(&quot;threshold: %d\n&quot;, threshold);//显示RGB图像, 灰度图像, 二值化图像cv::imshow(&quot;src&quot;, src);cv::imshow(&quot;gray&quot;, gray);cv::imshow(&quot;binary&quot;, binary);cv::waitKey(0);return 0;}</code></pre><h5 id="RGB图像-原图">RGB图像(原图)</h5><div align=center><img src="/img/blog/OSTU1.png" width=500></div><h5 id="灰度图像-经过Opencv转化">灰度图像(经过Opencv转化)</h5><div align=center><img src="/img/blog/OSTU2.png" width=500></div><h5 id="二值化图像-OSTU算法">二值化图像(OSTU算法)</h5><div align=center><img src="/img/blog/OSTU3.png" width=500></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数字图像处理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Ubuntu更换登录界面壁纸</title>
+      <link href="/2019/02/11/ubuntu-geng-huan-deng-lu-jie-mian-bi-zhi/"/>
+      <url>/2019/02/11/ubuntu-geng-huan-deng-lu-jie-mian-bi-zhi/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Ubuntu默认的登录界面有点不敢恭维, 实在不符合现代人的审美.为此找了半天找哪里可以修改, 但是最终还是要求助Google.</p></blockquote><a id="more"></a><h3 id="1-将准备设置为登录界面壁纸的图片移动到-usr-share-background">1. 将准备设置为登录界面壁纸的图片移动到/usr/share/background</h3><pre><code class="language-shell">$ mv your_picture.jpg /usr/share/background</code></pre><h3 id="2-Ubuntu18-04登录背景相关的配置文件是-etc-alternatives-gdm3-css">2. Ubuntu18.04登录背景相关的配置文件是 /etc/alternatives/gdm3.css</h3><blockquote><p>因为需要修改这个文件, 以防万一先将该文件复制一份</p></blockquote><pre><code class="language-shell">$ cp /etc/alternatives/gdm3.css /etc/alternatives/gdm3.css.temp</code></pre><h3 id="3-修改-etc-alternatives-gdm3-css">3. 修改/etc/alternatives/gdm3.css</h3><pre><code class="language-css">#找到默认的这个部分#lockDialogGroup {  background: #2c001e url(resource:///org/gnome/shell/theme/noise-texture.png);  background-repeat: repeat; }#改为#lockDialogGroup {  background: #2c001e url(file:///usr/share/backgrounds/your_picture.jpg);           background-repeat: no-repeat;  background-size: cover;  background-position: center; }</code></pre><h3 id="4-保存文件-重启之后就可以看到新的登录界面了">4. 保存文件, 重启之后就可以看到新的登录界面了.</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Ubuntu </tag>
+            
+            <tag> 美化 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>TensorBoard食用指南</title>
+      <link href="/2019/02/09/tensorboard-shi-yong-zhi-nan/"/>
+      <url>/2019/02/09/tensorboard-shi-yong-zhi-nan/</url>
+      
+        <content type="html"><![CDATA[<div align=center><img src="/img/blog/TensorBoard.png" height=600 width=800 ></div><a id="more"></a><div align=center> <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=554242032&auto=1&height=66"></iframe><!--audio src="/music/体面.mp3" controls></audio--></div><h3 id="TensorBoard-数据形式">TensorBoard 数据形式</h3><details>    <summary> 数据类型 </summary>    <p> 1: 标量Scalars  </p>    <p> 2: 图片Images  </p>    <p> 3: 音频Audio  </p>    <p> 4: 计算图Graph  </p>    <p> 5: 数据分布Distribution  </p>    <p> 6: 直方图Histogtams  </p>    <p> 7: 嵌入向量Embeddings  </p></details><br><h4 id="添加数据代码">添加数据代码</h4><pre><code class="language-python">import tensorflow as tftf.summary.scalar(name, scalar)tf.summary.image(name, image)tf.summary.histogram(name, histogram)tf.summary.audio(name, audio)tf.summary.distribution(name, distribution)tf.summary.graph(name, graph)tf.summary.embeddings(name, embedding)</code></pre><h3 id="TensorBoard-可视化过程">TensorBoard 可视化过程</h3><ol><li>建立计算图graph, 你可以从改图中得到你想要的数据信息</li><li>在计算图的结点防止summary operation用来记录信息</li><li>运行summary operation, 只是建立了summary operation而不run, operation并不会真正执行. 有时, 我们有很多summary operation需要运行, 但是一个一个run会很麻烦. 这时, 可以利用tf.summary.merge_all()将所有结点合并成一个结点, 运行这个结点, 就可以产生所有设置的summary Data.</li><li>将数据保存得到本地磁盘, tf.summary.FileWriter(logs_path, graph=my_graph)</li><li>运行整个程序，并在命令行输入运行tensorboard的指令，之后打开web端可查看可视化的结果.</li></ol><h4 id="Python代码">Python代码</h4><p>该demo使用了tensorflow提供的手写体识别数据</p><pre><code class="language-python">from tensorflow.examples.tutorials.mnist import input_dataimport tensorflow as tfimport osos.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'logs_path = &quot;five_layers_log&quot;batch_size = 100learning_rate = 0.003training_epochs = 10mnist = input_data.read_data_sets(&quot;../data&quot;, one_hot=True)x = tf.placeholder(tf.float32, [None, 784])y = tf.placeholder(tf.float32, [None, 10])# five layers neural networkfirst_layer = 200second_layer = 100third_layer = 60fourth_layer = 30fifth_layer = 10# weight and biasW1 = tf.Variable(tf.truncated_normal([784, first_layer], stddev=0.1))B1 = tf.Variable(tf.zeros([first_layer]))W2 = tf.Variable(tf.truncated_normal([first_layer, second_layer], stddev=0.1))B2 = tf.Variable(tf.zeros([second_layer]))W3 = tf.Variable(tf.truncated_normal([second_layer, third_layer], stddev=0.1))B3 = tf.Variable(tf.zeros([third_layer]))W4 = tf.Variable(tf.truncated_normal([third_layer, fourth_layer], stddev=0.1))B4 = tf.Variable(tf.zeros([fourth_layer]))W5 = tf.Variable(tf.truncated_normal([fourth_layer, fifth_layer], stddev=0.1))B5 = tf.Variable(tf.zeros([fifth_layer]))XX = tf.reshape(x, [-1, 784])Y1 = tf.nn.sigmoid(tf.matmul(x, W1) + B1)Y2 = tf.nn.sigmoid(tf.matmul(Y1, W2) + B2)Y3 = tf.nn.sigmoid(tf.matmul(Y2, W3) + B3)Y4 = tf.nn.sigmoid(tf.matmul(Y3, W4) + B4)Ylogits = tf.matmul(Y4, W5) + B5Y = tf.nn.softmax(Ylogits)cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits=Ylogits, labels=y)cross_entropy = tf.reduce_mean(cross_entropy)*100correct_prediction = tf.equal(tf.argmax(Y, 1), tf.argmax(y, 1))accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))train_step = tf.train.AdamOptimizer(learning_rate).minimize(cross_entropy)tf.summary.scalar(&quot;cost&quot;, cross_entropy)tf.summary.scalar(&quot;accuracy&quot;, accuracy)tf.summary.image(&quot;input_image&quot;, tf.reshape(x, [-1, 28, 28, 1]), 10)summary_op = tf.summary.merge_all()init = tf.global_variables_initializer()with tf.Session() as sess:    sess.run(tf.global_variables_initializer())    writer = tf.summary.FileWriter(logs_path, graph=tf.get_default_graph())    for epoch in range(training_epochs):        batch_count = int(mnist.train.num_examples/batch_size)        for i in range(batch_count):            batch_x, batch_y = mnist.train.next_batch(batch_size)            _, summary = sess.run([train_step, summary_op], feed_dict={x: batch_x, y: batch_y})            writer.add_summary(summary, epoch*batch_count+1)        print(&quot;Epoch&quot;, epoch)    print(&quot;Accuracy&quot;, accuracy.eval(feed_dict={x: mnist.test.images, y: mnist.test.labels}))    print(&quot;Done&quot;)</code></pre><h4 id="查看结果">查看结果</h4><pre><code class="language-shell"># 运行Python程序$ python3 hw_recognition.py # python 文件名# 查看tensorboard$ tensorboard --logdir='five_layers_log' # 程序中保存的数据路径</code></pre><h3 id="Web端TensorBoard">Web端TensorBoard</h3><p>用浏览器打开网址 <a href="http://127.0.1.1:6006" target="_blank" rel="noopener">http://127.0.1.1:6006</a> 查看. 下面是部分截图.</p><ol><li>scalar</li></ol><div align=center><img src="/img/blog/tensorboard_scalar.png" height=400 width=600></div><ol start="2"><li>image</li></ol><div align=center><img src="/img/blog/tensorboard_image.png" height=400 width=600></div><ol start="3"><li>graph</li></ol><div align=center><img src="/img/blog/tensorboard_graph.png" height=400 width=600></div><h3 id="END">END</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> Deep Learning </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> TensorFlow </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Github多人协作</title>
+      <link href="/2019/02/02/github-duo-ren-xie-zuo/"/>
+      <url>/2019/02/02/github-duo-ren-xie-zuo/</url>
+      
+        <content type="html"><![CDATA[<h1>Github 团队多人协作</h1><h3 id="步骤">步骤</h3><h4 id="1-复制仓库">1. 复制仓库</h4><p><strong>注意：复制的仓库默认为mater分支</strong></p><pre><code>$ git clone https://github.com/repository.git # 仓库的URL</code></pre><a id="more"></a><h4 id="2-切换分支到develop">2. 切换分支到develop</h4><p>master分支是git的默认分支, 一般master分支用于发布稳定版本, 不是开发的主要的分支.一般我们会新建一个develop分支用于开发.之后每次开发都提交到develop分支.只有要发布一个稳定的版本时才把develop分支合并到master分支.</p><pre><code># 新建分支$ git checkout -b develop# 如果已经创建了develop分支, 只需要切换到develop分支$ git checkout develop</code></pre><h4 id="3-新建开发分支">3. 新建开发分支</h4><p>由于要多人开发, 个人尽量不要在develop分支开发. 而是在本地新建一个本地分支,之后程序都要在新建的开发分支进行修改，开发完毕后与develop分支合并.</p><p><strong>开发分支只需要留在本地仓库即可，不要提交到github上。</strong></p><pre><code># 例如要添加adc模块， 可以新建分支adc_branch$ git checkout -b adc_branch</code></pre><h4 id="4-添加自己负责的模块">4. 添加自己负责的模块</h4><h4 id="5-合并分支">5. 合并分支</h4><p>添加完自己负责的模块之后， 先提交到自己新建的本地分支，然后切换到develop分支。<strong>在和develop分支合并前需要更新develop分支</strong>, 更新之后再将本地分支合并到develop。</p><p><strong>注意：如果合并发生冲突，不要强制提交，应该放弃本地的修改。</strong></p><pre><code># 提交到本地$ git add .# 根据自己的修改添加相应的说明， 不要用英文描述(因为可能看不懂)。$ git commit -m &quot;添加adc模块&quot; # 切换到develop分支$ git checkout develop# 更新develop分支（因为其他人可能已经修改了develop，# 你本地的develop分支不一定是最新的。）$ git pull origin develop# 在develop分支合并创建的开发分支$ git merge adc_branch </code></pre><h4 id="6-提交develop分支">6. 提交develop分支</h4><pre><code># 提交develop分支到GitHub$ git push origin develop</code></pre><h4 id="7-删除不需要的本地分支">7. 删除不需要的本地分支</h4><p>如果本地的分支不再需要， 可以将其删除。</p><pre><code># 删除adc_branch分支$ git branch -d adc_branch</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Git </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python内建函数</title>
+      <link href="/2019/01/26/nei-jian-han-shu/"/>
+      <url>/2019/01/26/nei-jian-han-shu/</url>
+      
+        <content type="html"><![CDATA[<h3 id="zip">zip</h3><blockquote><p>Python2: 将对象中对应的元素打包成元组(tuple), 返回由这些元组组成的列表. 可以用*解压.</p></blockquote><a id="more"></a><pre><code class="language-python">&gt;&gt;&gt;a = [1,2,3]&gt;&gt;&gt;b = [4,5,6]&gt;&gt;&gt;zip(a, b)[(1,4),(2,5),(3,6)]&gt;&gt;&gt;print(*zip(a,b))[(1,4) (2,5) (3,6)]</code></pre><blockquote><p>Python3: 将对象中对应的元素打包成元组(tuple), 返回由这些元组组成的对象, 可以有*解压.</p></blockquote><pre><code class="language-python">&gt;&gt;&gt;a = [1,2,3]&gt;&gt;&gt;b = [4,5,6]&gt;&gt;&gt;list(zip(a, b)) # 转化成列表[(1,4),(2,5),(3,6)]&gt;&gt;&gt;print(*zip(a,b))(1,4) (2,5) (3,6)</code></pre><hr><h3 id="字典dict">字典dict</h3><h4 id="遍历key">遍历key</h4><pre><code class="language-python">for key in d.keys():    print(key)for key in d:    print(key)</code></pre><h4 id="遍历value">遍历value</h4><pre><code class="language-python">for value in d.values():    print(value)</code></pre><h4 id="遍历key和value">遍历key和value</h4><pre><code class="language-python">for key in d:    print key,'corresponds to', d[key]for key, value in d.items():    print key,'corresponds to',value</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Code </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hexo部署到github服务器</title>
+      <link href="/2019/01/13/hexo-bu-shu-dao-github-fu-wu-qi/"/>
+      <url>/2019/01/13/hexo-bu-shu-dao-github-fu-wu-qi/</url>
+      
+        <content type="html"><![CDATA[<h3 id="1-创建github用户">1. 创建github用户</h3><p>如果你已经有了github的账号, 这一步直接跳过就好.如果没有, 请参考下面的教程申请github账号并在你的计算机上添加ssh公钥</p><a id="more"></a><p><a href="https://github.com/gotgit/gotgithub/blob/master/02-join-github/010-account-setup.rst" target="_blank" rel="noopener">https://github.com/gotgit/gotgithub/blob/master/02-join-github/010-account-setup.rst</a></p><h3 id="2-创建用于部署博客的github仓库">2. 创建用于部署博客的github仓库</h3><p>github每一个用户都有一个特殊的仓库, &lt; username &gt;.github.io (&lt; username &gt; 是你的用户名)将hexo生成的静态文件部署到在这个仓库, 可以通过访问http://&lt; username &gt;.github.io来访问你的博客这时候其实你使用的是github的服务器, 这是github免费提供的, 省去了自己搞域名和服务器时间.当然, 如果你有自己的域名和服务器, 你也可以把hexo放到你自己的服务器上.</p><p>创建仓库:在github上创建名为&lt; username &gt;.github.io的仓库.<strong>注意: 该仓库必须是公有的.</strong></p><h3 id="3-部署hexo">3. 部署hexo</h3><ul><li>修改_config.yml文件, 修改deploy配置</li></ul><pre><code>deploy:  type: git # 使用git  repo: https://github.com/yx1302317313/yx1302317313.github.io.git  # 刚刚创建的仓库链接   branch: master  # master分支</code></pre><ul><li>在本地新建文章之后, 执行以下命令</li></ul><pre><code>$ hexo generate     # 生成静态文件, 生成的文件在public中$ hexo deploy       # 部署到github, 只有public文件夹的内容会提交到github上.</code></pre><ul><li>输入github的用户名和密码.</li><li>之后可以到github上查看你新建的仓库, 你的博客已经提交上去了.</li></ul><h3 id="4-访问你的博客">4. 访问你的博客</h3><p>访问http://&lt; username &gt;.github.io来查看你的博客</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hexo创建分类和标签</title>
+      <link href="/2019/01/11/hexo-chuang-jian-fen-lei-he-biao-qian/"/>
+      <url>/2019/01/11/hexo-chuang-jian-fen-lei-he-biao-qian/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>最近利用Hexo搭建了自己的博客, 在这里简单分享一下hexo的基本操作.</p></blockquote><a id="more"></a><h3 id="创建分类">创建分类</h3><p>利用page模板设置分类</p><pre><code>$ hexo new page categories</code></pre><p>会在你的目录下新生成一个categories文件夹和index.md文件</p><pre><code>INFO  Created: yourdir/source/categories/index.md</code></pre><p>添加type: &quot;categories&quot;到index.md中，添加后是这样的：</p><pre><code>---title: categoriesdate: 2019-01-11 19:05:19type: &quot;categories&quot;      #add categories type---</code></pre><p>在文章中添加分类</p><p><strong>注意: 如果分类下面有两个分类, 并不会把文章放在两个分类中, 而是两个分类嵌套(hexo不支持多个分类).</strong></p><pre><code>title: 'hexo创建分类,归档和标签'date: 2019-01-11 19:11:56tags:categories:  # 添加分类- Hexo  #分类为Hexo</code></pre><h3 id="创建标签">创建标签</h3><p>利用page模板设置分类</p><pre><code>$ hexo new page tags</code></pre><p>会在你的目录下新生成一个tags文件夹和index.md文件</p><pre><code>INFO  Created: yourdir/source/tags/index.md</code></pre><p>添加type: &quot;tags&quot;到index.md中，添加后是这样的：</p><pre><code>---title: tagsdate: 2019-01-11 19:05:19type: &quot;tags&quot;      #add tags type---</code></pre><p>在文章中添加标签</p><p><strong>注意: 文章的标签可以有多个, 也就是tags下面可以设置多个标签</strong></p><pre><code>title: 'hexo创建分类,归档和标签'date: 2019-01-11 19:11:56tags:    # 添加标签- Hexo  #标签为Hexo- Blog  #标签为Blog</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux Realtek网卡驱动安装</title>
+      <link href="/2019/01/09/linux-xia-realtek-wang-qia-qu-dong/"/>
+      <url>/2019/01/09/linux-xia-realtek-wang-qia-qu-dong/</url>
+      
+        <content type="html"><![CDATA[<h3 id="无线网卡">无线网卡</h3><p>Ubuntu有时会不支持电脑的无线网卡，这时就需要自己安装了。</p><a id="more"></a><h3 id="解决方法">解决方法</h3><p>可以在官网找安装文件或者github上找源码编译安装。</p><p>Realtek无线网卡的安装包可以在github下载 <a href="https://github.com/rtlwifi-linux/rtlwifi_new" target="_blank" rel="noopener">https://github.com/rtlwifi-linux/rtlwifi_new</a>. 然后进入目录</p><pre><code class="language-bash">$make$sudo make install$sudo modprobe 你的网卡型号（eg：rtl8821be）</code></pre><h3 id="rtl8821ce">rtl8821ce</h3><p>如果你的网卡是rtl8821ce，github上暂时好像没有，可以下载这一份。<a href="https://download.csdn.net/download/yx1302317313/10595262" target="_blank" rel="noopener">CSDN的下载链接</a></p><ol><li>解压进入文件夹，改一下Makefile中一个文件的路径。</li><li>找到这一句 export TopDIR ?= $(srctree)/drivers/net/wireless/rtl8821ce</li><li>修改成当前目录 export TopDIR ?= $(shell pwd)</li></ol><pre><code class="language-bash">$make$sudo make install$sudo modprobe -a 8821ce</code></pre><p>之后就可以看见无线图标了，如果连不上网reboot试试。</p><hr><h3 id="更新">更新</h3><p>最近发现一个问题, 当Linux内核更新之后, 你的无线网又不能用了.因为新更新的内核替换了原来的内核,所以安装的网卡驱动就没了.</p><p>当然这个问题很好解决, 再重复一次上面的操作的即可.<s>但是每次更新内核都要重装一次还是很麻烦.</s></p><p>如果会shell这个问题就很好解决了,把上面的操作写成一个shell脚本, 只要执行这个脚本就可以很方便的安装网卡驱动了.</p><p>下面是我写的shell脚本(<s>很简单</s>)</p><pre><code class="language-bash">cd ~/Driver/rtl8821ce # 网卡驱动所在的路径,需要根据实际情况修改make clean  # 清除编译文件make -j4    # 四核编译, 要确保你的电脑至少是四核的, 否则使用make即可.make install modprobe -a 8821ce </code></pre><p>把上面的shell程序保存的shell文件中,<a href="http://xn--rtl8821ce-pg9n309f.sh" target="_blank" rel="noopener">例如rtl8821ce.sh</a>,然后给予执行权限执行即可.</p><pre><code class="language-bash">$ chmod u+x rtl8821ce.sh    # 添加执行权限$ sudo ./rtl8821ce.sh    # root权限下执行脚本</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Ubuntu </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>N皇后问题</title>
+      <link href="/2019/01/09/n-huang-hou-wen-ti/"/>
+      <url>/2019/01/09/n-huang-hou-wen-ti/</url>
+      
+        <content type="html"><![CDATA[<h3 id="八皇后问题">八皇后问题</h3><p>八皇后问题，是一个古老而著名的问题，是回溯算法的典型案例。该问题是国际西洋棋棋手马克斯·贝瑟尔于1848年提出：在8×8格的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法。</p><a id="more"></a><div align=center><img src="/img/blog/八皇后.png" width=400 height=400></div><h3 id="N皇后问题">N皇后问题</h3><p>在这里我们解决的是N皇后问题，即在一个n*n的棋盘上，摆放n个皇后，使之不相互攻击。问有几种摆放方法（不考虑棋盘的对称性）.<br>对于8皇后问题，我们可以通过8重循环的回溯算法解决，但是对于N皇后，我们无法预知N的值，所以不能使用这种方法。但是可以使用递归实现循环：每一次递归解决一行的皇后摆放位置，使之不与前几行冲突，之后再递归调用自身确定下一行的位置。</p><h4 id="代码如下（C-）：">代码如下（C++）：</h4><pre><code class="language-cpp">#include &lt;iostream&gt;using namespace std;int N;                    //N个皇后int queen_pos[100];       //每个皇后的位置，目前最大范围是100int num = 0;              //统计最终摆放位置方案的个数void queen(int k);        //递归函数int main(){cin &gt;&gt; N;  //输入N      queen(0); //从第0行开始摆放cout &lt;&lt; num &lt;&lt; endl;    system(&quot;pause&quot;);return 0;}/*@brief：递归实现每一行皇后的摆放位置@parameter：K：从第K行开始摆放*/void queen(int k){if (k==N)        //摆满N行输出                                  {for (int i = 0; i &lt; N; i++){cout &lt;&lt; queen_pos[i] + 1&lt;&lt;&quot; &quot;;  //列数+1，因为棋盘从第一列开始}cout &lt;&lt; endl;num++;         //统计量+1}for (int i = 0; i &lt; N; i++）     //枚举皇后所在的列数{int j = 0;for (; j &lt; k; j++ ）      //是否与前几行冲突{                        //与前几行同列 || 与前几行在同一对角线上，则冲突if (queen_pos[j] == i || (abs(queen_pos[j] - i) == k - j))break;              //如果冲突，跳出，否定这个位置}if (j==k)           //如果不冲突{queen_pos[k] = i;      //确定这一行皇后的位置queen(k+1);            //递归进入下一行}}}</code></pre><hr><h3 id="以下为用程序求出的所有8皇后的解（92种）：">以下为用程序求出的所有8皇后的解（92种）：</h3><pre><code>1 5 8 6 3 7 2 41 6 8 3 7 4 2 51 7 4 6 8 2 5 31 7 5 8 2 4 6 32 4 6 8 3 1 7 52 5 7 1 3 8 6 42 5 7 4 1 8 6 32 6 1 7 4 8 3 52 6 8 3 1 4 7 52 7 3 6 8 5 1 42 7 5 8 1 4 6 32 8 6 1 3 5 7 43 1 7 5 8 2 4 63 5 2 8 1 7 4 63 5 2 8 6 4 7 13 5 7 1 4 2 8 63 5 8 4 1 7 2 63 6 2 5 8 1 7 43 6 2 7 1 4 8 53 6 2 7 5 1 8 43 6 4 1 8 5 7 23 6 4 2 8 5 7 13 6 8 1 4 7 5 23 6 8 1 5 7 2 43 6 8 2 4 1 7 53 7 2 8 5 1 4 63 7 2 8 6 4 1 53 8 4 7 1 6 2 54 1 5 8 2 7 3 64 1 5 8 6 3 7 24 2 5 8 6 1 3 74 2 7 3 6 8 1 54 2 7 3 6 8 5 14 2 7 5 1 8 6 34 2 8 5 7 1 3 64 2 8 6 1 3 5 74 6 1 5 2 8 3 74 6 8 2 7 1 3 54 6 8 3 1 7 5 24 7 1 8 5 2 6 34 7 3 8 2 5 1 64 7 5 2 6 1 3 84 7 5 3 1 6 8 24 8 1 3 6 2 7 54 8 1 5 7 2 6 34 8 5 3 1 7 2 65 1 4 6 8 2 7 35 1 8 4 2 7 3 65 1 8 6 3 7 2 45 2 4 6 8 3 1 75 2 4 7 3 8 6 15 2 6 1 7 4 8 35 2 8 1 4 7 3 65 3 1 6 8 2 4 75 3 1 7 2 8 6 45 3 8 4 7 1 6 25 7 1 3 8 6 4 25 7 1 4 2 8 6 35 7 2 4 8 1 3 65 7 2 6 3 1 4 85 7 2 6 3 1 8 45 7 4 1 3 8 6 25 8 4 1 3 6 2 75 8 4 1 7 2 6 36 1 5 2 8 3 7 46 2 7 1 3 5 8 46 2 7 1 4 8 5 36 3 1 7 5 8 2 46 3 1 8 4 2 7 56 3 1 8 5 2 4 76 3 5 7 1 4 2 86 3 5 8 1 4 2 76 3 7 2 4 8 1 56 3 7 2 8 5 1 46 3 7 4 1 8 2 56 4 1 5 8 2 7 36 4 2 8 5 7 1 36 4 7 1 3 5 2 86 4 7 1 8 2 5 36 8 2 4 1 7 5 37 1 3 8 6 4 2 57 2 4 1 8 5 3 67 2 6 3 1 4 8 57 3 1 6 8 5 2 47 3 8 2 5 1 6 47 4 2 5 8 1 3 67 4 2 8 6 1 3 57 5 3 1 6 8 2 48 2 4 1 7 5 3 68 2 5 3 1 7 4 68 3 1 6 2 5 7 48 4 1 3 6 2 7 5</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> Code </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
