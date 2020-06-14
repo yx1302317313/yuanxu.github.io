@@ -33,6 +33,10 @@
     }
 }
 
+:root {
+    --text-color: #28b7f8;  /*42b983*/
+}
+
 body {
     background-color: #eaeaea;
     margin: 0;
@@ -92,7 +96,7 @@ hr {
 }
 
 blockquote {
-    border-left: 5px solid #42b983;
+    border-left: 5px solid var(--text-color);
     padding: 1rem 0.8rem 0.2rem 0.8rem;
     color: #666;
     background-color: rgba(66, 185, 131, .1);
@@ -266,11 +270,12 @@ mark {
 }
 
 .bg-color {
-    background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
+    background-color:#7fd4f9;
+    /* background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%); */
 }
 
 .text-color {
-    color: #0f9d58 !important;
+    color: #7fd4f9 !important;
 }
 
 .white-color {
@@ -901,7 +906,7 @@ article a {
 
 article a:hover {
     font-weight: bold;
-    color: #42b983;
+    color: var(--text-color);
     text-decoration: underline;
 }
 
@@ -1084,7 +1089,7 @@ article .article-tags .chip {
     border-radius: 15px;
     margin-right: 5px;
     margin-bottom: 2px;
-    color: #42b983;
+    color: var(--text-color);
     background: #fff;
     border: 1px solid;
     transition: all 0.6s ease-in-out;
@@ -1092,17 +1097,17 @@ article .article-tags .chip {
 
 #artDetail .tag_share .article-tag .chip:hover {
     color: #fff;
-    background: #42b983;
+    background: var(--text-color);
 }
 
 #artDetail .post-cate {
     float: right;
-    color: #42b983;
+    color: var(--text-color);
 }
 
 #artDetail .post-cate a {
     padding-right: 5px;
-    color: #42b983;
+    color: var(--text-color);
     font-weight: 500;
 }
 
@@ -1121,7 +1126,7 @@ article .article-tags .chip {
 
 #artDetail .post-info .post-category:hover {
     font-weight: bold;
-    color: #42b983;
+    color: var(--text-color);
     text-decoration: underline;
 }
 
@@ -1184,7 +1189,7 @@ article .article-tags .chip {
 
 #artDetail .reprint a {
     font-size: 1.05rem;
-    color: #42b983;
+    color: var(--text-color);
     font-weight: 500;
 }
 
@@ -1200,7 +1205,7 @@ article .article-tags .chip {
 
 #articleContent a {
     padding: 0 2px;
-    color: #42b983;
+    color: var(--text-color);
     font-weight: 500;
     text-decoration: underline;
     word-wrap: break-word;
@@ -1620,7 +1625,7 @@ thead {
 }
 
 .post-statis .statis .count a {
-    color: #42b983;
+    color: var(--text-color);
 }
 
 .post-statis .statis .name {
@@ -1885,7 +1890,7 @@ footer .copy-right {
 
 .search-result-list .search-result-title {
     font-size: 1.4rem;
-    color: #42b983;
+    color: var(--text-color);
 }
 
 .search-result-list li {
