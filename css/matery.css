@@ -48,6 +48,11 @@
     color: var(--text-color) !important;
 }
 
+#toc-content .toc-link:hover{
+    color: var(--text-color) !important;
+}
+
+
 /* end customise */
 
 body {
@@ -300,7 +305,8 @@ mark {
     position: fixed;
     bottom: 0;
     z-index: 300;
-    background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
+    background: linear-gradient(to right, #7fd4f9 0%, #039ce7 100%); 
+    /* background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%); */
     opacity: 0.8;
 }
 
@@ -362,7 +368,7 @@ header .side-nav .mobile-head img {
 }
 
 header .side-nav .mobile-head .logo-name {
-    margin-top: -30px;
+    /* margin-top: -30px; */
     padding-left: 10px;
     font-size: 1.5rem;
 }
