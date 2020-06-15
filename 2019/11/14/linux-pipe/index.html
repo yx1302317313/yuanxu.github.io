@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 <body>
@@ -110,6 +110,31 @@
       
       <span>友情链接</span>
     </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Medias</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="http://photo.jiayuanxu.com:8000/" target="_blank" rel="noopener">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Galleries</span>
+        </a>
+      </li>
+      
+    </ul>
     
   </li>
   
@@ -200,6 +225,31 @@
 			
 			友情链接
 		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Medias
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="http://photo.jiayuanxu.com:8000/ " target="_blank" rel="noopener" style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Galleries</span>
+                  </a>
+                </li>
+              
+            </ul>
           
         </li>
         
@@ -447,7 +497,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.2k
+                    2k
                 </div>
                 
 
@@ -489,12 +539,12 @@
 <blockquote>
 <p>Linux pipe手册中的例子</p>
 </blockquote>
-<pre><code class="language-c">#include &lt;sys/types.h&gt;
-#include &lt;sys/wait.h&gt;
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;unistd.h&gt;
-#include &lt;string.h&gt;
+<pre class=" language-language-c"><code class="language-language-c">#include <sys/types.h>
+#include <sys/wait.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
 
 int main(int argc, char *argv[])
 {
@@ -504,20 +554,20 @@ int main(int argc, char *argv[])
 
         if (argc != 2)
         {
-                fprintf(stderr, &quot;Usage: %s &lt;string&gt;\n&quot;, argv[0]);
+                fprintf(stderr, "Usage: %s <string>\n", argv[0]);
                 exit(EXIT_FAILURE);
         }
 
         if (pipe(pipefd) == -1)
         {
-                perror(&quot;pipe&quot;);
+                perror("pipe");
                 exit(EXIT_FAILURE);
         }
 
         cpid = fork();
         if (cpid == -1)
         {
-                perror(&quot;fork&quot;);
+                perror("fork");
                 exit(EXIT_FAILURE);
         }
 
@@ -525,10 +575,10 @@ int main(int argc, char *argv[])
         {                         /* Child reads from pipe */
                 close(pipefd[1]); /* Close unused write end */
 
-                while (read(pipefd[0], &amp;buf, 1) &gt; 0)
-                        write(STDOUT_FILENO, &amp;buf, 1);
+                while (read(pipefd[0], &buf, 1) > 0)
+                        write(STDOUT_FILENO, &buf, 1);
 
-                write(STDOUT_FILENO, &quot;\n&quot;, 1);
+                write(STDOUT_FILENO, "\n", 1);
                 close(pipefd[0]);
                 _exit(EXIT_SUCCESS);
         }
@@ -552,83 +602,83 @@ int main(int argc, char *argv[])
 <p>对于读管道操作，数据是从管道尾读出，并使管道尾指针前移‘读取字节数’个位置。</p>
 <p><img src="http://xiehongfeng100.github.io/images/os/linux-kenel-0.11/inter-process-communication/pipe/%E7%AE%A1%E9%81%93%E7%BC%93%E5%86%B2%E5%8C%BA%E6%93%8D%E4%BD%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt=""></p>
 <p>Linux 0.11 源码</p>
-<pre><code class="language-c">
+<pre class=" language-language-c"><code class="language-language-c">
 //fs/pipe.c
 int read_pipe(struct m_inode * inode, char * buf, int count)
 {
 	int chars, size, read = 0;
 
-	while (count&gt;0) {
+	while (count>0) {
 		while (!(size=PIPE_SIZE(*inode))) {	//管道空
-			wake_up(&amp;inode-&gt;i_wait);	//唤醒等待写管道进程
-			if (inode-&gt;i_count != 2) /* are there any writers? */
+			wake_up(&inode->i_wait);	//唤醒等待写管道进程
+			if (inode->i_count != 2) /* are there any writers? */
 				return read;			//没有writer，返回
-			sleep_on(&amp;inode-&gt;i_wait);	//挂起读管道进程
+			sleep_on(&inode->i_wait);	//挂起读管道进程
 		}
 		chars = PAGE_SIZE-PIPE_TAIL(*inode);	//PAGE_SIZE: 4KB 
-		if (chars &gt; count)
+		if (chars > count)
 			chars = count;
-		if (chars &gt; size)
+		if (chars > size)
 			chars = size;
 		count -= chars;
 		read += chars;
 		size = PIPE_TAIL(*inode);
 		PIPE_TAIL(*inode) += chars;     // 读多少数据，指针就偏移多少
-		PIPE_TAIL(*inode) &amp;= (PAGE_SIZE-1);     // 指针超过一个页面，（&amp;= ）操作可以实现自动回滚
+		PIPE_TAIL(*inode) &= (PAGE_SIZE-1);     // 指针超过一个页面，（&= ）操作可以实现自动回滚
 
-		while (chars-- &gt;0)
-			put_fs_byte(((char *)inode-&gt;i_size)[size++],buf++);     //将管道中的数据拷贝至buf
+		while (chars-- >0)
+			put_fs_byte(((char *)inode->i_size)[size++],buf++);     //将管道中的数据拷贝至buf
 	}
-	wake_up(&amp;inode-&gt;i_wait);    //唤醒等待写管道进程
+	wake_up(&inode->i_wait);    //唤醒等待写管道进程
 	return read;
 }
 
 // include/linux/fs.h
 #define PIPE_HEAD(inode) ((inode).i_zone[0])
 #define PIPE_TAIL(inode) ((inode).i_zone[1])
-//PIPE_HEAD(inode)-PIPE_TAIL(inode) &lt; 0，和 (PAGE_SIZE-1) 相与能够计算出管道未读数据的长度
-#define PIPE_SIZE(inode) ((PIPE_HEAD(inode)-PIPE_TAIL(inode))&amp;(PAGE_SIZE-1))
+//PIPE_HEAD(inode)-PIPE_TAIL(inode) < 0，和 (PAGE_SIZE-1) 相与能够计算出管道未读数据的长度
+#define PIPE_SIZE(inode) ((PIPE_HEAD(inode)-PIPE_TAIL(inode))&(PAGE_SIZE-1))
 </code></pre>
 <h4 id="写管道">写管道</h4>
 <p>对于写管道操作，数据是向管道头部写入，并使管道头指针前移‘写入字节数’个位置。</p>
 <p>Linux 0.11 源码</p>
-<pre><code class="language-c">//fs/pipe.c
+<pre class=" language-language-c"><code class="language-language-c">//fs/pipe.c
 int write_pipe(struct m_inode * inode, char * buf, int count)
 {
 	int chars, size, written = 0;
 
-	while (count&gt;0) {
+	while (count>0) {
 		while (!(size=(PAGE_SIZE-1)-PIPE_SIZE(*inode))) {   //管道已满
-			wake_up(&amp;inode-&gt;i_wait);         //唤醒等待读管道进程
-			if (inode-&gt;i_count != 2) { /* no readers */
-				current-&gt;signal |= (1&lt;&lt;(SIGPIPE-1));
+			wake_up(&inode->i_wait);         //唤醒等待读管道进程
+			if (inode->i_count != 2) { /* no readers */
+				current->signal |= (1<<(SIGPIPE-1));
 				return written?written:-1;      //没有reader，返回
 			}
-			sleep_on(&amp;inode-&gt;i_wait);       //挂起写管道进程
+			sleep_on(&inode->i_wait);       //挂起写管道进程
 		}
 		chars = PAGE_SIZE-PIPE_HEAD(*inode);
-		if (chars &gt; count)
+		if (chars > count)
 			chars = count;
-		if (chars &gt; size)
+		if (chars > size)
 			chars = size;
 		count -= chars;
 		written += chars;
 		size = PIPE_HEAD(*inode);
 		PIPE_HEAD(*inode) += chars;
-		PIPE_HEAD(*inode) &amp;= (PAGE_SIZE-1);     // 指针超过一个页面，（&amp;= ）操作可以实现自动回滚
+		PIPE_HEAD(*inode) &= (PAGE_SIZE-1);     // 指针超过一个页面，（&= ）操作可以实现自动回滚
 
-		while (chars-- &gt;0)
-			((char *)inode-&gt;i_size)[size++]=get_fs_byte(buf++); //读取buf中的数据写入管道
+		while (chars-- >0)
+			((char *)inode->i_size)[size++]=get_fs_byte(buf++); //读取buf中的数据写入管道
 	}
-	wake_up(&amp;inode-&gt;i_wait);    //唤醒等待读管道进程
+	wake_up(&inode->i_wait);    //唤醒等待读管道进程
 	return written;
 }
 
 // include/linux/fs.h
 #define PIPE_HEAD(inode) ((inode).i_zone[0])
 #define PIPE_TAIL(inode) ((inode).i_zone[1])
-//PIPE_HEAD(inode)-PIPE_TAIL(inode) &lt; 0，和 (PAGE_SIZE-1) 相与能够计算出管道未读数据的长度
-#define PIPE_SIZE(inode) ((PIPE_HEAD(inode)-PIPE_TAIL(inode))&amp;(PAGE_SIZE-1))
+//PIPE_HEAD(inode)-PIPE_TAIL(inode) < 0，和 (PAGE_SIZE-1) 相与能够计算出管道未读数据的长度
+#define PIPE_SIZE(inode) ((PIPE_HEAD(inode)-PIPE_TAIL(inode))&(PAGE_SIZE-1))
 </code></pre>
 <h3 id="管道的特点">管道的特点</h3>
 <ul>
@@ -653,17 +703,17 @@ int write_pipe(struct m_inode * inode, char * buf, int count)
 <li>实现父进程向子进程通信:父进程关闭pipe1的读端,保留写端;而子进程关闭pipe1的写端,保留读端.</li>
 <li>实现子进程向父进程通信:子进程关闭pipe2的读端,保留写端;而父进程关闭pipe2的写端,保留读端.</li>
 </ol>
-<pre><code class="language-c">#include &lt;sys/types.h&gt;
-#include &lt;sys/wait.h&gt;
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;unistd.h&gt;
-#include &lt;string.h&gt;
+<pre class=" language-language-c"><code class="language-language-c">#include <sys/types.h>
+#include <sys/wait.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
 
 int main(int argc, char *argv[])
 {
-        int pipe_command[2];    //管道1 父进程 -&gt; 子进程
-        int pipe_result[2];     //管道2 子进程 -&gt; 父进程 
+        int pipe_command[2];    //管道1 父进程 -> 子进程
+        int pipe_result[2];     //管道2 子进程 -> 父进程 
         pid_t cpid;
 
         char buf[4];
@@ -671,13 +721,13 @@ int main(int argc, char *argv[])
         //父进程创建管道
         if (pipe(pipe_command) == -1)
         {
-                perror(&quot;pipe_command&quot;);
+                perror("pipe_command");
                 exit(EXIT_FAILURE);
         }
 
         if(pipe(pipe_result) == -1)
         {
-                perror(&quot;pipe_result&quot;);
+                perror("pipe_result");
                 exit(EXIT_FAILURE);
         }
 
@@ -686,13 +736,13 @@ int main(int argc, char *argv[])
 
         if (cpid == -1)
         {
-                perror(&quot;fork error&quot;);
+                perror("fork error");
                 exit(EXIT_FAILURE);
         }
 
         if (cpid == 0)  /*子进程*/
         {                        
-                printf(&quot;sub: pid %d\n&quot;, getpid());      //输出子进程ID
+                printf("sub: pid %d\n", getpid());      //输出子进程ID
 
                 close(pipe_command[1]);         //关闭管道写端
                 close(pipe_result[0]);            //关闭管道读端
@@ -701,22 +751,22 @@ int main(int argc, char *argv[])
                 while (1)
                 {
                         read_status =  read(pipe_command[0], buf, 4);   //读取父进程的命令
-                        if(read_status &gt; 0)
+                        if(read_status > 0)
                         {
-                                printf(&quot;sub: command %s\n&quot;, buf);
-                                if(strcmp(buf, &quot;hell&quot;) == 0)
+                                printf("sub: command %s\n", buf);
+                                if(strcmp(buf, "hell") == 0)
                                 {                                        
-                                        write(pipe_result[1], &quot;okok&quot;, 4);       //回应父进程
+                                        write(pipe_result[1], "okok", 4);       //回应父进程
                                 }
-                                else if( strcmp(buf, &quot;exit&quot;) == 0)
+                                else if( strcmp(buf, "exit") == 0)
                                 {
-                                        printf(&quot;sub: exit\n&quot;);
+                                        printf("sub: exit\n");
                                         break;
                                 } 
                         }                       
-                        else if(read_status &lt; 0)        //读取错误
+                        else if(read_status < 0)        //读取错误
                         {
-                                perror(&quot;sub: read error!&quot;);
+                                perror("sub: read error!");
                                 break;
                         }                                       
                 }        
@@ -728,26 +778,26 @@ int main(int argc, char *argv[])
         }
         else    /*父进程*/
         {
-                printf(&quot;parent: pid %d\n&quot;, getpid());      //输出父进程ID
+                printf("parent: pid %d\n", getpid());      //输出父进程ID
 
                 close(pipe_command[0]); //关闭管道读端
                 close(pipe_result[1]);  //关闭管道写端
 
-                write(pipe_command[1], &quot;hell&quot;, 4);      //向子进程发送命令
+                write(pipe_command[1], "hell", 4);      //向子进程发送命令
 
                  int read_status;
                 while (1)
                 {
                         read_status = read(pipe_result[0], buf, 4);
-                        if(read_status &gt; 0)
+                        if(read_status > 0)
                         {
-                                printf(&quot;parent: received %s\n&quot;, buf);           //接收子进程回应
-                                write(pipe_command[1], &quot;exit&quot;, 4);      //通知子进程退出
+                                printf("parent: received %s\n", buf);           //接收子进程回应
+                                write(pipe_command[1], "exit", 4);      //通知子进程退出
                                 break;
                         }                              
-                        else if(read_status &lt; 0)         //读取错误
+                        else if(read_status < 0)         //读取错误
                         {
-                                perror(&quot;parent: read error!&quot;);
+                                perror("parent: read error!");
                                 break;
                         }                                                          
                 }
@@ -757,15 +807,15 @@ int main(int argc, char *argv[])
 
                 /* 等待子进程退出,并判断状态吗码*/
                 int status;
-                waitpid(-1, &amp;status , 0);             
+                waitpid(-1, &status , 0);             
                 
                 if(WIFEXITED(status))
                 {
-                        printf(&quot;exited: %d\n&quot;, WEXITSTATUS(status));
+                        printf("exited: %d\n", WEXITSTATUS(status));
                 }                                
                 else if(WIFSIGNALED(status))
                 {
-                        printf(&quot;signaled: %d\n&quot;, WTERMSIG(status));
+                        printf("signaled: %d\n", WTERMSIG(status));
                 }
 
                 exit(EXIT_SUCCESS);
@@ -872,6 +922,33 @@ int main(int argc, char *argv[])
     </div>
 
     
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'ce62857982fc375aaaa6',
+        clientSecret: 'e9b102ab27a8b90d1221d32ffb9bc9d891d41fa1',
+        repo: 'HexoComment',
+        owner: 'yx1302317313',
+        admin: "yx1302317313",
+        id: '2019-11-14T18-42-32',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
 
     
 
@@ -932,12 +1009,12 @@ int main(int argc, char *argv[])
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C++</span>
-                    </a>
-                    
                     <a href="/tags/Code/">
                         <span class="chip bg-color">Code</span>
+                    </a>
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
@@ -982,6 +1059,14 @@ Git使用submodule(子模块)解决Git仓库的嵌套问题，允许一个 Git �
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Tool/">
+                        <span class="chip bg-color">Tool</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1176,7 +1261,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
 
     
-    <div class="container row center-align" style="margin-bottom: 0px !important;">
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             <span id="year">2019</span>
@@ -1190,18 +1275,62 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             
             
             
-            <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_container_site_pv" style="display: none;">
                 |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
                     class="white-color"></span>&nbsp;次
             </span>
             
             
-            <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_container_site_uv" style="display: none;">
                 |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
                     class="white-color"></span>&nbsp;人
             </span>
             
             <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "1";
+                    var startDate = "19";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
             
             <br>
             
@@ -1238,6 +1367,26 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 </footer>
 
 <div class="progress-bar"></div>
+
+<script>
+    $(document).ready(function () {
+
+        var int = setInterval(fixCount, 100);  // 50ms周期检测函数
+        var pvcountOffset = 2516;  // 初始化首次数据
+        var uvcountOffset = 892;
+
+        function fixCount() {
+            if (document.getElementById("busuanzi_container_site_pv").style.display != "none") {
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + pvcountOffset);
+                clearInterval(int);
+            }
+            if ($("#busuanzi_container_site_uv").css("display") != "none") {
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 
+                clearInterval(int); // 停止检测
+            }
+        }
+    });
+</script>
 
 
     <!-- 搜索遮罩框 -->

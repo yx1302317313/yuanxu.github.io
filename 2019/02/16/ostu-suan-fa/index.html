@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 <body>
@@ -110,6 +110,31 @@
       
       <span>友情链接</span>
     </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Medias</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="http://photo.jiayuanxu.com:8000/" target="_blank" rel="noopener">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Galleries</span>
+        </a>
+      </li>
+      
+    </ul>
     
   </li>
   
@@ -200,6 +225,31 @@
 			
 			友情链接
 		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Medias
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="http://photo.jiayuanxu.com:8000/ " target="_blank" rel="noopener" style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Galleries</span>
+                  </a>
+                </li>
+              
+            </ul>
           
         </li>
         
@@ -404,6 +454,10 @@
                     
                     <div class="article-tag">
                         
+                            <a href="/tags/Code/">
+                                <span class="chip bg-color">Code</span>
+                            </a>
+                        
                             <a href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
                                 <span class="chip bg-color">数字图像处理</span>
                             </a>
@@ -436,14 +490,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-27
+                    2020-06-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    792
+                    413
                 </div>
                 
 
@@ -510,12 +564,12 @@ $$</p>
 </li>
 </ul>
 <h4 id="代码-Opencv">代码(Opencv)</h4>
-<pre><code class="language-cpp">#include &lt;opencv/highgui.h&gt;
-#include &lt;opencv2/opencv.hpp&gt;
-#include &lt;cmath&gt;
+<pre class=" language-language-cpp"><code class="language-language-cpp">#include <opencv/highgui.h>
+#include <opencv2/opencv.hpp>
+#include <cmath>
 
 //OSTU算法
-int OSTU(cv::Mat&amp; src)
+int OSTU(cv::Mat& src)
 {
 	int threshold=0;	//阈值
 	float sigma_temp=0.0f;	
@@ -525,37 +579,37 @@ int OSTU(cv::Mat&amp; src)
 	float pixel_pro[256];	//各像素概率
 
 	//初始化
-	for(int i=0; i&lt;256; i++)
+	for(int i=0; i<256; i++)
 	{
 		pixel_count[i] = 0;
 	}
 
 	// 统计像素个数
-	for(int i=0; i &lt; src.rows; i++)
+	for(int i=0; i < src.rows; i++)
 	{	
-		uchar* data = src.ptr&lt;uchar&gt;(i);
+		uchar* data = src.ptr<uchar>(i);
 
-		for(int j=0; j &lt; src.cols; j++)
+		for(int j=0; j < src.cols; j++)
 		{
 			pixel_count[data[j]]++;
 		}
 	}
 		
 	//计算像素概率
-	for(int i=0; i&lt;256; i++)
+	for(int i=0; i<256; i++)
 	{
 		pixel_pro[i] = (float)(pixel_count[i]) / (float)(pixel_num);
 	}
 
 	//计算阈值
-	for(int i=0; i&lt;256; i++)
+	for(int i=0; i<256; i++)
 	{
 		float w0=0, w1=0, u0=0, u1=0, u=0;
 		//遍历像素
-		for(int j=0; j&lt;256; j++)
+		for(int j=0; j<256; j++)
 		{	
 			//背景像素
-			if(j &lt; i)
+			if(j < i)
 			{
 				w0 += pixel_pro[j];
 				u0 += pixel_pro[j] * j;	
@@ -573,7 +627,7 @@ int OSTU(cv::Mat&amp; src)
 		sigma_temp = w0 * (1-w0) * pow((u0 - u1), 2);
 		
 		//更新阈值
-		if(sigma_temp &gt; sigma_max)
+		if(sigma_temp > sigma_max)
 		{
 			sigma_max = sigma_temp;
 			threshold = i;
@@ -584,16 +638,16 @@ int OSTU(cv::Mat&amp; src)
 }
 
 //二值化图像
-void BinaryImage(cv::Mat&amp; src, cv::Mat&amp; des, int threshold)
+void BinaryImage(cv::Mat& src, cv::Mat& des, int threshold)
 {
-	for(int i=0; i &lt; src.rows; i++)
+	for(int i=0; i < src.rows; i++)
 	{	
-		uchar* src_data = src.ptr&lt;uchar&gt;(i);
-		uchar* des_data = des.ptr&lt;uchar&gt;(i);
+		uchar* src_data = src.ptr<uchar>(i);
+		uchar* des_data = des.ptr<uchar>(i);
 
-		for(int j=0; j &lt; src.cols; j++)
+		for(int j=0; j < src.cols; j++)
 		{
-			if(src_data[j] &lt; threshold)
+			if(src_data[j] < threshold)
 			{
 				des_data[j] = 0;
 			}
@@ -609,12 +663,12 @@ int main()
 {	
 	cv::Mat src, gray;
 
-	cv::namedWindow(&quot;src&quot;, cv::WINDOW_NORMAL);
-	cv::namedWindow(&quot;gray&quot;, cv::WINDOW_NORMAL);
-	cv::namedWindow(&quot;binary&quot;, cv::WINDOW_NORMAL);
+	cv::namedWindow("src", cv::WINDOW_NORMAL);
+	cv::namedWindow("gray", cv::WINDOW_NORMAL);
+	cv::namedWindow("binary", cv::WINDOW_NORMAL);
 
 
-	src = cv::imread(&quot;../wallhaven-698240.jpg&quot;, cv::IMREAD_COLOR);
+	src = cv::imread("../wallhaven-698240.jpg", cv::IMREAD_COLOR);
 	cv::cvtColor(src, gray, cv::COLOR_RGB2GRAY);	//转换成灰度图
 
 	int threshold = OSTU(gray);		//计算阈值
@@ -622,12 +676,12 @@ int main()
 	cv::Mat binary = cv::Mat(gray.rows, gray.cols, CV_8U);		//初始化二值化图像
 	BinaryImage(gray, binary, threshold);
 
-	printf(&quot;threshold: %d\n&quot;, threshold);
+	printf("threshold: %d\n", threshold);
 
 	//显示RGB图像, 灰度图像, 二值化图像
-	cv::imshow(&quot;src&quot;, src);
-	cv::imshow(&quot;gray&quot;, gray);
-	cv::imshow(&quot;binary&quot;, binary);
+	cv::imshow("src", src);
+	cv::imshow("gray", gray);
+	cv::imshow("binary", binary);
 
 	cv::waitKey(0);
 
@@ -709,6 +763,10 @@ int main()
                     
                         <div class="article-tag">
                             
+                                <a href="/tags/Code/">
+                                    <span class="chip bg-color">Code</span>
+                                </a>
+                            
                                 <a href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
                                     <span class="chip bg-color">数字图像处理</span>
                                 </a>
@@ -734,6 +792,33 @@ int main()
             
         </div>
     </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'ce62857982fc375aaaa6',
+        clientSecret: 'e9b102ab27a8b90d1221d32ffb9bc9d891d41fa1',
+        repo: 'HexoComment',
+        owner: 'yx1302317313',
+        admin: "yx1302317313",
+        id: '2019-02-16T18-32-12',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
 
     
 
@@ -1049,7 +1134,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
 
     
-    <div class="container row center-align" style="margin-bottom: 0px !important;">
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             <span id="year">2019</span>
@@ -1063,18 +1148,62 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             
             
             
-            <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_container_site_pv" style="display: none;">
                 |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
                     class="white-color"></span>&nbsp;次
             </span>
             
             
-            <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_container_site_uv" style="display: none;">
                 |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
                     class="white-color"></span>&nbsp;人
             </span>
             
             <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "1";
+                    var startDate = "19";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
             
             <br>
             
@@ -1111,6 +1240,26 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 </footer>
 
 <div class="progress-bar"></div>
+
+<script>
+    $(document).ready(function () {
+
+        var int = setInterval(fixCount, 100);  // 50ms周期检测函数
+        var pvcountOffset = 2516;  // 初始化首次数据
+        var uvcountOffset = 892;
+
+        function fixCount() {
+            if (document.getElementById("busuanzi_container_site_pv").style.display != "none") {
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + pvcountOffset);
+                clearInterval(int);
+            }
+            if ($("#busuanzi_container_site_uv").css("display") != "none") {
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 
+                clearInterval(int); // 停止检测
+            }
+        }
+    });
+</script>
 
 
     <!-- 搜索遮罩框 -->

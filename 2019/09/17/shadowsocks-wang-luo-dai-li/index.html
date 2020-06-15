@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 <body>
@@ -110,6 +110,31 @@
       
       <span>友情链接</span>
     </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Medias</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="http://photo.jiayuanxu.com:8000/" target="_blank" rel="noopener">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Galleries</span>
+        </a>
+      </li>
+      
+    </ul>
     
   </li>
   
@@ -200,6 +225,31 @@
 			
 			友情链接
 		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Medias
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="http://photo.jiayuanxu.com:8000/ " target="_blank" rel="noopener" style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Galleries</span>
+                  </a>
+                </li>
+              
+            </ul>
           
         </li>
         
@@ -404,12 +454,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86/">
-                                <span class="chip bg-color">网络代理</span>
+                            <a href="/tags/Shadowsocks/">
+                                <span class="chip bg-color">Shadowsocks</span>
                             </a>
                         
-                            <a href="/tags/Network/">
-                                <span class="chip bg-color">Network</span>
+                            <a href="/tags/Server/">
+                                <span class="chip bg-color">Server</span>
                             </a>
                         
                     </div>
@@ -420,8 +470,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Linux/" class="post-category">
-                                Linux
+                            <a href="/categories/Network/" class="post-category">
+                                Network
                             </a>
                         
                     </div>
@@ -440,7 +490,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-04-02
+                    2020-06-15
                 </div>
                 
 
@@ -490,9 +540,9 @@
 <ol>
 <li>服务器上安装Shadowsocks, 下面是一个一键安装脚本. 在终端运行下面的命令</li>
 </ol>
-<pre><code class="language-sh">wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh
+<pre class=" language-language-sh"><code class="language-language-sh">wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh
 chmod +x shadowsocks-all.sh
-./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log
+./shadowsocks-all.sh 2>&1 | tee shadowsocks-all.log
 </code></pre>
 <ol start="2">
 <li>
@@ -516,7 +566,7 @@ chmod +x shadowsocks-all.sh
 </ol>
 <p><strong>[注意]</strong>: 密码,端口和加密方式需要记住, 因为配置客户端时要用. 安装完成后会显示这些信息, 到时候截个图就可以. 同时会生成一个二维码, 可以使用手机扫描, 或者使用电脑读取二维码配置客户端. 至于怎么把二维码从服务器下载下来… 可以利用vsftpd搭一个FTP服务器, 然后下载. 不过这里使用手动配置.</p>
 <p>完成之后可以看一下ss服务是否启动</p>
-<pre><code class="language-sh">$ systemctl list-units --type=service | grep Shadowsocks
+<pre class=" language-language-sh"><code class="language-language-sh">$ systemctl list-units --type=service | grep Shadowsocks
 </code></pre>
 <p>如果看到有Shadowsocks服务, 并且状态是active和running, 则服务已经启动. 服务端配置就完成了.</p>
 <h2 id="Shadowsocks客户端">Shadowsocks客户端</h2>
@@ -560,8 +610,8 @@ chmod +x shadowsocks-all.sh
 </center>
 <h5 id="终端的全局代理">终端的全局代理</h5>
 <p>在shell的配置文件(.bashrc、.zshrc等等)中添加下面内容</p>
-<pre><code class="language-sh">export http_proxy=&quot;socks5://127.0.0.1:1080&quot;
-export https_proxy=&quot;socks5://127.0.0.1:1080&quot;
+<pre class=" language-language-sh"><code class="language-language-sh">export http_proxy="socks5://127.0.0.1:1080"
+export https_proxy="socks5://127.0.0.1:1080"
 </code></pre>
 <p><strong>目前还没有找到终端使用PAC代理的方法，我在终端使用的还是全局代理。。。</strong></p>
 <h4 id="PAC代理">PAC代理</h4>
@@ -572,19 +622,19 @@ export https_proxy=&quot;socks5://127.0.0.1:1080&quot;
 <ul>
 <li>安装pip（很多人可能已经装了）</li>
 </ul>
-<pre><code class="language-sh">sudo apt-get install python-pip python-dev build-essential 
+<pre class=" language-language-sh"><code class="language-language-sh">sudo apt-get install python-pip python-dev build-essential 
 sudo pip install --upgrade pip 
 sudo pip install --upgrade virtualenv
 </code></pre>
 <ul>
 <li>安装genpac</li>
 </ul>
-<pre><code class="language-sh">sudo pip install genpac
+<pre class=" language-language-sh"><code class="language-language-sh">sudo pip install genpac
 </code></pre>
 <ul>
 <li>建立一个存放pac文件的目录，进入该目录。（注意，在执行时需挂系统代理 sock5，否则会出现获取 gfwlist 失败的情况）</li>
 </ul>
-<pre><code class="language-sh">genpac --proxy=&quot;SOCKS5 127.0.0.1:1080&quot; --gfwlist-proxy=&quot;SOCKS5 127.0.0.1:1080&quot; -o autoproxy.pac --gfwlist-url=&quot;https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt&quot; 
+<pre class=" language-language-sh"><code class="language-language-sh">genpac --proxy="SOCKS5 127.0.0.1:1080" --gfwlist-proxy="SOCKS5 127.0.0.1:1080" -o autoproxy.pac --gfwlist-url="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt" 
 </code></pre>
 <ul>
 <li>选择网络代理中的自动代理，url 填写刚生成的 pac 文件的路径file:///path/autoproxy.pac (# 这个文件是一个JS脚本文件，里面存放着目前大部分被gfw屏蔽的域名)，<strong>如果有需要添加的域名，可以自己手动添加进去。</strong></li>
@@ -695,12 +745,12 @@ sudo pip install --upgrade virtualenv
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86/">
-                                    <span class="chip bg-color">网络代理</span>
+                                <a href="/tags/Shadowsocks/">
+                                    <span class="chip bg-color">Shadowsocks</span>
                                 </a>
                             
-                                <a href="/tags/Network/">
-                                    <span class="chip bg-color">Network</span>
+                                <a href="/tags/Server/">
+                                    <span class="chip bg-color">Server</span>
                                 </a>
                             
                         </div>
@@ -724,6 +774,33 @@ sudo pip install --upgrade virtualenv
             
         </div>
     </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'ce62857982fc375aaaa6',
+        clientSecret: 'e9b102ab27a8b90d1221d32ffb9bc9d891d41fa1',
+        repo: 'HexoComment',
+        owner: 'yx1302317313',
+        admin: "yx1302317313",
+        id: '2019-09-17T12-41-18',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
 
     
 
@@ -787,43 +864,29 @@ sudo pip install --upgrade virtualenv
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/31/tian-jin-zhi-xing/">
+                <a href="/2019/09/01/he-qu-he-cong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="天津之行">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="何去何从">
                         
-                        <span class="card-title">天津之行</span>
+                        <span class="card-title">何去何从</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             
-其实很多人都希望一场旅行,去追寻自己心中的诗与远方.可能由于时间问题,经济问题等,只能一次次的打消念头.如果你真的下定决心去尝试一次,你会发现之前的那些问题并不会阻碍你.很幸运,我迈出了这一步.
-
-
-
-
-
-Why
-为什么想要一次旅行
-
-当
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-08-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-01
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E8%BF%9C%E6%96%B9/" class="post-category">
-                                    远方
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            XuYuan
                             
                         </span>
                     </div>
@@ -1021,7 +1084,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
 
     
-    <div class="container row center-align" style="margin-bottom: 0px !important;">
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             <span id="year">2019</span>
@@ -1035,18 +1098,62 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             
             
             
-            <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_container_site_pv" style="display: none;">
                 |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
                     class="white-color"></span>&nbsp;次
             </span>
             
             
-            <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_container_site_uv" style="display: none;">
                 |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
                     class="white-color"></span>&nbsp;人
             </span>
             
             <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "1";
+                    var startDate = "19";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
             
             <br>
             
@@ -1083,6 +1190,26 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 </footer>
 
 <div class="progress-bar"></div>
+
+<script>
+    $(document).ready(function () {
+
+        var int = setInterval(fixCount, 100);  // 50ms周期检测函数
+        var pvcountOffset = 2516;  // 初始化首次数据
+        var uvcountOffset = 892;
+
+        function fixCount() {
+            if (document.getElementById("busuanzi_container_site_pv").style.display != "none") {
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + pvcountOffset);
+                clearInterval(int);
+            }
+            if ($("#busuanzi_container_site_uv").css("display") != "none") {
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 
+                clearInterval(int); // 停止检测
+            }
+        }
+    });
+</script>
 
 
     <!-- 搜索遮罩框 -->
