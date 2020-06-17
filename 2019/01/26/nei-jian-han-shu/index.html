@@ -4,8 +4,8 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Python内建函数, YuanXu&#39;s Blog">
-    <meta name="description" content="">
+    <meta name="keywords" content="Python内建函数, Blog Life Travel Reading">
+    <meta name="description" content="What doesn&#39;t kill you makes you stronger!">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -153,7 +153,7 @@
         <div class="logo-name">YuanXu&#39;s Blog</div>
         <div class="logo-desc">
             
-            Never really desperate, only the lost of the soul.
+            What doesn&#39;t kill you makes you stronger!
             
         </div>
     </div>
@@ -497,7 +497,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    181
+                    177
                 </div>
                 
 
@@ -514,49 +514,40 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="zip">zip</h3>
-<blockquote>
+                <h3 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h3><blockquote>
 <p>Python2: 将对象中对应的元素打包成元组(tuple), 返回由这些元组组成的列表. 可以用*解压.</p>
 </blockquote>
 <a id="more"></a>
-<pre class=" language-language-python"><code class="language-language-python">>>>a = [1,2,3]
->>>b = [4,5,6]
->>>zip(a, b)
-[(1,4),(2,5),(3,6)]
->>>print(*zip(a,b))
-[(1,4) (2,5) (3,6)]
-</code></pre>
+
+<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span>a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span>
+<span class="token operator">>></span><span class="token operator">></span>b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">]</span>
+<span class="token operator">>></span><span class="token operator">></span>zip<span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+<span class="token operator">>></span><span class="token operator">></span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token operator">*</span>zip<span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">]</span></code></pre>
 <blockquote>
 <p>Python3: 将对象中对应的元素打包成元组(tuple), 返回由这些元组组成的对象, 可以有*解压.</p>
 </blockquote>
-<pre class=" language-language-python"><code class="language-language-python">>>>a = [1,2,3]
->>>b = [4,5,6]
->>>list(zip(a, b)) # 转化成列表
-[(1,4),(2,5),(3,6)]
->>>print(*zip(a,b))
-(1,4) (2,5) (3,6)
-</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span>a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span>
+<span class="token operator">>></span><span class="token operator">></span>b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">]</span>
+<span class="token operator">>></span><span class="token operator">></span>list<span class="token punctuation">(</span>zip<span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 转化成列表</span>
+<span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+<span class="token operator">>></span><span class="token operator">></span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token operator">*</span>zip<span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">)</span></code></pre>
 <hr>
-<h3 id="字典dict">字典dict</h3>
-<h4 id="遍历key">遍历key</h4>
-<pre class=" language-language-python"><code class="language-language-python">for key in d.keys():
-    print(key)
+<h3 id="字典dict"><a href="#字典dict" class="headerlink" title="字典dict"></a>字典dict</h3><h4 id="遍历key"><a href="#遍历key" class="headerlink" title="遍历key"></a>遍历key</h4><pre class=" language-python"><code class="language-python"><span class="token keyword">for</span> key <span class="token keyword">in</span> d<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
 
-for key in d:
-    print(key)
+<span class="token keyword">for</span> key <span class="token keyword">in</span> d<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span></code></pre>
+<h4 id="遍历value"><a href="#遍历value" class="headerlink" title="遍历value"></a>遍历value</h4><pre class=" language-python"><code class="language-python"><span class="token keyword">for</span> value <span class="token keyword">in</span> d<span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
 </code></pre>
-<h4 id="遍历value">遍历value</h4>
-<pre class=" language-language-python"><code class="language-language-python">for value in d.values():
-    print(value)
+<h4 id="遍历key和value"><a href="#遍历key和value" class="headerlink" title="遍历key和value"></a>遍历key和value</h4><pre class=" language-python"><code class="language-python"><span class="token keyword">for</span> key <span class="token keyword">in</span> d<span class="token punctuation">:</span>
+    <span class="token keyword">print</span> key<span class="token punctuation">,</span><span class="token string">'corresponds to'</span><span class="token punctuation">,</span> d<span class="token punctuation">[</span>key<span class="token punctuation">]</span>
 
-</code></pre>
-<h4 id="遍历key和value">遍历key和value</h4>
-<pre class=" language-language-python"><code class="language-language-python">for key in d:
-    print key,'corresponds to', d[key]
-
-for key, value in d.items():
-    print key,'corresponds to',value
-</code></pre>
+<span class="token keyword">for</span> key<span class="token punctuation">,</span> value <span class="token keyword">in</span> d<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span> key<span class="token punctuation">,</span><span class="token string">'corresponds to'</span><span class="token punctuation">,</span>value</code></pre>
 
             </div>
             <hr/>
@@ -973,15 +964,10 @@ for key, value in d.items():
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Github 团队多人协作
-步骤
-1. 复制仓库
-注意：复制的仓库默认为mater分支
+                            Github 团队多人协作步骤1. 复制仓库注意：复制的仓库默认为mater分支
 $ git clone https://github.com/repository.git # 仓库的URL
 
-
-2. 切换分支到develop
-mas
+2. 切换分支到developmaster分支
                         
                     </div>
                     <div class="publish-info">
@@ -1030,11 +1016,10 @@ mas
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            1. 创建github用户
-如果你已经有了github的账号, 这一步直接跳过就好.
-如果没有, 请参考下面的教程申请github账号并在你的计算机上添加ssh公钥
+                            1. 创建github用户如果你已经有了github的账号, 这一步直接跳过就好.如果没有, 请参考下面的教程申请github账号并在你的计算机上添加ssh公钥
 
-https://github.com/gotgit/gotgithub/
+
+https://github.com/gotgit/gotgithub/b
                         
                     </div>
                     <div class="publish-info">
@@ -1197,6 +1182,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 
 
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
     <footer class="page-footer bg-color">
     

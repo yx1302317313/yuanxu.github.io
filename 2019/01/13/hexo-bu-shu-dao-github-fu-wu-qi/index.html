@@ -4,8 +4,8 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="hexo部署到github服务器, YuanXu&#39;s Blog">
-    <meta name="description" content="">
+    <meta name="keywords" content="hexo部署到github服务器, Blog Life Travel Reading">
+    <meta name="description" content="What doesn&#39;t kill you makes you stronger!">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -153,7 +153,7 @@
         <div class="logo-name">YuanXu&#39;s Blog</div>
         <div class="logo-desc">
             
-            Never really desperate, only the lost of the soul.
+            What doesn&#39;t kill you makes you stronger!
             
         </div>
     </div>
@@ -493,7 +493,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    398
+                    395
                 </div>
                 
 
@@ -510,40 +510,25 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="1-创建github用户">1. 创建github用户</h3>
-<p>如果你已经有了github的账号, 这一步直接跳过就好.
-如果没有, 请参考下面的教程申请github账号并在你的计算机上添加ssh公钥</p>
+                <h3 id="1-创建github用户"><a href="#1-创建github用户" class="headerlink" title="1. 创建github用户"></a>1. 创建github用户</h3><p>如果你已经有了github的账号, 这一步直接跳过就好.<br>如果没有, 请参考下面的教程申请github账号并在你的计算机上添加ssh公钥</p>
 <a id="more"></a>
+
 <p><a href="https://github.com/gotgit/gotgithub/blob/master/02-join-github/010-account-setup.rst" target="_blank" rel="noopener">https://github.com/gotgit/gotgithub/blob/master/02-join-github/010-account-setup.rst</a></p>
-<h3 id="2-创建用于部署博客的github仓库">2. 创建用于部署博客的github仓库</h3>
-<p>github每一个用户都有一个特殊的仓库, &lt; username &gt;.github.io (&lt; username &gt; 是你的用户名)
-将hexo生成的静态文件部署到在这个仓库, 可以通过访问http://&lt; username &gt;.github.io来访问你的博客
-这时候其实你使用的是github的服务器, 这是github免费提供的, 省去了自己搞域名和服务器时间.
-当然, 如果你有自己的域名和服务器, 你也可以把hexo放到你自己的服务器上.</p>
-<p>创建仓库:
-在github上创建名为&lt; username &gt;.github.io的仓库.
-<strong>注意: 该仓库必须是公有的.</strong></p>
-<h3 id="3-部署hexo">3. 部署hexo</h3>
-<ul>
+<h3 id="2-创建用于部署博客的github仓库"><a href="#2-创建用于部署博客的github仓库" class="headerlink" title="2. 创建用于部署博客的github仓库"></a>2. 创建用于部署博客的github仓库</h3><p>github每一个用户都有一个特殊的仓库, &lt; username &gt;.github.io (&lt; username &gt; 是你的用户名)<br>将hexo生成的静态文件部署到在这个仓库, 可以通过访问http://&lt; username &gt;.github.io来访问你的博客<br>这时候其实你使用的是github的服务器, 这是github免费提供的, 省去了自己搞域名和服务器时间.<br>当然, 如果你有自己的域名和服务器, 你也可以把hexo放到你自己的服务器上.</p>
+<p>创建仓库:<br>在github上创建名为&lt; username &gt;.github.io的仓库.<br><strong>注意: 该仓库必须是公有的.</strong></p>
+<h3 id="3-部署hexo"><a href="#3-部署hexo" class="headerlink" title="3. 部署hexo"></a>3. 部署hexo</h3><ul>
 <li>修改_config.yml文件, 修改deploy配置</li>
 </ul>
 <pre><code>deploy:
   type: git # 使用git
   repo: https://github.com/yx1302317313/yx1302317313.github.io.git  # 刚刚创建的仓库链接 
-  branch: master  # master分支
-</code></pre>
-<ul>
-<li>在本地新建文章之后, 执行以下命令</li>
-</ul>
-<pre><code>$ hexo generate     # 生成静态文件, 生成的文件在public中
-$ hexo deploy       # 部署到github, 只有public文件夹的内容会提交到github上.
-</code></pre>
-<ul>
+  branch: master  # master分支</code></pre><ul>
+<li>在本地新建文章之后, 执行以下命令<pre><code>$ hexo generate     # 生成静态文件, 生成的文件在public中
+$ hexo deploy       # 部署到github, 只有public文件夹的内容会提交到github上.</code></pre></li>
 <li>输入github的用户名和密码.</li>
 <li>之后可以到github上查看你新建的仓库, 你的博客已经提交上去了.</li>
 </ul>
-<h3 id="4-访问你的博客">4. 访问你的博客</h3>
-<p>访问http://&lt; username &gt;.github.io来查看你的博客</p>
+<h3 id="4-访问你的博客"><a href="#4-访问你的博客" class="headerlink" title="4. 访问你的博客"></a>4. 访问你的博客</h3><p>访问http://&lt; username &gt;.github.io来查看你的博客</p>
 
             </div>
             <hr/>
@@ -957,8 +942,8 @@ $ hexo deploy       # 部署到github, 只有public文件夹的内容会提交�
                     <div class="summary block-with-text">
                         
                             zip
-
 Python2: 将对象中对应的元素打包成元组(tuple), 返回由这些元组组成的列表. 可以用*解压.
+
 
 
 >>>a = [1,2,3]
@@ -1021,11 +1006,9 @@ Python2: 将对象中对应的元素打包成元组(tuple), 返回由这些元�
 最近利用Hexo搭建了自己的博客, 在这里简单分享一下hexo的基本操作.
 
 
-创建分类
-利用page模板设置分类
-$ hexo new page categories
 
-会在你的目录下新生成一个categories文件夹和index.m
+创建分类利用page模板设置分类
+$ hexo new page categories会在你的目录下新生成一个categories文件夹和index.md文
                         
                     </div>
                     <div class="publish-info">
@@ -1188,6 +1171,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 
 
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
     <footer class="page-footer bg-color">
     

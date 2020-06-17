@@ -4,8 +4,8 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="hexo创建分类和标签, YuanXu&#39;s Blog">
-    <meta name="description" content="">
+    <meta name="keywords" content="hexo创建分类和标签, Blog Life Travel Reading">
+    <meta name="description" content="What doesn&#39;t kill you makes you stronger!">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -153,7 +153,7 @@
         <div class="logo-name">YuanXu&#39;s Blog</div>
         <div class="logo-desc">
             
-            Never really desperate, only the lost of the soul.
+            What doesn&#39;t kill you makes you stronger!
             
         </div>
     </div>
@@ -493,7 +493,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    328
+                    323
                 </div>
                 
 
@@ -514,51 +514,34 @@
 <p>最近利用Hexo搭建了自己的博客, 在这里简单分享一下hexo的基本操作.</p>
 </blockquote>
 <a id="more"></a>
-<h3 id="创建分类">创建分类</h3>
-<p>利用page模板设置分类</p>
-<pre><code>$ hexo new page categories
-</code></pre>
-<p>会在你的目录下新生成一个categories文件夹和index.md文件</p>
-<pre><code>INFO  Created: yourdir/source/categories/index.md
-</code></pre>
-<p>添加type: &quot;categories&quot;到index.md中，添加后是这样的：</p>
+
+<h3 id="创建分类"><a href="#创建分类" class="headerlink" title="创建分类"></a>创建分类</h3><p>利用page模板设置分类</p>
+<pre><code>$ hexo new page categories</code></pre><p>会在你的目录下新生成一个categories文件夹和index.md文件</p>
+<pre><code>INFO  Created: yourdir/source/categories/index.md</code></pre><p>添加type: “categories”到index.md中，添加后是这样的：</p>
 <pre><code>---
 title: categories
 date: 2019-01-11 19:05:19
 type: &quot;categories&quot;      #add categories type
----
-</code></pre>
-<p>在文章中添加分类</p>
+---</code></pre><p>在文章中添加分类</p>
 <p><strong>注意: 如果分类下面有两个分类, 并不会把文章放在两个分类中, 而是两个分类嵌套(hexo不支持多个分类).</strong></p>
-<pre><code>title: 'hexo创建分类,归档和标签'
+<pre><code>title: &#39;hexo创建分类,归档和标签&#39;
 date: 2019-01-11 19:11:56
 tags:
 categories:  # 添加分类
-- Hexo  #分类为Hexo
-</code></pre>
-<h3 id="创建标签">创建标签</h3>
-<p>利用page模板设置分类</p>
-<pre><code>$ hexo new page tags
-</code></pre>
-<p>会在你的目录下新生成一个tags文件夹和index.md文件</p>
-<pre><code>INFO  Created: yourdir/source/tags/index.md
-</code></pre>
-<p>添加type: &quot;tags&quot;到index.md中，添加后是这样的：</p>
+- Hexo  #分类为Hexo</code></pre><h3 id="创建标签"><a href="#创建标签" class="headerlink" title="创建标签"></a>创建标签</h3><p>利用page模板设置分类</p>
+<pre><code>$ hexo new page tags</code></pre><p>会在你的目录下新生成一个tags文件夹和index.md文件</p>
+<pre><code>INFO  Created: yourdir/source/tags/index.md</code></pre><p>添加type: “tags”到index.md中，添加后是这样的：</p>
 <pre><code>---
 title: tags
 date: 2019-01-11 19:05:19
 type: &quot;tags&quot;      #add tags type
----
-</code></pre>
-<p>在文章中添加标签</p>
+---</code></pre><p>在文章中添加标签</p>
 <p><strong>注意: 文章的标签可以有多个, 也就是tags下面可以设置多个标签</strong></p>
-<pre><code>title: 'hexo创建分类,归档和标签'
+<pre><code>title: &#39;hexo创建分类,归档和标签&#39;
 date: 2019-01-11 19:11:56
 tags:    # 添加标签
 - Hexo  #标签为Hexo
-- Blog  #标签为Blog
-</code></pre>
-
+- Blog  #标签为Blog</code></pre>
             </div>
             <hr/>
 
@@ -970,11 +953,10 @@ tags:    # 添加标签
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            1. 创建github用户
-如果你已经有了github的账号, 这一步直接跳过就好.
-如果没有, 请参考下面的教程申请github账号并在你的计算机上添加ssh公钥
+                            1. 创建github用户如果你已经有了github的账号, 这一步直接跳过就好.如果没有, 请参考下面的教程申请github账号并在你的计算机上添加ssh公钥
 
-https://github.com/gotgit/gotgithub/
+
+https://github.com/gotgit/gotgithub/b
                         
                     </div>
                     <div class="publish-info">
@@ -1023,12 +1005,11 @@ https://github.com/gotgit/gotgithub/
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            无线网卡
-Ubuntu有时会不支持电脑的无线网卡，这时就需要自己安装了。
+                            无线网卡Ubuntu有时会不支持电脑的无线网卡，这时就需要自己安装了。
 
-解决方法
-可以在官网找安装文件或者github上找源码编译安装。
-Realtek无线网卡的安装包可以在github下载 https://github.com/rtl
+
+解决方法可以在官网找安装文件或者github上找源码编译安装。
+Realtek无线网卡的安装包可以在github下载 https://github.com/rtlw
                         
                     </div>
                     <div class="publish-info">
@@ -1195,6 +1176,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 
 
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
     <footer class="page-footer bg-color">
     

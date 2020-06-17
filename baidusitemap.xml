@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://yx1302317313.github.io/2020/01/22/leetcode-zui-chang-you-xiao-gua-hao/</loc>
+    <lastmod>2020-06-17</lastmod>
+  </url>  <url>
+    <loc>https://yx1302317313.github.io/2019/02/18/qia-er-man-lu-bo-fan-yi/</loc>
+    <lastmod>2020-06-17</lastmod>
+  </url>  <url>
+    <loc>https://yx1302317313.github.io/2020/04/30/fourier-transform/</loc>
+    <lastmod>2020-06-17</lastmod>
+  </url>  <url>
+    <loc>https://yx1302317313.github.io/2020/01/19/leecode-rao-luan-zi-fu-chuan/</loc>
+    <lastmod>2020-06-17</lastmod>
+  </url>  <url>
     <loc>https://yx1302317313.github.io/2020/02/26/convert-qimage-to-numpy-array/</loc>
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
@@ -14,9 +26,6 @@
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
     <loc>https://yx1302317313.github.io/2020/03/01/google-mapreduce/</loc>
-    <lastmod>2020-06-15</lastmod>
-  </url>  <url>
-    <loc>https://yx1302317313.github.io/2020/04/30/fourier-transform/</loc>
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
     <loc>https://yx1302317313.github.io/2019/03/17/yue-du-liu-xing-zhi-ban/</loc>
@@ -88,9 +97,6 @@
     <loc>https://yx1302317313.github.io/2019/10/07/qiu-zhuang-shan-dian/</loc>
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
-    <loc>https://yx1302317313.github.io/2019/02/18/qia-er-man-lu-bo-fan-yi/</loc>
-    <lastmod>2020-06-15</lastmod>
-  </url>  <url>
     <loc>https://yx1302317313.github.io/2019/03/09/iic-wei-shi-me-xu-yao-yong-kai-lou-shu-chu-he-shang-la-dian-zu/</loc>
     <lastmod>2020-06-14</lastmod>
   </url>  <url>
@@ -102,12 +108,6 @@
   </url>  <url>
     <loc>https://yx1302317313.github.io/2019/11/14/linux-pipe/</loc>
     <lastmod>2020-04-02</lastmod>
-  </url>  <url>
-    <loc>https://yx1302317313.github.io/2020/01/22/leetcode-zui-chang-you-xiao-gua-hao/</loc>
-    <lastmod>2020-01-22</lastmod>
-  </url>  <url>
-    <loc>https://yx1302317313.github.io/2020/01/19/leecode-rao-luan-zi-fu-chuan/</loc>
-    <lastmod>2020-01-19</lastmod>
   </url>  <url>
     <loc>https://yx1302317313.github.io/2019/02/11/ubuntu-geng-huan-deng-lu-jie-mian-bi-zhi/</loc>
     <lastmod>2019-10-19</lastmod>
