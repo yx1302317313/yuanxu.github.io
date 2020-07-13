@@ -497,7 +497,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    830
+                    795
                 </div>
                 
 
@@ -545,7 +545,6 @@ dp:    0 2 0 0 2 6</code></pre><ol>
 <li>当 $dp[j]$是有效括号的结束字符时，要判断是否和之前的有效括号连续，如果连续要加上之前的长度。如”example3”， $s[5]= ‘)’$, 且 $s[5 - dp[4] - 1] = ‘(‘$, 所以 $dp[5] = dp[4] + 2 = 4$。但是由于可以和之前的”()”连起来，所以 $dp[5] = dp[4] + 2 + dp[5 - dp[4] - 2] = 6$。</li>
 </ol>
 <h3 id="状态转移方程"><a href="#状态转移方程" class="headerlink" title="状态转移方程"></a>状态转移方程</h3><p>$$<br>dp[i]=<br>\left\{<br>\begin{align}<br>&amp;0,&amp;s[i]=”(“\\<br>&amp;0,&amp;s[i]= “）” \quad \&amp;\&amp; \quad s[i-dp[i-1]-1] \neq “(“\\<br>&amp;dp[i-1] + 2 + dp[i-dp[i-1]-2], &amp;s[i]= “）” \quad \&amp;\&amp; \quad s[i-dp[i-1]-1] = “(“\\<br>\end{align}<br>\right.<br>$$</p>
-<p>$$<br>C_n =\left\{<br>\begin{align}<br>&amp; \frac{a_0}{2}, n = 0\\<br>&amp; \frac{1}{2}(a_n - b_n i), n &gt; 0\\<br>&amp; \frac{1}{2}(a_{-n} + b_{-n} i), n&lt;0\\<br>\end{align}<br>\right.<br>$$</p>
 <h3 id="时间复杂度-amp-空间复杂度"><a href="#时间复杂度-amp-空间复杂度" class="headerlink" title="时间复杂度&amp;空间复杂度"></a>时间复杂度&amp;空间复杂度</h3><ol>
 <li>时间复杂度: $O(n)$</li>
 <li>空间复杂度: $O(n)$</li>
