@@ -10,7 +10,6 @@ Disallow: /css/
 Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
-Disallow: /categories/
 
-Sitemap: http://rogn.top/sitemap.xml
-Sitemap: http://rogn.top/baidusitemap.xml
+Sitemap: http://blog.jiayuanxu.com:5200/sitemap.xml
+Sitemap: http://blog.jiayuanxu.com:5200/baidusitemap.xml
