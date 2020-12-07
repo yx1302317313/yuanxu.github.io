@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Git子模块（submodule）, CS Life Travel Reading">
+    <meta name="keywords" content="PyTorch Autograd 自动求导, CS Life Travel Reading">
     <meta name="description" content="What doesn&#39;t kill you makes you stronger!">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Git子模块（submodule） | 梅雪殇</title>
+    <title>PyTorch Autograd 自动求导 | 梅雪殇</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -332,12 +332,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Git子模块（submodule）</h1>
+                    <h1 class="description center-align post-title">PyTorch Autograd 自动求导</h1>
                 </div>
             </div>
         </div>
@@ -452,25 +452,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/Tool/">
-                                <span class="chip bg-color">Tool</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/Git/" class="post-category">
-                                Git
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -479,21 +466,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-11-09
+                    2020-11-24
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-06-15
+                    2020-11-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    0
                 </div>
                 
 
@@ -510,165 +497,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="submodule的作用"><a href="#submodule的作用" class="headerlink" title="submodule的作用"></a>submodule的作用</h3><p>Git使用submodule(子模块)解决Git仓库的嵌套问题，允许一个 Git 仓库作为另一个 Git 仓库的子目录。 能够将一个仓库同步到自己的项目中的同时，保持Git仓库提交的独立性。详细参见<a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97" target="_blank" rel="noopener">《pro git》子模块</a></p>
-<h3 id="submodule的原理"><a href="#submodule的原理" class="headerlink" title="submodule的原理"></a>submodule的原理</h3><p>submodule的实现很巧妙也很简单。其实submodule只是在原Git仓库中多添加了一条或者几条子模块的记录(保存在 <code>.gitmodule</code> 中)，它记录了仓库中包含的子模块的路径和URL。</p>
-<pre><code>[submodule &quot;project/submodule&quot;]
-    path = project/submodule    # 在项目中的路径，即子模块所在的文件夹是project/submodule
-    url = https://github.com/submodule.git    # 远程仓库的URL</code></pre><p>当需要同步子模块的文件时，通过指定的URL使用HTTP协议下载到本地，同样如果对子模块里的内容做出修改之后，通过该URL可以提交到子模块的远程仓库（而不是提交到依赖该子模块项目的仓库）。</p>
-<p>为了保证父仓库当前子模块的内容不会随着子模块仓库内容更新而改变，父仓库中还记录了子模块当前指向的提交记录。</p>
-<p>例如：project仓库中包含了一个submodule子模块，当前子模块指向的远程仓库中的索引是 <code>ef34</code> 。Git会对每一次提交建立一个索引，该索引与提交记录一一对应。</p>
-<pre><code>---project
-    |---submodule@ef34
-    |---others
-    |---.git</code></pre><p>如果子模块仓库发生了不兼容更新，最新的提交记录是 <code>ty23</code> 。由于父仓库中子模块指向的索引是 <code>ef34</code> ，即使子模块远程仓库中的内容发生了变化，也不会影响依赖于旧代码的项目。project在clone或者pull的时候，拉取的仍然是 <code>ef34</code> 的内容。如果此时project需要使用最新的submodule代码，通过更新子模块即可将子模块的索引修改为 <code>ty23</code> 。</p>
-<pre><code>commit ty23 
-commit ef34
-commit jk93
-...
-...</code></pre><h3 id="使用submodule"><a href="#使用submodule" class="headerlink" title="使用submodule"></a>使用submodule</h3><h4 id="1、新建submodule"><a href="#1、新建submodule" class="headerlink" title="1、新建submodule"></a>1、新建submodule</h4><p>使用<code>git submodule add</code>添加新的子模块</p>
-<pre class=" language-sh"><code class="language-sh">$ git submodule add "URL"</code></pre>
-<p>下图演示了添加名为Game的子模块</p>
-<center>
-<img src="/img/blog/blog-23-1.png" width=600>
-</center>
-
-<p>之后会发现目录下多了一个Game目录和.gitmodules的文件。其中Game目录下是你所希望包含项目的分支代码，而gitmodules的内容如下。也就是之前提到的submodule使用子模块的名称和URL记录本仓库包含的子模块。</p>
-<pre><code>[submodule &quot;Game&quot;]
-    path = Game
-    url = https://github.com/yx1302317313/Game.git</code></pre><p>提交之后查看远程仓库会发现添加的子模块的文件并没有传到远程仓库，子模块的文件夹实际是一个URL，指向了包含子模块本身的远程仓库。</p>
-<center>
-<img src="/img/blog/blog-23-2.png" width=600>
-</center>
-
-<h4 id="2、克隆包含submodule的项目"><a href="#2、克隆包含submodule的项目" class="headerlink" title="2、克隆包含submodule的项目"></a>2、克隆包含submodule的项目</h4><p>当使用<code>git clone</code>克隆一个包含子模块的项目时，子模块的文件并不会一同并拉取到本地，而只是一个空目录。</p>
-<center>
-<img src="/img/blog/blog-23-3.png" width=600>
-</center>
-
-<p>这时需要使用<code>git submodule init</code>用来初始化本地配置文件,而 <code>git submodule update</code>则从该项目中抓取所有数据并检出父项目中列出的合适的提交。</p>
-<center>
-<img src="/img/blog/blog-23-4.png" width=600>
-</center>
-
-<br>
-
-<center>
-<img src="/img/blog/blog-23-5.png" width=600>
-</center>
-
-<p>一个更简单的方法是给<code>git clone</code>加上递归选项<code>--recursive</code></p>
-<pre class=" language-sh"><code class="language-sh">$ git clone --recursive "URL" # 自动初始化并更新仓库中的每一个子模块</code></pre>
-<p><strong>[注意]：</strong> 由于git的子模块跟踪的是提交记录(commit id)，所以拉取下来的是一个游离分支，其实是将一个提交记录作为了一个游离的分支。这时候还需要切换到master分支。</p>
-<pre class=" language-sh"><code class="language-sh">$ cd Game
-$ git checkout master</code></pre>
-<p>所以整个克隆的步骤如下：</p>
-<ol>
-<li>克隆远程仓库：git clone “URL”</li>
-<li>初始化子模块：git submodule init</li>
-<li>拉取子模块的内容：git submodule update</li>
-<li>进入子模块切换至主分支: git checkout master</li>
-</ol>
-<h4 id="3、更新submodule"><a href="#3、更新submodule" class="headerlink" title="3、更新submodule"></a>3、更新submodule</h4><ol>
-<li>进入submodule的目录。</li>
-<li>使用<code>git fetch</code>和<code>git merge</code>更新submodule,与远程仓库的最新代码合并（当然也可以直接使用<code>git pull</code>）。</li>
-</ol>
-<h5 id="关于-git-fetch-与-git-pull"><a href="#关于-git-fetch-与-git-pull" class="headerlink" title="关于 git fetch 与 git pull"></a>关于 git fetch 与 git pull</h5><blockquote>
-<p>git pull = git fetch + git merge, 可以参考<a href="https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch" target="_blank" rel="noopener">stack overflow</a></p>
-</blockquote>
-<p><strong>更简单的方式</strong>：运行<code>git submodule update
---remote</code>, 使用该命令Git将会进入子模块然后进行抓取并更新。</p>
-<p><strong>注意：该命令默认fetch和merge主分支（master），如果是其他分支，需要进行配置（见《pro git》）。</strong></p>
-<h4 id="4、修改并提交submodule"><a href="#4、修改并提交submodule" class="headerlink" title="4、修改并提交submodule"></a>4、修改并提交submodule</h4><h5 id="提交前的fetch"><a href="#提交前的fetch" class="headerlink" title="提交前的fetch"></a>提交前的fetch</h5><p>当修改了submodule的文件时，这里有一个需要注意的地方。一般我们在提交之前都需要查看远程分支是否有更新，会不会有冲突。我们的方法是使用<code>git fetch</code>抓取远程分支查看是否更新然后进行<code>git merge</code>。（使用<code>git pull</code>也没什么太大的问题）。</p>
-<p>需要注意的地方是<code>git submodule update</code>，之前提到这个命令也可以完成上面的功能，还更方便。</p>
-<p>但是《pro git》中提到</p>
-<blockquote>
-<p>当我们运行 git submodule update 从子模块仓库中抓取修改时,Git 将会获得这些改动并更新子目录中的文件,但是会将子仓库留在一个称作“游离的 HEAD”的状态。 这意味着没有本地工作分支(例如“master” )跟踪改动。 所以你做的任何改动都不会被跟踪。</p>
-</blockquote>
-<p>这段话感觉很难理解，英文版说的更直接一点。</p>
-<blockquote>
-<p>So far, when we’ve run the git submodule update command to fetch changes from the submodule repositories, Git would get the changes and update the files in the subdirectory but will leave the sub-repository in what’s called a “detached HEAD” state. This means that there is no local working branch (like “master”, for example) tracking changes. With no working branch tracking changes, that means even if you commit changes to the submodule, those changes will quite possibly be lost the next time you run git submodule update. You have to do some extra steps if you want changes in a submodule to be tracked.</p>
-</blockquote>
-<p>关键是这句话</p>
-<blockquote>
-<p> With no working branch tracking changes, that means even if you commit changes to the submodule, those changes will quite possibly be lost the next time you run git submodule update. </p>
-</blockquote>
-<p>意思就是如果远程仓库发生了改动，并且你本地有未推送到远程仓库的提交（commit），执行<code>git submodule update</code>后你的提交并不会与远程仓库进行合并（merge）。而是成为了一个游离的分支。</p>
-<p>像这样，在update之后，分支变成了a58a3ae,而不再是master（master变成了游离状态）。</p>
-<center>
-<img src="/img/blog/blog-23-11.png" width=600>
-</center>
-
-<br>
-
-<center>
-<img src="/img/blog/blog-23-12.png" width=600>
-</center>
-
-<p>如果发生了这种情况，处理很简单，使用<code>git checkout master</code></p>
-<center>
-<img src="/img/blog/blog-23-13.png" width=600>
-</center>
-
-<p>正确的做法是使用<code>git submodule update --merge</code>，这个命令会告诉Git进行合并（前提是不发生冲突，如果发生了冲突请看下一节）。</p>
-<center>
-<img src="/img/blog/blog-23-14.png" width=600>
-</center>
-
-<h5 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h5><p><strong>注意：使用git push并不会提交子模块。</strong></p>
-<p>为了防止这种错误发生，git推荐提交使用<code>git push --recurse-submodules=check</code>，如果没有提交子模块，会提示你使用两种方法完成子模块的提交。</p>
-<ol>
-<li>进入各个子模块目录使用<code>git push</code>提交各个子模块，然后提交你的项目。</li>
-<li>使用<code>git push --recurse-submodules=on-demand</code>命令提交， 该命令会自动提交子模块，然后再提交你的项目。如果子模块提交失败，整个提交也会失败。</li>
-</ol>
-<center>
-<img src="/img/blog/blog-23-15.png" width=600>
-</center>
-
-<p>到这里，子模块的使用就快基本完成了。最后一部分是最令人麻烦的conflict。</p>
-<h4 id="5、解决submodule冲突"><a href="#5、解决submodule冲突" class="headerlink" title="5、解决submodule冲突"></a>5、解决submodule冲突</h4><p>解决冲突的步骤如下：</p>
-<ol>
-<li>进入子模块目录，解决冲突。（方法同解决正常的git冲突）</li>
-<li>在子模块中提交解决冲突的记录。</li>
-<li>切换到你的项目目录。</li>
-<li>提交解决子模块冲突的记录。</li>
-<li>推送到远程（如果需要）。</li>
-</ol>
-<center>
-<img src="/img/blog/blog-23-16.png" width=600>
-<p>git pull 发生冲突</p>
-</center>
-
-<br>
-
-<center>
-<img src="/img/blog/blog-23-17.png" width=600>
-<p>找到冲突的文件</p>
-</center>
-
-<br>
-
-<center>
-<img src="/img/blog/blog-23-18.png" width=600>
-<p>解决冲突，并在子模块目录提交记录</p>
-</center>
-
-<br>
-
-<center>
-<img src="/img/blog/blog-23-19.png" width=600>
-<p>在父目录中提交子模块冲突的提交记录</p>
-</center>
-
-<br>
-
-<center>
-<img src="/img/blog/blog-23-20.png" width=600>
-<p>成功推送到远程仓库</p>
-</center>
-
-
-<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>当然子模块还有些技巧，比如子模块遍历，命令别名等，见《pro git》。</p>
-
+                
             </div>
             <hr/>
 
@@ -693,7 +522,7 @@ $ git checkout master</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yx1302317313.github.io/2019/11/09/git-zi-mo-kuai-submodule/">https://yx1302317313.github.io/2019/11/09/git-zi-mo-kuai-submodule/</a>
+                    <a href="https://yx1302317313.github.io/2020/11/24/pytorch-autograd-zi-dong-qiu-dao/">https://yx1302317313.github.io/2020/11/24/pytorch-autograd-zi-dong-qiu-dao/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -730,11 +559,7 @@ $ git checkout master</code></pre>
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/Tool/">
-                                    <span class="chip bg-color">Tool</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -777,7 +602,7 @@ $ git checkout master</code></pre>
         repo: 'yx1302317313.github.io',
         owner: 'yx1302317313',
         admin: "yx1302317313",
-        id: '2019-11-09T22-22-32',
+        id: '2020-11-24T09-47-01',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1068,55 +893,32 @@ $ git checkout master</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/11/14/linux-pipe/">
+                <a href="/2020/11/27/django-shi-yong-uwsgi-bu-shu-shi-chu-cuo-sqlite-3-8-3-or-later-is-required/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Linux 管道通信">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Django 使用uwsgi部署是出错，SQLite 3.8.3 or later is required">
                         
-                        <span class="card-title">Linux 管道通信</span>
+                        <span class="card-title">Django 使用uwsgi部署是出错，SQLite 3.8.3 or later is required</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            系统调用 fork在linux系统中创建进程有两种方式
-
-一是由操作系统创建。
-二是由父进程创建进程。系统调用函数fork()是创建一个新进程的唯一方式。
-
-fork()函数通过系统调用创建一个与原来进程几乎完全相同的进程。
-
-系统先给新的
+                            
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-11-14
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-27
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            XuYuan
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Code/">
-                        <span class="chip bg-color">Code</span>
-                    </a>
-                    
-                    <a href="/tags/Kernel/">
-                        <span class="chip bg-color">Kernel</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -1128,36 +930,39 @@ fork()函数通过系统调用创建一个与原来进程几乎完全相同的�
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/19/qian-tan-python-bian-ma/">
+                <a href="/2020/10/02/da-xue-zhi-kan-ke-de-bao-yan/">
                     <div class="card-image">
                         
+                        <img src="/medias/post/THU.jpg" class="responsive-img" alt="大学之坎坷的保研">
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="浅谈Python编码">
-                        
-                        <span class="card-title">浅谈Python编码</span>
+                        <span class="card-title">大学之坎坷的保研</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             
-Python的编码问题可能是很多人都遇到过的问题（没遇到的终将会遇到的），笔者之前也对这个问题很模糊，今天看了《Effective Python》之后总结一下自己的理解。
+时间如白驹过隙，大学三年的时光已悄然离去。我仓促而又坎坷的保研之路也将走到尽头，借此国庆假期，百无聊赖之际，抒发一下心中的感慨。
 
 
+个人基本情况
+简单说说我的基本情况
 
-Unicode先看ASCII码，ASCII码我们比较熟悉，用
+学校：目前算是末流985吧
+专业：计算机（最卷的一个）
+排名：纯成
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-02
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Language/" class="post-category">
-                                    Language
+                            <a href="/categories/%E8%BF%9C%E6%96%B9/" class="post-category">
+                                    远方
                                 </a>
                             
                             
@@ -1167,12 +972,8 @@ Unicode先看ASCII码，ASCII码我们比较熟悉，用
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Code/">
-                        <span class="chip bg-color">Code</span>
-                    </a>
-                    
-                    <a href="/tags/Python/">
-                        <span class="chip bg-color">Python</span>
+                    <a href="/tags/HIT/">
+                        <span class="chip bg-color">HIT</span>
                     </a>
                     
                 </div>

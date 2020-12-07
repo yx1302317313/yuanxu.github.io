@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://yx1302317313.github.io/2020/11/27/django-shi-yong-uwsgi-bu-shu-shi-chu-cuo-sqlite-3-8-3-or-later-is-required/</loc>
+    
+    <lastmod>2020-11-27T08:37:03.918Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yx1302317313.github.io/2020/11/24/pytorch-autograd-zi-dong-qiu-dao/</loc>
+    
+    <lastmod>2020-11-24T01:47:01.636Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://yx1302317313.github.io/2020/10/02/da-xue-zhi-kan-ke-de-bao-yan/</loc>
     
-    <lastmod>2020-10-06T01:47:09.525Z</lastmod>
+    <lastmod>2020-10-06T01:49:35.335Z</lastmod>
     
   </url>
   
