@@ -4,9 +4,35 @@
   
     
     <entry>
-      <title>Django 使用uwsgi部署是出错，SQLite 3.8.3 or later is required</title>
-      <link href="/2020/11/27/django-shi-yong-uwsgi-bu-shu-shi-chu-cuo-sqlite-3-8-3-or-later-is-required/"/>
-      <url>/2020/11/27/django-shi-yong-uwsgi-bu-shu-shi-chu-cuo-sqlite-3-8-3-or-later-is-required/</url>
+      <title>图神经网络之GAT</title>
+      <link href="/2021/03/27/tu-shen-jing-wang-luo-zhi-gat/"/>
+      <url>/2021/03/27/tu-shen-jing-wang-luo-zhi-gat/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图神经网络之GCN</title>
+      <link href="/2021/03/27/tu-shen-jing-wang-luo-zhi-gcn/"/>
+      <url>/2021/03/27/tu-shen-jing-wang-luo-zhi-gcn/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>解决为知笔记（WizNote）在linux下无法输入中文</title>
+      <link href="/2021/03/04/wiznote-linux-input-chinese/"/>
+      <url>/2021/03/04/wiznote-linux-input-chinese/</url>
       
         <content type="html"><![CDATA[]]></content>
       
