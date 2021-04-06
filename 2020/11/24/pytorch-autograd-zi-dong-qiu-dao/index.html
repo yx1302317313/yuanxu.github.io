@@ -329,6 +329,19 @@
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -930,12 +943,12 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/02/da-xue-zhi-kan-ke-de-bao-yan/">
+                <a href="/2020/10/02/da-xue-zhi-bao-yan/">
                     <div class="card-image">
                         
-                        <img src="/medias/post/THU.jpg" class="responsive-img" alt="大学之坎坷的保研">
+                        <img src="/medias/post/THU.jpg" class="responsive-img" alt="大学之保研">
                         
-                        <span class="card-title">大学之坎坷的保研</span>
+                        <span class="card-title">大学之保研</span>
                     </div>
                 </a>
                 <div class="card-content article-content">

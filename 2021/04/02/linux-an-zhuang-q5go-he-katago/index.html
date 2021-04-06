@@ -329,6 +329,19 @@
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -458,16 +471,12 @@
                                 <span class="chip bg-color">AI</span>
                             </a>
                         
+                            <a href="/tags/Ubuntu/">
+                                <span class="chip bg-color">Ubuntu</span>
+                            </a>
+                        
                             <a href="/tags/GO/">
                                 <span class="chip bg-color">GO</span>
-                            </a>
-                        
-                            <a href="/tags/NVIDIA/">
-                                <span class="chip bg-color">NVIDIA</span>
-                            </a>
-                        
-                            <a href="/tags/CUDA/">
-                                <span class="chip bg-color">CUDA</span>
                             </a>
                         
                     </div>
@@ -498,7 +507,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-04-02
+                    2021-04-06
                 </div>
                 
 
@@ -522,7 +531,9 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>最近一个多月开始学习围棋，因为平时常用的系统是Linux，所以想要在Linux上安装一个围棋AI，可以借助AI分析棋局。经过一番查找，决定使用q5go和katago，安装还是挺复杂的，特地记录（/摸鱼）一下。</p>
+                <blockquote>
+<p>最近一个多月开始学习围棋，因为平时常用的系统是Linux，所以想要在Linux上安装一个围棋AI，可以借助AI分析棋局。经过一番查找，决定使用q5go和katago，安装还是挺复杂的，特地记录（/摸鱼）一下。</p>
+</blockquote>
 <a id="more"></a>
 
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>目前大部分的围棋AI软件都是由两部分组成，一部分是围棋GUI，即围棋的图形程序；另一部分是AI引擎（Engine）。Windows系统有很多直接组合好的软件，开箱即用。不过Linux和Mac上很少，就只能自己找了。</p>
@@ -568,7 +579,7 @@ make install /opt/q5go</code></pre>
     │           └── screens
     └── q5go
         └── translations</code></pre>
-<p>然后将下载的神经网络参数文件，就是那个<code>*.bin.gz</code>的文件放到katago的目录下,目录结构如下，其中<code>20block.bin.gz</code>就是神经网络参数文件的目录。</p>
+<p>然后将下载的神经网络参数文件，就是那个<code>*.bin.gz</code>的文件放到katago的目录下,目录结构如下，其中<code>20block.bin.gz</code>就是神经网络参数文件。</p>
 <pre class=" language-shell"><code class="language-shell">$ tree /opt/q5go/katago_cuda
 /opt/q5go/katago_cuda
 ├── 20block.bin.gz
@@ -581,8 +592,8 @@ make install /opt/q5go</code></pre>
 ├── katago
 ├── match_example.cfg
 └── README.txt</code></pre>
-<p>至此，katago就下载好了，主要配置好环境就可以run了。</p>
-<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>因为katago需要使用GPU，因此需要配置GPU环境。详细的安装可以参考<a href="https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html" target="_blank" rel="noopener">NVIDIA的官方教程</a>，如果不想看如此长的英文安装教程，可以看下面的，哈哈哈(^-^)。下面的安装教程是基于<code>Ubuntu18.04</code>的，如果是其他的Linux发行版，还是看官方教程吧。</p>
+<p>至此，katago就下载好了，只要配置好环境就可以run了。</p>
+<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>因为katago需要使用GPU，所以要配置GPU环境。详细的安装可以参考<a href="https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html" target="_blank" rel="noopener">NVIDIA的官方教程</a>，如果不想看如此长的英文安装教程，可以看下面的，哈哈哈(^-^)。下面的安装教程是基于<code>Ubuntu18.04</code>的，如果是其他的Linux发行版，还是看官方教程吧。</p>
 <h4 id="安装NVIDIA显卡驱动"><a href="#安装NVIDIA显卡驱动" class="headerlink" title="安装NVIDIA显卡驱动"></a>安装NVIDIA显卡驱动</h4><p>NVIDIA显卡驱动很多电脑应该是有的，这里就不赘述了。</p>
 <p>输入下面的命令，如果可以得到类似的输出（本人电脑的GPU比较垃圾，见笑了），则说明显卡驱动已经装好了。没有的话，请参考<a href="https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#installdriver" target="_blank" rel="noopener"> Installing NVIDIA Graphics Drivers</a>。</p>
 <pre class=" language-shell"><code class="language-shell">$ nvidia-smi
@@ -621,7 +632,7 @@ sudo apt-get update
 sudo apt-get install cuda</code></pre>
 <p>一般cuda的安装目录在<code>/usr/local/cuda/</code>,安装完可以检测一下是否成功</p>
 <h4 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h4><p>将下面的语句添加到<code>.bashrc</code>中</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">export</span> PATH<span class="token operator">=</span>/usr/local/cuda/bin：<span class="token variable">${PATH}</span></code></pre>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">export</span> PATH<span class="token operator">=</span>/usr/local/cuda/bin:<span class="token variable">${PATH}</span></code></pre>
 <p>更新环境变量</p>
 <pre class=" language-shell"><code class="language-shell">source ~/.bashrc</code></pre>
 <h4 id="安装cudnn"><a href="#安装cudnn" class="headerlink" title="安装cudnn"></a>安装cudnn</h4><p>cuDNN(NVIDIA CUDA Deep Neural Network library)是为了实现GPU加速的深度神经网络原语库。</p>
@@ -631,6 +642,7 @@ sudo apt-get install cuda</code></pre>
 wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
 sudo mkdir /etc/preferences.d
 sudo mv cuda-ubuntu1804.pin /etc/preferences.d/cuda-repository-pin-600</code></pre>
+<p>需要执行的是下面的命令：</p>
 <pre class=" language-shell"><code class="language-shell">sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /"
 sudo apt-get update
 sudo apt-get install libcudnn8
@@ -671,6 +683,7 @@ mv ./katago /opt/q5go/katago_cuda</code></pre>
 ./katago benchmark -model 20block.bin.gz</code></pre>
 <p>现在应该可以完美运行了，接下来就是使用 q5go调用katago了。</p>
 <h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="q5go调用katago"><a href="#q5go调用katago" class="headerlink" title="q5go调用katago"></a>q5go调用katago</h2><h3 id="修改config文件"><a href="#修改config文件" class="headerlink" title="修改config文件"></a>修改config文件</h3><p>在执行了<code>./katago benchmark</code>命令后，程序会测试你的电脑，为你推荐合适的线程参数。在得到该参数后需要修改<code>default_gtp.cfg</code>文件。</p>
+<p>在<code>default_gtp.cfg</code>文件中找到下面的一行配置并修改。</p>
 <pre><code>numSearchThreads = 6 # 修改为推荐的线程参数</code></pre><h3 id="配置q5go"><a href="#配置q5go" class="headerlink" title="配置q5go"></a>配置q5go</h3><p>启动<code>q5go</code>程序，进入Settings-&gt;Computer Go-&gt;New,进行如下配置</p>
 <img src="/img/blog/blog-30-1.png" width=500>
 
@@ -744,16 +757,12 @@ mv ./katago /opt/q5go/katago_cuda</code></pre>
                                     <span class="chip bg-color">AI</span>
                                 </a>
                             
+                                <a href="/tags/Ubuntu/">
+                                    <span class="chip bg-color">Ubuntu</span>
+                                </a>
+                            
                                 <a href="/tags/GO/">
                                     <span class="chip bg-color">GO</span>
-                                </a>
-                            
-                                <a href="/tags/NVIDIA/">
-                                    <span class="chip bg-color">NVIDIA</span>
-                                </a>
-                            
-                                <a href="/tags/CUDA/">
-                                    <span class="chip bg-color">CUDA</span>
                                 </a>
                             
                         </div>
@@ -1101,10 +1110,12 @@ mv ./katago /opt/q5go/katago_cuda</code></pre>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            最近一个多月开始学习围棋，因为平时常用的系统是Linux，所以想要在Linux上安装一个围棋AI，可以借助AI分析棋局。经过一番查找，决定使用q5go和katago，安装还是挺复杂的，特地记录（/摸鱼）一下。
+                            
+最近一个多月开始学习围棋，因为平时常用的系统是Linux，所以想要在Linux上安装一个围棋AI，可以借助AI分析棋局。经过一番查找，决定使用q5go和katago，安装还是挺复杂的，特地记录（/摸鱼）一下。
 
 
-前言目前大部分的围棋AI软
+
+前言目前大部分的围棋A
                         
                     </div>
                     <div class="publish-info">
@@ -1131,16 +1142,12 @@ mv ./katago /opt/q5go/katago_cuda</code></pre>
                         <span class="chip bg-color">AI</span>
                     </a>
                     
+                    <a href="/tags/Ubuntu/">
+                        <span class="chip bg-color">Ubuntu</span>
+                    </a>
+                    
                     <a href="/tags/GO/">
                         <span class="chip bg-color">GO</span>
-                    </a>
-                    
-                    <a href="/tags/NVIDIA/">
-                        <span class="chip bg-color">NVIDIA</span>
-                    </a>
-                    
-                    <a href="/tags/CUDA/">
-                        <span class="chip bg-color">CUDA</span>
                     </a>
                     
                 </div>
@@ -1157,8 +1164,7 @@ mv ./katago /opt/q5go/katago_cuda</code></pre>
                 <a href="/2021/03/27/tu-shen-jing-wang-luo-zhi-gat/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="图神经网络之GAT">
+                        <img src="/medias/post/GAT.png" class="responsive-img" alt="图神经网络之GAT">
                         
                         <span class="card-title">图神经网络之GAT</span>
                     </div>
@@ -1167,6 +1173,11 @@ mv ./katago /opt/q5go/katago_cuda</code></pre>
                     <div class="summary block-with-text">
                         
                             
+上一篇博客提到了在图神经网络中应用比较广泛的GCN（Graph Convolutional Networks），这篇博客就来谈谈GAT(Graph Attention Networks)。
+
+
+
+什么是GAT什么是GAT呢？先看论文的名字
                         
                     </div>
                     <div class="publish-info">
@@ -1175,11 +1186,31 @@ mv ./katago /opt/q5go/katago_cuda</code></pre>
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            XuYuan
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Deep-Learning/" class="post-category">
+                                    Deep Learning
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Code/">
+                        <span class="chip bg-color">Code</span>
+                    </a>
+                    
+                    <a href="/tags/Math/">
+                        <span class="chip bg-color">Math</span>
+                    </a>
+                    
+                    <a href="/tags/Paper/">
+                        <span class="chip bg-color">Paper</span>
+                    </a>
+                    
                 </div>
                 
             </div>

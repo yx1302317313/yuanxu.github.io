@@ -329,10 +329,23 @@
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = 'a1191ecff8c7ed68a5b9f5247cc3d68516077e0d537a2ca07e1ecf6d7b2b36f2';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/post/GCN.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -452,12 +465,29 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Math/">
+                                <span class="chip bg-color">Math</span>
+                            </a>
+                        
+                            <a href="/tags/Paper/">
+                                <span class="chip bg-color">Paper</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Deep-Learning/" class="post-category">
+                                Deep Learning
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -473,14 +503,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-03-27
+                    2021-04-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    555
                 </div>
                 
 
@@ -497,7 +527,25 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="什么是GCN"><a href="#什么是GCN" class="headerlink" title="什么是GCN"></a>什么是GCN</h2><p>在讨论什么是GCN之前，我们先看一下CNN（Convolutional Neural Network）。</p>
+<p>CNN是在Feedforward Neural Network的基础上添加了卷积层（也可能会有池化层），而卷积层的作用就是通过若干个卷积核来提取图像当中的特征，正因为卷积核在提取特征上的有效性赋予了CNN非常强大的能力。CNN具有如下特点：</p>
+<ul>
+<li>局部连接性（local connection）</li>
+<li>参数共享（shared weights）</li>
+<li>多层 （multi-layer）</li>
+</ul>
+<p>但美中不足的是CNN无法应用在非欧空间数据（Non Euclidean Data）上，而Non Euclidean Data在现实中又是普遍存在的，如社交网络、论文引用网络和化学分子结构等。</p>
+<h3 id="Non-Euclidean-Data"><a href="#Non-Euclidean-Data" class="headerlink" title="Non Euclidean Data"></a>Non Euclidean Data</h3><p>类似上面的Non Euclidean Data可以通过图论中的拓扑图来表示。这样的数据的一个特点就是不满足平移不变性，但这一特性是CNN所要求。</p>
+<p>对于视觉任务，平移不变性就是即使物体在图中发生了平移变化，仍然不影响物体的识别。对于Non Euclidean Data，每一个顶点的相邻顶点数都不尽相同，何谈平移不变性。或者从卷积核的角度来考虑，由于每个顶点的相邻节点个数不同，因此无法使用相同大小的卷积核进行特征提取。</p>
+<img src="/img/blog/blog-31-1.png" width=500 alt="">
+
+<h3 id="GCN"><a href="#GCN" class="headerlink" title="GCN"></a>GCN</h3><p>现在遇到的问题就是，对于Non Euclidean Data 我们希望使用类似于CNN的方法提取特征，但是CNN的方法又不能直接用于Non Euclidean Data。GCN（Graph Convolutional Network）就应运而生了，这里的Graph指的就是图论中的图结构。<strong>GCN的目的就是将卷积操作泛化到Grph domain上</strong>。目前流行的GCN主要分为两种方法，其一是Spatial approach，另一个是Spectral approach。这篇文章主要是针对Spectral approach的。</p>
+<h2 id="基于谱方法的GCN"><a href="#基于谱方法的GCN" class="headerlink" title="基于谱方法的GCN"></a>基于谱方法的GCN</h2><p>基于谱方法的GCN是使用图谱理论在Graph domain上定义卷积操作，简单的说就是通过在Graph domain上定义傅里叶变换（Fourier Transformation），对图数据和卷积核同时进行傅里叶变换，将数据都转换到频域。因为</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li>Introduction to Graph Neural Network</li>
+<li></li>
+</ol>
+
             </div>
             <hr/>
 
@@ -559,7 +607,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/Math/">
+                                    <span class="chip bg-color">Math</span>
+                                </a>
+                            
+                                <a href="/tags/Paper/">
+                                    <span class="chip bg-color">Paper</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -896,8 +952,7 @@
                 <a href="/2021/03/27/tu-shen-jing-wang-luo-zhi-gat/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="图神经网络之GAT">
+                        <img src="/medias/post/GAT.png" class="responsive-img" alt="图神经网络之GAT">
                         
                         <span class="card-title">图神经网络之GAT</span>
                     </div>
@@ -906,6 +961,11 @@
                     <div class="summary block-with-text">
                         
                             
+上一篇博客提到了在图神经网络中应用比较广泛的GCN（Graph Convolutional Networks），这篇博客就来谈谈GAT(Graph Attention Networks)。
+
+
+
+什么是GAT什么是GAT呢？先看论文的名字
                         
                     </div>
                     <div class="publish-info">
@@ -914,11 +974,31 @@
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            XuYuan
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Deep-Learning/" class="post-category">
+                                    Deep Learning
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Code/">
+                        <span class="chip bg-color">Code</span>
+                    </a>
+                    
+                    <a href="/tags/Math/">
+                        <span class="chip bg-color">Math</span>
+                    </a>
+                    
+                    <a href="/tags/Paper/">
+                        <span class="chip bg-color">Paper</span>
+                    </a>
+                    
                 </div>
                 
             </div>
