@@ -5,9 +5,9 @@
   <subtitle>梅须逊雪三分白，雪却输梅一段殇</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://yx1302317313.github.io/"/>
+  <link href="https://xandery-geek.github.io/"/>
   <updated>2021-04-06T13:20:30.866Z</updated>
-  <id>https://yx1302317313.github.io/</id>
+  <id>https://xandery-geek.github.io/</id>
   
   <author>
     <name>XuYuan</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Linux安装围棋AI（q5go和katago）</title>
-    <link href="https://yx1302317313.github.io/2021/04/02/linux-an-zhuang-q5go-he-katago/"/>
-    <id>https://yx1302317313.github.io/2021/04/02/linux-an-zhuang-q5go-he-katago/</id>
+    <link href="https://xandery-geek.github.io/2021/04/02/linux-an-zhuang-q5go-he-katago/"/>
+    <id>https://xandery-geek.github.io/2021/04/02/linux-an-zhuang-q5go-he-katago/</id>
     <published>2021-04-02T11:48:04.000Z</published>
     <updated>2021-04-06T13:20:30.866Z</updated>
     
@@ -33,21 +33,21 @@
     
     </summary>
     
-      <category term="围棋" scheme="https://yx1302317313.github.io/categories/%E5%9B%B4%E6%A3%8B/"/>
+      <category term="围棋" scheme="https://xandery-geek.github.io/categories/%E5%9B%B4%E6%A3%8B/"/>
     
     
-      <category term="AI" scheme="https://yx1302317313.github.io/tags/AI/"/>
+      <category term="AI" scheme="https://xandery-geek.github.io/tags/AI/"/>
     
-      <category term="Ubuntu" scheme="https://yx1302317313.github.io/tags/Ubuntu/"/>
+      <category term="Ubuntu" scheme="https://xandery-geek.github.io/tags/Ubuntu/"/>
     
-      <category term="GO" scheme="https://yx1302317313.github.io/tags/GO/"/>
+      <category term="GO" scheme="https://xandery-geek.github.io/tags/GO/"/>
     
   </entry>
   
   <entry>
     <title>图神经网络之GAT</title>
-    <link href="https://yx1302317313.github.io/2021/03/27/tu-shen-jing-wang-luo-zhi-gat/"/>
-    <id>https://yx1302317313.github.io/2021/03/27/tu-shen-jing-wang-luo-zhi-gat/</id>
+    <link href="https://xandery-geek.github.io/2021/03/27/tu-shen-jing-wang-luo-zhi-gat/"/>
+    <id>https://xandery-geek.github.io/2021/03/27/tu-shen-jing-wang-luo-zhi-gat/</id>
     <published>2021-03-27T13:14:22.000Z</published>
     <updated>2021-04-06T13:20:24.406Z</updated>
     
@@ -61,21 +61,21 @@
     
     </summary>
     
-      <category term="Deep Learning" scheme="https://yx1302317313.github.io/categories/Deep-Learning/"/>
+      <category term="Deep Learning" scheme="https://xandery-geek.github.io/categories/Deep-Learning/"/>
     
     
-      <category term="Code" scheme="https://yx1302317313.github.io/tags/Code/"/>
+      <category term="Code" scheme="https://xandery-geek.github.io/tags/Code/"/>
     
-      <category term="Math" scheme="https://yx1302317313.github.io/tags/Math/"/>
+      <category term="Math" scheme="https://xandery-geek.github.io/tags/Math/"/>
     
-      <category term="Paper" scheme="https://yx1302317313.github.io/tags/Paper/"/>
+      <category term="Paper" scheme="https://xandery-geek.github.io/tags/Paper/"/>
     
   </entry>
   
   <entry>
     <title>图神经网络之GCN</title>
-    <link href="https://yx1302317313.github.io/2021/03/27/tu-shen-jing-wang-luo-zhi-gcn/"/>
-    <id>https://yx1302317313.github.io/2021/03/27/tu-shen-jing-wang-luo-zhi-gcn/</id>
+    <link href="https://xandery-geek.github.io/2021/03/27/tu-shen-jing-wang-luo-zhi-gcn/"/>
+    <id>https://xandery-geek.github.io/2021/03/27/tu-shen-jing-wang-luo-zhi-gcn/</id>
     <published>2021-03-27T13:14:15.000Z</published>
     <updated>2021-04-06T13:21:57.082Z</updated>
     
@@ -90,19 +90,19 @@
     
     </summary>
     
-      <category term="Deep Learning" scheme="https://yx1302317313.github.io/categories/Deep-Learning/"/>
+      <category term="Deep Learning" scheme="https://xandery-geek.github.io/categories/Deep-Learning/"/>
     
     
-      <category term="Math" scheme="https://yx1302317313.github.io/tags/Math/"/>
+      <category term="Math" scheme="https://xandery-geek.github.io/tags/Math/"/>
     
-      <category term="Paper" scheme="https://yx1302317313.github.io/tags/Paper/"/>
+      <category term="Paper" scheme="https://xandery-geek.github.io/tags/Paper/"/>
     
   </entry>
   
   <entry>
     <title>解决为知笔记（WizNote）在linux下无法输入中文</title>
-    <link href="https://yx1302317313.github.io/2021/03/04/wiznote-linux-input-chinese/"/>
-    <id>https://yx1302317313.github.io/2021/03/04/wiznote-linux-input-chinese/</id>
+    <link href="https://xandery-geek.github.io/2021/03/04/wiznote-linux-input-chinese/"/>
+    <id>https://xandery-geek.github.io/2021/03/04/wiznote-linux-input-chinese/</id>
     <published>2021-03-04T12:51:52.000Z</published>
     <updated>2021-03-27T13:24:44.371Z</updated>
     
@@ -115,8 +115,8 @@
   
   <entry>
     <title>PyTorch Autograd 自动求导</title>
-    <link href="https://yx1302317313.github.io/2020/11/24/pytorch-autograd-zi-dong-qiu-dao/"/>
-    <id>https://yx1302317313.github.io/2020/11/24/pytorch-autograd-zi-dong-qiu-dao/</id>
+    <link href="https://xandery-geek.github.io/2020/11/24/pytorch-autograd-zi-dong-qiu-dao/"/>
+    <id>https://xandery-geek.github.io/2020/11/24/pytorch-autograd-zi-dong-qiu-dao/</id>
     <published>2020-11-24T01:47:01.000Z</published>
     <updated>2021-03-22T10:56:17.040Z</updated>
     
@@ -129,8 +129,8 @@
   
   <entry>
     <title>大学之保研</title>
-    <link href="https://yx1302317313.github.io/2020/10/02/da-xue-zhi-bao-yan/"/>
-    <id>https://yx1302317313.github.io/2020/10/02/da-xue-zhi-bao-yan/</id>
+    <link href="https://xandery-geek.github.io/2020/10/02/da-xue-zhi-bao-yan/"/>
+    <id>https://xandery-geek.github.io/2020/10/02/da-xue-zhi-bao-yan/</id>
     <published>2020-10-02T03:28:40.000Z</published>
     <updated>2021-04-06T13:26:24.594Z</updated>
     
@@ -144,17 +144,17 @@
     
     </summary>
     
-      <category term="远方" scheme="https://yx1302317313.github.io/categories/%E8%BF%9C%E6%96%B9/"/>
+      <category term="远方" scheme="https://xandery-geek.github.io/categories/%E8%BF%9C%E6%96%B9/"/>
     
     
-      <category term="HIT" scheme="https://yx1302317313.github.io/tags/HIT/"/>
+      <category term="HIT" scheme="https://xandery-geek.github.io/tags/HIT/"/>
     
   </entry>
   
   <entry>
     <title>强化学习</title>
-    <link href="https://yx1302317313.github.io/2020/07/13/qiang-hua-xue-xi/"/>
-    <id>https://yx1302317313.github.io/2020/07/13/qiang-hua-xue-xi/</id>
+    <link href="https://xandery-geek.github.io/2020/07/13/qiang-hua-xue-xi/"/>
+    <id>https://xandery-geek.github.io/2020/07/13/qiang-hua-xue-xi/</id>
     <published>2020-07-13T03:41:18.000Z</published>
     <updated>2020-07-13T03:51:26.941Z</updated>
     
@@ -169,23 +169,23 @@
     
     </summary>
     
-      <category term="Reinforcement Learning" scheme="https://yx1302317313.github.io/categories/Reinforcement-Learning/"/>
+      <category term="Reinforcement Learning" scheme="https://xandery-geek.github.io/categories/Reinforcement-Learning/"/>
     
     
-      <category term="AI" scheme="https://yx1302317313.github.io/tags/AI/"/>
+      <category term="AI" scheme="https://xandery-geek.github.io/tags/AI/"/>
     
-      <category term="Code" scheme="https://yx1302317313.github.io/tags/Code/"/>
+      <category term="Code" scheme="https://xandery-geek.github.io/tags/Code/"/>
     
-      <category term="Python" scheme="https://yx1302317313.github.io/tags/Python/"/>
+      <category term="Python" scheme="https://xandery-geek.github.io/tags/Python/"/>
     
-      <category term="Math" scheme="https://yx1302317313.github.io/tags/Math/"/>
+      <category term="Math" scheme="https://xandery-geek.github.io/tags/Math/"/>
     
   </entry>
   
   <entry>
     <title>傅里叶变换</title>
-    <link href="https://yx1302317313.github.io/2020/04/30/fu-li-xie-bian-huan/"/>
-    <id>https://yx1302317313.github.io/2020/04/30/fu-li-xie-bian-huan/</id>
+    <link href="https://xandery-geek.github.io/2020/04/30/fu-li-xie-bian-huan/"/>
+    <id>https://xandery-geek.github.io/2020/04/30/fu-li-xie-bian-huan/</id>
     <published>2020-04-30T09:42:45.000Z</published>
     <updated>2020-07-13T04:00:03.009Z</updated>
     
@@ -197,21 +197,21 @@
     
     </summary>
     
-      <category term="算法" scheme="https://yx1302317313.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://xandery-geek.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Code" scheme="https://yx1302317313.github.io/tags/Code/"/>
+      <category term="Code" scheme="https://xandery-geek.github.io/tags/Code/"/>
     
-      <category term="Math" scheme="https://yx1302317313.github.io/tags/Math/"/>
+      <category term="Math" scheme="https://xandery-geek.github.io/tags/Math/"/>
     
-      <category term="信号" scheme="https://yx1302317313.github.io/tags/%E4%BF%A1%E5%8F%B7/"/>
+      <category term="信号" scheme="https://xandery-geek.github.io/tags/%E4%BF%A1%E5%8F%B7/"/>
     
   </entry>
   
   <entry>
     <title>AI 未来[阅读]</title>
-    <link href="https://yx1302317313.github.io/2020/04/07/ai-superpowers/"/>
-    <id>https://yx1302317313.github.io/2020/04/07/ai-superpowers/</id>
+    <link href="https://xandery-geek.github.io/2020/04/07/ai-superpowers/"/>
+    <id>https://xandery-geek.github.io/2020/04/07/ai-superpowers/</id>
     <published>2020-04-07T06:59:09.000Z</published>
     <updated>2020-06-15T10:39:51.979Z</updated>
     
@@ -219,19 +219,19 @@
     
     </summary>
     
-      <category term="阅读" scheme="https://yx1302317313.github.io/categories/%E9%98%85%E8%AF%BB/"/>
+      <category term="阅读" scheme="https://xandery-geek.github.io/categories/%E9%98%85%E8%AF%BB/"/>
     
     
-      <category term="AI" scheme="https://yx1302317313.github.io/tags/AI/"/>
+      <category term="AI" scheme="https://xandery-geek.github.io/tags/AI/"/>
     
-      <category term="书籍" scheme="https://yx1302317313.github.io/tags/%E4%B9%A6%E7%B1%8D/"/>
+      <category term="书籍" scheme="https://xandery-geek.github.io/tags/%E4%B9%A6%E7%B1%8D/"/>
     
   </entry>
   
   <entry>
     <title>Hough（霍夫）直线检测</title>
-    <link href="https://yx1302317313.github.io/2020/03/27/hough-line-detection/"/>
-    <id>https://yx1302317313.github.io/2020/03/27/hough-line-detection/</id>
+    <link href="https://xandery-geek.github.io/2020/03/27/hough-line-detection/"/>
+    <id>https://xandery-geek.github.io/2020/03/27/hough-line-detection/</id>
     <published>2020-03-27T01:42:25.000Z</published>
     <updated>2020-06-15T10:53:07.492Z</updated>
     
@@ -246,21 +246,21 @@
     
     </summary>
     
-      <category term="算法" scheme="https://yx1302317313.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://xandery-geek.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Code" scheme="https://yx1302317313.github.io/tags/Code/"/>
+      <category term="Code" scheme="https://xandery-geek.github.io/tags/Code/"/>
     
-      <category term="数字图像处理" scheme="https://yx1302317313.github.io/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+      <category term="数字图像处理" scheme="https://xandery-geek.github.io/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
     
-      <category term="Math" scheme="https://yx1302317313.github.io/tags/Math/"/>
+      <category term="Math" scheme="https://xandery-geek.github.io/tags/Math/"/>
     
   </entry>
   
   <entry>
     <title>HSV和HSL色彩模型</title>
-    <link href="https://yx1302317313.github.io/2020/03/23/hsv-he-hsl-se-cai-mo-xing/"/>
-    <id>https://yx1302317313.github.io/2020/03/23/hsv-he-hsl-se-cai-mo-xing/</id>
+    <link href="https://xandery-geek.github.io/2020/03/23/hsv-he-hsl-se-cai-mo-xing/"/>
+    <id>https://xandery-geek.github.io/2020/03/23/hsv-he-hsl-se-cai-mo-xing/</id>
     <published>2020-03-23T09:21:21.000Z</published>
     <updated>2020-06-23T10:48:48.142Z</updated>
     
@@ -272,19 +272,19 @@
     
     </summary>
     
-      <category term="CV" scheme="https://yx1302317313.github.io/categories/CV/"/>
+      <category term="CV" scheme="https://xandery-geek.github.io/categories/CV/"/>
     
     
-      <category term="Opencv" scheme="https://yx1302317313.github.io/tags/Opencv/"/>
+      <category term="Opencv" scheme="https://xandery-geek.github.io/tags/Opencv/"/>
     
-      <category term="数字图像处理" scheme="https://yx1302317313.github.io/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+      <category term="数字图像处理" scheme="https://xandery-geek.github.io/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>书单</title>
-    <link href="https://yx1302317313.github.io/2020/03/05/reading-list/"/>
-    <id>https://yx1302317313.github.io/2020/03/05/reading-list/</id>
+    <link href="https://xandery-geek.github.io/2020/03/05/reading-list/"/>
+    <id>https://xandery-geek.github.io/2020/03/05/reading-list/</id>
     <published>2020-03-05T06:23:57.000Z</published>
     <updated>2020-06-15T10:44:03.069Z</updated>
     
@@ -304,17 +304,17 @@
     
     </summary>
     
-      <category term="阅读" scheme="https://yx1302317313.github.io/categories/%E9%98%85%E8%AF%BB/"/>
+      <category term="阅读" scheme="https://xandery-geek.github.io/categories/%E9%98%85%E8%AF%BB/"/>
     
     
-      <category term="书籍" scheme="https://yx1302317313.github.io/tags/%E4%B9%A6%E7%B1%8D/"/>
+      <category term="书籍" scheme="https://xandery-geek.github.io/tags/%E4%B9%A6%E7%B1%8D/"/>
     
   </entry>
   
   <entry>
     <title>MapReduce-翻译</title>
-    <link href="https://yx1302317313.github.io/2020/03/01/google-mapreduce/"/>
-    <id>https://yx1302317313.github.io/2020/03/01/google-mapreduce/</id>
+    <link href="https://xandery-geek.github.io/2020/03/01/google-mapreduce/"/>
+    <id>https://xandery-geek.github.io/2020/03/01/google-mapreduce/</id>
     <published>2020-03-01T13:18:35.000Z</published>
     <updated>2020-06-15T10:52:39.911Z</updated>
     
@@ -329,17 +329,17 @@
     
     </summary>
     
-      <category term="翻译" scheme="https://yx1302317313.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
+      <category term="翻译" scheme="https://xandery-geek.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-      <category term="并行处理" scheme="https://yx1302317313.github.io/tags/%E5%B9%B6%E8%A1%8C%E5%A4%84%E7%90%86/"/>
+      <category term="并行处理" scheme="https://xandery-geek.github.io/tags/%E5%B9%B6%E8%A1%8C%E5%A4%84%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>将QImage转换为numpy array</title>
-    <link href="https://yx1302317313.github.io/2020/02/26/convert-qimage-to-numpy-array/"/>
-    <id>https://yx1302317313.github.io/2020/02/26/convert-qimage-to-numpy-array/</id>
+    <link href="https://xandery-geek.github.io/2020/02/26/convert-qimage-to-numpy-array/"/>
+    <id>https://xandery-geek.github.io/2020/02/26/convert-qimage-to-numpy-array/</id>
     <published>2020-02-26T14:26:16.000Z</published>
     <updated>2020-06-15T10:56:55.688Z</updated>
     
@@ -351,21 +351,21 @@
     
     </summary>
     
-      <category term="Deep Learning" scheme="https://yx1302317313.github.io/categories/Deep-Learning/"/>
+      <category term="Deep Learning" scheme="https://xandery-geek.github.io/categories/Deep-Learning/"/>
     
     
-      <category term="Qt" scheme="https://yx1302317313.github.io/tags/Qt/"/>
+      <category term="Qt" scheme="https://xandery-geek.github.io/tags/Qt/"/>
     
-      <category term="Code" scheme="https://yx1302317313.github.io/tags/Code/"/>
+      <category term="Code" scheme="https://xandery-geek.github.io/tags/Code/"/>
     
-      <category term="Python" scheme="https://yx1302317313.github.io/tags/Python/"/>
+      <category term="Python" scheme="https://xandery-geek.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>Load Mnist database of handwritten digit via Python</title>
-    <link href="https://yx1302317313.github.io/2020/02/20/parser-mnist/"/>
-    <id>https://yx1302317313.github.io/2020/02/20/parser-mnist/</id>
+    <link href="https://xandery-geek.github.io/2020/02/20/parser-mnist/"/>
+    <id>https://xandery-geek.github.io/2020/02/20/parser-mnist/</id>
     <published>2020-02-20T12:35:08.000Z</published>
     <updated>2020-06-15T10:43:51.448Z</updated>
     
@@ -377,19 +377,19 @@
     
     </summary>
     
-      <category term="Deep Learning" scheme="https://yx1302317313.github.io/categories/Deep-Learning/"/>
+      <category term="Deep Learning" scheme="https://xandery-geek.github.io/categories/Deep-Learning/"/>
     
     
-      <category term="Code" scheme="https://yx1302317313.github.io/tags/Code/"/>
+      <category term="Code" scheme="https://xandery-geek.github.io/tags/Code/"/>
     
-      <category term="Python" scheme="https://yx1302317313.github.io/tags/Python/"/>
+      <category term="Python" scheme="https://xandery-geek.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>Gitee导入Github仓库</title>
-    <link href="https://yx1302317313.github.io/2020/02/20/gitee-import-from-github/"/>
-    <id>https://yx1302317313.github.io/2020/02/20/gitee-import-from-github/</id>
+    <link href="https://xandery-geek.github.io/2020/02/20/gitee-import-from-github/"/>
+    <id>https://xandery-geek.github.io/2020/02/20/gitee-import-from-github/</id>
     <published>2020-02-20T11:59:59.000Z</published>
     <updated>2020-06-15T10:40:50.425Z</updated>
     
@@ -401,17 +401,17 @@
     
     </summary>
     
-      <category term="Git" scheme="https://yx1302317313.github.io/categories/Git/"/>
+      <category term="Git" scheme="https://xandery-geek.github.io/categories/Git/"/>
     
     
-      <category term="Tool" scheme="https://yx1302317313.github.io/tags/Tool/"/>
+      <category term="Tool" scheme="https://xandery-geek.github.io/tags/Tool/"/>
     
   </entry>
   
   <entry>
     <title>LeetCode-最长有效括号</title>
-    <link href="https://yx1302317313.github.io/2020/01/22/leetcode-zui-chang-you-xiao-gua-hao/"/>
-    <id>https://yx1302317313.github.io/2020/01/22/leetcode-zui-chang-you-xiao-gua-hao/</id>
+    <link href="https://xandery-geek.github.io/2020/01/22/leetcode-zui-chang-you-xiao-gua-hao/"/>
+    <id>https://xandery-geek.github.io/2020/01/22/leetcode-zui-chang-you-xiao-gua-hao/</id>
     <published>2020-01-22T08:28:59.000Z</published>
     <updated>2020-06-17T14:00:36.469Z</updated>
     
@@ -426,19 +426,19 @@
     
     </summary>
     
-      <category term="算法" scheme="https://yx1302317313.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://xandery-geek.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Code" scheme="https://yx1302317313.github.io/tags/Code/"/>
+      <category term="Code" scheme="https://xandery-geek.github.io/tags/Code/"/>
     
-      <category term="C++" scheme="https://yx1302317313.github.io/tags/C/"/>
+      <category term="C++" scheme="https://xandery-geek.github.io/tags/C/"/>
     
   </entry>
   
   <entry>
     <title>LeetCode-扰乱字符串</title>
-    <link href="https://yx1302317313.github.io/2020/01/19/leecode-rao-luan-zi-fu-chuan/"/>
-    <id>https://yx1302317313.github.io/2020/01/19/leecode-rao-luan-zi-fu-chuan/</id>
+    <link href="https://xandery-geek.github.io/2020/01/19/leecode-rao-luan-zi-fu-chuan/"/>
+    <id>https://xandery-geek.github.io/2020/01/19/leecode-rao-luan-zi-fu-chuan/</id>
     <published>2020-01-19T14:07:49.000Z</published>
     <updated>2020-06-17T11:36:54.002Z</updated>
     
@@ -453,19 +453,19 @@
     
     </summary>
     
-      <category term="算法" scheme="https://yx1302317313.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://xandery-geek.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Code" scheme="https://yx1302317313.github.io/tags/Code/"/>
+      <category term="Code" scheme="https://xandery-geek.github.io/tags/Code/"/>
     
-      <category term="C++" scheme="https://yx1302317313.github.io/tags/C/"/>
+      <category term="C++" scheme="https://xandery-geek.github.io/tags/C/"/>
     
   </entry>
   
   <entry>
     <title>Linux 管道通信</title>
-    <link href="https://yx1302317313.github.io/2019/11/14/linux-pipe/"/>
-    <id>https://yx1302317313.github.io/2019/11/14/linux-pipe/</id>
+    <link href="https://xandery-geek.github.io/2019/11/14/linux-pipe/"/>
+    <id>https://xandery-geek.github.io/2019/11/14/linux-pipe/</id>
     <published>2019-11-14T10:42:32.000Z</published>
     <updated>2020-04-02T07:45:53.287Z</updated>
     
@@ -482,19 +482,19 @@
     
     </summary>
     
-      <category term="Linux" scheme="https://yx1302317313.github.io/categories/Linux/"/>
+      <category term="Linux" scheme="https://xandery-geek.github.io/categories/Linux/"/>
     
     
-      <category term="Code" scheme="https://yx1302317313.github.io/tags/Code/"/>
+      <category term="Code" scheme="https://xandery-geek.github.io/tags/Code/"/>
     
-      <category term="Kernel" scheme="https://yx1302317313.github.io/tags/Kernel/"/>
+      <category term="Kernel" scheme="https://xandery-geek.github.io/tags/Kernel/"/>
     
   </entry>
   
   <entry>
     <title>Git子模块（submodule）</title>
-    <link href="https://yx1302317313.github.io/2019/11/09/git-zi-mo-kuai-submodule/"/>
-    <id>https://yx1302317313.github.io/2019/11/09/git-zi-mo-kuai-submodule/</id>
+    <link href="https://xandery-geek.github.io/2019/11/09/git-zi-mo-kuai-submodule/"/>
+    <id>https://xandery-geek.github.io/2019/11/09/git-zi-mo-kuai-submodule/</id>
     <published>2019-11-09T14:22:32.000Z</published>
     <updated>2020-06-15T10:41:14.123Z</updated>
     
@@ -509,10 +509,10 @@
     
     </summary>
     
-      <category term="Git" scheme="https://yx1302317313.github.io/categories/Git/"/>
+      <category term="Git" scheme="https://xandery-geek.github.io/categories/Git/"/>
     
     
-      <category term="Tool" scheme="https://yx1302317313.github.io/tags/Tool/"/>
+      <category term="Tool" scheme="https://xandery-geek.github.io/tags/Tool/"/>
     
   </entry>
   
